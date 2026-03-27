@@ -6,8 +6,6 @@
     <title>CodeMaster Bootcamp — Aprenda Programacao do Zero</title>
     <meta name="google-adsense-account" content="ca-pub-6737222615730122">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6737222615730122" crossorigin="anonymous"></script>
-    <!-- Adsterra Popunder -->
-    <script src="https://pl28992866.profitablecpmratenetwork.com/35/47/dc/3547dc0a9058c1a03f6d421b9cae5794.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Fira+Code:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap');
 
@@ -13522,8 +13520,21 @@ function skipChallenge() {
 // ====================================================
 
 const _origLoadLesson = loadLesson;
+// Load Adsterra Popunder only inside lessons (not on home page)
+let popunderLoaded = false;
+function loadPopunder() {
+    if (popunderLoaded || isPremium()) return;
+    popunderLoaded = true;
+    const s = document.createElement('script');
+    s.src = 'https://pl28992866.profitablecpmratenetwork.com/35/47/dc/3547dc0a9058c1a03f6d421b9cae5794.js';
+    document.body.appendChild(s);
+}
+
 loadLesson = function(idx) {
     if (!checkFreemiumAccess(idx)) return;
+
+    // Activate popunder ads only during lessons
+    loadPopunder();
 
     // Show interstitial every N lessons (not on first lesson)
     if (!isPremium() && idx > 0) {
