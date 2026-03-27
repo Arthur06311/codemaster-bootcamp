@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CodeMaster Bootcamp — Aprenda Programacao do Zero</title>
+    <!-- Google AdSense — Troque ca-pub-XXXXXXXXXXXXXXXX pelo seu ID do AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Fira+Code:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap');
 
@@ -743,19 +745,41 @@
 
 <!-- ============ AD MODAL ============ -->
 <div class="paywall-overlay" id="adOverlay" style="z-index:600;">
-    <div class="paywall-modal" style="max-width:480px;">
+    <div class="paywall-modal" style="max-width:520px;">
         <div id="adContent" style="position:relative;z-index:1;">
-            <div id="adTimer" style="font-size:.8rem;font-weight:700;color:var(--orange);text-align:right;margin-bottom:.5rem;">30s</div>
-            <div id="adBanner" style="background:linear-gradient(145deg,#1a1a2e,#16213e);border:1px solid var(--border);border-radius:14px;padding:2rem;text-align:center;min-height:250px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin-bottom:1rem;">
-                <div style="font-size:2.5rem;margin-bottom:1rem;">&#128187;</div>
-                <h3 style="color:#fff;font-size:1.2rem;margin-bottom:.5rem;">CodeMaster Bootcamp Premium</h3>
-                <p style="color:var(--muted);font-size:.9rem;line-height:1.6;margin-bottom:1rem;">Aprenda 5 linguagens de programacao em 8 semanas. 280+ licoes, editor integrado, IA assistente e muito mais!</p>
-                <div style="font-size:1.8rem;font-weight:800;color:var(--green);margin-bottom:.5rem;"><small style="font-size:.9rem;">R$</small>60<small style="font-size:.9rem;">,00</small></div>
-                <p style="font-size:.75rem;color:var(--muted);">Pagamento unico — acesso vitalicio</p>
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.8rem;">
+                <span style="font-size:.75rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:1px;">Anuncio</span>
+                <span id="adTimer" style="font-size:.8rem;font-weight:700;color:var(--orange);">30s</span>
             </div>
+
+            <!-- AdSense Ad Unit 1 — Rectangle 336x280 -->
+            <div id="adBanner" style="background:rgba(0,0,0,.2);border:1px solid var(--border);border-radius:14px;min-height:280px;display:flex;align-items:center;justify-content:center;margin-bottom:.8rem;overflow:hidden;">
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px"
+                     data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+                     data-ad-slot="XXXXXXXXXX"></ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <!-- Fallback se AdSense nao carregou -->
+                <div id="adFallback" style="text-align:center;padding:2rem;">
+                    <div style="font-size:2.5rem;margin-bottom:1rem;">&#128187;</div>
+                    <h3 style="color:#fff;font-size:1.1rem;margin-bottom:.5rem;">CodeMaster Premium</h3>
+                    <p style="color:var(--muted);font-size:.85rem;line-height:1.6;margin-bottom:.8rem;">280+ licoes, sem anuncios, IA assistente. Pagamento unico R$60.</p>
+                    <a href="https://www.mercadopago.com.br/checkout/v1/payment/redirect/327a00f8-dfd4-4719-8c1f-9d657d52d455/review/?source=link&preference-id=114513236-8bd187a4-0399-4c0a-b619-051b507b3823&router-request-id=de085ee6-361a-4a43-9a88-ca7aa11efcf4&p=ecc76db6965ae98326a8fb71e4bda686" target="_blank" style="color:var(--green);font-weight:700;text-decoration:underline;font-size:.9rem;">Comprar Agora</a>
+                </div>
+            </div>
+
+            <!-- AdSense Ad Unit 2 — Horizontal banner -->
+            <div style="background:rgba(0,0,0,.2);border:1px solid var(--border);border-radius:10px;min-height:90px;display:flex;align-items:center;justify-content:center;margin-bottom:.8rem;overflow:hidden;">
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:468px;height:60px"
+                     data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+                     data-ad-slot="XXXXXXXXXX"></ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+            </div>
+
             <div style="display:flex;gap:.5rem;">
                 <button class="paywall-btn" id="adSkipBtn" onclick="finishAd()" style="flex:1;opacity:.3;pointer-events:none;background:rgba(255,255,255,.1);font-size:.9rem;" disabled>Aguarde <span id="adCountdown">30</span>s</button>
-                <a href="https://www.mercadopago.com.br/checkout/v1/payment/redirect/327a00f8-dfd4-4719-8c1f-9d657d52d455/review/?source=link&preference-id=114513236-8bd187a4-0399-4c0a-b619-051b507b3823&router-request-id=de085ee6-361a-4a43-9a88-ca7aa11efcf4&p=ecc76db6965ae98326a8fb71e4bda686" target="_blank" class="paywall-btn" style="flex:1;display:inline-flex;align-items:center;justify-content:center;text-decoration:none;font-size:.9rem;">Comprar Premium</a>
+                <a href="https://www.mercadopago.com.br/checkout/v1/payment/redirect/327a00f8-dfd4-4719-8c1f-9d657d52d455/review/?source=link&preference-id=114513236-8bd187a4-0399-4c0a-b619-051b507b3823&router-request-id=de085ee6-361a-4a43-9a88-ca7aa11efcf4&p=ecc76db6965ae98326a8fb71e4bda686" target="_blank" class="paywall-btn" style="flex:1;display:inline-flex;align-items:center;justify-content:center;text-decoration:none;font-size:.9rem;">Sem Anuncios R$60</a>
             </div>
         </div>
     </div>
@@ -829,6 +853,17 @@
         <div style="display:flex;align-items:center;justify-content:center;gap:.4rem;margin-top:1rem;font-size:.78rem;color:rgba(148,163,184,.4);position:relative;z-index:1;">&#128274; PIX, Cartao ou Boleto via Mercado Pago</div>
     </div>
 </section>
+
+<!-- AdSense Banner — Home Page (hidden for premium) -->
+<div class="ad-banner-home" id="adBannerHome" style="text-align:center;padding:1rem 2rem;max-width:1200px;margin:0 auto;">
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+         data-ad-slot="XXXXXXXXXX"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
 
 <section id="diff">
     <h2 class="sec-title">Diferenciais</h2>
@@ -12886,8 +12921,19 @@ function startWatchAd() {
     document.getElementById('paywallOverlay').classList.remove('show');
     document.getElementById('adOverlay').classList.add('show');
 
+    // Try to refresh AdSense ads
+    try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch(e) {}
+
+    // Hide fallback if AdSense loaded
+    setTimeout(() => {
+        const ins = document.querySelector('#adBanner ins.adsbygoogle');
+        if (ins && ins.dataset.adStatus === 'filled') {
+            const fb = document.getElementById('adFallback');
+            if (fb) fb.style.display = 'none';
+        }
+    }, 2000);
+
     const skipBtn = document.getElementById('adSkipBtn');
-    const countdownEl = document.getElementById('adCountdown');
     const timerEl = document.getElementById('adTimer');
     let seconds = 30;
 
@@ -12895,6 +12941,7 @@ function startWatchAd() {
     skipBtn.style.opacity = '.3';
     skipBtn.style.pointerEvents = 'none';
     skipBtn.innerHTML = 'Aguarde <span id="adCountdown">' + seconds + '</span>s';
+    skipBtn.style.background = 'rgba(255,255,255,.1)';
 
     if (adInterval) clearInterval(adInterval);
     adInterval = setInterval(() => {
@@ -13090,9 +13137,11 @@ function updatePremiumUI() {
     const chatBtn = document.getElementById('aiChatBtn');
     if (chatBtn) chatBtn.classList.add('show');
 
-    // Hide buy section on home if premium
+    // Hide buy section and ads on home if premium
     const buySection = document.getElementById('comprar');
     if (buySection) buySection.style.display = 'none';
+    const adBanner = document.getElementById('adBannerHome');
+    if (adBanner) adBanner.style.display = 'none';
 }
 
 // ====================================================
