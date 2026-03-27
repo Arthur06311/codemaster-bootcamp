@@ -689,7 +689,7 @@
             <div class="nav-progress-bar"><div class="nav-progress-fill" id="navProgressFill" style="width:0%"></div></div>
             <span class="nav-progress-text" id="navProgressText">0%</span>
         </div>
-        <div class="freemium-timer" id="freemiumTimer">&#9200; <span id="freemiumTimeLeft">2:00:00</span></div>
+        <div class="freemium-timer" id="freemiumTimer">&#9200; <span id="freemiumTimeLeft">3/3 licoes</span></div>
         <button class="nav-back" id="backBtn" onclick="goHome()">&#8592; Voltar</button>
     </div>
 </nav>
@@ -699,9 +699,18 @@
     <div class="paywall-modal">
         <button class="paywall-close" onclick="closePaywall()" title="Fechar">&#10005;</button>
         <div class="paywall-emoji">&#128640;</div>
-        <h2>Gostou do Bootcamp?</h2>
-        <p class="paywall-sub">Voce completou os 2 dias gratis! Desbloqueie todas as 280+ licoes, IA assistente e continue sua jornada de programador.</p>
+        <h2 id="paywallTitle">Voce usou suas 3 licoes gratis!</h2>
+        <p class="paywall-sub" id="paywallSub">Suas licoes gratis desta hora acabaram. Escolha como continuar:</p>
 
+        <!-- Option 1: Watch Ad -->
+        <div style="background:rgba(245,158,11,.06);border:1px solid rgba(245,158,11,.15);border-radius:16px;padding:1.2rem;margin-bottom:1rem;position:relative;z-index:1;">
+            <p style="font-size:.85rem;color:var(--orange);font-weight:600;margin-bottom:.6rem;">&#127916; Assista um anuncio e ganhe +1 licao gratis</p>
+            <button class="paywall-btn" onclick="startWatchAd()" style="background:linear-gradient(135deg,var(--orange),var(--orange-d));font-size:.95rem;" id="watchAdBtn">Assistir Anuncio (30s)</button>
+        </div>
+
+        <p style="font-size:.8rem;color:rgba(148,163,184,.4);margin-bottom:1rem;position:relative;z-index:1;">— ou desbloqueie tudo de uma vez —</p>
+
+        <!-- Option 2: Pay -->
         <div class="paywall-price-box">
             <div class="paywall-price-old">De R$149,90</div>
             <div class="paywall-price"><small>R$</small>60<small>,00</small></div>
@@ -709,15 +718,10 @@
         </div>
 
         <ul class="paywall-features">
-            <li><span class="pf-check">&#10003;</span> 280+ licoes completas em 5 linguagens</li>
-            <li><span class="pf-check">&#10003;</span> Editor de codigo integrado</li>
-            <li><span class="pf-check">&#10003;</span> Projetos praticos toda semana</li>
-            <li><span class="pf-check">&#10003;</span> Acesso vitalicio — sem mensalidade</li>
-            <li><span class="pf-check">&#10003;</span> Progresso salvo automaticamente</li>
-            <li><span class="pf-check">&#10003;</span> Desafios horarios com bonus de tempo</li>
-            <li><span class="pf-check">&#10003;</span> Curiosidades diarias sobre tecnologia</li>
-            <li><span class="pf-check">&#10003;</span> Assistente IA para tirar duvidas</li>
-            <li><span class="pf-check">&#10003;</span> Certificado de conclusao</li>
+            <li><span class="pf-check">&#10003;</span> 280+ licoes sem limite</li>
+            <li><span class="pf-check">&#10003;</span> Sem anuncios</li>
+            <li><span class="pf-check">&#10003;</span> Assistente IA para duvidas</li>
+            <li><span class="pf-check">&#10003;</span> Acesso vitalicio</li>
         </ul>
 
         <a href="https://www.mercadopago.com.br/checkout/v1/payment/redirect/327a00f8-dfd4-4719-8c1f-9d657d52d455/review/?source=link&preference-id=114513236-8bd187a4-0399-4c0a-b619-051b507b3823&router-request-id=de085ee6-361a-4a43-9a88-ca7aa11efcf4&p=ecc76db6965ae98326a8fb71e4bda686" target="_blank" class="paywall-btn" style="display:inline-block;text-decoration:none;text-align:center;" onclick="localStorage.setItem('cm_payment_pending','true');localStorage.setItem('cm_payment_ts',Date.now())">Pagar R$60,00 — Mercado Pago</a>
@@ -726,15 +730,34 @@
         <div id="activateSection" style="margin-top:1rem;">
             <button class="paywall-btn" onclick="showActivateForm()" style="background:linear-gradient(135deg,#3b82f6,#8b5cf6);font-size:.95rem;" id="showActivateBtn">&#10003; Ja Paguei — Ativar Acesso</button>
             <div id="activateForm" style="display:none;margin-top:.8rem;text-align:left;">
-                <p style="font-size:.8rem;color:var(--muted);margin-bottom:.6rem;text-align:center;">Insira o e-mail usado no pagamento do Mercado Pago para confirmar:</p>
+                <p style="font-size:.8rem;color:var(--muted);margin-bottom:.6rem;text-align:center;">Insira o e-mail usado no pagamento do Mercado Pago:</p>
                 <input type="email" id="activateEmail" placeholder="seu-email@exemplo.com" style="width:100%;padding:.7rem 1rem;background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:10px;color:#fff;font-size:.9rem;margin-bottom:.5rem;outline:none;" onfocus="this.style.borderColor='rgba(139,92,246,.4)'" onblur="this.style.borderColor='var(--border)'">
-                <p style="font-size:.7rem;color:rgba(148,163,184,.4);margin-bottom:.8rem;text-align:center;">Usamos apenas para verificar seu pagamento</p>
-                <button class="paywall-btn" onclick="confirmPayment()" id="activateConfirmBtn" style="background:linear-gradient(135deg,#3b82f6,#8b5cf6);font-size:.95rem;">Confirmar e Ativar</button>
+                <button class="paywall-btn" onclick="confirmPayment()" id="activateConfirmBtn" style="background:linear-gradient(135deg,#3b82f6,#8b5cf6);font-size:.95rem;margin-top:.5rem;">Confirmar e Ativar</button>
                 <p id="activateError" style="display:none;color:var(--red);font-size:.8rem;text-align:center;margin-top:.5rem;"></p>
                 <p id="activateAttempts" style="font-size:.7rem;color:rgba(148,163,184,.3);text-align:center;margin-top:.4rem;"></p>
             </div>
         </div>
-        <button class="paywall-skip" onclick="closePaywall()">Quero so olhar mais um pouco</button>
+        <button class="paywall-skip" onclick="closePaywall()" style="margin-top:.5rem;">Esperar a proxima hora</button>
+    </div>
+</div>
+
+<!-- ============ AD MODAL ============ -->
+<div class="paywall-overlay" id="adOverlay" style="z-index:600;">
+    <div class="paywall-modal" style="max-width:480px;">
+        <div id="adContent" style="position:relative;z-index:1;">
+            <div id="adTimer" style="font-size:.8rem;font-weight:700;color:var(--orange);text-align:right;margin-bottom:.5rem;">30s</div>
+            <div id="adBanner" style="background:linear-gradient(145deg,#1a1a2e,#16213e);border:1px solid var(--border);border-radius:14px;padding:2rem;text-align:center;min-height:250px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin-bottom:1rem;">
+                <div style="font-size:2.5rem;margin-bottom:1rem;">&#128187;</div>
+                <h3 style="color:#fff;font-size:1.2rem;margin-bottom:.5rem;">CodeMaster Bootcamp Premium</h3>
+                <p style="color:var(--muted);font-size:.9rem;line-height:1.6;margin-bottom:1rem;">Aprenda 5 linguagens de programacao em 8 semanas. 280+ licoes, editor integrado, IA assistente e muito mais!</p>
+                <div style="font-size:1.8rem;font-weight:800;color:var(--green);margin-bottom:.5rem;"><small style="font-size:.9rem;">R$</small>60<small style="font-size:.9rem;">,00</small></div>
+                <p style="font-size:.75rem;color:var(--muted);">Pagamento unico — acesso vitalicio</p>
+            </div>
+            <div style="display:flex;gap:.5rem;">
+                <button class="paywall-btn" id="adSkipBtn" onclick="finishAd()" style="flex:1;opacity:.3;pointer-events:none;background:rgba(255,255,255,.1);font-size:.9rem;" disabled>Aguarde <span id="adCountdown">30</span>s</button>
+                <a href="https://www.mercadopago.com.br/checkout/v1/payment/redirect/327a00f8-dfd4-4719-8c1f-9d657d52d455/review/?source=link&preference-id=114513236-8bd187a4-0399-4c0a-b619-051b507b3823&router-request-id=de085ee6-361a-4a43-9a88-ca7aa11efcf4&p=ecc76db6965ae98326a8fb71e4bda686" target="_blank" class="paywall-btn" style="flex:1;display:inline-flex;align-items:center;justify-content:center;text-decoration:none;font-size:.9rem;">Comprar Premium</a>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -12698,14 +12721,11 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
 });
 
 // ====================================================
-// FREEMIUM SYSTEM — 2 hour free trial + paywall
+// FREEMIUM SYSTEM — 3 free lessons per hour + ads
 // ====================================================
 
-const FREEMIUM_LIMIT_MS = 2 * 60 * 60 * 1000; // 2 hours (kept for timer display)
-const FREE_DAYS = 2; // 2 days of free lessons (10 lessons)
-const GRACE_VIEWS = 3; // extra lesson views after free days
+const FREE_LESSONS_PER_HOUR = 3;
 let freemiumInterval = null;
-let paywallDismissCount = 0;
 
 function isPremium() {
     return localStorage.getItem('cm_premium') === 'true';
@@ -12723,20 +12743,42 @@ function setUsedTime(ms) {
     localStorage.setItem('cm_used_time', String(ms));
 }
 
-function getGraceViews() {
-    return parseInt(localStorage.getItem('cm_grace_views') || '0');
+// Track lessons viewed this hour
+function getHourlyViews() {
+    const data = JSON.parse(localStorage.getItem('cm_hourly_views') || '{"ts":0,"count":0}');
+    const now = Date.now();
+    // Reset if more than 1 hour passed
+    if (now - data.ts > 3600000) {
+        return { ts: now, count: 0 };
+    }
+    return data;
 }
 
-function addGraceView() {
-    localStorage.setItem('cm_grace_views', String(getGraceViews() + 1));
+function addHourlyView() {
+    const data = getHourlyViews();
+    data.count++;
+    if (data.ts === 0) data.ts = Date.now();
+    localStorage.setItem('cm_hourly_views', JSON.stringify(data));
+    return data;
+}
+
+function getRemainingFree() {
+    const data = getHourlyViews();
+    return Math.max(0, FREE_LESSONS_PER_HOUR - data.count);
+}
+
+function getTimeUntilReset() {
+    const data = getHourlyViews();
+    if (data.ts === 0) return 0;
+    const elapsed = Date.now() - data.ts;
+    return Math.max(0, 3600000 - elapsed);
 }
 
 function formatTime(ms) {
     const totalSec = Math.max(0, Math.floor(ms / 1000));
-    const h = Math.floor(totalSec / 3600);
-    const m = Math.floor((totalSec % 3600) / 60);
+    const m = Math.floor(totalSec / 60);
     const s = totalSec % 60;
-    return `${h}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+    return `${m}:${String(s).padStart(2,'0')}`;
 }
 
 function startFreemiumTimer() {
@@ -12752,22 +12794,26 @@ function startFreemiumTimer() {
 
     timer.style.display = 'flex';
 
-    // Show lesson-based progress instead of time
     function updateFreemiumDisplay() {
         const timerEl = document.getElementById('freemiumTimeLeft');
         if (!timerEl) return;
-        const lesson = currentLessons[currentLessonIdx];
-        if (lesson && lesson.week === 1 && lesson.day <= FREE_DAYS) {
-            timerEl.textContent = 'Gratis: Dia ' + lesson.day + '/' + FREE_DAYS;
+        const remaining = getRemainingFree();
+        if (remaining > 0) {
+            timerEl.textContent = 'Gratis: ' + remaining + '/' + FREE_LESSONS_PER_HOUR + ' licoes';
             timer.className = 'freemium-timer';
         } else {
-            timerEl.textContent = 'Premium necessario';
-            timer.className = 'freemium-timer warning';
+            const resetIn = getTimeUntilReset();
+            if (resetIn > 0) {
+                timerEl.textContent = 'Proximas gratis em ' + formatTime(resetIn);
+                timer.className = 'freemium-timer warning';
+            } else {
+                timerEl.textContent = 'Gratis: ' + FREE_LESSONS_PER_HOUR + '/' + FREE_LESSONS_PER_HOUR + ' licoes';
+                timer.className = 'freemium-timer';
+            }
         }
     }
     updateFreemiumDisplay();
 
-    // Also track time for hourly challenges
     if (freemiumInterval) clearInterval(freemiumInterval);
     freemiumInterval = setInterval(() => {
         if (isPremium()) { clearInterval(freemiumInterval); startFreemiumTimer(); return; }
@@ -12787,50 +12833,106 @@ function stopFreemiumTimer() {
 
 function showPaywall() {
     if (isPremium()) return;
+    const remaining = getRemainingFree();
+    const resetIn = getTimeUntilReset();
+    const titleEl = document.getElementById('paywallTitle');
+    const subEl = document.getElementById('paywallSub');
+    if (titleEl) titleEl.textContent = 'Voce usou suas ' + FREE_LESSONS_PER_HOUR + ' licoes gratis!';
+    if (subEl && resetIn > 0) {
+        subEl.textContent = 'Proximas licoes gratis em ' + formatTime(resetIn) + '. Assista um anuncio ou desbloqueie tudo:';
+    }
     document.getElementById('paywallOverlay').classList.add('show');
     document.body.style.overflow = 'hidden';
 }
 
 function closePaywall() {
-    paywallDismissCount++;
-
-    const grace = getGraceViews();
-    if (grace >= GRACE_VIEWS) {
-        showToast('&#128274; Voce ja usou suas licoes gratis. Adquira o acesso completo!', 4000);
-        return;
-    }
-
-    showToast(`Voce pode ver mais ${GRACE_VIEWS - grace} licao(oes) alem do dia 2`, 3000);
-
     document.getElementById('paywallOverlay').classList.remove('show');
     document.body.style.overflow = '';
 }
 
 function isLessonFree(idx) {
     if (isPremium()) return true;
-    if (!currentLessons[idx]) return false;
-    const lesson = currentLessons[idx];
-    // Free: week 1, day 1 and day 2 (first 2 days = 10 lessons)
-    return lesson.week === 1 && lesson.day <= FREE_DAYS;
+    return getRemainingFree() > 0;
 }
 
 function checkFreemiumAccess(idx) {
     if (isPremium()) return true;
 
-    // Use idx if provided, otherwise use currentLessonIdx
-    const checkIdx = (idx !== undefined) ? idx : currentLessonIdx;
-
-    if (isLessonFree(checkIdx)) return true;
-
-    // Lesson is not free — check grace views
-    const grace = getGraceViews();
-    if (grace >= GRACE_VIEWS) {
-        showPaywall();
-        return false;
+    const remaining = getRemainingFree();
+    if (remaining > 0) {
+        addHourlyView();
+        const left = getRemainingFree();
+        if (left > 0) {
+            showToast(`&#128214; Licao gratis! Restam ${left} nesta hora.`, 2500);
+        } else {
+            showToast('&#128214; Ultima licao gratis desta hora!', 2500);
+        }
+        startFreemiumTimer(); // refresh display
+        return true;
     }
-    addGraceView();
-    showToast(`&#128274; Licao de amostra! Restam ${GRACE_VIEWS - getGraceViews()} licoes gratis alem do dia 2.`, 3500);
-    return true;
+
+    showPaywall();
+    return false;
+}
+
+// ====================================================
+// AD SYSTEM — Watch ad for +1 free lesson
+// ====================================================
+
+let adInterval = null;
+
+function startWatchAd() {
+    // Close paywall, open ad
+    document.getElementById('paywallOverlay').classList.remove('show');
+    document.getElementById('adOverlay').classList.add('show');
+
+    const skipBtn = document.getElementById('adSkipBtn');
+    const countdownEl = document.getElementById('adCountdown');
+    const timerEl = document.getElementById('adTimer');
+    let seconds = 30;
+
+    skipBtn.disabled = true;
+    skipBtn.style.opacity = '.3';
+    skipBtn.style.pointerEvents = 'none';
+    skipBtn.innerHTML = 'Aguarde <span id="adCountdown">' + seconds + '</span>s';
+
+    if (adInterval) clearInterval(adInterval);
+    adInterval = setInterval(() => {
+        seconds--;
+        const cd = document.getElementById('adCountdown');
+        if (cd) cd.textContent = seconds;
+        if (timerEl) timerEl.textContent = seconds + 's';
+
+        if (seconds <= 0) {
+            clearInterval(adInterval);
+            adInterval = null;
+            skipBtn.disabled = false;
+            skipBtn.style.opacity = '1';
+            skipBtn.style.pointerEvents = 'auto';
+            skipBtn.innerHTML = '&#10003; Fechar e ganhar +1 licao';
+            skipBtn.style.background = 'linear-gradient(135deg,var(--green),var(--green-d))';
+            if (timerEl) timerEl.textContent = 'Pronto!';
+        }
+    }, 1000);
+}
+
+function finishAd() {
+    // Close ad overlay
+    document.getElementById('adOverlay').classList.remove('show');
+    document.body.style.overflow = '';
+    if (adInterval) { clearInterval(adInterval); adInterval = null; }
+
+    // Grant +1 lesson by reducing hourly count
+    const data = getHourlyViews();
+    data.count = Math.max(0, data.count - 1);
+    localStorage.setItem('cm_hourly_views', JSON.stringify(data));
+
+    // Track ad views for stats
+    const adViews = parseInt(localStorage.getItem('cm_ad_views') || '0') + 1;
+    localStorage.setItem('cm_ad_views', String(adViews));
+
+    showToast('&#127881; +1 licao desbloqueada! Aproveite.', 3000);
+    startFreemiumTimer(); // refresh display
 }
 
 // ====================================================
@@ -13252,7 +13354,7 @@ loadLesson = function(idx) {
 
 const _origRunCode = runCode;
 runCode = function() {
-    if (!isPremium() && !isLessonFree(currentLessonIdx) && getGraceViews() >= GRACE_VIEWS) {
+    if (!isPremium() && getRemainingFree() <= 0) {
         showPaywall();
         return;
     }
