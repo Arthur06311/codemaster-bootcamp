@@ -485,7 +485,7 @@
         <button class="paywall-close" onclick="closePaywall()" title="Fechar">&#10005;</button>
         <div class="paywall-emoji">&#128640;</div>
         <h2>Gostou do Bootcamp?</h2>
-        <p class="paywall-sub">Seu periodo gratuito de 2 horas acabou! Desbloqueie o acesso completo e continue sua jornada de programador.</p>
+        <p class="paywall-sub">Voce completou os 2 dias gratis! Desbloqueie todas as 280+ licoes, IA assistente e continue sua jornada de programador.</p>
 
         <div class="paywall-price-box">
             <div class="paywall-price-old">De R$149,90</div>
@@ -12474,8 +12474,9 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
 // FREEMIUM SYSTEM — 2 hour free trial + paywall
 // ====================================================
 
-const FREEMIUM_LIMIT_MS = 2 * 60 * 60 * 1000; // 2 hours
-const GRACE_VIEWS = 3; // extra lesson views after timer ends before hard block
+const FREEMIUM_LIMIT_MS = 2 * 60 * 60 * 1000; // 2 hours (kept for timer display)
+const FREE_DAYS = 2; // 2 days of free lessons (10 lessons)
+const GRACE_VIEWS = 3; // extra lesson views after free days
 let freemiumInterval = null;
 let paywallDismissCount = 0;
 
@@ -12512,62 +12513,41 @@ function formatTime(ms) {
 }
 
 function startFreemiumTimer() {
+    const timer = document.getElementById('freemiumTimer');
+    if (!timer) return;
+
     if (isPremium()) {
-        // show premium badge
-        const timer = document.getElementById('freemiumTimer');
-        if (timer) {
-            timer.style.display = 'flex';
-            timer.className = 'freemium-timer premium';
-            timer.innerHTML = '&#11088; Premium';
-        }
+        timer.style.display = 'flex';
+        timer.className = 'freemium-timer premium';
+        timer.innerHTML = '&#11088; Premium';
         return;
     }
 
-    const timer = document.getElementById('freemiumTimer');
-    if (timer) timer.style.display = 'flex';
+    timer.style.display = 'flex';
 
-    if (freemiumInterval) clearInterval(freemiumInterval);
-
-    freemiumInterval = setInterval(() => {
-        if (isPremium()) {
-            clearInterval(freemiumInterval);
-            startFreemiumTimer(); // update to premium badge
-            return;
+    // Show lesson-based progress instead of time
+    function updateFreemiumDisplay() {
+        const timerEl = document.getElementById('freemiumTimeLeft');
+        if (!timerEl) return;
+        const lesson = currentLessons[currentLessonIdx];
+        if (lesson && lesson.week === 1 && lesson.day <= FREE_DAYS) {
+            timerEl.textContent = 'Gratis: Dia ' + lesson.day + '/' + FREE_DAYS;
+            timer.className = 'freemium-timer';
+        } else {
+            timerEl.textContent = 'Premium necessario';
+            timer.className = 'freemium-timer warning';
         }
+    }
+    updateFreemiumDisplay();
 
+    // Also track time for hourly challenges
+    if (freemiumInterval) clearInterval(freemiumInterval);
+    freemiumInterval = setInterval(() => {
+        if (isPremium()) { clearInterval(freemiumInterval); startFreemiumTimer(); return; }
         let used = getUsedTime() + 1000;
         setUsedTime(used);
-
-        const remaining = FREEMIUM_LIMIT_MS - used;
-        const timerEl = document.getElementById('freemiumTimeLeft');
-        const timerWrap = document.getElementById('freemiumTimer');
-
-        if (remaining <= 0) {
-            // time's up
-            if (timerEl) timerEl.textContent = '0:00:00';
-            if (timerWrap) timerWrap.className = 'freemium-timer warning';
-            clearInterval(freemiumInterval);
-            showPaywall();
-            return;
-        }
-
-        if (timerEl) timerEl.textContent = formatTime(remaining);
-
-        // warning at 15 min remaining
-        if (remaining <= 15 * 60 * 1000 && timerWrap) {
-            timerWrap.className = 'freemium-timer warning';
-        }
-
-        // gentle reminder at 30 min remaining (once)
-        if (remaining <= 30 * 60 * 1000 && remaining > 30 * 60 * 1000 - 1500) {
-            showToast('&#9200; 30 minutos restantes no periodo gratuito', 3500);
-        }
-
-        // Hourly challenge check
-        if (shouldShowChallenge()) {
-            showChallenge();
-        }
-
+        updateFreemiumDisplay();
+        if (shouldShowChallenge()) showChallenge();
     }, 1000);
 }
 
@@ -12587,35 +12567,42 @@ function showPaywall() {
 function closePaywall() {
     paywallDismissCount++;
 
-    if (getUsedTime() >= FREEMIUM_LIMIT_MS) {
-        addGraceView();
-        const grace = getGraceViews();
-
-        if (grace > GRACE_VIEWS) {
-            // hard block — can't dismiss anymore
-            showToast('&#128274; Periodo gratuito encerrado. Adquira o acesso completo para continuar.', 4000);
-            return;
-        }
-
-        showToast(`Voce pode ver mais ${GRACE_VIEWS - grace} licao(oes) gratuitamente`, 3000);
+    const grace = getGraceViews();
+    if (grace >= GRACE_VIEWS) {
+        showToast('&#128274; Voce ja usou suas licoes gratis. Adquira o acesso completo!', 4000);
+        return;
     }
+
+    showToast(`Voce pode ver mais ${GRACE_VIEWS - grace} licao(oes) alem do dia 2`, 3000);
 
     document.getElementById('paywallOverlay').classList.remove('show');
     document.body.style.overflow = '';
 }
 
-function checkFreemiumAccess() {
+function isLessonFree(idx) {
+    if (isPremium()) return true;
+    if (!currentLessons[idx]) return false;
+    const lesson = currentLessons[idx];
+    // Free: week 1, day 1 and day 2 (first 2 days = 10 lessons)
+    return lesson.week === 1 && lesson.day <= FREE_DAYS;
+}
+
+function checkFreemiumAccess(idx) {
     if (isPremium()) return true;
 
-    const used = getUsedTime();
-    if (used >= FREEMIUM_LIMIT_MS) {
-        const grace = getGraceViews();
-        if (grace >= GRACE_VIEWS) {
-            showPaywall();
-            return false;
-        }
-        addGraceView();
+    // Use idx if provided, otherwise use currentLessonIdx
+    const checkIdx = (idx !== undefined) ? idx : currentLessonIdx;
+
+    if (isLessonFree(checkIdx)) return true;
+
+    // Lesson is not free — check grace views
+    const grace = getGraceViews();
+    if (grace >= GRACE_VIEWS) {
+        showPaywall();
+        return false;
     }
+    addGraceView();
+    showToast(`&#128274; Licao de amostra! Restam ${GRACE_VIEWS - getGraceViews()} licoes gratis alem do dia 2.`, 3500);
     return true;
 }
 
@@ -12937,13 +12924,13 @@ function skipChallenge() {
 
 const _origLoadLesson = loadLesson;
 loadLesson = function(idx) {
-    if (!checkFreemiumAccess()) return;
+    if (!checkFreemiumAccess(idx)) return;
     _origLoadLesson(idx);
 };
 
 const _origRunCode = runCode;
 runCode = function() {
-    if (!isPremium() && getUsedTime() >= FREEMIUM_LIMIT_MS && getGraceViews() >= GRACE_VIEWS) {
+    if (!isPremium() && !isLessonFree(currentLessonIdx) && getGraceViews() >= GRACE_VIEWS) {
         showPaywall();
         return;
     }
