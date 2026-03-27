@@ -13520,21 +13520,26 @@ function skipChallenge() {
 // ====================================================
 
 const _origLoadLesson = loadLesson;
-// Load Adsterra Popunder only inside lessons (not on home page)
-let popunderLoaded = false;
-function loadPopunder() {
-    if (popunderLoaded || isPremium()) return;
-    popunderLoaded = true;
-    const s = document.createElement('script');
-    s.src = 'https://pl28992866.profitablecpmratenetwork.com/35/47/dc/3547dc0a9058c1a03f6d421b9cae5794.js';
-    document.body.appendChild(s);
+// Load Adsterra ads only inside lessons (not on home page)
+let adsterraLoaded = false;
+function loadAdsterraAds() {
+    if (adsterraLoaded || isPremium()) return;
+    adsterraLoaded = true;
+    // Popunder
+    const s1 = document.createElement('script');
+    s1.src = 'https://pl28992866.profitablecpmratenetwork.com/35/47/dc/3547dc0a9058c1a03f6d421b9cae5794.js';
+    document.body.appendChild(s1);
+    // Social Bar
+    const s2 = document.createElement('script');
+    s2.src = 'https://pl28992868.profitablecpmratenetwork.com/a5/7c/50/a57c5029f7ac1ef184b0c81515db2663.js';
+    document.body.appendChild(s2);
 }
 
 loadLesson = function(idx) {
     if (!checkFreemiumAccess(idx)) return;
 
-    // Activate popunder ads only during lessons
-    loadPopunder();
+    // Activate Adsterra ads only during lessons
+    loadAdsterraAds();
 
     // Show interstitial every N lessons (not on first lesson)
     if (!isPremium() && idx > 0) {
@@ -13826,8 +13831,6 @@ doActivatePremium = function() {
 };
 </script>
 
-<!-- Adsterra Social Bar -->
-<script src="https://pl28992868.profitablecpmratenetwork.com/a5/7c/50/a57c5029f7ac1ef184b0c81515db2663.js"></script>
 
 </body>
 </html>
