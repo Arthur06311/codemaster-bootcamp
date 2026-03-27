@@ -483,8 +483,9 @@
             <li><span class="pf-check">&#10003;</span> Certificado de conclusao</li>
         </ul>
 
-        <button class="paywall-btn" onclick="comprarBootcamp()">Comprar por R$60,00</button>
-        <div class="paywall-secure">&#128274; Pagamento seguro via Mercado Pago</div>
+        <a href="https://www.mercadopago.com.br/checkout/v1/payment/redirect/327a00f8-dfd4-4719-8c1f-9d657d52d455/review/?source=link&preference-id=114513236-8bd187a4-0399-4c0a-b619-051b507b3823&router-request-id=de085ee6-361a-4a43-9a88-ca7aa11efcf4&p=ecc76db6965ae98326a8fb71e4bda686" target="_blank" class="paywall-btn" style="display:inline-block;text-decoration:none;text-align:center;">Pagar R$60,00 — Mercado Pago</a>
+        <div class="paywall-secure">&#128274; PIX, Cartao ou Boleto via Mercado Pago</div>
+        <button class="paywall-skip" onclick="comprarBootcamp()" style="color:var(--green);text-decoration:none;border:none;background:none;cursor:pointer;font-size:.85rem;margin-top:.5rem;">Ja paguei — digitar codigo de ativacao</button>
         <button class="paywall-skip" onclick="closePaywall()">Quero so olhar mais um pouco</button>
     </div>
 </div>
@@ -578,6 +579,23 @@
             </ul>
             <button class="pcard-btn" onclick="startBootcamp('2horas')">Comecar Agora</button>
         </div>
+    </div>
+</section>
+
+<section id="comprar" style="padding:3rem 1.5rem;text-align:center;">
+    <div style="max-width:500px;margin:0 auto;background:linear-gradient(145deg,#1e1e3a,#0f172a);border:2px solid var(--green);border-radius:20px;padding:2.5rem;position:relative;overflow:hidden;">
+        <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--green),#3b82f6,#8b5cf6);"></div>
+        <div style="font-size:2.5rem;margin-bottom:.5rem;">&#128640;</div>
+        <h2 style="font-size:1.5rem;font-weight:800;margin-bottom:.5rem;color:#fff;">Acesso Completo</h2>
+        <p style="color:var(--muted);margin-bottom:1.2rem;line-height:1.6;">280+ licoes, 5 linguagens, desafios, editor integrado e certificado. Pagamento unico, sem mensalidade.</p>
+        <div style="margin-bottom:1.2rem;">
+            <span style="color:var(--muted);font-size:.9rem;text-decoration:line-through;">De R$149,90</span>
+            <div style="font-size:2.8rem;font-weight:900;color:#fff;"><small style="font-size:1.2rem;font-weight:700;">R$</small>60<small style="font-size:1.2rem;font-weight:700;">,00</small></div>
+            <span style="color:var(--muted);font-size:.8rem;">Pagamento unico — acesso vitalicio</span>
+        </div>
+        <a href="https://www.mercadopago.com.br/checkout/v1/payment/redirect/327a00f8-dfd4-4719-8c1f-9d657d52d455/review/?source=link&preference-id=114513236-8bd187a4-0399-4c0a-b619-051b507b3823&router-request-id=de085ee6-361a-4a43-9a88-ca7aa11efcf4&p=ecc76db6965ae98326a8fb71e4bda686" target="_blank" style="display:inline-block;background:linear-gradient(135deg,var(--green),#059669);color:#fff;font-weight:800;font-size:1.1rem;padding:.9rem 2.5rem;border-radius:12px;text-decoration:none;transition:all .3s;box-shadow:0 4px 20px rgba(16,185,129,.3);" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 30px rgba(16,185,129,.4)'" onmouseout="this.style.transform='';this.style.boxShadow='0 4px 20px rgba(16,185,129,.3)'">Pagar Agora — Mercado Pago</a>
+        <div style="display:flex;align-items:center;justify-content:center;gap:.4rem;margin-top:1rem;font-size:.8rem;color:var(--card2);">&#128274; PIX, Cartao ou Boleto via Mercado Pago</div>
+        <p style="color:var(--card2);font-size:.75rem;margin-top:.8rem;">Apos o pagamento, use o codigo de ativacao para desbloquear</p>
     </div>
 </section>
 
@@ -12582,7 +12600,7 @@ function comprarBootcamp() {
     // Option 1: Mercado Pago Payment Link (recommended for static sites)
     // Replace this URL with your actual Mercado Pago payment link
     // Create one at: https://www.mercadopago.com.br/tools/create
-    const MP_PAYMENT_LINK = null; // Set your link here, e.g. 'https://mpago.la/XXXXXX'
+    const MP_PAYMENT_LINK = 'https://www.mercadopago.com.br/checkout/v1/payment/redirect/327a00f8-dfd4-4719-8c1f-9d657d52d455/review/?source=link&preference-id=114513236-8bd187a4-0399-4c0a-b619-051b507b3823&router-request-id=de085ee6-361a-4a43-9a88-ca7aa11efcf4&p=ecc76db6965ae98326a8fb71e4bda686';
 
     if (MP_PAYMENT_LINK) {
         // Open Mercado Pago checkout
