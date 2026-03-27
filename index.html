@@ -6,6 +6,8 @@
     <title>CodeMaster Bootcamp — Aprenda Programacao do Zero</title>
     <!-- Google AdSense — Troque ca-pub-XXXXXXXXXXXXXXXX pelo seu ID do AdSense -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+    <!-- Auto Ads — Google coloca anuncios nos melhores lugares automaticamente -->
+    <meta name="google-adsense-account" content="ca-pub-XXXXXXXXXXXXXXXX">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Fira+Code:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap');
 
@@ -595,6 +597,41 @@
         .ai-chat-input button { background:linear-gradient(135deg,#8b5cf6,#6366f1); border:none; color:#fff; padding:.55rem .9rem; border-radius:10px; cursor:pointer; font-weight:700; transition:all .3s; }
         .ai-chat-input button:hover { filter:brightness(1.15); }
         @media(max-width:480px) { .ai-chat-panel { width:calc(100vw - 2rem); right:1rem; bottom:5rem; } }
+
+        /* ===== ADS ===== */
+        .ad-sticky-bottom {
+            position:fixed; bottom:0; left:0; right:0; z-index:80;
+            background:rgba(5,8,16,0.95); backdrop-filter:blur(10px);
+            border-top:1px solid var(--border); text-align:center;
+            padding:.4rem; display:none;
+        }
+        .ad-sticky-bottom.show { display:block; }
+        .ad-sticky-close {
+            position:absolute; top:-28px; right:10px; background:rgba(5,8,16,0.9);
+            border:1px solid var(--border); border-bottom:none; color:var(--muted);
+            font-size:.7rem; padding:.2rem .6rem; border-radius:6px 6px 0 0;
+            cursor:pointer; z-index:81;
+        }
+        .ad-sticky-close:hover { color:#fff; }
+        .ad-interstitial {
+            display:none; position:fixed; inset:0; z-index:550;
+            background:rgba(5,8,16,0.95); backdrop-filter:blur(20px);
+            align-items:center; justify-content:center; flex-direction:column; padding:2rem;
+        }
+        .ad-interstitial.show { display:flex; }
+        .ad-interstitial-skip {
+            margin-top:1rem; background:none; border:1px solid var(--border);
+            color:var(--muted); padding:.5rem 1.5rem; border-radius:10px;
+            cursor:pointer; font-size:.85rem; transition:all .3s;
+        }
+        .ad-interstitial-skip:hover { color:#fff; border-color:rgba(255,255,255,.2); }
+        .ad-interstitial-skip:disabled { opacity:.3; cursor:default; }
+        .ad-lesson-break { text-align:center; margin:1.5rem 0; padding:1rem; border-radius:14px; background:rgba(0,0,0,.15); border:1px solid var(--border); }
+        .ad-lesson-break .ad-label { font-size:.65rem; color:rgba(148,163,184,.3); text-transform:uppercase; letter-spacing:1.5px; margin-bottom:.4rem; }
+        body.premium-user .ad-sticky-bottom,
+        body.premium-user .ad-lesson-break,
+        body.premium-user .ad-banner-home,
+        body.premium-user .ad-interstitial { display:none !important; }
     </style>
     <!-- Auth System (local storage based) -->
     <script>
@@ -931,6 +968,29 @@
             <button class="paywall-btn" onclick="goHome();dismissPause()" style="width:auto;padding:.8rem 2rem;font-size:.95rem;background:linear-gradient(135deg,var(--card2),var(--card-solid));">Pausar e Sair</button>
         </div>
     </div>
+</div>
+
+<!-- ============ STICKY BOTTOM AD (highest revenue — always visible) ============ -->
+<div class="ad-sticky-bottom" id="adStickyBottom">
+    <button class="ad-sticky-close" onclick="closeStickyAd()">&#10005; Fechar</button>
+    <ins class="adsbygoogle"
+         style="display:inline-block;width:728px;height:90px;max-width:100%"
+         data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+         data-ad-slot="XXXXXXXXXX"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+
+<!-- ============ INTERSTITIAL AD (between lessons — highest CPM) ============ -->
+<div class="ad-interstitial" id="adInterstitial">
+    <div style="font-size:.7rem;color:rgba(148,163,184,.3);text-transform:uppercase;letter-spacing:2px;margin-bottom:1rem;">Anuncio</div>
+    <div style="background:rgba(0,0,0,.3);border:1px solid var(--border);border-radius:16px;padding:1rem;min-width:336px;min-height:280px;display:flex;align-items:center;justify-content:center;">
+        <ins class="adsbygoogle"
+             style="display:inline-block;width:336px;height:280px"
+             data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+             data-ad-slot="XXXXXXXXXX"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+    <button class="ad-interstitial-skip" id="interstitialSkip" disabled onclick="closeInterstitial()">Pular em <span id="interstitialCount">5</span>s</button>
 </div>
 
 <!-- AI Chat Button + Panel (Premium only) -->
@@ -12983,6 +13043,80 @@ function finishAd() {
 }
 
 // ====================================================
+// STICKY BOTTOM AD + INTERSTITIAL + IN-CONTENT ADS
+// ====================================================
+
+let stickyAdShown = false;
+let lessonsViewedForInterstitial = 0;
+const INTERSTITIAL_EVERY = 3; // show interstitial every 3 lessons
+
+function showStickyAd() {
+    if (isPremium() || stickyAdShown) return;
+    const el = document.getElementById('adStickyBottom');
+    if (el) { el.classList.add('show'); stickyAdShown = true; }
+    try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch(e) {}
+}
+
+function closeStickyAd() {
+    const el = document.getElementById('adStickyBottom');
+    if (el) el.classList.remove('show');
+    // Reshow after 5 minutes
+    setTimeout(() => { if (!isPremium()) showStickyAd(); }, 300000);
+}
+
+// Interstitial between lessons (highest CPM ad format)
+let interstitialInterval = null;
+function showInterstitial() {
+    if (isPremium()) return;
+    const el = document.getElementById('adInterstitial');
+    if (!el) return;
+    el.classList.add('show');
+    document.body.style.overflow = 'hidden';
+
+    const skipBtn = document.getElementById('interstitialSkip');
+    let sec = 5;
+    skipBtn.disabled = true;
+    skipBtn.innerHTML = 'Pular em <span id="interstitialCount">' + sec + '</span>s';
+
+    try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch(e) {}
+
+    if (interstitialInterval) clearInterval(interstitialInterval);
+    interstitialInterval = setInterval(() => {
+        sec--;
+        const cd = document.getElementById('interstitialCount');
+        if (cd) cd.textContent = sec;
+        if (sec <= 0) {
+            clearInterval(interstitialInterval);
+            interstitialInterval = null;
+            skipBtn.disabled = false;
+            skipBtn.innerHTML = 'Pular anuncio &#8594;';
+        }
+    }, 1000);
+}
+
+function closeInterstitial() {
+    const el = document.getElementById('adInterstitial');
+    if (el) el.classList.remove('show');
+    document.body.style.overflow = '';
+    if (interstitialInterval) { clearInterval(interstitialInterval); interstitialInterval = null; }
+}
+
+// Inject ad between lesson content sections
+function injectInContentAd(contentEl) {
+    if (isPremium() || !contentEl) return;
+    // Find a good spot — after the first h2 or after 3rd paragraph
+    const paragraphs = contentEl.querySelectorAll('p');
+    if (paragraphs.length >= 4) {
+        const adDiv = document.createElement('div');
+        adDiv.className = 'ad-lesson-break';
+        adDiv.innerHTML = '<div class="ad-label">Anuncio</div>' +
+            '<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-XXXXXXXXXXXXXXXX" data-ad-slot="XXXXXXXXXX" data-ad-format="fluid" data-ad-layout-key="-6t+ed+2i-1n-4w"></ins>';
+        paragraphs[3].parentNode.insertBefore(adDiv, paragraphs[3].nextSibling);
+        try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch(e) {}
+    }
+}
+
+// ====================================================
 // PAYMENT + ACTIVATION SYSTEM
 // ====================================================
 
@@ -13133,15 +13267,20 @@ function doActivatePremium() {
 function updatePremiumUI() {
     if (!isPremium()) return;
 
+    // Add premium class to body — hides ALL ads via CSS
+    document.body.classList.add('premium-user');
+
     // Show AI chat button
     const chatBtn = document.getElementById('aiChatBtn');
     if (chatBtn) chatBtn.classList.add('show');
 
-    // Hide buy section and ads on home if premium
+    // Hide buy section
     const buySection = document.getElementById('comprar');
     if (buySection) buySection.style.display = 'none';
-    const adBanner = document.getElementById('adBannerHome');
-    if (adBanner) adBanner.style.display = 'none';
+
+    // Close sticky ad if open
+    const sticky = document.getElementById('adStickyBottom');
+    if (sticky) sticky.classList.remove('show');
 }
 
 // ====================================================
@@ -13398,7 +13537,28 @@ function skipChallenge() {
 const _origLoadLesson = loadLesson;
 loadLesson = function(idx) {
     if (!checkFreemiumAccess(idx)) return;
+
+    // Show interstitial every N lessons (not on first lesson)
+    if (!isPremium() && idx > 0) {
+        lessonsViewedForInterstitial++;
+        if (lessonsViewedForInterstitial >= INTERSTITIAL_EVERY) {
+            lessonsViewedForInterstitial = 0;
+            showInterstitial();
+        }
+    }
+
     _origLoadLesson(idx);
+
+    // Inject in-content ad after lesson loads
+    setTimeout(() => {
+        const content = document.getElementById('lessonContent');
+        injectInContentAd(content);
+    }, 500);
+
+    // Show sticky ad after 2nd lesson
+    if (!isPremium() && idx >= 1 && !stickyAdShown) {
+        setTimeout(showStickyAd, 3000);
+    }
 };
 
 const _origRunCode = runCode;
