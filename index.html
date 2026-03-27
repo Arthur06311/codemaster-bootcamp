@@ -594,49 +594,81 @@
         .ai-chat-input button:hover { filter:brightness(1.15); }
         @media(max-width:480px) { .ai-chat-panel { width:calc(100vw - 2rem); right:1rem; bottom:5rem; } }
     </style>
-    <!-- Firebase SDK -->
-    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+    <!-- Auth System (local storage based) -->
     <script>
-        let auth, db, firebaseReady = false;
-        try {
-            const firebaseConfig = {
-                apiKey: "AIzaSyDxGxHfRwHjkKm3v1qL7bfmO8VmKQu9Yjg",
-                authDomain: "codemaster-bootcamp.firebaseapp.com",
-                projectId: "codemaster-bootcamp",
-                storageBucket: "codemaster-bootcamp.firebasestorage.app",
-                messagingSenderId: "123456789",
-                appId: "1:123456789:web:abc123"
-            };
-            firebase.initializeApp(firebaseConfig);
-            auth = firebase.auth();
-            db = firebase.firestore();
-            firebaseReady = true;
-        } catch(e) {
-            console.warn('Firebase init failed, running in offline mode:', e);
-            // Offline fallback — auth stored locally
-            auth = {
-                onAuthStateChanged(cb) { const u = JSON.parse(localStorage.getItem('cm_local_user')||'null'); cb(u); },
-                createUserWithEmailAndPassword(email, pass) {
-                    const user = { uid: btoa(email).replace(/=/g,''), email, displayName: '', updateProfile(p) { this.displayName = p.displayName||''; localStorage.setItem('cm_local_user', JSON.stringify(this)); } };
-                    localStorage.setItem('cm_local_user', JSON.stringify(user));
-                    localStorage.setItem('cm_local_pass', btoa(email+':'+pass));
-                    return Promise.resolve({ user });
-                },
-                signInWithEmailAndPassword(email, pass) {
-                    const stored = localStorage.getItem('cm_local_pass');
-                    if (stored !== btoa(email+':'+pass)) return Promise.reject({ code: 'auth/invalid-credential' });
-                    const user = JSON.parse(localStorage.getItem('cm_local_user'));
-                    if (!user) return Promise.reject({ code: 'auth/user-not-found' });
-                    return Promise.resolve({ user });
-                },
-                signOut() { localStorage.removeItem('cm_local_user'); return Promise.resolve(); }
-            };
-            db = {
-                collection() { return { doc() { return { set() { return Promise.resolve(); }, get() { return Promise.resolve({ exists: false }); } }; } }; }
-            };
-        }
+        const auth = {
+            _listeners: [],
+            _getUsers() { return JSON.parse(localStorage.getItem('cm_users') || '{}'); },
+            _saveUsers(u) { localStorage.setItem('cm_users', JSON.stringify(u)); },
+            _getCurrentUser() { return JSON.parse(localStorage.getItem('cm_current_user') || 'null'); },
+            _setCurrentUser(u) { localStorage.setItem('cm_current_user', JSON.stringify(u)); this._listeners.forEach(cb => cb(u)); },
+
+            onAuthStateChanged(cb) {
+                this._listeners.push(cb);
+                cb(this._getCurrentUser());
+                return () => { this._listeners = this._listeners.filter(f => f !== cb); };
+            },
+
+            async createUserWithEmailAndPassword(email, pass) {
+                const users = this._getUsers();
+                const key = email.toLowerCase().trim();
+                if (users[key]) throw { code: 'auth/email-already-in-use' };
+                if (pass.length < 6) throw { code: 'auth/weak-password' };
+                const user = {
+                    uid: 'u_' + Date.now().toString(36) + Math.random().toString(36).slice(2,8),
+                    email: key,
+                    displayName: '',
+                    updateProfile(p) { if (p.displayName) this.displayName = p.displayName; auth._setCurrentUser(this); users[key].displayName = this.displayName; auth._saveUsers(users); }
+                };
+                users[key] = { passHash: btoa(key + ':' + pass), uid: user.uid, displayName: '' };
+                this._saveUsers(users);
+                this._setCurrentUser(user);
+                return { user };
+            },
+
+            async signInWithEmailAndPassword(email, pass) {
+                const users = this._getUsers();
+                const key = email.toLowerCase().trim();
+                const record = users[key];
+                if (!record) throw { code: 'auth/user-not-found' };
+                if (record.passHash !== btoa(key + ':' + pass)) throw { code: 'auth/invalid-credential' };
+                const user = {
+                    uid: record.uid,
+                    email: key,
+                    displayName: record.displayName || '',
+                    updateProfile(p) { if (p.displayName) this.displayName = p.displayName; auth._setCurrentUser(this); record.displayName = this.displayName; auth._saveUsers(users); }
+                };
+                this._setCurrentUser(user);
+                // Restore this user's progress
+                const userData = JSON.parse(localStorage.getItem('cm_userdata_' + record.uid) || 'null');
+                if (userData) {
+                    if (userData.completed) localStorage.setItem('cm_completed', JSON.stringify(userData.completed));
+                    if (userData.code) localStorage.setItem('cm_code', JSON.stringify(userData.code));
+                    if (userData.idx !== undefined) localStorage.setItem('cm_idx', String(userData.idx));
+                    if (userData.plan) localStorage.setItem('cm_plan', userData.plan);
+                    if (userData.premium) localStorage.setItem('cm_premium', 'true');
+                    if (userData.premiumDate) localStorage.setItem('cm_premium_date', userData.premiumDate);
+                }
+                return { user };
+            },
+
+            async signOut() {
+                // Save current progress to user data before signing out
+                const user = this._getCurrentUser();
+                if (user) {
+                    const userData = {
+                        completed: JSON.parse(localStorage.getItem('cm_completed') || '[]'),
+                        code: JSON.parse(localStorage.getItem('cm_code') || '{}'),
+                        idx: parseInt(localStorage.getItem('cm_idx') || '0'),
+                        plan: localStorage.getItem('cm_plan'),
+                        premium: localStorage.getItem('cm_premium') === 'true',
+                        premiumDate: localStorage.getItem('cm_premium_date')
+                    };
+                    localStorage.setItem('cm_userdata_' + user.uid, JSON.stringify(userData));
+                }
+                this._setCurrentUser(null);
+            }
+        };
     </script>
 </head>
 <body>
@@ -13324,11 +13356,11 @@ async function doAuth() {
             const name = document.getElementById('authName').value.trim();
             const cred = await auth.createUserWithEmailAndPassword(email, pass);
             if (name) await cred.user.updateProfile({ displayName: name });
-            await syncToCloud(cred.user);
             showToast('&#127881; Conta criada com sucesso!', 3000);
         } else {
             const cred = await auth.signInWithEmailAndPassword(email, pass);
-            await syncFromCloud(cred.user);
+            // Reload progress from this user's saved data
+            loadProgress();
             showToast('&#128994; Bem-vindo de volta!', 3000);
         }
         closeAuth();
@@ -13375,72 +13407,30 @@ function showAccountMenu() {
     }
 }
 
-// Cloud sync — save progress to Firestore
-async function syncToCloud(user) {
-    if (!user) return;
-    try {
-        await db.collection('users').doc(user.uid).set({
-            email: user.email,
-            name: user.displayName || '',
-            premium: isPremium(),
-            premiumDate: localStorage.getItem('cm_premium_date') || null,
-            completed: [...completedLessons],
-            currentIdx: currentLessonIdx,
-            plan: 'full',
-            lastSync: firebase.firestore.FieldValue.serverTimestamp()
-        }, { merge: true });
-    } catch(e) { console.warn('Sync to cloud failed:', e); }
-}
-
-// Cloud sync — load progress from Firestore
-async function syncFromCloud(user) {
-    if (!user) return;
-    try {
-        const doc = await db.collection('users').doc(user.uid).get();
-        if (doc.exists) {
-            const data = doc.data();
-            // Restore premium
-            if (data.premium) {
-                setPremium();
-                if (data.premiumDate) localStorage.setItem('cm_premium_date', data.premiumDate);
-                updatePremiumUI();
-            }
-            // Restore progress
-            if (data.completed && data.completed.length > 0) {
-                const cloudSet = new Set(data.completed);
-                // Merge: keep local + cloud
-                for (const key of cloudSet) completedLessons.add(key);
-                saveProgress();
-            }
-            if (data.currentIdx !== undefined) {
-                currentLessonIdx = data.currentIdx;
-                localStorage.setItem('cm_idx', currentLessonIdx);
-            }
-        }
-    } catch(e) { console.warn('Sync from cloud failed:', e); }
-}
-
-// Auto-sync on progress changes
-let syncTimeout = null;
-function schedulCloudSync() {
+// Save user progress to their account data
+function saveUserData() {
     if (!currentUser) return;
-    if (syncTimeout) clearTimeout(syncTimeout);
-    syncTimeout = setTimeout(() => syncToCloud(currentUser), 5000);
+    const userData = {
+        completed: JSON.parse(localStorage.getItem('cm_completed') || '[]'),
+        code: JSON.parse(localStorage.getItem('cm_code') || '{}'),
+        idx: parseInt(localStorage.getItem('cm_idx') || '0'),
+        plan: localStorage.getItem('cm_plan'),
+        premium: localStorage.getItem('cm_premium') === 'true',
+        premiumDate: localStorage.getItem('cm_premium_date')
+    };
+    localStorage.setItem('cm_userdata_' + currentUser.uid, JSON.stringify(userData));
 }
 
-// Patch saveProgress to also trigger cloud sync
+// Patch saveProgress to also save to user account
 const _origSaveProgress = saveProgress;
 saveProgress = function() {
     _origSaveProgress();
-    schedulCloudSync();
+    saveUserData();
 };
 
 // Listen for auth state changes
 auth.onAuthStateChanged(user => {
     updateAuthUI(user);
-    if (user) {
-        syncFromCloud(user);
-    }
 });
 
 // Require auth before starting bootcamp
@@ -13519,11 +13509,11 @@ goHome = function() {
     _origGoHome2();
 };
 
-// Also sync premium status when confirming payment
+// Also save user data when confirming payment
 const _origDoActivate = doActivatePremium;
 doActivatePremium = function() {
     _origDoActivate();
-    if (currentUser) syncToCloud(currentUser);
+    saveUserData();
 };
 </script>
 
