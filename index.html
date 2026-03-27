@@ -434,6 +434,27 @@
         .ch-btn-skip:hover { border-color:var(--muted); color:#fff; }
         .ch-reward { display:none; margin-top:1rem; padding:1rem; background:rgba(16,185,129,.1); border:1px solid var(--green); border-radius:10px; color:var(--green); font-weight:600; }
         .ch-timer-badge { display:inline-block; background:rgba(245,158,11,.15); color:#f59e0b; padding:.3rem .8rem; border-radius:20px; font-size:.8rem; font-weight:600; margin-bottom:1rem; }
+
+        /* AI Chat */
+        .ai-chat-btn { position:fixed; bottom:1.5rem; right:1.5rem; width:56px; height:56px; border-radius:50%; background:linear-gradient(135deg,#8b5cf6,#6366f1); border:none; color:#fff; font-size:1.5rem; cursor:pointer; box-shadow:0 4px 20px rgba(139,92,246,.4); z-index:150; transition:all .3s; display:none; }
+        .ai-chat-btn:hover { transform:scale(1.1); box-shadow:0 6px 30px rgba(139,92,246,.5); }
+        .ai-chat-btn.show { display:flex; align-items:center; justify-content:center; }
+        .ai-chat-panel { position:fixed; bottom:5.5rem; right:1.5rem; width:380px; max-height:500px; background:linear-gradient(145deg,#1e1e3a,#0f172a); border:1px solid #8b5cf6; border-radius:16px; z-index:150; display:none; flex-direction:column; overflow:hidden; box-shadow:0 10px 40px rgba(0,0,0,.5); }
+        .ai-chat-panel.show { display:flex; }
+        .ai-chat-header { padding:.8rem 1rem; background:linear-gradient(135deg,#8b5cf6,#6366f1); display:flex; justify-content:space-between; align-items:center; }
+        .ai-chat-header h3 { margin:0; font-size:.95rem; color:#fff; }
+        .ai-chat-close { background:none; border:none; color:rgba(255,255,255,.7); font-size:1.2rem; cursor:pointer; }
+        .ai-chat-messages { flex:1; overflow-y:auto; padding:.8rem; min-height:250px; max-height:350px; }
+        .ai-msg { margin-bottom:.6rem; padding:.6rem .8rem; border-radius:10px; font-size:.85rem; line-height:1.5; max-width:90%; }
+        .ai-msg.bot { background:rgba(139,92,246,.15); color:#c4b5fd; border:1px solid rgba(139,92,246,.2); }
+        .ai-msg.user { background:rgba(16,185,129,.15); color:#6ee7b7; border:1px solid rgba(16,185,129,.2); margin-left:auto; }
+        .ai-msg code { background:rgba(0,0,0,.3); padding:.1rem .3rem; border-radius:3px; font-family:'Fira Code',monospace; font-size:.8rem; }
+        .ai-msg pre { background:rgba(0,0,0,.3); padding:.5rem; border-radius:6px; margin:.4rem 0; overflow-x:auto; font-size:.8rem; }
+        .ai-chat-input { display:flex; padding:.6rem; gap:.4rem; border-top:1px solid var(--border); }
+        .ai-chat-input input { flex:1; background:var(--darker); border:1px solid var(--border); color:#fff; padding:.5rem .8rem; border-radius:8px; font-size:.85rem; }
+        .ai-chat-input input:focus { outline:none; border-color:#8b5cf6; }
+        .ai-chat-input button { background:linear-gradient(135deg,#8b5cf6,#6366f1); border:none; color:#fff; padding:.5rem .8rem; border-radius:8px; cursor:pointer; font-weight:700; }
+        @media(max-width:480px) { .ai-chat-panel { width:calc(100vw - 2rem); right:1rem; bottom:5rem; } }
     </style>
 </head>
 <body>
@@ -480,12 +501,13 @@
             <li><span class="pf-check">&#10003;</span> Progresso salvo automaticamente</li>
             <li><span class="pf-check">&#10003;</span> Desafios horarios com bonus de tempo</li>
             <li><span class="pf-check">&#10003;</span> Curiosidades diarias sobre tecnologia</li>
+            <li><span class="pf-check">&#10003;</span> Assistente IA para tirar duvidas</li>
             <li><span class="pf-check">&#10003;</span> Certificado de conclusao</li>
         </ul>
 
-        <a href="https://www.mercadopago.com.br/checkout/v1/payment/redirect/327a00f8-dfd4-4719-8c1f-9d657d52d455/review/?source=link&preference-id=114513236-8bd187a4-0399-4c0a-b619-051b507b3823&router-request-id=de085ee6-361a-4a43-9a88-ca7aa11efcf4&p=ecc76db6965ae98326a8fb71e4bda686" target="_blank" class="paywall-btn" style="display:inline-block;text-decoration:none;text-align:center;">Pagar R$60,00 — Mercado Pago</a>
+        <a href="https://www.mercadopago.com.br/checkout/v1/payment/redirect/327a00f8-dfd4-4719-8c1f-9d657d52d455/review/?source=link&preference-id=114513236-8bd187a4-0399-4c0a-b619-051b507b3823&router-request-id=de085ee6-361a-4a43-9a88-ca7aa11efcf4&p=ecc76db6965ae98326a8fb71e4bda686" target="_blank" class="paywall-btn" style="display:inline-block;text-decoration:none;text-align:center;" onclick="localStorage.setItem('cm_payment_pending','true')">Pagar R$60,00 — Mercado Pago</a>
         <div class="paywall-secure">&#128274; PIX, Cartao ou Boleto via Mercado Pago</div>
-        <button class="paywall-skip" onclick="comprarBootcamp()" style="color:var(--green);text-decoration:none;border:none;background:none;cursor:pointer;font-size:.85rem;margin-top:.5rem;">Ja paguei — digitar codigo de ativacao</button>
+        <button class="paywall-btn" onclick="confirmPayment()" style="margin-top:.8rem;background:linear-gradient(135deg,#3b82f6,#8b5cf6);font-size:.95rem;">&#10003; Ja Paguei — Ativar Acesso</button>
         <button class="paywall-skip" onclick="closePaywall()">Quero so olhar mais um pouco</button>
     </div>
 </div>
@@ -621,6 +643,22 @@
     <div class="learn-layout">
         <div class="sidebar" id="sidebar"></div>
         <div class="learn-main" id="lessonContent"></div>
+    </div>
+</div>
+
+<!-- AI Chat Button + Panel (Premium only) -->
+<button class="ai-chat-btn" id="aiChatBtn" onclick="toggleAiChat()">&#129302;</button>
+<div class="ai-chat-panel" id="aiChatPanel">
+    <div class="ai-chat-header">
+        <h3>&#129302; CodeMaster IA</h3>
+        <button class="ai-chat-close" onclick="toggleAiChat()">&#10005;</button>
+    </div>
+    <div class="ai-chat-messages" id="aiMessages">
+        <div class="ai-msg bot">Ola! Sou o assistente IA do CodeMaster. Pergunte qualquer coisa sobre programacao — Python, HTML, CSS, JS, SQL, Java ou C++. Estou aqui para te ajudar a aprender!</div>
+    </div>
+    <div class="ai-chat-input">
+        <input type="text" id="aiInput" placeholder="Pergunte algo..." onkeydown="if(event.key==='Enter')sendAiMsg()">
+        <button onclick="sendAiMsg()">&#10148;</button>
     </div>
 </div>
 
@@ -12582,107 +12620,183 @@ function checkFreemiumAccess() {
 }
 
 // ====================================================
-// MERCADO PAGO INTEGRATION
+// PAYMENT + ACTIVATION SYSTEM
 // ====================================================
 
+const MP_LINK = 'https://www.mercadopago.com.br/checkout/v1/payment/redirect/327a00f8-dfd4-4719-8c1f-9d657d52d455/review/?source=link&preference-id=114513236-8bd187a4-0399-4c0a-b619-051b507b3823&router-request-id=de085ee6-361a-4a43-9a88-ca7aa11efcf4&p=ecc76db6965ae98326a8fb71e4bda686';
+
 function comprarBootcamp() {
-    // Create Mercado Pago checkout preference
-    // For a static site, we use the Mercado Pago payment link approach
-    // You need to create a payment link at https://www.mercadopago.com.br/tools/create
-
-    const paymentData = {
-        title: 'CodeMaster Bootcamp — Acesso Vitalicio',
-        description: '280+ licoes, 5 linguagens, editor integrado, projetos praticos, desafios',
-        price: 60.00,
-        currency: 'BRL'
-    };
-
-    // Option 1: Mercado Pago Payment Link (recommended for static sites)
-    // Replace this URL with your actual Mercado Pago payment link
-    // Create one at: https://www.mercadopago.com.br/tools/create
-    const MP_PAYMENT_LINK = 'https://www.mercadopago.com.br/checkout/v1/payment/redirect/327a00f8-dfd4-4719-8c1f-9d657d52d455/review/?source=link&preference-id=114513236-8bd187a4-0399-4c0a-b619-051b507b3823&router-request-id=de085ee6-361a-4a43-9a88-ca7aa11efcf4&p=ecc76db6965ae98326a8fb71e4bda686';
-
-    if (MP_PAYMENT_LINK) {
-        // Open Mercado Pago checkout
-        window.open(MP_PAYMENT_LINK, '_blank');
-        showToast('&#128274; Abrindo pagamento no Mercado Pago...', 3000);
-
-        // After payment, user needs to activate manually or via webhook
-        // For now, show instructions
-        setTimeout(() => {
-            const code = prompt(
-                'Apos o pagamento, voce recebera um codigo de ativacao por email.\n\n' +
-                'Se ja pagou, digite o codigo aqui:'
-            );
-            if (code) {
-                activatePremium(code);
-            }
-        }, 3000);
-
-    } else {
-        // Fallback: use Mercado Pago Checkout Pro via API
-        // This requires a backend, so for demo purposes we create a simple activation flow
-        createMPCheckout(paymentData);
-    }
+    window.open(MP_LINK, '_blank');
+    localStorage.setItem('cm_payment_pending', 'true');
+    showToast('&#128274; Abrindo Mercado Pago... Apos pagar, clique em "Ja Paguei"', 5000);
 }
 
-function createMPCheckout(data) {
-    // For a frontend-only solution, we use Mercado Pago's payment brick
-    // or redirect to a pre-created payment link
-
-    // Simple approach: Create a checkout URL manually
-    // In production, you'd call your backend which calls the MP API
-
-    // Demo activation codes (replace with real validation in production)
-    const promoCode = prompt(
-        'OPCOES DE PAGAMENTO:\n\n' +
-        '1. PIX / Cartao / Boleto via Mercado Pago\n' +
-        '   Valor: R$60,00\n\n' +
-        'Para gerar o link de pagamento, entre em contato:\n' +
-        '   (configure seu link do Mercado Pago no codigo)\n\n' +
-        '━━━━━━━━━━━━━━━━━━━━━━━━\n' +
-        'Tem um codigo de ativacao? Digite abaixo:',
-        ''
-    );
-
-    if (promoCode) {
-        activatePremium(promoCode);
-    }
+function confirmPayment() {
+    // Activate premium immediately when user confirms payment
+    doActivatePremium();
 }
 
 function activatePremium(code) {
-    // Validate activation code
-    // In production, validate against your backend/database
-    // For now, accept some demo codes + a hash-based validation
-
     const validCodes = ['CODEMASTER2026', 'BOOTCAMP60', 'PREMIUM'];
-
-    // Simple hash validation: code must be 16+ chars starting with 'CM-'
-    const isHashValid = code.startsWith('CM-') && code.length >= 16;
-
-    if (validCodes.includes(code.toUpperCase()) || isHashValid) {
-        setPremium();
-        document.getElementById('paywallOverlay').classList.remove('show');
-        document.body.style.overflow = '';
-        stopFreemiumTimer();
-        startFreemiumTimer(); // shows premium badge
-
-        showConfetti();
-        showToast('&#127881; Acesso Premium ativado! Aproveite o bootcamp completo!', 5000);
-
-        // Save activation date
-        localStorage.setItem('cm_premium_date', new Date().toISOString());
+    const isHashValid = code && code.startsWith('CM-') && code.length >= 16;
+    if (validCodes.includes((code||'').toUpperCase()) || isHashValid) {
+        doActivatePremium();
     } else {
-        alert('Codigo invalido. Verifique e tente novamente.\n\nSe voce acabou de pagar, aguarde alguns minutos para o email com o codigo chegar.');
+        alert('Codigo invalido. Clique em "Ja Paguei" para ativar.');
     }
 }
 
-// Generate activation code (for admin use)
-function generateActivationCode() {
-    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-    let code = 'CM-';
-    for (let i = 0; i < 16; i++) code += chars[Math.floor(Math.random() * chars.length)];
-    return code;
+function doActivatePremium() {
+    setPremium();
+    localStorage.removeItem('cm_payment_pending');
+
+    // Close paywall
+    document.getElementById('paywallOverlay').classList.remove('show');
+    document.body.style.overflow = '';
+
+    // Stop freemium timer, show premium badge
+    stopFreemiumTimer();
+    startFreemiumTimer();
+
+    // Show AI chat button
+    const chatBtn = document.getElementById('aiChatBtn');
+    if (chatBtn) chatBtn.classList.add('show');
+
+    // Confetti + toast
+    showConfetti();
+    showToast('&#127881; Premium ativado! Acesso completo + IA desbloqueados!', 5000);
+
+    localStorage.setItem('cm_premium_date', new Date().toISOString());
+
+    // Update home page if visible
+    updatePremiumUI();
+}
+
+function updatePremiumUI() {
+    if (!isPremium()) return;
+
+    // Show AI chat button
+    const chatBtn = document.getElementById('aiChatBtn');
+    if (chatBtn) chatBtn.classList.add('show');
+
+    // Hide buy section on home if premium
+    const buySection = document.getElementById('comprar');
+    if (buySection) buySection.style.display = 'none';
+}
+
+// ====================================================
+// AI CHATBOT (Premium feature)
+// ====================================================
+
+const aiKnowledge = {
+    // Python
+    'print': 'A funcao <code>print()</code> exibe texto na tela.\n<pre>print("Ola, mundo!")\nprint("Soma:", 2 + 3)  # Soma: 5</pre>\nVoce pode imprimir varios valores separados por virgula.',
+    'variavel': 'Variaveis guardam dados na memoria:\n<pre>nome = "Ana"\nidade = 25\naltura = 1.65\nativo = True</pre>\nPython detecta o tipo automaticamente (tipagem dinamica).',
+    'if': 'O <code>if</code> toma decisoes no codigo:\n<pre>idade = 18\nif idade >= 18:\n    print("Maior de idade")\nelif idade >= 12:\n    print("Adolescente")\nelse:\n    print("Crianca")</pre>',
+    'for': 'O <code>for</code> repete um bloco de codigo:\n<pre>for i in range(5):\n    print(i)  # 0, 1, 2, 3, 4\n\nfrutas = ["maca", "banana"]\nfor fruta in frutas:\n    print(fruta)</pre>',
+    'while': 'O <code>while</code> repete enquanto a condicao for verdadeira:\n<pre>contador = 0\nwhile contador < 5:\n    print(contador)\n    contador += 1</pre>\nCuidado com loops infinitos!',
+    'lista': 'Listas guardam colecoes de dados:\n<pre>nums = [1, 2, 3, 4, 5]\nnums.append(6)      # adiciona\nnums.remove(3)      # remove\nprint(len(nums))    # tamanho\nprint(nums[0])      # primeiro</pre>',
+    'dicionario': 'Dicionarios guardam pares chave-valor:\n<pre>pessoa = {"nome": "Ana", "idade": 25}\nprint(pessoa["nome"])  # Ana\npessoa["email"] = "ana@mail.com"</pre>',
+    'funcao': 'Funcoes sao blocos reutilizaveis:\n<pre>def saudacao(nome):\n    return f"Ola, {nome}!"\n\nresultado = saudacao("Ana")\nprint(resultado)  # Ola, Ana!</pre>',
+    'classe': 'Classes criam objetos com dados e comportamentos:\n<pre>class Cachorro:\n    def __init__(self, nome):\n        self.nome = nome\n    def latir(self):\n        print(f"{self.nome}: Au au!")\n\nrex = Cachorro("Rex")\nrex.latir()</pre>',
+    'string': 'Strings sao textos em Python:\n<pre>texto = "Ola Mundo"\nprint(texto.upper())      # OLA MUNDO\nprint(texto.lower())      # ola mundo\nprint(texto.replace("Mundo", "Python"))\nprint(len(texto))         # 9</pre>',
+    'try': 'Use <code>try/except</code> para tratar erros:\n<pre>try:\n    numero = int(input("Digite: "))\n    print(10 / numero)\nexcept ValueError:\n    print("Nao e um numero!")\nexcept ZeroDivisionError:\n    print("Nao divide por zero!")</pre>',
+    'arquivo': 'Ler e escrever arquivos:\n<pre># Escrever\nwith open("dados.txt", "w") as f:\n    f.write("Ola!")\n\n# Ler\nwith open("dados.txt", "r") as f:\n    conteudo = f.read()\n    print(conteudo)</pre>',
+    // HTML/CSS
+    'html': 'HTML e a estrutura das paginas web:\n<pre>&lt;!DOCTYPE html&gt;\n&lt;html&gt;\n&lt;head&gt;\n  &lt;title&gt;Meu Site&lt;/title&gt;\n&lt;/head&gt;\n&lt;body&gt;\n  &lt;h1&gt;Ola!&lt;/h1&gt;\n  &lt;p&gt;Meu primeiro site.&lt;/p&gt;\n&lt;/body&gt;\n&lt;/html&gt;</pre>',
+    'css': 'CSS estiliza o HTML:\n<pre>body {\n  background: #1a1a2e;\n  color: white;\n  font-family: Arial;\n}\nh1 {\n  color: #10b981;\n  font-size: 2rem;\n}</pre>',
+    'flexbox': 'Flexbox organiza elementos em linha ou coluna:\n<pre>.container {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  gap: 1rem;\n}</pre>',
+    'dom': 'O DOM permite JS manipular HTML:\n<pre>// Pegar elemento\nconst btn = document.getElementById("meuBtn");\n// Mudar texto\nbtn.textContent = "Clicado!";\n// Evento\nbtn.addEventListener("click", () => {\n  alert("Ola!");\n});</pre>',
+    // SQL
+    'select': 'SELECT busca dados do banco:\n<pre>-- Todos os alunos\nSELECT * FROM alunos;\n\n-- Filtrar\nSELECT nome, nota FROM alunos\nWHERE nota >= 7\nORDER BY nota DESC;</pre>',
+    'insert': 'INSERT adiciona dados:\n<pre>INSERT INTO alunos (nome, idade, nota)\nVALUES ("Maria", 20, 8.5);</pre>',
+    'join': 'JOIN combina tabelas:\n<pre>SELECT alunos.nome, cursos.titulo\nFROM alunos\nINNER JOIN matriculas ON alunos.id = matriculas.aluno_id\nINNER JOIN cursos ON matriculas.curso_id = cursos.id;</pre>',
+    'sql': 'SQL e a linguagem para bancos de dados:\n<pre>-- Criar tabela\nCREATE TABLE alunos (\n  id INTEGER PRIMARY KEY,\n  nome TEXT,\n  nota REAL\n);\n-- Consultar\nSELECT * FROM alunos WHERE nota > 7;</pre>',
+    // Java
+    'java': 'Java e uma linguagem tipada e orientada a objetos:\n<pre>public class Main {\n    public static void main(String[] args) {\n        String nome = "Ana";\n        int idade = 25;\n        System.out.println("Ola, " + nome);\n        System.out.println("Idade: " + idade);\n    }\n}</pre>',
+    // C++
+    'c++': 'C++ e uma linguagem rapida e poderosa:\n<pre>#include &lt;iostream&gt;\nusing namespace std;\n\nint main() {\n    string nome = "Ana";\n    int idade = 25;\n    cout &lt;&lt; "Ola, " &lt;&lt; nome &lt;&lt; endl;\n    cout &lt;&lt; "Idade: " &lt;&lt; idade &lt;&lt; endl;\n    return 0;\n}</pre>',
+    'ponteiro': 'Ponteiros guardam enderecos de memoria:\n<pre>int x = 10;\nint* ptr = &x;  // ptr aponta para x\ncout &lt;&lt; *ptr;    // 10 (valor apontado)\ncout &lt;&lt; ptr;     // endereco de x</pre>',
+    'vector': 'Vectors sao arrays dinamicos em C++:\n<pre>#include &lt;vector&gt;\nvector&lt;int&gt; nums = {1, 2, 3};\nnums.push_back(4);\nfor (int n : nums) {\n    cout &lt;&lt; n &lt;&lt; " ";\n}</pre>',
+};
+
+// Generic responses for common questions
+const aiGeneric = [
+    { pattern: /o que e|oque e|oq e/i, response: 'Pode especificar o que quer saber? Por exemplo: "o que e uma variavel", "o que e HTML", "o que e SQL"...' },
+    { pattern: /como (faco|fazer|crio|criar)/i, response: 'Me diz o que voce quer fazer! Exemplos: "como criar uma funcao", "como fazer um loop", "como criar uma tabela SQL"...' },
+    { pattern: /erro|error|bug|nao funciona/i, response: 'Erros comuns:\n1. <strong>SyntaxError</strong> — falta dois pontos, parentese ou indentacao\n2. <strong>NameError</strong> — variavel nao existe (verifique o nome)\n3. <strong>TypeError</strong> — operacao com tipo errado\n4. <strong>IndentationError</strong> — espacos incorretos\n\nMe manda o erro exato que eu ajudo!' },
+    { pattern: /dica|tip|conselho/i, response: 'Dicas de programacao:\n1. <strong>Pratique todo dia</strong> — mesmo 15 min faz diferenca\n2. <strong>Leia o erro</strong> — a mensagem sempre diz o problema\n3. <strong>Divida o problema</strong> — resolva pedacos pequenos\n4. <strong>Google e seu amigo</strong> — todo dev pesquisa\n5. <strong>Nao decore, entenda</strong> — entender > memorizar' },
+    { pattern: /obrigad|valeu|thanks/i, response: 'De nada! Estou aqui para ajudar. Pode perguntar mais quando quiser! &#128512;' },
+    { pattern: /ola|oi|hey|bom dia|boa tarde|boa noite/i, response: 'Ola! &#128075; Como posso te ajudar com programacao hoje?' },
+];
+
+function getAiResponse(msg) {
+    const lower = msg.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+
+    // Check knowledge base
+    let bestMatch = null;
+    let bestScore = 0;
+    for (const [key, value] of Object.entries(aiKnowledge)) {
+        const keyNorm = key.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+        if (lower.includes(keyNorm)) {
+            const score = keyNorm.length;
+            if (score > bestScore) {
+                bestScore = score;
+                bestMatch = value;
+            }
+        }
+    }
+    if (bestMatch) return bestMatch;
+
+    // Check generic patterns
+    for (const g of aiGeneric) {
+        if (g.pattern.test(msg)) return g.response;
+    }
+
+    // Detect topic from keywords
+    if (/python|py/i.test(lower)) return 'Sobre Python, posso te ajudar com: <strong>print, variaveis, if/else, for, while, listas, dicionarios, funcoes, classes, strings, try/except, arquivos</strong>. O que quer saber?';
+    if (/html|web|css|site|pagina/i.test(lower)) return 'Sobre Web, posso te ajudar com: <strong>HTML, CSS, Flexbox, DOM, eventos</strong>. O que quer saber?';
+    if (/sql|banco|dados|tabela|query/i.test(lower)) return 'Sobre SQL, posso te ajudar com: <strong>SELECT, INSERT, WHERE, JOIN, CREATE TABLE</strong>. O que quer saber?';
+    if (/java(?!script)/i.test(lower)) return 'Sobre Java, posso te ajudar com: <strong>System.out.println, variaveis, if/else, for, arrays, metodos, classes</strong>. O que quer saber?';
+    if (/c\+\+|cpp|ponteiro|vector/i.test(lower)) return 'Sobre C++, posso te ajudar com: <strong>cout/cin, variaveis, loops, arrays, vectors, ponteiros, classes</strong>. O que quer saber?';
+    if (/javascript|js/i.test(lower)) return 'Sobre JavaScript, posso te ajudar com: <strong>variaveis (let/const), funcoes, DOM, eventos, arrays</strong>. O que quer saber?';
+
+    return 'Hmm, nao entendi bem. Tente perguntar sobre:\n- <strong>Python</strong>: print, variaveis, listas, funcoes...\n- <strong>Web</strong>: HTML, CSS, JavaScript, DOM...\n- <strong>SQL</strong>: SELECT, INSERT, JOIN...\n- <strong>Java</strong>: classes, metodos, arrays...\n- <strong>C++</strong>: ponteiros, vectors, cout...\n\nOu pergunte "dicas de programacao"!';
+}
+
+function sendAiMsg() {
+    const input = document.getElementById('aiInput');
+    const msg = input.value.trim();
+    if (!msg) return;
+
+    const messages = document.getElementById('aiMessages');
+
+    // Add user message
+    const userDiv = document.createElement('div');
+    userDiv.className = 'ai-msg user';
+    userDiv.textContent = msg;
+    messages.appendChild(userDiv);
+
+    input.value = '';
+
+    // Simulate typing delay
+    setTimeout(() => {
+        const botDiv = document.createElement('div');
+        botDiv.className = 'ai-msg bot';
+        botDiv.innerHTML = getAiResponse(msg);
+        messages.appendChild(botDiv);
+        messages.scrollTop = messages.scrollHeight;
+    }, 400 + Math.random() * 600);
+
+    messages.scrollTop = messages.scrollHeight;
+}
+
+function toggleAiChat() {
+    const panel = document.getElementById('aiChatPanel');
+    panel.classList.toggle('show');
+    if (panel.classList.contains('show')) {
+        document.getElementById('aiInput').focus();
+    }
 }
 
 // ====================================================
@@ -12853,6 +12967,16 @@ if (currentPlan && currentLessons.length > 0) {
         </button>`;
         heroContent.appendChild(resumeDiv);
     }
+}
+
+// Show AI chat + premium UI if already premium
+updatePremiumUI();
+
+// Check if returning from payment
+if (localStorage.getItem('cm_payment_pending') === 'true' && !isPremium()) {
+    setTimeout(() => {
+        showToast('&#128176; Pagamento pendente? Clique em "Ja Paguei" para ativar!', 5000);
+    }, 2000);
 }
 
 // Start/stop timer based on page visibility
