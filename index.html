@@ -831,7 +831,7 @@
         <div class="badge">Bootcamp Interativo 2026</div>
         <h1>Aprenda a programar <em>do zero ao avançado</em> em 8 semanas</h1>
         <p>3 planos, 5+ linguagens, 280+ lições com editor integrado e desafios práticos. Escolha seu ritmo e comece a codar agora.</p>
-        <a href="#planos" class="hero-cta" onclick="event.preventDefault();requireAuthThenStart()">Começar Agora &#8594;</a>
+        <a href="#" class="hero-cta" onclick="event.preventDefault();requireAuthThenStart()">Começar Agora &#8594;</a>
         <div class="stats">
             <div><div class="stat-n">8</div><div class="stat-l">Semanas</div></div>
             <div><div class="stat-n">5+</div><div class="stat-l">Linguagens</div></div>
@@ -13972,6 +13972,13 @@ async function doAuth() {
             showToast('&#128994; Bem-vindo de volta!', 3000);
         }
         closeAuth();
+        // Se havia um início pendente, executar agora
+        if (_pendingStart) {
+            const plan = _pendingStart;
+            _pendingStart = null;
+            _origStartBoot(plan);
+            startFreemiumTimer();
+        }
     } catch (err) {
         const msgs = {
             'auth/email-already-in-use': 'Este e-mail já esta cadastrado. Tente entrar.',
@@ -14041,33 +14048,24 @@ auth.onAuthStateChanged(user => {
     updateAuthUI(user);
 });
 
-// Also patch the "Começar Agora" button in planos section
+// Patch startBootcamp to require auth
 const _origStartBoot = startBootcamp;
+let _pendingStart = null;
 
-// Require auth before starting bootcamp
 function requireAuthThenStart() {
     if (currentUser) {
         _origStartBoot('full');
         startFreemiumTimer();
     } else {
-        // Show auth, then start after login
+        _pendingStart = 'full';
         showAuth();
-        const checkStart = auth.onAuthStateChanged(u => {
-            if (u) {
-                checkStart(); // unsubscribe
-                closeAuth();
-                _origStartBoot('full');
-                startFreemiumTimer();
-            }
-        });
     }
 }
+
 startBootcamp = function(plan) {
     if (!currentUser) {
+        _pendingStart = plan;
         showAuth();
-        const unsub = auth.onAuthStateChanged(u => {
-            if (u) { unsub(); closeAuth(); _origStartBoot(plan); startFreemiumTimer(); }
-        });
         return;
     }
     _origStartBoot(plan);
