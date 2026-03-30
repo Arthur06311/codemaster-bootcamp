@@ -14041,26 +14041,27 @@ auth.onAuthStateChanged(user => {
     updateAuthUI(user);
 });
 
+// Also patch the "Começar Agora" button in planos section
+const _origStartBoot = startBootcamp;
+
 // Require auth before starting bootcamp
 function requireAuthThenStart() {
     if (currentUser) {
-        startBootcamp('full');
+        _origStartBoot('full');
+        startFreemiumTimer();
     } else {
         // Show auth, then start after login
         showAuth();
-        const origClose = closeAuth;
         const checkStart = auth.onAuthStateChanged(u => {
             if (u) {
                 checkStart(); // unsubscribe
                 closeAuth();
-                startBootcamp('full');
+                _origStartBoot('full');
+                startFreemiumTimer();
             }
         });
     }
 }
-
-// Also patch the "Começar Agora" button in planos section
-const _origStartBoot = startBootcamp;
 startBootcamp = function(plan) {
     if (!currentUser) {
         showAuth();
