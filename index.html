@@ -4154,7 +4154,7 @@ class ContaBancaria:
 
     # Sua vez! Crie o método ver_saldo
     def ver_saldo(self):
-        # ??? Imprima "Saldo de {titular}: R${saldo}"
+        # ??? Imprima "Saldo de {titular}: R\${saldo}"
         pass
 
     # Desafio! Crie o método transferir para outra conta
@@ -4363,7 +4363,7 @@ class FormaPagamento(ABC):
 # Dica: DEVE implementar processar() e descrição()
 class Pix(FormaPagamento):
     def processar(self):
-        # ??? Imprima "Pagamento de R${valor} via PIX processado!"
+        # ??? Imprima "Pagamento de R\${valor} via PIX processado!"
         pass
 
     def descrição(self):
@@ -14052,23 +14052,27 @@ const _origStartBoot = startBootcamp;
 window._pendingStart = null;
 
 function requireAuthThenStart() {
-    if (currentUser) {
-        _origStartBoot('full');
-        startFreemiumTimer();
-    } else {
-        window._pendingStart = 'full';
-        showAuth();
-    }
+    try {
+        if (currentUser) {
+            _origStartBoot('full');
+            startFreemiumTimer();
+        } else {
+            window._pendingStart = 'full';
+            showAuth();
+        }
+    } catch(e) { alert('Erro requireAuthThenStart: ' + e.message); console.error(e); }
 }
 
 startBootcamp = function(plan) {
-    if (!currentUser) {
-        window._pendingStart = plan;
-        showAuth();
-        return;
-    }
-    _origStartBoot(plan);
-    startFreemiumTimer();
+    try {
+        if (!currentUser) {
+            window._pendingStart = plan;
+            showAuth();
+            return;
+        }
+        _origStartBoot(plan);
+        startFreemiumTimer();
+    } catch(e) { alert('Erro startBootcamp: ' + e.message); console.error(e); }
 };
 
 const _origResumeBoot = resumeBootcamp;
