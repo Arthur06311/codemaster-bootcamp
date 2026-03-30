@@ -641,79 +641,122 @@
         body.premium-user .ad-banner-home,
         body.premium-user .ad-interstitial { display:none !important; }
     </style>
-    <!-- Auth System (local storage based) -->
+    <!-- Supabase SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+    <!-- Auth System (Supabase) -->
     <script>
+        const SUPABASE_URL = 'https://vlgcycmrpigjuhmxaeax.supabase.co';
+        const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZsZ2N5Y21ycGlnanVobXhhZWF4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ4NzA1MTAsImV4cCI6MjA5MDQ0NjUxMH0.9EmaMGP7qn3LciIhD2398tAe9WKBnQagwxGYcfVKvvU';
+        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+        // Wrapper that keeps the same API surface as before
         const auth = {
             _listeners: [],
-            _getUsers() { return JSON.parse(localStorage.getItem('cm_users') || '{}'); },
-            _saveUsers(u) { localStorage.setItem('cm_users', JSON.stringify(u)); },
-            _getCurrentUser() { return JSON.parse(localStorage.getItem('cm_current_user') || 'null'); },
-            _setCurrentUser(u) { localStorage.setItem('cm_current_user', JSON.stringify(u)); this._listeners.forEach(cb => cb(u)); },
+            _currentUser: null,
+
+            _toUser(sbUser) {
+                if (!sbUser) return null;
+                return {
+                    uid: sbUser.id,
+                    email: sbUser.email,
+                    displayName: sbUser.user_metadata?.name || sbUser.email?.split('@')[0] || '',
+                    async updateProfile(p) {
+                        if (p.displayName) {
+                            this.displayName = p.displayName;
+                            await supabase.auth.updateUser({ data: { name: p.displayName } });
+                            await supabase.from('profiles').update({ name: p.displayName }).eq('id', this.uid);
+                        }
+                    }
+                };
+            },
 
             onAuthStateChanged(cb) {
                 this._listeners.push(cb);
-                cb(this._getCurrentUser());
+                // Check current session
+                supabase.auth.getSession().then(({ data }) => {
+                    const user = this._toUser(data.session?.user);
+                    this._currentUser = user;
+                    cb(user);
+                    if (user) this._loadProfile(user);
+                });
+                // Listen for changes
+                supabase.auth.onAuthStateChange((event, session) => {
+                    const user = this._toUser(session?.user);
+                    this._currentUser = user;
+                    this._listeners.forEach(fn => fn(user));
+                    if (user && (event === 'SIGNED_IN' || event === 'TOKEN_REFRESHED')) {
+                        this._loadProfile(user);
+                    }
+                });
                 return () => { this._listeners = this._listeners.filter(f => f !== cb); };
             },
 
+            async _loadProfile(user) {
+                const { data } = await supabase.from('profiles').select('*').eq('id', user.uid).single();
+                if (data) {
+                    if (data.completed) localStorage.setItem('cm_completed', JSON.stringify(data.completed));
+                    if (data.saved_code) localStorage.setItem('cm_code', JSON.stringify(data.saved_code));
+                    if (data.current_idx !== null) localStorage.setItem('cm_idx', String(data.current_idx));
+                    if (data.premium) {
+                        localStorage.setItem('cm_premium', 'true');
+                        if (data.premium_date) localStorage.setItem('cm_premium_date', data.premium_date);
+                    }
+                }
+            },
+
+            async saveProfile() {
+                const user = this._currentUser;
+                if (!user) return;
+                await supabase.from('profiles').update({
+                    completed: JSON.parse(localStorage.getItem('cm_completed') || '[]'),
+                    saved_code: JSON.parse(localStorage.getItem('cm_code') || '{}'),
+                    current_idx: parseInt(localStorage.getItem('cm_idx') || '0'),
+                    premium: localStorage.getItem('cm_premium') === 'true',
+                    premium_date: localStorage.getItem('cm_premium_date') || null
+                }).eq('id', user.uid);
+            },
+
             async createUserWithEmailAndPassword(email, pass) {
-                const users = this._getUsers();
-                const key = email.toLowerCase().trim();
-                if (users[key]) throw { code: 'auth/email-already-in-use' };
-                if (pass.length < 6) throw { code: 'auth/weak-password' };
-                const user = {
-                    uid: 'u_' + Date.now().toString(36) + Math.random().toString(36).slice(2,8),
-                    email: key,
-                    displayName: '',
-                    updateProfile(p) { if (p.displayName) this.displayName = p.displayName; auth._setCurrentUser(this); users[key].displayName = this.displayName; auth._saveUsers(users); }
-                };
-                users[key] = { passHash: btoa(key + ':' + pass), uid: user.uid, displayName: '' };
-                this._saveUsers(users);
-                this._setCurrentUser(user);
+                const { data, error } = await supabase.auth.signUp({
+                    email: email.toLowerCase().trim(),
+                    password: pass,
+                });
+                if (error) {
+                    const code = error.message.includes('already') ? 'auth/email-already-in-use'
+                        : error.message.includes('weak') || error.message.includes('short') ? 'auth/weak-password'
+                        : error.message.includes('valid') ? 'auth/invalid-email'
+                        : 'auth/error';
+                    throw { code, message: error.message };
+                }
+                const user = this._toUser(data.user);
+                this._currentUser = user;
                 return { user };
             },
 
             async signInWithEmailAndPassword(email, pass) {
-                const users = this._getUsers();
-                const key = email.toLowerCase().trim();
-                const record = users[key];
-                if (!record) throw { code: 'auth/user-not-found' };
-                if (record.passHash !== btoa(key + ':' + pass)) throw { code: 'auth/invalid-credential' };
-                const user = {
-                    uid: record.uid,
-                    email: key,
-                    displayName: record.displayName || '',
-                    updateProfile(p) { if (p.displayName) this.displayName = p.displayName; auth._setCurrentUser(this); record.displayName = this.displayName; auth._saveUsers(users); }
-                };
-                this._setCurrentUser(user);
-                // Restore this user's progress
-                const userData = JSON.parse(localStorage.getItem('cm_userdata_' + record.uid) || 'null');
-                if (userData) {
-                    if (userData.completed) localStorage.setItem('cm_completed', JSON.stringify(userData.completed));
-                    if (userData.code) localStorage.setItem('cm_code', JSON.stringify(userData.code));
-                    if (userData.idx !== undefined) localStorage.setItem('cm_idx', String(userData.idx));
-                    if (userData.plan) localStorage.setItem('cm_plan', userData.plan);
-                    if (userData.premium) localStorage.setItem('cm_premium', 'true');
-                    if (userData.premiumDate) localStorage.setItem('cm_premium_date', userData.premiumDate);
+                const { data, error } = await supabase.auth.signInWithPassword({
+                    email: email.toLowerCase().trim(),
+                    password: pass,
+                });
+                if (error) {
+                    const code = error.message.includes('Invalid') ? 'auth/invalid-credential'
+                        : error.message.includes('not found') ? 'auth/user-not-found'
+                        : error.message.includes('many') ? 'auth/too-many-requests'
+                        : 'auth/wrong-password';
+                    throw { code, message: error.message };
                 }
+                const user = this._toUser(data.user);
+                this._currentUser = user;
+                // Load profile data from Supabase
+                await this._loadProfile(user);
                 return { user };
             },
 
             async signOut() {
-                // Save current progress to user data before signing out
-                const user = this._getCurrentUser();
-                if (user) {
-                    const userData = {
-                        completed: JSON.parse(localStorage.getItem('cm_completed') || '[]'),
-                        code: JSON.parse(localStorage.getItem('cm_code') || '{}'),
-                        idx: parseInt(localStorage.getItem('cm_idx') || '0'),
-                        plan: localStorage.getItem('cm_plan'),
-                        premium: localStorage.getItem('cm_premium') === 'true',
-                        premiumDate: localStorage.getItem('cm_premium_date')
-                    };
-                    localStorage.setItem('cm_userdata_' + user.uid, JSON.stringify(userData));
-                }
-                this._setCurrentUser(null);
+                // Save progress to Supabase before signing out
+                await this.saveProfile();
+                await supabase.auth.signOut();
+                this._currentUser = null;
             }
         };
     </script>
@@ -13614,6 +13657,9 @@ function doActivatePremium() {
 
     localStorage.setItem('cm_premium_date', new Date().toISOString());
 
+    // Save premium to Supabase
+    auth.saveProfile();
+
     // Update home page if visible
     updatePremiumUI();
 }
@@ -14091,15 +14137,8 @@ function showAccountMenu() {
 // Save user progress to their account data
 function saveUserData() {
     if (!currentUser) return;
-    const userData = {
-        completed: JSON.parse(localStorage.getItem('cm_completed') || '[]'),
-        code: JSON.parse(localStorage.getItem('cm_code') || '{}'),
-        idx: parseInt(localStorage.getItem('cm_idx') || '0'),
-        plan: localStorage.getItem('cm_plan'),
-        premium: localStorage.getItem('cm_premium') === 'true',
-        premiumDate: localStorage.getItem('cm_premium_date')
-    };
-    localStorage.setItem('cm_userdata_' + currentUser.uid, JSON.stringify(userData));
+    // Save to Supabase
+    auth.saveProfile();
 }
 
 // Patch saveProgress to also save to user account
