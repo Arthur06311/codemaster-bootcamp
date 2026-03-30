@@ -704,16 +704,21 @@
                 }
             },
 
-            async saveProfile() {
+            _saveTimer: null,
+            saveProfile(immediate) {
                 const user = this._currentUser;
                 if (!user) return;
-                await supabase.from('profiles').update({
-                    completed: JSON.parse(localStorage.getItem('cm_completed') || '[]'),
-                    saved_code: JSON.parse(localStorage.getItem('cm_code') || '{}'),
-                    current_idx: parseInt(localStorage.getItem('cm_idx') || '0'),
-                    premium: localStorage.getItem('cm_premium') === 'true',
-                    premium_date: localStorage.getItem('cm_premium_date') || null
-                }).eq('id', user.uid);
+                clearTimeout(this._saveTimer);
+                const doSave = () => {
+                    supabase.from('profiles').update({
+                        completed: JSON.parse(localStorage.getItem('cm_completed') || '[]'),
+                        saved_code: JSON.parse(localStorage.getItem('cm_code') || '{}'),
+                        current_idx: parseInt(localStorage.getItem('cm_idx') || '0'),
+                        premium: localStorage.getItem('cm_premium') === 'true',
+                        premium_date: localStorage.getItem('cm_premium_date') || null
+                    }).eq('id', user.uid).then(()=>{}).catch(e => console.warn('Supabase save failed', e));
+                };
+                if (immediate) { doSave(); } else { this._saveTimer = setTimeout(doSave, 3000); }
             },
 
             async createUserWithEmailAndPassword(email, pass) {
@@ -13657,8 +13662,8 @@ function doActivatePremium() {
 
     localStorage.setItem('cm_premium_date', new Date().toISOString());
 
-    // Save premium to Supabase
-    auth.saveProfile();
+    // Save premium to Supabase immediately
+    auth.saveProfile(true);
 
     // Update home page if visible
     updatePremiumUI();
