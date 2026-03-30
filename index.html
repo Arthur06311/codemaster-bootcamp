@@ -5635,7 +5635,7 @@ var resultado = document.getElementById("resultado");
 // ???</code></pre>
 <div style="background:linear-gradient(135deg,#1a1a3e,#2a1a4e);border:1px solid #7c3aed;border-radius:12px;padding:1.2rem;margin:1.5rem 0;"><h3 style="color:#a78bfa;margin:0 0 .5rem 0;">Curiosidade do Dia</h3><p style="margin:0;color:#c4b5fd;">JavaScript foi criado em apenas 10 DIAS por Brendan Eich em 1995! Apesar do nome, não tem nada a ver com Java — foi uma jogada de marketing.</p></div>
 `,
-  starter: `<!-- Variáveis JS -->\n<!-- DICA: const para valores fixos, let para valores que mudam -->\n<!-- Tipos: string ("texto"), number (42), boolean (true/false), array ([]), object ({}) -->\n<p id="resultado"></p>\n<script>\n// ??? Crie variaveis e exiba no elemento #resultado\n</script>`,
+  starter: `<!-- Variáveis JS -->\n<!-- DICA: const para valores fixos, let para valores que mudam -->\n<!-- Tipos: string ("texto"), number (42), boolean (true/false), array ([]), object ({}) -->\n<p id="resultado"></p>\n` + SC + `\n// ??? Crie variaveis e exiba no elemento #resultado\n` + EC + ``,
 },
 { week:4, day:5, num:2, lang:'html', title:'Funções JS',
   content: `<h1>Funções JS</h1>
@@ -5669,7 +5669,7 @@ function exibirResultado() {
 
 // Chame a funcao exibirResultado
 // ???</code></pre>`,
-  starter: `<!-- Funções JS -->\n<!-- DICA: function nome(parametro) { return valor; } -->\n<!-- Funcoes organizam codigo e evitam repeticao -->\n<p id="saída"></p>\n<script>\n// ??? Crie funcoes saudar() e calcularDesconto()\n</script>`,
+  starter: `<!-- Funções JS -->\n<!-- DICA: function nome(parametro) { return valor; } -->\n<!-- Funcoes organizam codigo e evitam repeticao -->\n<p id="saída"></p>\n` + SC + `\n// ??? Crie funcoes saudar() e calcularDesconto()\n` + EC + ``,
 },
 { week:4, day:5, num:3, lang:'html', title:'DOM básico',
   content: `<h1>DOM básico</h1>
@@ -5705,7 +5705,7 @@ titulo.textContent = "Novo Titulo";
 // Altere o atributo src de uma imagem
 // DICA: elemento.setAttribute("src", "novo-valor")
 // ???</code></pre>`,
-  starter: `<!-- DOM básico -->\n<!-- DICA: getElementById, querySelector para selecionar -->\n<!-- textContent, innerHTML para mudar conteudo -->\n<!-- style.propriedade para mudar CSS, classList para classes -->\n<h1 id="título">Titulo Original</h1>\n<p class="texto">Paragrafo</p>\n<ul><li>Item 1</li></ul>\n<script>\n// ??? Selecione elementos e manipule o DOM\n</script>`,
+  starter: `<!-- DOM básico -->\n<!-- DICA: getElementById, querySelector para selecionar -->\n<!-- textContent, innerHTML para mudar conteudo -->\n<!-- style.propriedade para mudar CSS, classList para classes -->\n<h1 id="título">Titulo Original</h1>\n<p class="texto">Paragrafo</p>\n<ul><li>Item 1</li></ul>\n` + SC + `\n// ??? Selecione elementos e manipule o DOM\n` + EC + ``,
 },
 { week:4, day:5, num:4, lang:'html', title:'Eventos',
   content: `<h1>Eventos</h1>
@@ -5736,7 +5736,7 @@ var campo = document.getElementById("entrada");
 // DICA: "mouseover" quando entra, "mouseout" quando sai
 var caixa = document.getElementById("caixa");
 // ???</code></pre>`,
-  starter: `<!-- Eventos -->\n<!-- DICA: addEventListener("evento", funcao) e a forma recomendada -->\n<!-- Eventos: click, input, keydown, mouseover, mouseout, submit -->\n<button id="meuBotao">Clique</button>\n<input type="text" id="entrada">\n<p id="mensagem"></p>\n<p id="preview"></p>\n<script>\n// ??? Adicione eventos aos elementos\n</script>`,
+  starter: `<!-- Eventos -->\n<!-- DICA: addEventListener("evento", funcao) e a forma recomendada -->\n<!-- Eventos: click, input, keydown, mouseover, mouseout, submit -->\n<button id="meuBotao">Clique</button>\n<input type="text" id="entrada">\n<p id="mensagem"></p>\n<p id="preview"></p>\n` + SC + `\n// ??? Adicione eventos aos elementos\n` + EC + ``,
 },
 { week:4, day:5, num:5, lang:'html', title:'Prática JS',
   content: `<h1>Prática JS</h1>
@@ -5768,7 +5768,7 @@ function adicionarTarefa() {
 // Conecte o botao #btnAdd a funcao adicionarTarefa
 // DICA: addEventListener("click", adicionarTarefa)
 // ???</code></pre>`,
-  starter: `<!-- Prática JS -->\n<!-- DICA: Combine variaveis, funcoes, DOM e eventos -->\n<!-- Crie uma lista de tarefas: input + botao + lista -->\n<input type="text" id="nome" placeholder="Nova tarefa">\n<button id="btnAdd">Adicionar</button>\n<p id="msg"></p>\n<ul id="lista"></ul>\n<script>\n// ??? Crie a funcao adicionarTarefa e conecte ao botao\n</script>`,
+  starter: `<!-- Prática JS -->\n<!-- DICA: Combine variaveis, funcoes, DOM e eventos -->\n<!-- Crie uma lista de tarefas: input + botao + lista -->\n<input type="text" id="nome" placeholder="Nova tarefa">\n<button id="btnAdd">Adicionar</button>\n<p id="msg"></p>\n<ul id="lista"></ul>\n` + SC + `\n// ??? Crie a funcao adicionarTarefa e conecte ao botao\n` + EC + ``,
 },
 // Day 6: Projeto Landing Page
 { week:4, day:6, num:1, lang:'html', title:'Planejamento landing page',
@@ -5942,7 +5942,7 @@ var links = document.querySelectorAll("a[href^='#']");
 // 5. Se preenchidos, mostre sucesso (verde) e reset o form
 var form = document.querySelector("form");
 // ???</code></pre>`,
-  starter: `<!-- Interatividade JS -->\n<!-- DICA: classList.toggle() para menu, scrollIntoView() para scroll suave -->\n<!-- addEventListener("submit") + preventDefault() para validar form -->\n<button id="btnMenu">Menu</button>\n<nav id="navLinks"><a href="#hero">Home</a></nav>\n<form><input id="nome"><input id="email"><button type="submit">Enviar</button></form>\n<p id="formMsg"></p>\n<script>\n// ??? Adicione menu toggle, scroll suave e validacao\n</script>`,
+  starter: `<!-- Interatividade JS -->\n<!-- DICA: classList.toggle() para menu, scrollIntoView() para scroll suave -->\n<!-- addEventListener("submit") + preventDefault() para validar form -->\n<button id="btnMenu">Menu</button>\n<nav id="navLinks"><a href="#hero">Home</a></nav>\n<form><input id="nome"><input id="email"><button type="submit">Enviar</button></form>\n<p id="formMsg"></p>\n` + SC + `\n// ??? Adicione menu toggle, scroll suave e validacao\n` + EC + ``,
 },
 { week:4, day:6, num:5, lang:'html', title:'Projeto landing completo',
   content: `<h1>Projeto landing completo</h1>
@@ -6111,7 +6111,7 @@ function classificar(pontuacao) {
 // Exiba o resultado no elemento #título
 // DICA: document.getElementById("título").textContent = ...
 // ???</code></pre>`,
-  starter: `<!-- Revisão JS -->\n<!-- DICA: Revise: const/let, tipos, arrays, funcoes, objetos, if/else -->\n<h1 id="título">Revisão JavaScript</h1>\n<script>\n// ??? Crie variaveis, arrays, funcoes e objetos\n// ??? Exiba resultados no elemento #título\n</script>`,
+  starter: `<!-- Revisão JS -->\n<!-- DICA: Revise: const/let, tipos, arrays, funcoes, objetos, if/else -->\n<h1 id="título">Revisão JavaScript</h1>\n` + SC + `\n// ??? Crie variaveis, arrays, funcoes e objetos\n// ??? Exiba resultados no elemento #título\n` + EC + ``,
 },
 { week:4, day:7, num:4, lang:'html', title:'Revisão DOM',
   content: `<h1>Revisão DOM</h1>
@@ -6145,7 +6145,7 @@ botaoAdd.addEventListener("click", function() {
 // 3. Evento de tecla: ao pressionar Enter, simule clique no botao
 // DICA: if (event.key === "Enter") { botaoAdd.click(); }
 // ???</code></pre>`,
-  starter: `<!-- Revisão DOM -->\n<!-- DICA: getElementById, querySelector, addEventListener -->\n<!-- createElement + appendChild para criar elementos -->\n<input type="text" id="entrada" placeholder="Digite algo">\n<button class="btn-add">Adicionar</button>\n<p id="saída"></p>\n<ul class="lista"></ul>\n<script>\n// ??? Selecione elementos e adicione eventos de input, click e keydown\n</script>`,
+  starter: `<!-- Revisão DOM -->\n<!-- DICA: getElementById, querySelector, addEventListener -->\n<!-- createElement + appendChild para criar elementos -->\n<input type="text" id="entrada" placeholder="Digite algo">\n<button class="btn-add">Adicionar</button>\n<p id="saída"></p>\n<ul class="lista"></ul>\n` + SC + `\n// ??? Selecione elementos e adicione eventos de input, click e keydown\n` + EC + ``,
 },
 { week:4, day:7, num:5, lang:'html', title:'Desafio final web',
   content: `<h1>Desafio final web</h1>
@@ -6191,7 +6191,7 @@ botaoAdd.addEventListener("click", function() {
 &lt;!-- DICA: funcoes para logica, addEventListener para eventos --&gt;
 &lt;!-- Use classList.add() para feedback visual --&gt;
 &lt;!-- ??? --&gt;</code></pre>`,
-  starter: `<!-- Desafio Final Web -->\n<!-- DICA: Combine HTML semantico + CSS (flex/grid/responsive) + JS (funcoes/DOM/eventos) -->\n<!-- Escolha seu projeto: Quiz, Todo List, Calculadora ou Conversor -->\n<style>\n  /* ??? Estilize sua aplicacao */\n</style>\n<!-- ??? Crie a estrutura HTML -->\n<script>\n// ??? Adicione a logica JavaScript\n</script>`,
+  starter: `<!-- Desafio Final Web -->\n<!-- DICA: Combine HTML semantico + CSS (flex/grid/responsive) + JS (funcoes/DOM/eventos) -->\n<!-- Escolha seu projeto: Quiz, Todo List, Calculadora ou Conversor -->\n<style>\n  /* ??? Estilize sua aplicacao */\n</style>\n<!-- ??? Crie a estrutura HTML -->\n` + SC + `\n// ??? Adicione a logica JavaScript\n` + EC + ``,
 },
 // ===================== WEEK 5 — SQL =====================
 // Day 1: Intro SQL
