@@ -13973,11 +13973,10 @@ async function doAuth() {
         }
         closeAuth();
         // Se havia um início pendente, executar agora
-        if (_pendingStart) {
-            const plan = _pendingStart;
-            _pendingStart = null;
-            _origStartBoot(plan);
-            startFreemiumTimer();
+        if (window._pendingStart) {
+            const plan = window._pendingStart;
+            window._pendingStart = null;
+            startBootcamp(plan);
         }
     } catch (err) {
         const msgs = {
@@ -14050,21 +14049,21 @@ auth.onAuthStateChanged(user => {
 
 // Patch startBootcamp to require auth
 const _origStartBoot = startBootcamp;
-let _pendingStart = null;
+window._pendingStart = null;
 
 function requireAuthThenStart() {
     if (currentUser) {
         _origStartBoot('full');
         startFreemiumTimer();
     } else {
-        _pendingStart = 'full';
+        window._pendingStart = 'full';
         showAuth();
     }
 }
 
 startBootcamp = function(plan) {
     if (!currentUser) {
-        _pendingStart = plan;
+        window._pendingStart = plan;
         showAuth();
         return;
     }
