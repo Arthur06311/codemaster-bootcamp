@@ -778,13 +778,6 @@
     </script>
 </head>
 <body>
-<div id="__dbg" style="position:fixed;top:0;left:0;right:0;z-index:99999;background:red;color:#fff;font-size:12px;padding:4px 8px;display:none;max-height:150px;overflow:auto;"></div>
-<script>
-window.onerror=function(m,s,l,c,e){var d=document.getElementById('__dbg');d.style.display='block';d.innerHTML+='<b>'+l+':'+c+'</b> '+m+'<br>';};
-document.getElementById('__dbg').innerHTML='auth='+(typeof auth)+' | sbClient='+(typeof sbClient)+' | window.auth='+(typeof window.auth)+'<br>';
-document.getElementById('__dbg').style.display='block';
-</script>
-
 <!-- NAV -->
 <nav>
     <div class="logo" onclick="goHome()">Code<span>Master</span></div>
