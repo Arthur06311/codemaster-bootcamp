@@ -799,6 +799,40 @@
     </div>
 </nav>
 
+<!-- ===== REDEEM CODE TAB ===== -->
+<div id="cgaTab" onclick="document.getElementById('cgaModal').classList.add('show')" style="position:fixed;bottom:50%;right:0;z-index:500;background:linear-gradient(135deg,#8b5cf6,#6d28d9);color:#fff;font-size:.7rem;font-weight:700;padding:.5rem .3rem;border-radius:8px 0 0 8px;cursor:pointer;writing-mode:vertical-lr;letter-spacing:2px;box-shadow:-2px 0 12px rgba(139,92,246,.3);">C-G-A</div>
+
+<div class="paywall-overlay" id="cgaModal" style="z-index:610;">
+    <div class="paywall-modal" style="max-width:380px;">
+        <button class="paywall-close" onclick="document.getElementById('cgaModal').classList.remove('show')" title="Fechar">&#10005;</button>
+        <div style="text-align:center;margin-bottom:1rem;">
+            <div style="font-size:2.5rem;margin-bottom:.5rem;">&#127873;</div>
+            <h3 style="font-family:'Space Grotesk',sans-serif;color:#fff;font-size:1.2rem;">Reivindicar Codigo</h3>
+            <p style="color:var(--muted);font-size:.85rem;margin-top:.4rem;">Insira seu codigo para desbloquear o acesso.</p>
+        </div>
+        <input type="text" id="cgaInput" placeholder="Digite o codigo aqui..." style="width:100%;padding:.7rem 1rem;background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:10px;color:#fff;font-size:.9rem;outline:none;margin-bottom:.8rem;" onfocus="this.style.borderColor='rgba(139,92,246,.4)'" onblur="this.style.borderColor='var(--border)'" onkeydown="if(event.key==='Enter')redeemCode()">
+        <p id="cgaError" style="color:var(--red);font-size:.8rem;text-align:center;display:none;margin-bottom:.5rem;"></p>
+        <button class="paywall-btn" onclick="redeemCode()" style="background:linear-gradient(135deg,#8b5cf6,#6d28d9);">Reivindicar</button>
+    </div>
+</div>
+
+<script>
+function redeemCode() {
+    var code = document.getElementById('cgaInput').value.trim();
+    var err = document.getElementById('cgaError');
+    if (code === 'PlayTester-Obrigado-use-bem') {
+        err.style.display = 'none';
+        document.getElementById('cgaModal').classList.remove('show');
+        document.getElementById('cgaTab').style.display = 'none';
+        doActivatePremium();
+        showToast('&#127881; Codigo resgatado! Premium ativado!', 4000);
+    } else {
+        err.textContent = 'Codigo invalido. Tente novamente.';
+        err.style.display = 'block';
+    }
+}
+</script>
+
 <!-- ===== PAYWALL MODAL ===== -->
 <div class="paywall-overlay" id="paywallOverlay">
     <div class="paywall-modal">
