@@ -647,7 +647,13 @@
     <script>
         const SUPABASE_URL = 'https://vlgcycmrpigjuhmxaeax.supabase.co';
         const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZsZ2N5Y21ycGlnanVobXhhZWF4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ4NzA1MTAsImV4cCI6MjA5MDQ0NjUxMH0.9EmaMGP7qn3LciIhD2398tAe9WKBnQagwxGYcfVKvvU';
-        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+        var _sb = null;
+        try {
+            if (window.supabase && typeof window.supabase.createClient === 'function') {
+                _sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+            } else { console.warn('Supabase SDK não encontrado'); }
+        } catch(e) { console.warn('Supabase SDK erro:', e); }
+        const supabase = _sb;
 
         // Wrapper that keeps the same API surface as before
         const auth = {
@@ -672,6 +678,7 @@
 
             onAuthStateChanged(cb) {
                 this._listeners.push(cb);
+                if (!supabase) { cb(null); return () => {}; }
                 // Check current session
                 supabase.auth.getSession().then(({ data }) => {
                     const user = this._toUser(data.session?.user);
@@ -692,6 +699,7 @@
             },
 
             async _loadProfile(user) {
+                if (!supabase) return;
                 const { data } = await supabase.from('profiles').select('*').eq('id', user.uid).single();
                 if (data) {
                     if (data.completed) localStorage.setItem('cm_completed', JSON.stringify(data.completed));
@@ -710,6 +718,7 @@
                 if (!user) return;
                 clearTimeout(this._saveTimer);
                 const doSave = () => {
+                    if (!supabase) return;
                     supabase.from('profiles').update({
                         completed: JSON.parse(localStorage.getItem('cm_completed') || '[]'),
                         saved_code: JSON.parse(localStorage.getItem('cm_code') || '{}'),
@@ -722,6 +731,7 @@
             },
 
             async createUserWithEmailAndPassword(email, pass) {
+                if (!supabase) throw { code: 'auth/error', message: 'Serviço indisponível. Recarregue a página.' };
                 const { data, error } = await supabase.auth.signUp({
                     email: email.toLowerCase().trim(),
                     password: pass,
@@ -739,6 +749,7 @@
             },
 
             async signInWithEmailAndPassword(email, pass) {
+                if (!supabase) throw { code: 'auth/error', message: 'Serviço indisponível. Recarregue a página.' };
                 const { data, error } = await supabase.auth.signInWithPassword({
                     email: email.toLowerCase().trim(),
                     password: pass,
@@ -760,7 +771,7 @@
             async signOut() {
                 // Save progress to Supabase before signing out
                 await this.saveProfile();
-                await supabase.auth.signOut();
+                if (supabase) await supabase.auth.signOut();
                 this._currentUser = null;
             }
         };
@@ -840,15 +851,21 @@
 
             <div id="adBanner" style="border-radius:16px;text-align:center;margin-bottom:.8rem;">
                 <div style="background:linear-gradient(145deg,rgba(16,185,129,.08),rgba(6,182,212,.05));border:1px solid rgba(16,185,129,.2);border-radius:16px;padding:2rem 1.5rem;">
-                    <div style="font-size:3rem;margin-bottom:.8rem;">&#128640;</div>
-                    <h3 style="font-family:'Space Grotesk',sans-serif;color:#fff;font-size:1.3rem;margin-bottom:.4rem;">Desbloqueie +1 Lição</h3>
-                    <p style="color:var(--muted);font-size:.9rem;line-height:1.7;margin-bottom:1rem;">Aguarde o contador para ganhar acesso a mais uma lição grátis. Ou adquira o <strong style="color:var(--green);">Premium</strong> para acesso ilimitado!</p>
-                    <div style="background:rgba(0,0,0,.2);border-radius:12px;padding:1rem;margin-bottom:1rem;">
-                        <span style="color:var(--muted);font-size:.85rem;text-decoration:line-through;">R$149,90</span>
-                        <div style="font-family:'Space Grotesk',sans-serif;font-size:2.5rem;font-weight:700;color:#fff;"><small style="font-size:1rem;">R$</small>60<small style="font-size:1rem;">,00</small></div>
-                        <span style="font-size:.75rem;color:var(--green);">Pagamento único — para sempre</span>
+                    <p style="color:var(--muted);font-size:.85rem;margin-bottom:1rem;">Aguarde o contador para ganhar acesso a mais uma lição grátis.</p>
+                    <div style="display:flex;justify-content:center;margin-bottom:1rem;">
+                        <script>
+                            atOptions = {
+                                'key' : '3f8b0d335f2b647fdc45e7f58ee74d8d',
+                                'format' : 'iframe',
+                                'height' : 250,
+                                'width' : 300,
+                                'params' : {}
+                            };
+                        </script>
+                        <script src="https://www.highperformanceformat.com/3f8b0d335f2b647fdc45e7f58ee74d8d/invoke.js"></script>
                     </div>
-                    <a href="https://www.mercadopago.com.br/checkout/v1/payment/redirect/327a00f8-dfd4-4719-8c1f-9d657d52d455/review/?source=link&preference-id=114513236-8bd187a4-0399-4c0a-b619-051b507b3823&router-request-id=de085ee6-361a-4a43-9a88-ca7aa11efcf4&p=ecc76db6965ae98326a8fb71e4bda686" style="display:inline-block;background:linear-gradient(135deg,var(--green),var(--green-d));color:#fff;font-weight:700;font-size:1rem;padding:.8rem 2rem;border-radius:12px;text-decoration:none;box-shadow:0 4px 20px rgba(16,185,129,.25);" onclick="localStorage.setItem('cm_payment_pending','true');localStorage.setItem('cm_payment_ts',Date.now())">Comprar Premium Agora</a>
+                    <p style="color:var(--muted);font-size:.8rem;">Ou adquira o <strong style="color:var(--green);">Premium</strong> para acesso ilimitado sem anúncios!</p>
+                    <a href="https://www.mercadopago.com.br/checkout/v1/payment/redirect/327a00f8-dfd4-4719-8c1f-9d657d52d455/review/?source=link&preference-id=114513236-8bd187a4-0399-4c0a-b619-051b507b3823&router-request-id=de085ee6-361a-4a43-9a88-ca7aa11efcf4&p=ecc76db6965ae98326a8fb71e4bda686" style="display:inline-block;background:linear-gradient(135deg,var(--green),var(--green-d));color:#fff;font-weight:700;font-size:.9rem;padding:.6rem 1.5rem;border-radius:12px;text-decoration:none;margin-top:.5rem;" onclick="localStorage.setItem('cm_payment_pending','true');localStorage.setItem('cm_payment_ts',Date.now())">Comprar Premium — R$60</a>
                 </div>
             </div>
 
