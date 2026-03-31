@@ -647,13 +647,12 @@
     <script>
         const SUPABASE_URL = 'https://vlgcycmrpigjuhmxaeax.supabase.co';
         const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZsZ2N5Y21ycGlnanVobXhhZWF4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ4NzA1MTAsImV4cCI6MjA5MDQ0NjUxMH0.9EmaMGP7qn3LciIhD2398tAe9WKBnQagwxGYcfVKvvU';
-        var _sb = null;
+        var sbClient = null;
         try {
             if (window.supabase && typeof window.supabase.createClient === 'function') {
-                _sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+                sbClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
             } else { console.warn('Supabase SDK não encontrado'); }
         } catch(e) { console.warn('Supabase SDK erro:', e); }
-        const supabase = _sb;
 
         // Wrapper that keeps the same API surface as before
         var auth = {
@@ -669,8 +668,8 @@
                     async updateProfile(p) {
                         if (p.displayName) {
                             this.displayName = p.displayName;
-                            await supabase.auth.updateUser({ data: { name: p.displayName } });
-                            await supabase.from('profiles').update({ name: p.displayName }).eq('id', this.uid);
+                            await sbClient.auth.updateUser({ data: { name: p.displayName } });
+                            await sbClient.from('profiles').update({ name: p.displayName }).eq('id', this.uid);
                         }
                     }
                 };
@@ -678,16 +677,16 @@
 
             onAuthStateChanged(cb) {
                 this._listeners.push(cb);
-                if (!supabase) { cb(null); return () => {}; }
+                if (!sbClient) { cb(null); return () => {}; }
                 // Check current session
-                supabase.auth.getSession().then(({ data }) => {
+                sbClient.auth.getSession().then(({ data }) => {
                     const user = this._toUser(data.session?.user);
                     this._currentUser = user;
                     cb(user);
                     if (user) this._loadProfile(user);
                 });
                 // Listen for changes
-                supabase.auth.onAuthStateChange((event, session) => {
+                sbClient.auth.onAuthStateChange((event, session) => {
                     const user = this._toUser(session?.user);
                     this._currentUser = user;
                     this._listeners.forEach(fn => fn(user));
@@ -699,8 +698,8 @@
             },
 
             async _loadProfile(user) {
-                if (!supabase) return;
-                const { data } = await supabase.from('profiles').select('*').eq('id', user.uid).single();
+                if (!sbClient) return;
+                const { data } = await sbClient.from('profiles').select('*').eq('id', user.uid).single();
                 if (data) {
                     if (data.completed) localStorage.setItem('cm_completed', JSON.stringify(data.completed));
                     if (data.saved_code) localStorage.setItem('cm_code', JSON.stringify(data.saved_code));
@@ -718,8 +717,8 @@
                 if (!user) return;
                 clearTimeout(this._saveTimer);
                 const doSave = () => {
-                    if (!supabase) return;
-                    supabase.from('profiles').update({
+                    if (!sbClient) return;
+                    sbClient.from('profiles').update({
                         completed: JSON.parse(localStorage.getItem('cm_completed') || '[]'),
                         saved_code: JSON.parse(localStorage.getItem('cm_code') || '{}'),
                         current_idx: parseInt(localStorage.getItem('cm_idx') || '0'),
@@ -731,8 +730,8 @@
             },
 
             async createUserWithEmailAndPassword(email, pass) {
-                if (!supabase) throw { code: 'auth/error', message: 'Serviço indisponível. Recarregue a página.' };
-                const { data, error } = await supabase.auth.signUp({
+                if (!sbClient) throw { code: 'auth/error', message: 'Serviço indisponível. Recarregue a página.' };
+                const { data, error } = await sbClient.auth.signUp({
                     email: email.toLowerCase().trim(),
                     password: pass,
                 });
@@ -749,8 +748,8 @@
             },
 
             async signInWithEmailAndPassword(email, pass) {
-                if (!supabase) throw { code: 'auth/error', message: 'Serviço indisponível. Recarregue a página.' };
-                const { data, error } = await supabase.auth.signInWithPassword({
+                if (!sbClient) throw { code: 'auth/error', message: 'Serviço indisponível. Recarregue a página.' };
+                const { data, error } = await sbClient.auth.signInWithPassword({
                     email: email.toLowerCase().trim(),
                     password: pass,
                 });
@@ -771,7 +770,7 @@
             async signOut() {
                 // Save progress to Supabase before signing out
                 await this.saveProfile();
-                if (supabase) await supabase.auth.signOut();
+                if (sbClient) await sbClient.auth.signOut();
                 this._currentUser = null;
             }
         };
@@ -782,7 +781,7 @@
 <div id="__dbg" style="position:fixed;top:0;left:0;right:0;z-index:99999;background:red;color:#fff;font-size:12px;padding:4px 8px;display:none;max-height:150px;overflow:auto;"></div>
 <script>
 window.onerror=function(m,s,l,c,e){var d=document.getElementById('__dbg');d.style.display='block';d.innerHTML+='<b>'+l+':'+c+'</b> '+m+'<br>';};
-document.getElementById('__dbg').innerHTML='auth='+(typeof auth)+' | supabase='+(typeof supabase)+' | window.auth='+(typeof window.auth)+'<br>';
+document.getElementById('__dbg').innerHTML='auth='+(typeof auth)+' | sbClient='+(typeof sbClient)+' | window.auth='+(typeof window.auth)+'<br>';
 document.getElementById('__dbg').style.display='block';
 </script>
 
