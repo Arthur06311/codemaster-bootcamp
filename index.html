@@ -13665,28 +13665,10 @@ function checkMPRedirect() {
 }
 checkMPRedirect();
 
-// Auto-activate when user returns to tab after paying
+// Check for MP redirect when user returns to tab
 document.addEventListener('visibilitychange', function() {
     if (document.visibilityState === 'visible' && !isPremium()) {
-        // Check if redirected back from MP
-        if (checkMPRedirect()) return;
-        // Check if payment was pending
-        if (localStorage.getItem('cm_payment_pending') === 'true') {
-            const ts = parseInt(localStorage.getItem('cm_payment_ts') || '0');
-            // If they clicked pay less than 1 hour ago, auto-activate
-            if (Date.now() - ts < 3600000) {
-                doActivatePremium();
-            }
-        }
-    }
-});
-// Also check on page focus (some browsers)
-window.addEventListener('focus', function() {
-    if (!isPremium() && localStorage.getItem('cm_payment_pending') === 'true') {
-        const ts = parseInt(localStorage.getItem('cm_payment_ts') || '0');
-        if (Date.now() - ts < 3600000) {
-            doActivatePremium();
-        }
+        checkMPRedirect();
     }
 });
 
@@ -14059,12 +14041,12 @@ updatePremiumUI();
 
 // Check if returning from payment
 if (localStorage.getItem('cm_payment_pending') === 'true' && !isPremium()) {
+    // Only auto-activate if MP redirected with approved status
     if (!checkMPRedirect()) {
-        // Auto-activate if they clicked pay less than 1 hour ago
-        var _payTs = parseInt(localStorage.getItem('cm_payment_ts') || '0');
-        if (Date.now() - _payTs < 3600000) {
-            setTimeout(function() { doActivatePremium(); }, 1500);
-        }
+        // Just remind user to confirm
+        setTimeout(function() {
+            showToast('&#128176; Pagou? Clique em "Já Paguei" no painel Premium para ativar!', 5000);
+        }, 2000);
     }
 }
 
