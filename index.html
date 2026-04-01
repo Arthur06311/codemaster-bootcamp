@@ -3874,7 +3874,7 @@ except ___:
 try:
     números = [1, 2, 3]
     print(números[99])
-# Seu código aqui Qual except usar aqui?
+# Qual except usar aqui?
     print("Indice fora do alcance da lista!")
 </code></pre>`,
   starter: `# Tipos de erro\n# Dica: ValueError, TypeError, KeyError, IndexError, ZeroDivisionError\n# Cada tipo de erro tem um nome específico no except\n# Escreva aqui: identifique qual tipo de erro acontece em cada caso\ntry:\n    resultado = 10 / 0\n# Escreva aqui: qual exceção trata divisão por zero?\nexcept ___:\n    print("Divisão por zero!")\n\ntry:\n    dados = {"nome": "Ana"}\n    print(dados["email"])\n# Escreva aqui: qual exceção trata chave inexistente em dicionário?\nexcept ___:\n    print("Chave não encontrada!")`,
@@ -3899,9 +3899,9 @@ try:
     número = int(input("Digite um número: "))
 except ___:
     print("Valor inválido!")
-___:  # Seu código aqui Qual bloco executa se NÃO houve erro?
+___:  # Qual bloco executa se NÃO houve erro?
     print("Você digitou:", número)
-___:  # Seu código aqui Qual bloco SEMPRE executa?
+___:  # Qual bloco SEMPRE executa?
     print("Programa finalizado.")
 </code></pre>`,
   starter: `# finally\n# Dica: try -> except -> else -> finally\n# else = sem erro, finally = sempre executa\ntry:\n    arquivo = open("dados.txt")\n# Escreva aqui: use except FileNotFoundError para tratar arquivo não encontrado\nexcept ___:\n    print("Arquivo não encontrado!")\n# Escreva aqui: adicione o bloco else (executa se NÃO houve erro)\n___:\n    print("Arquivo aberto com sucesso!")\n# Escreva aqui: adicione o bloco finally (SEMPRE executa)\n___:\n    print("Operação finalizada.")`,
@@ -3925,9 +3925,9 @@ def pedir_número_range(mínimo, maximo):
     while True:
         try:
             valor = int(input("Digite um número de " + str(mínimo) + " a " + str(maximo) + ": "))
-            # Seu código aqui Verifique se mínimo <= valor <= maximo
-            # Seu código aqui Se sim, retorne o valor
-            # Seu código aqui Se não, imprima "Número fora do range!"
+            # Verifique se mínimo <= valor <= maximo
+            # Se sim, retorne o valor
+            # Se não, imprima "Número fora do range!"
         except ___:
             print("Entrada inválida!")
 
@@ -3960,14 +3960,14 @@ print(dividir(10, 0))    # None
 # Dica: trate IndexError e TypeError, retorne None em caso de erro
 def acessar_lista(lista, índice):
     try:
-        # Seu código aqui Retorne o elemento da lista no índice dado
+        # Retorne o elemento da lista no índice dado
         pass
     except ___:
         print("Indice", índice, "não existe na lista!")
-        # Seu código aqui Retorne None
+        # Retorne None
     except ___:
         print("Indice deve ser um número inteiro!")
-        # Seu código aqui Retorne None
+        # Retorne None
 
 números = [10, 20, 30]
 print(acessar_lista(números, 1))   # Deve imprimir 20
@@ -3988,15 +3988,15 @@ with open("dados.txt", "r") as f:
 # Sua vez! Leia o arquivo linha por linha
 # Dica: use for linha in f: e linha.strip() para remover \\n
 with open("dados.txt", "r") as f:
-    # Seu código aqui Itere sobre o arquivo linha por linha
-    # Seu código aqui Use strip() para remover a quebra de linha
+    # Itere sobre o arquivo linha por linha
+    # Use strip() para remover a quebra de linha
 
 # Sua vez! Leia todas as linhas como lista
 # Dica: use f.readlines() e len() para contar
 with open("dados.txt", "r") as f:
-    linhas = ___  # Seu código aqui Qual método retorna uma lista de linhas?
+    linhas = ___  # Qual método retorna uma lista de linhas?
     print("Total de linhas:", ___)
-    # Seu código aqui Itere sobre as linhas e imprima cada uma
+    # Itere sobre as linhas e imprima cada uma
 </code></pre>
 <div style="background:linear-gradient(135deg,#1a1a3e,#2a1a4e);border:1px solid #7c3aed;border-radius:12px;padding:1.2rem;margin:1.5rem 0;"><h3 style="color:#a78bfa;margin:0 0 .5rem 0;">Curiosidade do Dia</h3><p style="margin:0;color:#c4b5fd;">JSON e básicamente um dicionário Python em formato texto! Muitas APIs web usam JSON, e Python tem o modulo <code>json</code> para ler e escrever facilmente.</p></div>
 `,
@@ -4016,7 +4016,7 @@ with open("saída.txt", "w") as f:
 # Dica: use f.writelines() com uma lista de strings (inclua \\n)
 nomes = ["Ana\\n", "Carlos\\n", "Maria\\n"]
 with open("nomes.txt", "w") as f:
-    ___  # Seu código aqui Qual método escreve uma lista inteira?
+    ___  # Qual método escreve uma lista inteira?
 
 # Sua vez! Escreva dados formatados no arquivo
 # Dica: use for com tuplas e f.write()
@@ -4024,8 +4024,8 @@ alunos = [("Ana", 8.5), ("Carlos", 9.0), ("Maria", 7.5)]
 with open("notas.txt", "w") as f:
     f.write("NOME - NOTA\\n")
     f.write("===========\\n")
-    # Seu código aqui Itere sobre alunos e escreva cada nome e nota
-    # Seu código aqui Lembre-se de converter nota para string com str()
+    # Itere sobre alunos e escreva cada nome e nota
+    # Lembre-se de converter nota para string com str()
 </code></pre>`,
   starter: `# Escrevendo arquivos\n# Dica: modo "w" apaga o conteúdo existente!\n# Use f.write("texto\\n") ou f.writelines(lista)\nwith open("saída.txt", "w") as f:\n    # Escreva aqui: use f.write() para escrever uma linha (não esqueça o \\n)\n    f.write(___)\n    f.write(___)\n\n# Escreva aqui: crie uma lista de nomes e use f.writelines() para gravar\nnomes = ["Ana\\n", "Carlos\\n", "Maria\\n"]\nwith open("nomes.txt", "w") as f:\n    f.___(nomes)`,
 },
@@ -4041,8 +4041,8 @@ with open("log.txt", "a") as f:
 # Sua vez! Crie uma função de log reutilizável
 # Dica: abra o arquivo em modo "a" e escreva a mensagem + \\n
 def registrar_log(mensagem):
-    # Seu código aqui Abra "log.txt" em modo append
-    # Seu código aqui Escreva a mensagem + "\\n"
+    # Abra "log.txt" em modo append
+    # Escreva a mensagem + "\\n"
     pass
 
 registrar_log("Programa iniciado")
@@ -4052,7 +4052,7 @@ registrar_log("Processamento concluido")
 # Desafio: acumule dados de um loop no arquivo
 # Dica: abra o arquivo UMA vez e escreva dentro do loop
 with open("números.txt", "a") as f:
-    # Seu código aqui Use for i in range(1, 6) e f.write()
+    # Use for i in range(1, 6) e f.write()
     pass
 </code></pre>`,
   starter: `# Modo append\n# Dica: modo "a" adiciona ao final sem apagar\n# Diferente do "w" que apaga tudo!\nwith open("log.txt", "a") as f:\n    # Escreva aqui: use f.write() para adicionar uma mensagem de log\n    f.write(___)\n\n# Escreva aqui: crie uma função registrar_log(mensagem) que abre o arquivo em modo "a"\ndef registrar_log(mensagem):\n    with open("log.txt", ___) as f:\n        f.write(mensagem + "\\n")\n\nregistrar_log("Programa iniciado")`,
@@ -4074,17 +4074,17 @@ with open("alunos.csv", "w", newline="") as f:
 # Sua vez! Leia o CSV e imprima os dados
 # Dica: use csv.reader(f) e next(leitor) para pular o cabeçalho
 with open("alunos.csv", "r") as f:
-    leitor = ___  # Seu código aqui Crie o leitor CSV
-    cabeçalho = ___  # Seu código aqui Pule o cabeçalho com next()
+    leitor = ___  # Crie o leitor CSV
+    cabeçalho = ___  # Pule o cabeçalho com next()
     for linha in leitor:
-        print("Nome:", ___, "- Nota:", ___)  # Seu código aqui Acesse pelo índice
+        print("Nome:", ___, "- Nota:", ___)  # Acesse pelo índice
 
 # Desafio: leia o CSV como dicionário
 # Dica: use csv.DictReader(f) para acessar por nome da coluna
 with open("alunos.csv", "r") as f:
-    leitor = ___  # Seu código aqui Use DictReader
+    leitor = ___  # Use DictReader
     for linha in leitor:
-        # Seu código aqui Acesse linha["nome"] e linha["nota"]
+        # Acesse linha["nome"] e linha["nota"]
         pass
 </code></pre>`,
   starter: `# CSV básico\n# Dica: import csv\n# csv.writer(f) para escrever, csv.reader(f) para ler\n# writerow() escreve uma linha, next() pula o cabeçalho\nimport csv\n\n# Escreva aqui: abra "alunos.csv" em modo "w" e crie um csv.writer\nwith open("alunos.csv", "w", newline="") as f:\n    escritor = csv.___(f)\n    # Escreva aqui: use writerow() para escrever o cabeçalho e dados\n    escritor.writerow(["nome", "nota"])\n    escritor.writerow(___)\n\n# Escreva aqui: abra "alunos.csv" em modo "r" e crie um csv.reader\nwith open("alunos.csv", "r") as f:\n    leitor = csv.___(f)\n    # Escreva aqui: use next() para pular o cabeçalho\n    cabeçalho = ___(leitor)\n    for linha in leitor:\n        print(linha)`,
@@ -4101,9 +4101,9 @@ def salvar_tarefas(tarefas):
             f.write(tarefa + "\\n")
 
 def carregar_tarefas():
-    # Seu código aqui Use try/except para tratar FileNotFoundError
-    # Seu código aqui Abra o arquivo e retorne uma lista de linhas (use strip())
-    # Seu código aqui Se o arquivo não existir, retorne lista vazia []
+    # Use try/except para tratar FileNotFoundError
+    # Abra o arquivo e retorne uma lista de linhas (use strip())
+    # Se o arquivo não existir, retorne lista vazia []
     pass
 
 # Exercício 2: Crie um contador de palavras
@@ -4111,8 +4111,8 @@ def carregar_tarefas():
 def contar_palavras(nome_arquivo):
     try:
         with open(nome_arquivo, "r") as f:
-            texto = ___  # Seu código aqui Leia todo o conteúdo
-            palavras = ___  # Seu código aqui Separe em palavras
+            texto = ___  # Leia todo o conteúdo
+            palavras = ___  # Separe em palavras
             print("Total de palavras:", ___)
     except ___:
         print("Arquivo não encontrado!")
@@ -4146,8 +4146,8 @@ class Carro:
         self.velocidade = 0
 
     def acelerar(self):
-        # Seu código aqui Aumente self.velocidade em 10
-        # Seu código aqui Imprima o nome do carro e a nova velocidade
+        # Aumente self.velocidade em 10
+        # Imprima o nome do carro e a nova velocidade
         pass
 
 meu_carro = Carro("Fusca")
@@ -4177,16 +4177,16 @@ class Cachorro:
     # Sua vez! Crie o método apresentar
     # Deve imprimir: "Sou o {nome}, um {raca}"
     def apresentar(self):
-        # Seu código aqui Use self.nome e self.raca
+        # Use self.nome e self.raca
         pass
 
 # Sua vez! Crie dois objetos e chame os métodos
 dog1 = Cachorro("Rex", "Pastor Alemao")
-# Seu código aqui Crie dog2 como Labrador chamado "Bella"
+# Crie dog2 como Labrador chamado "Bella"
 
 dog1.latir()
-# Seu código aqui Chame apresentar() no dog2
-# Seu código aqui Imprima a especie do dog1
+# Chame apresentar() no dog2
+# Imprima a especie do dog1
 </code></pre>`,
   starter: `# Criando classes\n# Dica: class NomeClasse: define a classe\n# __init__(self, params) inicializa os atributos\n# Crie métodos com def nome(self):\nclass Animal:\n    # Escreva aqui: crie __init__ que recebe nome e raca\n    def __init__(self, nome, raca):\n        self.___ = nome\n        self.___ = raca\n\n    # Escreva aqui: crie um método falar que imprime o nome e um som\n    def falar(self):\n        print(self.nome + " faz um som!")\n\n    # Escreva aqui: crie um método apresentar que imprime nome e raça\n    def apresentar(self):\n        print("Sou " + ___ + ", um " + ___)\n\n# Escreva aqui: crie dois objetos Animal e chame os métodos\nanimal1 = Animal("Rex", "Pastor Alemão")\nanimal1.___()`,
 },
@@ -4208,15 +4208,15 @@ class Pessoa:
     # Sua vez! Crie o método fazer_aniversario
     # Deve aumentar idade em 1 e imprimir parabéns
     def fazer_aniversario(self):
-        # Seu código aqui Aumente self.idade em 1
-        # Seu código aqui Imprima mensagem de parabéns com o nome e nova idade
+        # Aumente self.idade em 1
+        # Imprima mensagem de parabéns com o nome e nova idade
         pass
 
     # Sua vez! Crie o método desativar
     # Deve mudar self.ativo para False
     def desativar(self):
-        # Seu código aqui Mude self.ativo para False
-        # Seu código aqui Imprima "{nome} foi desativado."
+        # Mude self.ativo para False
+        # Imprima "{nome} foi desativado."
         pass
 
 # Teste sua classe
@@ -4248,19 +4248,19 @@ class ContaBancaria:
     # Sua vez! Crie o método sacar
     # Dica: verifique se valor > saldo (insuficiente) e se valor <= 0 (inválido)
     def sacar(self, valor):
-        # Seu código aqui Verifique saldo insuficiente
-        # Seu código aqui Verifique valor inválido
-        # Seu código aqui Diminua o saldo e adicione ao histórico
+        # Verifique saldo insuficiente
+        # Verifique valor inválido
+        # Diminua o saldo e adicione ao histórico
         pass
 
     # Sua vez! Crie o método ver_saldo
     def ver_saldo(self):
-        # Seu código aqui Imprima "Saldo de {titular}: R\${saldo}"
+        # Imprima "Saldo de {titular}: R\${saldo}"
         pass
 
     # Desafio! Crie o método transferir para outra conta
     def transferir(self, outra_conta, valor):
-        # Seu código aqui Verifique se tem saldo, saque de si e deposite na outra
+        # Verifique se tem saldo, saque de si e deposite na outra
         pass
 
 conta1 = ContaBancaria("Ana", 1000)
@@ -4284,20 +4284,20 @@ class Produto:
     # Sua vez! Crie o método vender(quantidade)
     # Dica: verifique estoque, diminua e calcule o total
     def vender(self, quantidade):
-        # Seu código aqui Se quantidade > estoque, imprima erro e retorne False
-        # Seu código aqui Diminua o estoque pela quantidade
-        # Seu código aqui Calcule total = preco * quantidade e imprima
-        # Seu código aqui Retorne True
+        # Se quantidade > estoque, imprima erro e retorne False
+        # Diminua o estoque pela quantidade
+        # Calcule total = preco * quantidade e imprima
+        # Retorne True
         pass
 
     # Sua vez! Crie o método repor(quantidade)
     def repor(self, quantidade):
-        # Seu código aqui Aumente o estoque e imprima a atualização
+        # Aumente o estoque e imprima a atualização
         pass
 
     # Sua vez! Crie o método info()
     def info(self):
-        # Seu código aqui Imprima: "nome - R$preco - Estoque: estoque"
+        # Imprima: "nome - R$preco - Estoque: estoque"
         pass
 
 # Teste sua classe
@@ -4328,22 +4328,22 @@ class Animal:
 # Sua vez! Crie a classe Cachorro que herda de Animal
 # Dica: class Cachorro(Animal): para herdar
 class Cachorro(Animal):
-    # Seu código aqui Crie o método buscar() que imprime "{nome} esta buscando a bola!"
+    # Crie o método buscar() que imprime "{nome} esta buscando a bola!"
     pass
 
 # Sua vez! Crie a classe Gato que herda de Animal
-class Gato(___):  # Seu código aqui De quem o Gato herda?
-    # Seu código aqui Crie o método arranhar()
+class Gato(___):  # De quem o Gato herda?
+    # Crie o método arranhar()
     pass
 
 # Teste: Cachorro tem métodos de Animal + buscar()
 rex = Cachorro("Rex", "Au au")
 rex.falar()       # Herdado de Animal
 rex.apresentar()  # Herdado de Animal
-# Seu código aqui Chame rex.buscar()
+# Chame rex.buscar()
 
 mimi = Gato("Mimi", "Miau")
-# Seu código aqui Chame falar() e arranhar() no mimi
+# Chame falar() e arranhar() no mimi
 </code></pre>
 <div style="background:linear-gradient(135deg,#1a1a3e,#2a1a4e);border:1px solid #7c3aed;border-radius:12px;padding:1.2rem;margin:1.5rem 0;"><h3 style="color:#a78bfa;margin:0 0 .5rem 0;">Curiosidade do Dia</h3><p style="margin:0;color:#c4b5fd;">O padrão <strong>MVC</strong> (Model-View-Controller) e usado em todo framework web: Django, Spring, Rails. Heranca e polimorfismo são essenciais para trabalhar com eles!</p></div>
 `,
@@ -4371,21 +4371,21 @@ class Veiculo:
 # Dica: use super().__init__() para inicializar a classe pai
 class Carro(Veiculo):
     def __init__(self, marca, ano, portas):
-        ___  # Seu código aqui Chame super().__init__ com marca e ano
+        ___  # Chame super().__init__ com marca e ano
         self.portas = portas
 
     def info(self):
-        ___  # Seu código aqui Chame super().info() para reutilizar
+        ___  # Chame super().info() para reutilizar
         print("Portas: " + str(self.portas))
 
 # Sua vez! Crie Moto que herda de Veiculo
 class Moto(Veiculo):
     def __init__(self, marca, ano, cilindradas):
-        # Seu código aqui Use super().__init__() e adicione cilindradas
+        # Use super().__init__() e adicione cilindradas
         pass
 
     def info(self):
-        # Seu código aqui Chame super().info() e adicione cilindradas
+        # Chame super().info() e adicione cilindradas
         pass
 
 carro = Carro("Toyota", 2023, 4)
@@ -4417,18 +4417,18 @@ class Circulo:
         self.raio = raio
 
     def area(self):
-        # Seu código aqui Calcule e retorne a área do círculo
+        # Calcule e retorne a área do círculo
         pass
 
     def descrição(self):
-        # Seu código aqui Retorne "Circulo de raio {raio}"
+        # Retorne "Circulo de raio {raio}"
         pass
 
 # Sua vez! Crie Triangulo com os MESMOS métodos
 # Dica: area do triângulo = (base * altura) / 2
 class Triangulo:
-    # Seu código aqui Crie __init__ com base e altura
-    # Seu código aqui Crie area() e descrição()
+    # Crie __init__ com base e altura
+    # Crie area() e descrição()
     pass
 
 # Polimorfismo: mesmo método, comportamento diferente!
@@ -4464,25 +4464,25 @@ class FormaPagamento(ABC):
 # Dica: DEVE implementar processar() e descrição()
 class Pix(FormaPagamento):
     def processar(self):
-        # Seu código aqui Imprima "Pagamento de R\${valor} via PIX processado!"
+        # Imprima "Pagamento de R\${valor} via PIX processado!"
         pass
 
     def descrição(self):
-        # Seu código aqui Retorne "Pagamento PIX"
+        # Retorne "Pagamento PIX"
         pass
 
 # Sua vez! Implemente CartaoCredito com parcelas
 class CartaoCredito(FormaPagamento):
     def __init__(self, valor, parcelas):
-        # Seu código aqui Use super().__init__() e adicione self.parcelas
+        # Use super().__init__() e adicione self.parcelas
         pass
 
     def processar(self):
-        # Seu código aqui Calcule o valor da parcela e imprima
+        # Calcule o valor da parcela e imprima
         pass
 
     def descrição(self):
-        # Seu código aqui Retorne "Cartão de Credito"
+        # Retorne "Cartão de Credito"
         pass
 
 pagamentos = [Pix(100), CartaoCredito(600, 3)]
@@ -4513,27 +4513,27 @@ class Funcionario:
 # Dica: Gerente tem bônus que soma ao salário base
 class Gerente(Funcionario):
     def __init__(self, nome, salario_base, bonus):
-        # Seu código aqui Use super().__init__() e adicione self.bonus
+        # Use super().__init__() e adicione self.bonus
         pass
 
     def calcular_salario(self):
-        # Seu código aqui Retorne salario_base + bonus
+        # Retorne salario_base + bonus
         pass
 
 # Sua vez! Crie Desenvolvedor com linguagem
-class Desenvolvedor(___):  # Seu código aqui Herda de quem?
+class Desenvolvedor(___):  # Herda de quem?
     def __init__(self, nome, salario_base, linguagem):
-        # Seu código aqui Use super() e adicione self.linguagem
+        # Use super() e adicione self.linguagem
         pass
 
     def info(self):
-        # Seu código aqui Chame super().info() e adicione a linguagem
+        # Chame super().info() e adicione a linguagem
         pass
 
 # Sua vez! Crie Estagiario que recebe metade do salário
 class Estagiario(___):
     def calcular_salario(self):
-        # Seu código aqui Retorne salario_base * 0.5
+        # Retorne salario_base * 0.5
         pass
 
 equipe = [
@@ -4578,7 +4578,7 @@ for f in equipe:
 # 5. ???
 
 print("=== RPG por Turnos - Planejamento ===")
-# Seu código aqui Imprima as classes e inimigos do seu jogo
+# Imprima as classes e inimigos do seu jogo
 </code></pre>
 <div style="background:linear-gradient(135deg,#1a1a3e,#2a1a4e);border:1px solid #7c3aed;border-radius:12px;padding:1.2rem;margin:1.5rem 0;"><h3 style="color:#a78bfa;margin:0 0 .5rem 0;">Curiosidade do Dia</h3><p style="margin:0;color:#c4b5fd;">Pong (1972), o primeiro videogame, tinha menos de 1KB de código. Hoje um jogo AAA tem milhoes de linhas. Mas a lógica básica continua a mesma: loop, input, update, render!</p></div>
 `,
@@ -4602,25 +4602,25 @@ class Personagem:
     # Sua vez! Crie o método atacar(alvo)
     # Dica: dano = max(1, self.ataque - alvo.defesa + random.randint(-3, 3))
     def atacar(self, alvo):
-        # Seu código aqui Calcule o dano
-        # Seu código aqui Chame alvo.receber_dano(dano)
-        # Seu código aqui Imprima quem atacou, quem recebeu e o dano
+        # Calcule o dano
+        # Chame alvo.receber_dano(dano)
+        # Imprima quem atacou, quem recebeu e o dano
         pass
 
     # Sua vez! Crie receber_dano(dano)
     def receber_dano(self, dano):
-        # Seu código aqui Diminua a vida (mínimo 0). Dica: max(0, self.vida - dano)
+        # Diminua a vida (mínimo 0). Dica: max(0, self.vida - dano)
         pass
 
     # Sua vez! Crie esta_vivo()
     def esta_vivo(self):
-        # Seu código aqui Retorne True se vida > 0
+        # Retorne True se vida > 0
         pass
 
     # Sua vez! Crie status() com barra de vida visual
     # Dica: barra = int((vida / vida_max) * 20), use "#" e "-"
     def status(self):
-        # Seu código aqui Calcule a barra e imprima
+        # Calcule a barra e imprima
         pass
 
 heroi = Personagem("Heroi", 100, 15, 5)
@@ -4653,23 +4653,23 @@ class Guerreiro(Personagem):
 # Dica: vida=80, ataque=12, defesa=4, mana=50
 class Mago(Personagem):
     def __init__(self, nome):
-        # Seu código aqui Use super().__init__() com os valores do Mago
-        # Seu código aqui Adicione self.mana = 50
+        # Use super().__init__() com os valores do Mago
+        # Adicione self.mana = 50
         pass
 
     # Crie o método magia(alvo)
     # Dica: custa 15 mana, dano = ataque * 2 + random.randint(5, 15)
     def magia(self, alvo):
-        # Seu código aqui Verifique se tem mana suficiente (>= 15)
-        # Seu código aqui Calcule o dano e aplique no alvo
-        # Seu código aqui Diminua a mana
+        # Verifique se tem mana suficiente (>= 15)
+        # Calcule o dano e aplique no alvo
+        # Diminua a mana
         pass
 
 # Sua vez! Crie a classe Monstro
 # Dica: recebe nome, vida, ataque, defesa e xp
 class Monstro(Personagem):
     def __init__(self, nome, vida, ataque, defesa, xp):
-        # Seu código aqui Use super().__init__() e adicione self.xp
+        # Use super().__init__() e adicione self.xp
         pass
 </code></pre>`,
   starter: `# Lógica de combate\n# Dica: use herança de Personagem é super().__init__()\n# Guerreiro: mais vida e defesa, golpe forte com fúria\n# Mago: menos vida, magia poderosa que consome mana\n\n# Escreva aqui: crie Guerreiro(Personagem) com vida=120, ataque=18, defesa=8\nclass Guerreiro(Personagem):\n    def __init__(self, nome):\n        # Escreva aqui: use super().__init__ com os valores do guerreiro\n        ___.__init__(nome, 120, 18, 8)\n        self.furia = 0\n\n# Escreva aqui: crie Mago(Personagem) com vida=80, ataque=12, defesa=4 e mana=50\nclass Mago(Personagem):\n    def __init__(self, nome):\n        ___.__init__(nome, 80, 12, 4)\n        self.___ = 50\n\n    # Escreva aqui: crie magia(alvo) que custa 15 mana e causa dano dobro do ataque\n    def magia(self, alvo):\n        if self.mana >= ___:\n            dano = self.ataque * 2\n            alvo.receber_dano(dano)\n            self.mana -= ___\n            print(self.nome + " lançou magia! Dano: " + str(dano))\n        else:\n            print("Mana insuficiente!")`,
@@ -4703,18 +4703,18 @@ def turno_jogador(jogador, inimigo):
 # Sua vez! Crie a função turno_monstro
 # Dica: o monstro simplesmente ataca o jogador
 def turno_monstro(monstro, jogador):
-    # Seu código aqui Imprima o nome do turno
-    # Seu código aqui O monstro ataca o jogador
+    # Imprima o nome do turno
+    # O monstro ataca o jogador
     pass
 
 # Sua vez! Crie a função combate que gerencia os turnos
 # Dica: use while loop enquanto ambos estiverem vivos
 def combate(jogador, monstro):
     print("\\n=== " + monstro.nome + " apareceu! ===")
-    # Seu código aqui Enquanto jogador E monstro estiverem vivos:
-        # Seu código aqui Chame turno_jogador
-        # Seu código aqui Se monstro ainda vivo, chame turno_monstro
-    # Seu código aqui No final, verifique quem venceu
+    # Enquanto jogador E monstro estiverem vivos:
+        # Chame turno_jogador
+        # Se monstro ainda vivo, chame turno_monstro
+    # No final, verifique quem venceu
 </code></pre>`,
   starter: `# Sistema de turnos\n# Dica: while jogador.esta_vivo() and monstro.esta_vivo():\n# Alterne entre turno do jogador e turno do monstro\n# Use input() para escolher ações\n\n# Escreva aqui: crie turno_jogador que mostra opções e executa a escolha\ndef turno_jogador(jogador, inimigo):\n    print("1 - Atacar")\n    print("2 - Habilidade Especial")\n    escolha = input("Escolha: ")\n    if escolha == "1":\n        jogador.___(inimigo)\n    elif escolha == "2":\n        # Escreva aqui: verifique se tem golpe_forte ou magia e use\n        pass\n\n# Escreva aqui: crie combate(jogador, monstro) com while loop\ndef combate(jogador, monstro):\n    # Escreva aqui: use while enquanto ambos estiverem vivos\n    while jogador.___() and monstro.___():\n        turno_jogador(jogador, monstro)\n        if monstro.esta_vivo():\n            monstro.___(jogador)`,
 },
@@ -4736,21 +4736,21 @@ def escolher_classe():
     print("Escolha sua classe:")
     print("1 - Guerreiro (mais vida e defesa)")
     print("2 - Mago (mais dano magico)")
-    # Seu código aqui Crie loop, peça escolha e nome
-    # Seu código aqui Se escolha == "1", retorne Guerreiro(nome)
-    # Seu código aqui Se escolha == "2", retorne Mago(nome)
-    # Seu código aqui Senão, peça novamente
+    # Crie loop, peça escolha e nome
+    # Se escolha == "1", retorne Guerreiro(nome)
+    # Se escolha == "2", retorne Mago(nome)
+    # Senão, peça novamente
     pass
 
 # Sua vez! Crie a função jogar() que integra tudo
 def jogar():
     print("=== RPG POR TURNOS ===")
-    # Seu código aqui Chame escolher_classe() para criar o jogador
-    # Seu código aqui Chame criar_monstros() para criar os inimigos
-    # Seu código aqui Para cada monstro, chame combate(jogador, monstro)
-    # Seu código aqui Se jogador morreu, imprima GAME OVER e retorne
-    # Seu código aqui Entre combates, cure 30% da vida máxima
-    # Seu código aqui Se venceu todos, imprima PARABÉNS!
+    # Chame escolher_classe() para criar o jogador
+    # Chame criar_monstros() para criar os inimigos
+    # Para cada monstro, chame combate(jogador, monstro)
+    # Se jogador morreu, imprima GAME OVER e retorne
+    # Entre combates, cure 30% da vida máxima
+    # Se venceu todos, imprima PARABÉNS!
     pass
 
 jogar()
@@ -4774,15 +4774,15 @@ for i, nome in enumerate(nomes, start=1):
 # Sua vez! Use zip para combinar nomes e notas
 # Dica: "Aprovado" se nota >= 7, "Reprovado" se não
 print("\\n=== Notas ===")
-# Seu código aqui Use for com zip(nomes, notas)
-    # Seu código aqui Determine o status (Aprovado/Reprovado)
-    # Seu código aqui Imprima nome, nota e status
+# Use for com zip(nomes, notas)
+    # Determine o status (Aprovado/Reprovado)
+    # Imprima nome, nota e status
 
 # Sua vez! Use while para calcular a média
 soma = 0
 count = 0
-# Seu código aqui Enquanto count < len(notas), acumule e incremente
-print("\\nMedia da turma:", ___)  # Seu código aqui Calcule soma / len(notas)
+# Enquanto count < len(notas), acumule e incremente
+print("\\nMedia da turma:", ___)  # Calcule soma / len(notas)
 </code></pre>
 <div style="background:linear-gradient(135deg,#1a1a3e,#2a1a4e);border:1px solid #7c3aed;border-radius:12px;padding:1.2rem;margin:1.5rem 0;"><h3 style="color:#a78bfa;margin:0 0 .5rem 0;">Curiosidade do Dia</h3><p style="margin:0;color:#c4b5fd;">O YouTube foi originalmente escrito em Python! E o Instagram roda em Django e processa mais de 2 bilhoes de usuarios por mes.</p></div>
 `,
@@ -4801,19 +4801,19 @@ def calculadora_segura():
             operação = input("Operacao (+, -, *, /): ")
             num2 = float(input("Segundo número: "))
 
-            # Seu código aqui Use if/elif para cada operação (+, -, *, /)
-            # Seu código aqui Se operação inválida, print erro e continue
+            # Use if/elif para cada operação (+, -, *, /)
+            # Se operação inválida, print erro e continue
             pass
 
-        except ___:  # Seu código aqui Trate entrada não numérica
+        except ___:  # Trate entrada não numérica
             print("Digite um número válido!")
             continue
-        except ___:  # Seu código aqui Trate divisão por zero
+        except ___:  # Trate divisão por zero
             print("Não pode dividir por zero!")
             continue
-        ___:  # Seu código aqui Qual bloco executa se NÃO houve erro?
+        ___:  # Qual bloco executa se NÃO houve erro?
             print("Resultado: " + str(resultado))
-        ___:  # Seu código aqui Qual bloco SEMPRE executa?
+        ___:  # Qual bloco SEMPRE executa?
             print("---")
 
         continuar = input("Outra operação? (s/n): ")
@@ -4842,13 +4842,13 @@ def adicionar_contato(nome, telefone, email):
 def listar_contatos():
     try:
         with open("contatos.csv", "r") as f:
-            leitor = ___  # Seu código aqui Crie o leitor CSV
+            leitor = ___  # Crie o leitor CSV
             contatos = list(leitor)
             if not contatos:
                 print("Nenhum contato cadastrado.")
                 return
-            # Seu código aqui Use enumerate para numerar e imprimir cada contato
-            # Seu código aqui Acesse contato[0], contato[1], contato[2]
+            # Use enumerate para numerar e imprimir cada contato
+            # Acesse contato[0], contato[1], contato[2]
     except ___:
         print("Arquivo de contatos não encontrado.")
 
@@ -4885,18 +4885,18 @@ class Veiculo:
 # Sua vez! Crie Carro que herda de Veiculo e adiciona portas
 class Carro(Veiculo):
     def __init__(self, marca, modelo, ano, portas):
-        # Seu código aqui Use super().__init__() e adicione self.portas
+        # Use super().__init__() e adicione self.portas
         pass
 
     def info(self):
-        # Seu código aqui Chame super().info() e imprima as portas
+        # Chame super().info() e imprima as portas
         pass
 
 # Sua vez! Crie Moto com método empinar
-class Moto(___):  # Seu código aqui Herda de quem?
+class Moto(___):  # Herda de quem?
     def empinar(self):
-        # Seu código aqui Só empina se velocidade > 30
-        # Seu código aqui Senão, imprima "Velocidade muito baixa"
+        # Só empina se velocidade > 30
+        # Senão, imprima "Velocidade muito baixa"
         pass
 
 veiculos = [Carro("Toyota", "Corolla", 2023, 4), Moto("Honda", "CB500", 2022)]
@@ -4921,16 +4921,16 @@ class Livro:
         self.autor = autor
         self.disponível = disponível
 
-    # Seu código aqui Crie o método emprestar()
+    # Crie o método emprestar()
     # Verifique se está disponível antes de emprestar
     def emprestar(self):
         pass
 
-    # Seu código aqui Crie o método devolver()
+    # Crie o método devolver()
     def devolver(self):
         pass
 
-    # Seu código aqui Crie o método info() que mostra status
+    # Crie o método info() que mostra status
     def info(self):
         pass
 
@@ -4940,15 +4940,15 @@ class Biblioteca:
     def __init__(self):
         self.livros = []
 
-    # Seu código aqui Crie adicionar(livro) - append na lista
+    # Crie adicionar(livro) - append na lista
     def adicionar(self, livro):
         pass
 
-    # Seu código aqui Crie listar() - use enumerate para numerar
+    # Crie listar() - use enumerate para numerar
     def listar(self):
         pass
 
-    # Seu código aqui Crie buscar(título) - percorra a lista e compare
+    # Crie buscar(título) - percorra a lista e compare
     # Retorne o livro ou None se não encontrar
     def buscar(self, título):
         pass
@@ -5071,7 +5071,7 @@ bib.listar()
 &lt;html lang="pt-BR"&gt;
 &lt;head&gt;
   &lt;meta charset="UTF-8"&gt;
-  &lt;title&gt;&lt;!-- Seu código aqui Coloque o titulo do seu portfolio --&gt;&lt;/title&gt;
+  &lt;title&gt;&lt;!-- Coloque o titulo do seu portfolio --&gt;&lt;/title&gt;
 &lt;/head&gt;
 &lt;body&gt;
   &lt;!-- Adicione um h1 com seu nome e profissao --&gt;
@@ -5239,7 +5239,7 @@ bib.listar()
 &lt;head&gt;
   &lt;meta charset="UTF-8"&gt;
   &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
-  &lt;title&gt;&lt;!-- Seu código aqui Nome do restaurante --&gt;&lt;/title&gt;
+  &lt;title&gt;&lt;!-- Nome do restaurante --&gt;&lt;/title&gt;
 &lt;/head&gt;
 &lt;body&gt;
   &lt;!-- Crie um header com h1 e nav com links ancora --&gt;
@@ -6087,7 +6087,7 @@ var form = document.querySelector("form");
   &lt;!-- Seu código aqui titulo, subtitulo e botao CTA --&gt;
 &lt;/section&gt;
 
-&lt;!-- Seu código aqui Adicione secao de servicos com cards e secao de contato com form --&gt;</code></pre>`,
+&lt;!-- Adicione secao de servicos com cards e secao de contato com form --&gt;</code></pre>`,
   starter: `<!-- Projeto Landing Completo -->\n<!-- DICA: Junte TUDO: HTML semantico + CSS (flex/grid/responsive/animations) + JS (menu/scroll/form) -->\n<style>\n  * { margin: 0; padding: 0; box-sizing: border-box; }\n  body { font-family: Arial, sans-serif; }\n  /* Escreva aqui: estilize header com display flex, position fixed, background escuro */\n  /* Escreva aqui: estilize .hero com display flex centralizado, min-height 100vh, gradiente */\n  /* Escreva aqui: estilize .btn com padding, background destaque, border-radius e transition */\n  /* Escreva aqui: estilize .btn:hover com transform scale(1.05) */\n  /* Escreva aqui: estilize section com padding e text-align */\n  /* Escreva aqui: estilize .cards com display grid e auto-fit */\n  /* Escreva aqui: estilize .card com background, padding, border-radius e transition */\n</style>\n<!-- Escreva aqui: crie header com logo (span) e nav com links ancora -->\n<!-- Escreva aqui: crie section.hero com h1, p subtitulo e link.btn CTA -->\n<!-- Escreva aqui: crie section #servicos com h2 e div.cards contendo div.card (h3+p) -->\n<!-- Escreva aqui: crie section #contato com h2 e form (nome, email, botao) -->\n<!-- Escreva aqui: crie footer com copyright -->\n` + SC + `\n// Escreva aqui: adicione menu toggle com classList.toggle\n// Escreva aqui: adicione scroll suave nos links ancora com scrollIntoView\n// Escreva aqui: adicione válidacao do formulario com preventDefault e verificacao de campos\n` + EC + ``,
 },
 // Day 7: Revisão Web
@@ -6134,7 +6134,7 @@ var form = document.querySelector("form");
   starter: `<!-- Revisão HTML -->\n<!-- DICA: Revise tudo: estrutura, texto, listas, links, imagens, tabelas, forms, semantico -->\n<!DOCTYPE html>\n<html lang="pt-BR">\n<head>\n  <!-- Escreva aqui: adicione meta charset, viewport e title -->\n</head>\n<body>\n  <header>\n    <!-- Escreva aqui: crie h1 com titulo do site e nav com ul contendo links -->\n  </header>\n  <main>\n    <section id="sobre">\n      <!-- Escreva aqui: crie h2, parágrafo com strong/em e uma imagem com alt -->\n    </section>\n    <section id="dados">\n      <!-- Escreva aqui: crie h2 e uma tabela com thead/tbody -->\n    </section>\n    <section id="contato">\n      <!-- Escreva aqui: crie h2 e um formulario com label, input (text, email), textarea e button -->\n    </section>\n  </main>\n  <!-- Escreva aqui: crie footer com parágrafo de copyright -->\n</body>\n</html>`,
 },
 { week:4, day:7, num:2, lang:'html', title:'Desafio: CSS',
-  content: `<h1>Revisão CSS</h1>
+  content: `<h1>Desafio: CSS</h1>
 <p>Vamos revisar os conceitos de CSS que aprendemos! CSS (Cascading Style Sheets) e responsável por toda a apresentação visual da página. Os conceitos fundamentais incluem: <strong>seletores</strong> (elemento, classe, ID, pseudo-classes), <strong>cores e fontes</strong> (hex, rgb, font-family, font-size), <strong>box model</strong> (margin, border, padding, content), <strong>display</strong> (block, inline, inline-block, none), <strong>position</strong> (static, relative, absolute, fixed, sticky), <strong>Flexbox</strong> (layout unidimensional), <strong>Grid</strong> (layout bidimensional), <strong>média queries</strong> (responsividade), e <strong>transições/animações</strong> (efeitos dinâmicos).</p>
 
 <p>As boas práticas de CSS incluem: usar box-sizing: border-box globalmente, adotar a abordagem mobile-first para responsividade, usar classes em vez de IDs para estilização (IDs para JS), evitar !important, manter uma paleta de cores consistente, e organizar o CSS em secoes lógicas. Lembre-se que Flexbox e ideal para layouts lineares (menus, cards em linha) enquanto Grid e perfeito para layouts bidimensionais (páginas inteiras, galerias). Combine as duas técnicas conforme a necessidade!</p>
@@ -6180,7 +6180,7 @@ var form = document.querySelector("form");
   starter: `<!-- Revisão CSS -->\n<!-- DICA: Revise: seletores, cores, box model, flex, grid, media queries, transicoes -->\n<style>\n  * { margin: 0; padding: 0; box-sizing: border-box; }\n  body { font-family: Arial, sans-serif; line-height: 1.6; }\n  .nav {\n    /* Escreva aqui: use display flex, justify-content space-between, align-items center */\n    /* Escreva aqui: defina background escuro, padding e color branco */\n  }\n  .nav a {\n    /* Escreva aqui: defina cor branca e remova sublinhado */\n  }\n  .nav a:hover {\n    /* Escreva aqui: mude a cor ao passar o mouse */\n  }\n  .grid-cards {\n    /* Escreva aqui: use display grid com repeat(auto-fit, minmax(200px, 1fr)) e gap */\n    padding: 20px;\n  }\n  .card {\n    /* Escreva aqui: defina padding, border, border-radius, background e transition */\n  }\n  .card:hover {\n    /* Escreva aqui: adicione transform translateY(-5px) e box-shadow */\n  }\n  /* Escreva aqui: crie @media (max-width: 768px) que mude .nav para flex-direction column */\n</style>\n<nav class="nav">\n  <span>Logo</span>\n  <div><a href="#">Home</a> <a href="#">Sobre</a></div>\n</nav>\n<div class="grid-cards">\n  <div class="card"><h3>Card 1</h3><p>Conteudo</p></div>\n  <div class="card"><h3>Card 2</h3><p>Conteudo</p></div>\n  <div class="card"><h3>Card 3</h3><p>Conteudo</p></div>\n</div>`,
 },
 { week:4, day:7, num:3, lang:'html', title:'Desafio: JS',
-  content: `<h1>Revisão JS</h1>
+  content: `<h1>Desafio: JS</h1>
 <p>Vamos revisar os fundamentos de JavaScript! JS e a linguagem que adiciona comportamento e interatividade as páginas web. Os conceitos principais que aprendemos incluem: <strong>variáveis</strong> (let para valores mutaveis, const para constantes), <strong>tipos de dados</strong> (string, number, boolean, array, object), <strong>funções</strong> (blocos reutilizaveis de código que podem receber parâmetros e retornar valores), <strong>condicionais</strong> (if/else para tomar decisões), e <strong>operadores</strong> (aritméticos, de comparação, lógicos). Esses são os blocos de construção de qualquer programa JavaScript.</p>
 
 <p>Lembre-se das boas práticas: use const por padrão e let apenas quando necessário, crie funções pequenas e focadas em uma única tarefa, use nomes descritivos para variáveis e funções (camelCase), e comente seu código quando a lógica não for obvia. JavaScript é uma linguagem extremamente versátil - além de páginas web, ela e usada em servidores (Node.js), aplicativos mobile (React Native) e até jogos. Dominar os fundamentos e o passo mais importante para se tornar um desenvolvedor web completo!</p>
@@ -6215,7 +6215,7 @@ function classificar(pontuacao) {
   starter: `<!-- Revisão JS -->\n<!-- DICA: Revise: const/let, tipos, arrays, funções, objetos, if/else -->\n<h1 id="título">Revisão JavaScript</h1>\n` + SC + `\n// Escreva aqui: crie um array "linguagens" com 3 linguagens de programação\n\n// Escreva aqui: use um loop for para percorrer o array e concatenar os itens em uma string\n\n// Escreva aqui: crie uma função classificar(pontuacao) que retorna:\n// >= 90: "Excelente!", >= 70: "Bom!", senao: "Continue praticando!"\n// DICA: use if / else if / else com return\n\n// Escreva aqui: crie um objeto "aluno" com propriedades nome, nota e aprovado\n\n// Escreva aqui: chame classificar() com a nota do aluno e exiba o resultado em #título\n` + EC + ``,
 },
 { week:4, day:7, num:4, lang:'html', title:'Desafio: DOM',
-  content: `<h1>Revisão DOM</h1>
+  content: `<h1>Desafio: DOM</h1>
 <p>O DOM (Document Object Model) e a ponte entre HTML e JavaScript, permitindo que você manipule a página de forma dinâmica. Vamos revisar os conceitos principais: <strong>selecionar elementos</strong> (getElementById, querySelector, querySelectorAll), <strong>alterar conteúdo</strong> (textContent, innerHTML), <strong>alterar estilos</strong> (style.propriedade, classList.add/remove/toggle), <strong>alterar atributos</strong> (setAttribute, getAttribute), <strong>criar/remover elementos</strong> (createElement, appendChild, removeChild), e <strong>responder a eventos</strong> (addEventListener com click, input, submit, keydown, etc).</p>
 
 <p>Uma parte crucial do DOM são os <strong>eventos</strong>. Lembre-se que addEventListener e a forma recomendada de conectar eventos, pois permite adicionar multiplos handlers ao mesmo elemento. O objeto <strong>event</strong> traz informações valiosas: event.target (elemento que disparou o evento), event.preventDefault() (impedir ação padrão), event.key (qual tecla foi pressionada). Combine selecao de elementos, manipulação de conteúdo/estilos e eventos para criar interfaces dinâmicas e responsivas. O DOM e o que transforma uma página estática em uma aplicação web interativa!</p>
@@ -7175,7 +7175,7 @@ WHERE ___;</code></pre>`,
 },
 // Day 7: Revisão SQL
 { week:5, day:7, num:1, lang:'sql', title:'Desafio: SELECT',
-  content: `<h1>Revisão SELECT</h1>
+  content: `<h1>Desafio: SELECT</h1>
 <p>Vamos começar a revisão da semana pelo comando mais fundamental: o <strong>SELECT</strong>. Essa e a base de tudo em SQL — sem saber fazer boas consultas, você não consegue extrair informações do banco de dados. Nesta revisão, vamos relembrar como selecionar colunas específicas, usar alias com AS, eliminar duplicatas com DISTINCT e filtrar resultados com WHERE. Esses são os blocos fundamentais de qualquer consulta.</p>
 <p>Lembre-se da ordem lógica de uma consulta SQL: primeiro o FROM (de qual tabela), depois o WHERE (filtro), então o SELECT (quais colunas). Mesmo que você escreva SELECT primeiro, o banco processa FROM e WHERE antes. Vamos revisar cada conceito com exemplos práticos:</p>
 <pre style="background:#1a1a2e;border:1px solid #334155;border-radius:8px;padding:1rem;margin:.8rem 0;"><code>-- Exemplo: selecionar colunas específicas
@@ -7204,7 +7204,7 @@ SELECT * FROM produtos WHERE preco ___ ___ AND ___;</code></pre>
   starter: `-- Revisão SELECT\n-- Dica: SELECT colunas FROM tabela WHERE condição\n\n-- Escreva aqui: SELECT nome com alias 'Nome Completo' e idade com alias 'Idade' da tabela alunos\n\n-- Escreva aqui: SELECT DISTINCT cidade da tabela alunos\n\n-- Escreva aqui: SELECT alunos maiores de 18 de SP com nota acima de 7 usando AND\n\n-- Escreva aqui: SELECT produtos com 'book' no nome usando LIKE\n\n-- Escreva aqui: SELECT alunos de SP, RJ ou MG usando IN\n\n-- Escreva aqui: SELECT produtos com preco BETWEEN 50 e 200`,
 },
 { week:5, day:7, num:2, lang:'sql', title:'Desafio: WHERE',
-  content: `<h1>Revisão WHERE</h1>
+  content: `<h1>Desafio: WHERE</h1>
 <p>A cláusula <strong>WHERE</strong> e o que torna suas consultas úteis, permitindo filtrar exatamente os dados que você precisa. Nesta revisão, vamos relembrar todos os operadores de comparação (=, !=, >, <, >=, <=), os operadores lógicos (AND, OR, NOT), e os operadores especiais (LIKE, IN, BETWEEN, IS NULL). Dominar esses filtros é essencial para trabalhar com bancos de dados.</p>
 <p>Uma dica importante para a revisão: sempre pense no WHERE como uma pergunta que cada registro precisa responder com "sim" para aparecer no resultado. "Esse aluno tem mais de 18 anos? Sim. Ele mora em SP? Sim. Então ele aparece." Também lembre-se de usar parenteses quando combinar AND e OR na mesma consulta. Vamos praticar:</p>
 <pre style="background:#1a1a2e;border:1px solid #334155;border-radius:8px;padding:1rem;margin:.8rem 0;"><code>-- Exemplo: comparações básicas
@@ -7235,7 +7235,7 @@ ___  ___;</code></pre>`,
   starter: `-- Revisão WHERE\n-- Dica: pratique todos os operadores: =, !=, >, <, BETWEEN, LIKE, IN, IS NULL\n\n-- Escreva aqui: SELECT alunos com idade diferente de 20 usando != ou <>\n\n-- Escreva aqui: SELECT produtos com preco BETWEEN 10 e 50\n\n-- Escreva aqui: SELECT alunos cujo nome contem 'Silva' usando LIKE\n\n-- Escreva aqui: SELECT alunos de SP ou RJ usando IN\n\n-- Escreva aqui: SELECT alunos que TEM email preenchido usando IS NOT NULL\n\n-- Escreva aqui: SELECT produtos eletronicos OU livros com preco < 500 e estoque > 0 (use parenteses no OR)`,
 },
 { week:5, day:7, num:3, lang:'sql', title:'Desafio: funções SQL',
-  content: `<h1>Revisão funções SQL</h1>
+  content: `<h1>Desafio: funções SQL</h1>
 <p>Nesta revisão, vamos relembrar todas as <strong>funções de agregacao e string</strong> que aprendemos. As funções de agregacao (COUNT, SUM, AVG, MIN, MAX) são usadas para calcular valores a partir de conjuntos de dados. Elas são a base de qualquer relatorio. Já as funções de string (UPPER, LOWER, LENGTH, SUBSTR, TRIM) ajudam a manipular e formatar textos. Juntas, elas dao muito poder as suas consultas.</p>
 <p>Lembre-se de um ponto crucial: funções de agregacao trabalham com grupos de registros e retornam um único valor. Quando usadas com GROUP BY, retornam um valor por grupo. E as funções de string trabalham com cada valor individual. Você pode combinar ambas na mesma consulta! Vamos revisar:</p>
 <pre style="background:#1a1a2e;border:1px solid #334155;border-radius:8px;padding:1rem;margin:.8rem 0;"><code>-- Exemplo: funções de agregação básicas
@@ -7267,7 +7267,7 @@ FROM produtos GROUP BY categoria HAVING ___;</code></pre>`,
   starter: `-- Revisão funções SQL\n-- Dica: agregacao = COUNT, SUM, AVG, MIN, MAX | String = UPPER, LOWER, LENGTH, SUBSTR, TRIM\n\n-- Escreva aqui: SELECT SUM(preco) dos produtos\n\n-- Escreva aqui: SELECT ROUND(AVG(nota), 2) dos alunos\n\n-- Escreva aqui: SELECT MIN(preco) e MAX(preco) dos produtos\n\n-- Escreva aqui: SELECT categoria com COUNT, AVG e SUM usando GROUP BY\n\n-- Escreva aqui: SELECT UPPER(nome) e LENGTH(nome) dos alunos\n\n-- Escreva aqui: SELECT SUBSTR(nome, 1, 3) dos alunos\n\n-- Escreva aqui: SELECT UPPER(categoria) com COUNT e AVG, agrupado por categoria, HAVING COUNT > 1`,
 },
 { week:5, day:7, num:4, lang:'sql', title:'Desafio: joins',
-  content: `<h1>Revisão joins</h1>
+  content: `<h1>Desafio: joins</h1>
 <p>Os <strong>JOINs</strong> são um dos conceitos mais importantes do SQL, porque permitem combinar dados de multiplas tabelas. Nesta revisão, vamos relembrar os três tipos principais: <strong>INNER JOIN</strong> (retorna só onde há correspondencia), <strong>LEFT JOIN</strong> (retorna tudo da tabela esquerda) e <strong>RIGHT JOIN</strong> (retorna tudo da tabela direita). Também vamos revisar subqueries, que são consultas dentro de consultas.</p>
 <p>A chave para entender JOINs e pensar em como as tabelas se relacionam. A cláusula ON define essa relação. Sempre use alias para as tabelas quando fizer JOINs — isso torna a consulta muito mais legível. E lembre-se: você pode encadear vários JOINs na mesma consulta para combinar 3 ou mais tabelas. Vamos revisar cada tipo:</p>
 <pre style="background:#1a1a2e;border:1px solid #334155;border-radius:8px;padding:1rem;margin:.8rem 0;"><code>-- Exemplo: INNER JOIN
@@ -8627,7 +8627,7 @@ public class Main {
 },
 // Day 7: Revisão Java
 { week:6, day:7, num:1, lang:'java', title:'Desafio: sintaxe Java',
-  content: `<h1>Revisão sintaxe Java</h1>
+  content: `<h1>Desafio: sintaxe Java</h1>
 <p>Vamos revisar a <strong>sintaxe básica do Java</strong> que aprendemos ao longo da semana! Java é uma linguagem fortemente tipada onde toda variável precisa de um tipo declarado. Os tipos primitivos mais usados são int, double, boolean e char, e String e o tipo de referência mais comum. Lembre-se das regras básicas: ponto é virgula no final de cada instrução, chaves para delimitar blocos, e nomes de classes em PascalCase e variáveis em camelCase.</p>
 <p>Revise também as estruturas de controle: <strong>if/else</strong> para decisões, <strong>switch</strong> para multiplas opções, <strong>for</strong> e <strong>for-each</strong> para repeticoes contaveis, e <strong>while/do-while</strong> para repeticoes condicionais. Um ponto que sempre causa confusao: use <strong>.equals()</strong> para comparar Strings, nunca ==. E lembre-se que Java e case-sensitive — "Main" e "main" são coisas diferentes!</p>
 <pre style="background:#1a1a2e;border:1px solid #334155;border-radius:8px;padding:1rem;margin:.8rem 0;"><code>// Exemplo: declaração de variáveis
@@ -8672,7 +8672,7 @@ public class Main {
   starter: `// Revisão sintaxe Java\n// DICA: Tipos: int, double, boolean, String, char\n// DICA: Constante: final int ANO = 2024;\n// DICA: Comparar Strings: .equals() ou .equalsIgnoreCase()\npublic class Main {\n    public static void main(String[] args) {\n        // Escreva aqui: declare uma variável de cada tipo: int, double, boolean, String\n\n        // Escreva aqui: declare uma constante com final\n\n        // Escreva aqui: use if/else para verificar se o número é positivo ou negativo\n\n        // Escreva aqui: crie um for que conta de 1 a 3 e imprime\n\n        // Escreva aqui: crie um array de Strings e percorra com for-each\n\n        // Escreva aqui: compare duas Strings com .equals() e .equalsIgnoreCase() e imprima os resultados\n\n    }\n}`,
 },
 { week:6, day:7, num:2, lang:'java', title:'Desafio: arrays Java',
-  content: `<h1>Revisão arrays Java</h1>
+  content: `<h1>Desafio: arrays Java</h1>
 <p>Vamos revisar <strong>arrays e ArrayList</strong>, duas estruturas fundamentais para trabalhar com coleções de dados em Java. Arrays tem <strong>tamanho fixo</strong> e são declarados com tipo[] nome = new tipo[tamanho] ou tipo[] nome = {valores}. Use .length (sem parenteses) para saber o tamanho. ArrayList e <strong>dinâmico</strong>, precisa de import java.util.ArrayList, e usa generics para definir o tipo: ArrayList&lt;Tipo&gt;.</p>
 <p>Os métodos do ArrayList que você mais vai usar são: <strong>add()</strong> para adicionar, <strong>get(i)</strong> para acessar, <strong>set(i, valor)</strong> para alterar, <strong>remove(i)</strong> para remover, <strong>size()</strong> para o tamanho, e <strong>contains()</strong> para verificar existência. Lembre-se que ArrayList só aceita tipos de referência (Integer, Double, String), não primitivos (int, double). Para percorrer, use for-each que funciona tanto com arrays quanto com ArrayList!</p>
 <pre style="background:#1a1a2e;border:1px solid #334155;border-radius:8px;padding:1rem;margin:.8rem 0;"><code>// Exemplo: calcular média de array
@@ -8712,7 +8712,7 @@ public class Main {
   starter: `// Revisão arrays\n// DICA: Array fixo: int[] nums = {1, 2, 3}; Tamanho: nums.length\n// DICA: ArrayList dinâmico: add(), get(i), remove(i), size(), contains()\n// DICA: Cast para média: (double) soma / length\nimport java.util.ArrayList;\npublic class Main {\n    public static void main(String[] args) {\n        // Escreva aqui: crie um array de notas inteiras com pelo menos 4 valores\n\n        // Escreva aqui: some todas as notas com for-each e calcule a média (use cast (double))\n\n        // Escreva aqui: crie um ArrayList de String chamado tarefas e adicione 3 itens\n\n        // Escreva aqui: percorra o ArrayList com for-each e imprima cada tarefa\n\n        // Escreva aqui: remova uma tarefa e adicione outra no início com add(0, "tarefa")\n\n        // Escreva aqui: verifique se o ArrayList contém uma tarefa específica com contains()\n\n    }\n}`,
 },
 { week:6, day:7, num:3, lang:'java', title:'Desafio: métodos Java',
-  content: `<h1>Revisão métodos Java</h1>
+  content: `<h1>Desafio: métodos Java</h1>
 <p>Vamos revisar <strong>métodos em Java</strong>! Um método tem: modificador de acesso (public/private), static (opcional), tipo de retorno (ou void), nome, e parâmetros. Metodos <strong>static</strong> pertencem a classe e podem ser chamados sem criar objeto. Metodos de <strong>instância</strong> pertencem ao objeto e precisam de new. A <strong>sobrecarga</strong> permite criar métodos com o mesmo nome mas parâmetros diferentes — o Java escolhe a versão certa automáticamente.</p>
 <p>Boas práticas para métodos: cada método deve ter <strong>uma única responsabilidade</strong>, nomes devem ser verbos em camelCase que descrevem a ação (calcularTotal, verificarSenha), e sempre defina o tipo de retorno correto. Se o método responde sim/não, retorne boolean. Se calcula, retorne o tipo numérico. Se processa texto, retorne String. E lembre-se: a palavra-chave <strong>return</strong> encerra o método imediatamente e devolve o valor.</p>
 <pre style="background:#1a1a2e;border:1px solid #334155;border-radius:8px;padding:1rem;margin:.8rem 0;"><code>// Exemplo: método com retorno
@@ -8751,7 +8751,7 @@ public class Main {
   starter: `// Revisão métodos\n// DICA: void = sem retorno, int/double/String/boolean = com retorno\n// DICA: Sobrecarga = mesmo nome, parâmetros diferentes\n// DICA: return encerra o método e devolve o valor\npublic class Main {\n    // Escreva aqui: crie public static void exibirSeparador() que imprime "----"\n\n    // Escreva aqui: crie public static double calcularIMC(double peso, double altura) que retorna peso / (altura * altura)\n\n    // Escreva aqui: crie public static String classificarIMC(double imc) que retorna a classificação\n    // < 18.5 "Abaixo do peso", < 25 "Normal", < 30 "Sobrepeso", senão "Obesidade"\n\n    // Escreva aqui: crie duas versões sobrecarregadas de formatar()\n    // formatar(String texto) retorna "[ texto ]" e formatar(String texto, String prefixo) retorna "prefixo texto"\n\n    public static void main(String[] args) {\n        // Escreva aqui: calcule o IMC, classifique e imprima. Teste as duas versões de formatar()\n\n    }\n}`,
 },
 { week:6, day:7, num:4, lang:'java', title:'Desafio: OOP Java',
-  content: `<h1>Revisão OOP Java</h1>
+  content: `<h1>Desafio: OOP Java</h1>
 <p>Vamos revisar os pilares da <strong>Programação Orientada a Objetos</strong> em Java! Uma <strong>classe</strong> e um molde com atributos (dados) e métodos (comportamentos). Um <strong>objeto</strong> e uma instância criada com new. <strong>Construtores</strong> inicializam os atributos no momento da criação. <strong>Encapsulamento</strong> protege os dados com private e controla o acesso com getters/setters. <strong>Heranca</strong> permite criar classes que herdam de outras com extends.</p>
 <p>Para fixar, lembre dos conceitos-chave: use <strong>this</strong> para referênciar o objeto atual, <strong>super</strong> para acessar a superclasse, <strong>@Override</strong> para sobrescrever métodos herdados. O encapsulamento não é só "colocar private" — e pensar em como os dados devem ser acessados e válidados. Uma classe bem projetada esconde sua implementação interna e expoe apenas o necessário. Esse princípio se chama <strong>ocultacao de informação</strong> e e fundamental em projetos grandes.</p>
 <pre style="background:#1a1a2e;border:1px solid #334155;border-radius:8px;padding:1rem;margin:.8rem 0;"><code>// Exemplo: classe com encapsulamento
@@ -10117,7 +10117,7 @@ int main() {
 },
 // Day 7: Revisão C++
 { week:7, day:7, num:1, lang:'cpp', title:'Desafio: sintaxe C++',
-  content: `<h1>Revisão sintaxe C++</h1>
+  content: `<h1>Desafio: sintaxe C++</h1>
 <p>Vamos revisar a sintaxe básica do C++ que aprendemos nesta semana! O C++ é uma linguagem com tipagem estática, o que significa que toda variável precisa ter seu tipo declarado. Os tipos fundamentais são: <code>int</code>, <code>double</code>, <code>float</code>, <code>char</code>, <code>string</code> e <code>bool</code>. A entrada de dados usa <code>cin &gt;&gt;</code> e a saída usa <code>cout &lt;&lt;</code>. As estruturas de controle (if/else, switch, for, while) seguem uma sintaxe semelhante a outras linguagens da familia C.</p>
 <p>Lembre-se dos pontos importantes: todo programa precisa da função <code>main()</code>, as instruções terminam com ponto-e-virgula, os blocos de código ficam entre chaves <code>{}</code>, e os comentarios podem ser de linha (<code>//</code>) ou de bloco (<code>/* */</code>). A prática constante e o segredo para dominar a sintaxe — quanto mais você escreve, mais natural fica.</p>
 <pre style="background:#1a1a2e;border:1px solid #334155;border-radius:8px;padding:1rem;margin:.8rem 0;"><code>#include &lt;iostream&gt;
@@ -10149,7 +10149,7 @@ int main() {
   starter: `// Revisão sintaxe C++\n// Dica: Revise: variáveis, cout, if/else, for, operador ternario\n#include <iostream>\nusing namespace std;\nint main() {\n    // Escreva aqui: declare variáveis nome (string), nivel (int), xp (double), pronto (bool)\n    // Escreva aqui: imprima os valores com cout\n    // Escreva aqui: use if para verificar se xp > 90 e imprima uma mensagem\n    // Escreva aqui: use um for para imprimir "Semana X concluída!" de 1 a 5\n    // Escreva aqui: use operador ternario para imprimir status baseado em pronto\n    return 0;\n}`,
 },
 { week:7, day:7, num:2, lang:'cpp', title:'Desafio: arrays C++',
-  content: `<h1>Revisão arrays C++</h1>
+  content: `<h1>Desafio: arrays C++</h1>
 <p>Vamos revisar arrays e vectors em C++! Arrays estáticos tem tamanho fixo e são declarados como <code>tipo nome[tamanho]</code>. Já os <code>vector</code> são dinâmicos — crescem e diminuem conforme necessário. Para a maioria dos casos, vectors são a melhor escolha por serem mais seguros e flexiveis. Os métodos mais usados são: <code>push_back()</code> para adicionar, <code>size()</code> para tamanho, <code>at()</code> para acesso seguro, e <code>pop_back()</code> para remover o último.</p>
 <p>A iteração sobre coleções pode ser feita com for clássico (com índice), range-based for (<code>for (auto& x : vec)</code>), ou iteradores. O range-based for é o mais recomendado no C++ moderno por ser limpo e seguro. Strings em C++ também funcionam como coleções de caracteres e suportam métodos como <code>length()</code>, <code>substr()</code>, <code>find()</code> e concatenação com <code>+</code>.</p>
 <pre style="background:#1a1a2e;border:1px solid #334155;border-radius:8px;padding:1rem;margin:.8rem 0;"><code>#include &lt;iostream&gt;
@@ -10183,7 +10183,7 @@ int main() {
   starter: `// Revisão arrays C++\n// Dica: vector<tipo> para dinâmico, tipo nome[tam] para estatico\n// Dica: push_back(), size(), for range-based\n#include <iostream>\n#include <vector>\nusing namespace std;\nint main() {\n    // Escreva aqui: crie um vector<string> com linguagens de programação\n    // Escreva aqui: adicione mais linguagens com push_back()\n    // Escreva aqui: percorra e imprima cada linguagem com seu tamanho (length())\n    // Escreva aqui: filtre e imprima apenas as com mais de 3 letras\n    // Escreva aqui: crie um array estatico de 4 notas e calcule a media\n    return 0;\n}`,
 },
 { week:7, day:7, num:3, lang:'cpp', title:'Desafio: funções C++',
-  content: `<h1>Revisão funções C++</h1>
+  content: `<h1>Desafio: funções C++</h1>
 <p>Funções são a espinha dorsal de um programa bem organizado em C++. Cada função precisa de: tipo de retorno, nome, parâmetros (opcionais) e corpo. A passagem por valor cria uma copia do argumento, enquanto a passagem por referência (<code>&</code>) permite modificar o original. Valores padrão para parâmetros devem ficar no final da lista. A sobrecarga permite criar funções com o mesmo nome mas parâmetros diferentes.</p>
 <p>Boas práticas com funções: mantenha-as curtas e focadas em uma única tarefa, use nomes descritivos, prefira <code>const</code> referência para parâmetros que não devem ser modificados (evita copia sem risco de alteracao), e sempre documente o que a função faz. Funções recursivas (que chamam a si mesmas) são úteis para problemas como fatorial, Fibonacci e busca em arvores, mas cuidado com a profundidade da recursão.</p>
 <pre style="background:#1a1a2e;border:1px solid #334155;border-radius:8px;padding:1rem;margin:.8rem 0;"><code>#include &lt;iostream&gt;
@@ -10332,7 +10332,7 @@ projeto = {
     "tipo": ___,                # Tipo: "aplicação web", "terminal", etc.
     "tecnologias": [___],       # Liste as tecnologias que vai usar
     "funcionalidades": [
-        # Seu código aqui Liste pelo menos 4 funcionalidades do seu projeto
+        # Liste pelo menos 4 funcionalidades do seu projeto
     ],
     "público_alvo": ___         # Quem vai usar o projeto?
 }
@@ -10358,19 +10358,19 @@ print(exemplo["must_have"])  # ["Login"]
 # Crie os requisitos do SEU projeto usando a técnica MoSCoW
 requisitos_funcionais = {
     "must_have": [
-        # Seu código aqui Liste pelo menos 4 funcionalidades obrigatórias
+        # Liste pelo menos 4 funcionalidades obrigatórias
     ],
     "should_have": [
-        # Seu código aqui Liste funcionalidades importantes (mas não obrigatórias)
+        # Liste funcionalidades importantes (mas não obrigatórias)
     ],
     "could_have": [
-        # Seu código aqui Liste funcionalidades legais de ter
+        # Liste funcionalidades legais de ter
     ]
 }
 
 # Crie também uma lista de requisitos não funcionais
 requisitos_nao_funcionais = [
-    # Seu código aqui Adicione pelo menos 3 requisitos (ex: performance, responsividade)
+    # Adicione pelo menos 3 requisitos (ex: performance, responsividade)
 ]
 
 # Imprima os requisitos organizados por prioridade
@@ -10405,17 +10405,17 @@ arquitetura = {
         "responsabilidade": ___     # O que essa camada faz?
     },
     "backend": {
-        # Seu código aqui Complete com tecnologias, arquivos e responsabilidade
+        # Complete com tecnologias, arquivos e responsabilidade
     },
     "dados": {
-        # Seu código aqui Complete com tecnologias, arquivos e responsabilidade
+        # Complete com tecnologias, arquivos e responsabilidade
     }
 }
 
 # Crie um dicionário com a estrutura de pastas do projeto
 estrutura = {
     "projeto_final/": [
-        # Seu código aqui Liste todos os arquivos organizados por pasta
+        # Liste todos os arquivos organizados por pasta
         # Dica: use "pasta/" para pastas e "  arquivo.ext" para arquivos
     ]
 }
@@ -10449,19 +10449,19 @@ print(exemplo_dia["dia_1"]["objetivo"])
 cronograma = {
     "dia_2_backend": {
         "tarefas": [
-            # Seu código aqui Liste pelo menos 5 tarefas com tempo estimado
+            # Liste pelo menos 5 tarefas com tempo estimado
             # Ex: "Definir estruturas de dados (1h)"
         ],
         "objetivo": ___  # Qual o objetivo desse dia?
     },
     "dia_3_frontend": {
         "tarefas": [
-            # Seu código aqui Liste as tarefas do frontend com tempo estimado
+            # Liste as tarefas do frontend com tempo estimado
         ],
         "objetivo": ___
     },
     "dia_4_integracao": {
-        # Seu código aqui Complete com tarefas e objetivo para o dia de integração
+        # Complete com tarefas e objetivo para o dia de integração
     }
 }
 
@@ -10494,18 +10494,18 @@ print(tela_exemplo["home"]["elementos"])
 telas = {
     "home": {
         "elementos": [
-            # Seu código aqui Liste os elementos visuais da tela inicial
+            # Liste os elementos visuais da tela inicial
         ],
         "navegação": [___]  # Para quais telas o usuário pode ir?
     },
     "login": {
-        # Seu código aqui Defina elementos e navegação da tela de login
+        # Defina elementos e navegação da tela de login
     },
     "dashboard": {
-        # Seu código aqui Defina a tela principal do sistema
+        # Defina a tela principal do sistema
         # Inclua pelo menos 5 elementos
     },
-    # Seu código aqui Adicione mais uma tela do seu projeto
+    # Adicione mais uma tela do seu projeto
 }
 
 # Imprima o wireframe formatado
@@ -10553,18 +10553,18 @@ def criar_usuario(nome, email, senha):
         "criado_em": ___,       # Dica: str(datetime.now())
         "ativo": ___
     }
-    # Seu código aqui Adicione o usuário à lista no banco_dados
+    # Adicione o usuário à lista no banco_dados
     return usuario
 
 # Crie a função que adiciona uma nova tarefa
 # Deve receber: título, descrição, categoria e usuario_id
 def criar_tarefa(título, descrição, categoria, usuario_id):
-    # Seu código aqui Crie o dicionário da tarefa com id, título, descrição,
+    # Crie o dicionário da tarefa com id, título, descrição,
     #     categoria, usuario_id, concluída (False) e criada_em
     tarefa = {
-        # Seu código aqui Preencha os campos
+        # Preencha os campos
     }
-    # Seu código aqui Adicione ao banco_dados["tarefas"]
+    # Adicione ao banco_dados["tarefas"]
     return tarefa
 
 # Teste suas funções
@@ -10595,9 +10595,9 @@ tarefas = []
 # CREATE - Adicionar tarefa
 def adicionar_tarefa(título, descrição, categoria="geral"):
     tarefa = {
-        # Seu código aqui Crie o dicionário com id, título, descrição, categoria, concluída
+        # Crie o dicionário com id, título, descrição, categoria, concluída
     }
-    # Seu código aqui Adicione à lista tarefas
+    # Adicione à lista tarefas
     return tarefa
 
 # READ - Listar com filtro opcional
@@ -10613,26 +10613,26 @@ def listar_tarefas(filtro=None):
 
 # READ - Buscar por ID
 def buscar_tarefa(id_tarefa):
-    # Seu código aqui Percorra a lista e retorne a tarefa com o ID correspondente
+    # Percorra a lista e retorne a tarefa com o ID correspondente
     # Retorne None se não encontrar
     pass
 
 # UPDATE - Atualizar campos de uma tarefa
 # Dica: use **kwargs para receber campos variáveis
 def atualizar_tarefa(id_tarefa, **campos):
-    # Seu código aqui Busque a tarefa, atualize os campos e retorne
+    # Busque a tarefa, atualize os campos e retorne
     pass
 
 # DELETE - Remover tarefa
 def remover_tarefa(id_tarefa):
-    # Seu código aqui Busque e remova a tarefa da lista
+    # Busque e remova a tarefa da lista
     # Retorne True se removeu, False se não encontrou
     pass
 
 # Teste o CRUD completo
 adicionar_tarefa("Estudar Python", "Revisar funções", "estudo")
 adicionar_tarefa("Fazer exercício", "Correr 30min", "saude")
-# Seu código aqui Adicione mais tarefas, conclua uma, e imprima os resultados
+# Adicione mais tarefas, conclua uma, e imprima os resultados
 </code></pre>`,
   starter: `# Lógica principal - CRUD completo\ntarefas = []\n\n# Escreva aqui: crie adicionar_tarefa(titulo, descricao, categoria) que\n# monta um dicionário com id, titulo, descricao, categoria, concluída=False\n# e adiciona na lista tarefas\n\n# Escreva aqui: crie listar_tarefas(filtro=None) que retorna:\n# - só as concluídas se filtro=="concluídas" (use list comprehension)\n# - só as pendentes se filtro=="pendentes"\n# - filtradas por categoria se filtro for outro texto\n# - todas se filtro for None\n\n# Escreva aqui: crie buscar_tarefa(id_tarefa) que percorre a lista\n# e retorna a tarefa com aquele id, ou None se não encontrar\n\n# Escreva aqui: crie atualizar_tarefa(id_tarefa, **campos) que busca\n# a tarefa pelo id e atualiza os campos recebidos via **kwargs\n\n# Escreva aqui: crie remover_tarefa(id_tarefa) que remove a tarefa\n# da lista e retorna True se removeu, False se não encontrou\n\n# Teste o CRUD: adicione, liste, busque, atualize e remova tarefas`,
 },
@@ -10667,18 +10667,18 @@ def válidar_senha(senha):
 # Crie uma função para formatar data
 # Dica: use datetime.strptime() e .strftime()
 def formatar_data(data_str):
-    # Seu código aqui Converta de "YYYY-MM-DD HH:MM:SS" para "DD/MM/YYYY as HH:MM"
+    # Converta de "YYYY-MM-DD HH:MM:SS" para "DD/MM/YYYY as HH:MM"
     pass
 
 # Crie uma função para gerar ID único
 # Dica: se a lista está vazia retorne 1, senão use max() + 1
 def gerar_id(lista):
-    # Seu código aqui Implemente a lógica
+    # Implemente a lógica
     pass
 
 # Crie uma função para truncar texto com limite
 def truncar_texto(texto, limite=50):
-    # Seu código aqui Se o texto é menor que o limite, retorne ele inteiro
+    # Se o texto é menor que o limite, retorne ele inteiro
     # Senão, corte no limite e adicione "..."
     pass
 
@@ -10707,7 +10707,7 @@ class ProjetoError(Exception):
     """Erro base do projeto"""
     pass
 
-# Seu código aqui Crie classes de erro que herdam de ProjetoError
+# Crie classes de erro que herdam de ProjetoError
 class UsuarioNaoEncontrado(___):
     pass
 
@@ -10719,15 +10719,15 @@ def resposta_sucesso(dados, mensagem="Operacao realizada"):
     return {"sucesso": ___, "dados": ___, "mensagem": ___}
 
 def resposta_erro(mensagem, código=400):
-    # Seu código aqui Retorne um dicionário com sucesso=False, dados=None, mensagem e código
+    # Retorne um dicionário com sucesso=False, dados=None, mensagem e código
     pass
 
 # Crie uma função de cadastro segura com try/except
 def cadastrar_usuario_seguro(nome, email, senha):
     try:
-        # Seu código aqui Valide os campos: nenhum pode estar vazio
-        # Seu código aqui Valide o email: deve conter "@"
-        # Seu código aqui Valide a senha: mínimo 6 caracteres
+        # Valide os campos: nenhum pode estar vazio
+        # Valide o email: deve conter "@"
+        # Valide a senha: mínimo 6 caracteres
         # Se tudo OK, retorne resposta_sucesso com os dados
 
         usuario = {"nome": nome, "email": email}
@@ -10766,33 +10766,33 @@ testes_falharam = 0
 # Dica: use global para modificar os contadores
 def teste(nome, condição):
     global testes_passaram, testes_falharam
-    # Seu código aqui Se a condição for True, incremente testes_passaram e imprima "PASSOU"
-    # Seu código aqui Senão, incremente testes_falharam e imprima "FALHOU"
+    # Se a condição for True, incremente testes_passaram e imprima "PASSOU"
+    # Senão, incremente testes_falharam e imprima "FALHOU"
     pass
 
 # Funções a serem testadas (implemente-as)
 def válidar_email(email):
-    # Seu código aqui Retorne True se o email contém "@" E "."
+    # Retorne True se o email contém "@" E "."
     pass
 
 def adicionar_item(lista, item):
-    # Seu código aqui Retorne False se item é None/vazio, senão adicione e retorne True
+    # Retorne False se item é None/vazio, senão adicione e retorne True
     pass
 
 def buscar_por_id(lista, id_busca):
-    # Seu código aqui Percorra a lista e retorne o item com o ID, ou None
+    # Percorra a lista e retorne o item com o ID, ou None
     pass
 
 # Escreva a suite de testes
 print("=== Testes de Validacao ===")
 teste("Email válido aceito", válidar_email("user@email.com") == ___)
 teste("Email sem @ rejeitado", válidar_email("inválido") == ___)
-# Seu código aqui Adicione mais testes de válidação
+# Adicione mais testes de válidação
 
 print("\n=== Testes de CRUD ===")
 lista = []
 teste("Adicionar item válido", adicionar_item(lista, {"id": 1, "nome": "Teste"}))
-# Seu código aqui Adicione testes para: tamanho da lista, item vazio, busca existente, busca inexistente
+# Adicione testes para: tamanho da lista, item vazio, busca existente, busca inexistente
 
 print(f"\nResultado: {testes_passaram} passaram, {testes_falharam} falharam")
 </code></pre>`,
@@ -10819,9 +10819,9 @@ print(f"\nResultado: {testes_passaram} passaram, {testes_falharam} falharam")
 
 &lt;header class="header-principal"&gt;
   &lt;nav class="navegação"&gt;
-    &lt;!-- Seu código aqui Adicione o logo/título do projeto com h1 --&gt;
+    &lt;!-- Adicione o logo/título do projeto com h1 --&gt;
     &lt;ul class="menu"&gt;
-      &lt;!-- Seu código aqui Crie itens de menu com links para as seções --&gt;
+      &lt;!-- Crie itens de menu com links para as seções --&gt;
       &lt;!-- Dica: use &lt;li&gt;&lt;a href="#secao"&gt;Nome&lt;/a&gt;&lt;/li&gt; --&gt;
     &lt;/ul&gt;
   &lt;/nav&gt;
@@ -10829,16 +10829,16 @@ print(f"\nResultado: {testes_passaram} passaram, {testes_falharam} falharam")
 
 &lt;main class="conteúdo-principal"&gt;
   &lt;section id="home" class="secao-hero"&gt;
-    &lt;!-- Seu código aqui Adicione um h2 de boas-vindas e um parágrafo descritivo --&gt;
+    &lt;!-- Adicione um h2 de boas-vindas e um parágrafo descritivo --&gt;
   &lt;/section&gt;
 
   &lt;section id="tarefas" class="secao-tarefas"&gt;
-    &lt;!-- Seu código aqui Crie a seção principal do projeto com h2 e uma div para conteúdo dinâmico --&gt;
+    &lt;!-- Crie a seção principal do projeto com h2 e uma div para conteúdo dinâmico --&gt;
     &lt;!-- Dica: use id na div para manipular com JavaScript depois --&gt;
   &lt;/section&gt;
 &lt;/main&gt;
 
-&lt;!-- Seu código aqui Adicione o footer com informações do projeto --&gt;
+&lt;!-- Adicione o footer com informações do projeto --&gt;
 </code></pre>
 <div style="background:linear-gradient(135deg,#1a1a3e,#2a1a4e);border:1px solid #7c3aed;border-radius:12px;padding:1.2rem;margin:1.5rem 0;"><h3 style="color:#a78bfa;margin:0 0 .5rem 0;">Curiosidade do Dia</h3><p style="margin:0;color:#c4b5fd;">Mais de 60% do trafego web vem de celulares. Se seu site não funciona no mobile, você perde a maioria dos usuarios!</p></div>
 `,
@@ -10917,7 +10917,7 @@ print(f"\nResultado: {testes_passaram} passaram, {testes_falharam} falharam")
   &lt;div style="margin:10px 0"&gt;
     &lt;input type="text" id="nova-tarefa" placeholder="Nova tarefa..."
       style="padding:8px;width:250px;border:1px solid #ccc;border-radius:4px"&gt;
-    &lt;!-- Seu código aqui Adicione um botão que chama a função adicionarTarefa() --&gt;
+    &lt;!-- Adicione um botão que chama a função adicionarTarefa() --&gt;
   &lt;/div&gt;
   &lt;ul id="lista" style="list-style:none;padding:0"&gt;&lt;/ul&gt;
   &lt;p id="contador"&gt;0 tarefas&lt;/p&gt;
@@ -10928,20 +10928,20 @@ print(f"\nResultado: {testes_passaram} passaram, {testes_falharam} falharam")
 
   // Implemente a função para adicionar tarefa
   window.adicionarTarefa = function() {
-    // Seu código aqui Pegue o valor do input com document.getElementById()
-    // Seu código aqui Verifique se o texto não está vazio (use .trim())
-    // Seu código aqui Adicione ao array tarefas: {texto: texto, feita: false}
-    // Seu código aqui Limpe o input e chame renderizar()
+    // Pegue o valor do input com document.getElementById()
+    // Verifique se o texto não está vazio (use .trim())
+    // Adicione ao array tarefas: {texto: texto, feita: false}
+    // Limpe o input e chame renderizar()
   };
 
   // Implemente a função para renderizar a lista
   window.renderizar = function() {
     var lista = document.getElementById('lista');
     lista.innerHTML = '';
-    // Seu código aqui Percorra o array tarefas com for
-    // Seu código aqui Para cada tarefa, crie um &lt;li&gt; com createElement
-    // Seu código aqui Defina o textContent e adicione com appendChild
-    // Seu código aqui Atualize o contador com o total de tarefas
+    // Percorra o array tarefas com for
+    // Para cada tarefa, crie um &lt;li&gt; com createElement
+    // Defina o textContent e adicione com appendChild
+    // Atualize o contador com o total de tarefas
   };
 "&gt;
 </code></pre>`,
@@ -10994,7 +10994,7 @@ print(f"\nResultado: {testes_passaram} passaram, {testes_falharam} falharam")
 &lt;div class="container"&gt;
   &lt;h1&gt;Layout Responsivo&lt;/h1&gt;
   &lt;div class="grid-cards"&gt;
-    &lt;!-- Seu código aqui Crie 3 cards com h3 e p dentro de cada um --&gt;
+    &lt;!-- Crie 3 cards com h3 e p dentro de cada um --&gt;
   &lt;/div&gt;
 &lt;/div&gt;
 </code></pre>`,
@@ -11022,7 +11022,7 @@ print(f"\nResultado: {testes_passaram} passaram, {testes_falharam} falharam")
 &lt;div id="painel-testes"&gt;
   &lt;h2&gt;Testes do Frontend&lt;/h2&gt;
   &lt;div id="resultados"&gt;&lt;/div&gt;
-  &lt;!-- Seu código aqui Adicione um botão que chama executarTestes() --&gt;
+  &lt;!-- Adicione um botão que chama executarTestes() --&gt;
   &lt;p id="resumo" style="margin-top:10px;font-weight:bold"&gt;&lt;/p&gt;
 &lt;/div&gt;
 
@@ -11035,20 +11035,20 @@ print(f"\nResultado: {testes_passaram} passaram, {testes_falharam} falharam")
 
   // Implemente a função verificar que exibe resultados no DOM
   window.verificar = function(nome, condição) {
-    // Seu código aqui Pegue o elemento 'resultados' com getElementById
-    // Seu código aqui Se condição for true: incremente passou e adicione &lt;p&gt; com classe teste-ok
-    // Seu código aqui Senão: incremente falhou e adicione &lt;p&gt; com classe teste-falha
+    // Pegue o elemento 'resultados' com getElementById
+    // Se condição for true: incremente passou e adicione &lt;p&gt; com classe teste-ok
+    // Senão: incremente falhou e adicione &lt;p&gt; com classe teste-falha
   };
 
   // Implemente a suite de testes
   window.executarTestes = function() {
     passou = 0; falhou = 0;
     document.getElementById('resultados').innerHTML = '';
-    // Seu código aqui Teste se o painel de testes existe (getElementById !== null)
-    // Seu código aqui Teste se o campo de input existe e tem valor
-    // Seu código aqui Teste se a div-teste tem o conteúdo correto (.textContent)
-    // Seu código aqui Teste se existe um botão na página (querySelector)
-    // Seu código aqui Atualize o resumo com a contagem de testes
+    // Teste se o painel de testes existe (getElementById !== null)
+    // Teste se o campo de input existe e tem valor
+    // Teste se a div-teste tem o conteúdo correto (.textContent)
+    // Teste se existe um botão na página (querySelector)
+    // Atualize o resumo com a contagem de testes
   };
 "&gt;
 </code></pre>`,
@@ -11073,7 +11073,7 @@ print(f"\nResultado: {testes_passaram} passaram, {testes_falharam} falharam")
   &lt;div style="margin:10px 0"&gt;
     &lt;input type="text" id="input-tarefa" placeholder="Nova tarefa"
       style="padding:8px;width:70%;border:1px solid #ddd;border-radius:4px"&gt;
-    &lt;!-- Seu código aqui Adicione um botão que chama apiAdicionarTarefa() --&gt;
+    &lt;!-- Adicione um botão que chama apiAdicionarTarefa() --&gt;
   &lt;/div&gt;
   &lt;div id="resposta-api" style="background:#f8f9fa;padding:10px;border-radius:4px;margin:10px 0"&gt;&lt;/div&gt;
   &lt;ul id="lista-integrada" style="list-style:none;padding:0"&gt;&lt;/ul&gt;
@@ -11084,20 +11084,20 @@ print(f"\nResultado: {testes_passaram} passaram, {testes_falharam} falharam")
 
   // Implemente a função que simula uma chamada de API
   window.apiAdicionarTarefa = function() {
-    // Seu código aqui Pegue o valor do input e faça trim()
-    // Seu código aqui Se vazio, mostre 'Erro 400: Campo obrigatório' na div resposta-api
-    // Seu código aqui Senão, crie um objeto tarefa com id, título e status
-    // Seu código aqui Adicione ao array dados
-    // Seu código aqui Limpe o input
-    // Seu código aqui Mostre 'Resposta 201: Tarefa criada com sucesso' na div resposta-api
-    // Seu código aqui Chame renderizarLista()
+    // Pegue o valor do input e faça trim()
+    // Se vazio, mostre 'Erro 400: Campo obrigatório' na div resposta-api
+    // Senão, crie um objeto tarefa com id, título e status
+    // Adicione ao array dados
+    // Limpe o input
+    // Mostre 'Resposta 201: Tarefa criada com sucesso' na div resposta-api
+    // Chame renderizarLista()
   };
 
   // Implemente a função que renderiza a lista
   window.renderizarLista = function() {
-    // Seu código aqui Pegue o ul pelo id 'lista-integrada'
-    // Seu código aqui Limpe o innerHTML
-    // Seu código aqui Percorra o array dados e crie itens &lt;li&gt; com id e título
+    // Pegue o ul pelo id 'lista-integrada'
+    // Limpe o innerHTML
+    // Percorra o array dados e crie itens &lt;li&gt; com id e título
   };
 "&gt;
 </code></pre>
@@ -11129,18 +11129,18 @@ print(f"\nResultado: {testes_passaram} passaram, {testes_falharam} falharam")
 
 &lt;form onsubmit="return false" style="max-width:400px;margin:20px;font-family:Arial"&gt;
   &lt;h2&gt;Cadastro com Validacao&lt;/h2&gt;
-  &lt;!-- Seu código aqui Crie 3 grupos de formulário (nome, email, senha) --&gt;
+  &lt;!-- Crie 3 grupos de formulário (nome, email, senha) --&gt;
   &lt;!-- Cada grupo deve ter: label, input e div.erro para mensagens --&gt;
   &lt;!-- Dica: use IDs como v-nome, v-email, v-senha e erro-nome, erro-email, erro-senha --&gt;
 
   &lt;div class="form-grupo"&gt;
-    &lt;!-- Seu código aqui Campo Nome --&gt;
+    &lt;!-- Campo Nome --&gt;
   &lt;/div&gt;
   &lt;div class="form-grupo"&gt;
-    &lt;!-- Seu código aqui Campo Email --&gt;
+    &lt;!-- Campo Email --&gt;
   &lt;/div&gt;
   &lt;div class="form-grupo"&gt;
-    &lt;!-- Seu código aqui Campo Senha --&gt;
+    &lt;!-- Campo Senha --&gt;
   &lt;/div&gt;
 
   &lt;button onclick="válidarFormulario()" style="padding:10px 20px;background:#3498db;color:white;border:none;border-radius:4px"&gt;Cadastrar&lt;/button&gt;
@@ -11150,13 +11150,13 @@ print(f"\nResultado: {testes_passaram} passaram, {testes_falharam} falharam")
 &lt;img src="x" onerror="
   window.válidarFormulario = function() {
     var válido = true;
-    // Seu código aqui Pegue os valores dos 3 campos com getElementById e .value.trim()
-    // Seu código aqui Limpe as mensagens de erro anteriores (textContent = '')
-    // Seu código aqui Valide nome: mínimo 3 caracteres (use .length)
-    // Seu código aqui Valide email: deve conter '@' e '.' (use indexOf)
-    // Seu código aqui Valide senha: mínimo 6 caracteres
-    // Seu código aqui Se inválido, mostre mensagem no div de erro correspondente
-    // Seu código aqui Se tudo válido, mostre mensagem de sucesso
+    // Pegue os valores dos 3 campos com getElementById e .value.trim()
+    // Limpe as mensagens de erro anteriores (textContent = '')
+    // Valide nome: mínimo 3 caracteres (use .length)
+    // Valide email: deve conter '@' e '.' (use indexOf)
+    // Valide senha: mínimo 6 caracteres
+    // Se inválido, mostre mensagem no div de erro correspondente
+    // Se tudo válido, mostre mensagem de sucesso
   };
 "&gt;
 </code></pre>`,
@@ -11205,7 +11205,7 @@ print(f"\nResultado: {testes_passaram} passaram, {testes_falharam} falharam")
 
 &lt;div class="container"&gt;
   &lt;h1 style="margin:1rem 0"&gt;Projeto Otimizado&lt;/h1&gt;
-  &lt;!-- Seu código aqui Crie cards usando as classes reutilizáveis --&gt;
+  &lt;!-- Crie cards usando as classes reutilizáveis --&gt;
 &lt;/div&gt;
 </code></pre>`,
   starter: `<!-- Otimização do projeto -->\n<style>\n  :root {\n    /* Escreva aqui: defina variáveis CSS: --primaria, --bg, --texto, --raio, --transicao */\n  }\n\n  /* Escreva aqui: crie um reset com *, *::before, *::after */\n  /* definindo margin 0, padding 0, box-sizing border-box */\n\n  /* Escreva aqui: crie classes reutilizáveis: */\n  /* .container com max-width, margin auto, padding */\n  /* .btn com padding, border none, border-radius var(--raio), cursor pointer, transition */\n  /* .btn:hover com efeito sutil (opacity ou transform) */\n  /* .btn-primario com background var(--primaria) e cor branca */\n  /* .card com fundo branco, border-radius var(--raio), padding e box-shadow */\n\n  /* Escreva aqui: crie animação @keyframes fadeIn */\n  /* from: opacity 0 e translateY(20px) */\n  /* to: opacity 1 e translateY(0) */\n  /* .fade-in { animation: fadeIn 0.5s ease; } */\n</style>\n\n<div class="container">\n  <h1 style="margin:1rem 0">Projeto Otimizado</h1>\n  <!-- Escreva aqui: crie cards usando as classes reutilizáveis -->\n</div>`,
@@ -11234,25 +11234,25 @@ print(f"\nResultado: {testes_passaram} passaram, {testes_falharam} falharam")
 
 &lt;h2 style="margin:20px"&gt;Painel de Debug&lt;/h2&gt;
 &lt;div class="debug-btns"&gt;
-  &lt;!-- Seu código aqui Crie 4 botões (Info, Sucesso, Aviso, Erro) que chamam debugLog() --&gt;
-  &lt;!-- Seu código aqui Crie um botão "Testar Tudo" que chama testarTudo() --&gt;
+  &lt;!-- Crie 4 botões (Info, Sucesso, Aviso, Erro) que chamam debugLog() --&gt;
+  &lt;!-- Crie um botão "Testar Tudo" que chama testarTudo() --&gt;
 &lt;/div&gt;
 &lt;div id="debug-painel"&gt;&gt; Console de Debug pronto...&lt;br&gt;&lt;/div&gt;
 
 &lt;img src="x" onerror="
   // Implemente a função de log com tipo e mensagem
   window.debugLog = function(tipo, msg) {
-    // Seu código aqui Pegue o painel pelo ID
-    // Seu código aqui Obtenha a hora atual com new Date().toLocaleTimeString()
-    // Seu código aqui Monte a classe CSS: 'log-' + tipo
-    // Seu código aqui Adicione uma div com a classe, hora, tipo e mensagem ao painel
-    // Seu código aqui Role para baixo: painel.scrollTop = painel.scrollHeight
+    // Pegue o painel pelo ID
+    // Obtenha a hora atual com new Date().toLocaleTimeString()
+    // Monte a classe CSS: 'log-' + tipo
+    // Adicione uma div com a classe, hora, tipo e mensagem ao painel
+    // Role para baixo: painel.scrollTop = painel.scrollHeight
   };
 
   // Implemente a função que testa tudo
   window.testarTudo = function() {
-    // Seu código aqui Chame debugLog() várias vezes com diferentes tipos
-    // Seu código aqui Teste: info, sucesso, aviso e simule verificações do sistema
+    // Chame debugLog() várias vezes com diferentes tipos
+    // Teste: info, sucesso, aviso e simule verificações do sistema
   };
 "&gt;
 </code></pre>`,
@@ -11279,7 +11279,7 @@ print(f"\nResultado: {testes_passaram} passaram, {testes_falharam} falharam")
 
 &lt;div id="suite-testes"&gt;
   &lt;h2&gt;Suite de Testes de Integracao&lt;/h2&gt;
-  &lt;!-- Seu código aqui Adicione um botão que chama executarSuite() --&gt;
+  &lt;!-- Adicione um botão que chama executarSuite() --&gt;
   &lt;div id="resultado-suite"&gt;&lt;/div&gt;
   &lt;div id="resumo-suite" style="margin-top:15px;font-weight:bold"&gt;&lt;/div&gt;
 &lt;/div&gt;
@@ -11292,11 +11292,11 @@ print(f"\nResultado: {testes_passaram} passaram, {testes_falharam} falharam")
 
     // Função auxiliar para verificar testes
     function check(nome, cond) {
-      // Seu código aqui Se cond for true: incremente p, adicione div com classe teste-pass
-      // Seu código aqui Senão: incremente f, adicione div com classe teste-fail
+      // Se cond for true: incremente p, adicione div com classe teste-pass
+      // Senão: incremente f, adicione div com classe teste-fail
     }
 
-    // Seu código aqui Escreva pelo menos 6 testes de integração:
+    // Escreva pelo menos 6 testes de integração:
     // Teste 1: Verifique se o DOM carregou (document.body !== null)
     // Teste 2: Verifique se elementos críticos existem
     // Teste 3: Simule adicionar dados a um array e verifique
@@ -11304,7 +11304,7 @@ print(f"\nResultado: {testes_passaram} passaram, {testes_falharam} falharam")
     // Teste 5: Simule remover dados com .filter() e verifique
     // Teste 6: Verifique se botões existem na página
 
-    // Seu código aqui Atualize o resumo com contagem de testes
+    // Atualize o resumo com contagem de testes
     document.getElementById('resumo-suite').textContent = '???';
   };
 "&gt;
@@ -11329,16 +11329,16 @@ def revisar_código(código_linhas):
     sugestoes = []
 
     for i, linha in enumerate(código_linhas, 1):
-        # Seu código aqui Verifique se a linha tem mais de 80 caracteres
+        # Verifique se a linha tem mais de 80 caracteres
         # Dica: use len(linha) e adicione a problemas
 
-        # Seu código aqui Verifique se variáveis têm nomes muito curtos (1 caractere)
+        # Verifique se variáveis têm nomes muito curtos (1 caractere)
         # Dica: use split("=") e strip()
 
-        # Seu código aqui Verifique se tem print de debug (procure "print(" e "debug")
+        # Verifique se tem print de debug (procure "print(" e "debug")
         # Dica: use "in" e .lower()
 
-        # Seu código aqui Verifique se funções têm docstring
+        # Verifique se funções têm docstring
         # Dica: verifique se a linha começa com "def "
         pass
 
@@ -11357,7 +11357,7 @@ código = [
     "            print(d)"
 ]
 
-# Seu código aqui Chame a função e imprima os resultados formatados
+# Chame a função e imprima os resultados formatados
 # Dica: use [!] para problemas e [?] para sugestões
 </code></pre>
 <div style="background:linear-gradient(135deg,#1a1a3e,#2a1a4e);border:1px solid #7c3aed;border-radius:12px;padding:1.2rem;margin:1.5rem 0;"><h3 style="color:#a78bfa;margin:0 0 .5rem 0;">Curiosidade do Dia</h3><p style="margin:0;color:#c4b5fd;">No Google, NENHUM código vai para produção sem code review. Estudos mostram que isso reduz bugs em até 60%!</p></div>
@@ -11377,7 +11377,7 @@ help(somar)  # Mostra a documentação
 # --- AGORA E SUA VEZ! ---
 # Documente o seu projeto seguindo boas práticas
 
-# Seu código aqui Crie o cabeçalho do arquivo com:
+# Crie o cabeçalho do arquivo com:
 # Nome do projeto, Autor, Versão, Descrição
 # Use linhas de comentário com =====
 
@@ -11407,8 +11407,8 @@ def adicionar_tarefa(lista, título, descrição="", categoria="geral"):
     lista.append(tarefa)
     return tarefa
 
-# Seu código aqui Use help() para verificar se a documentação aparece
-# Seu código aqui Teste a função e imprima o resultado
+# Use help() para verificar se a documentação aparece
+# Teste a função e imprima o resultado
 tarefas = []
 t = adicionar_tarefa(tarefas, "Documentar projeto", "Adicionar docstrings", "dev")
 print(f"Tarefa criada: {t['título']}")
@@ -11431,21 +11431,21 @@ print(f"Tempo: {(fim - início) * 1000:.2f}ms")
 
 # Crie uma função genérica para medir tempo
 def medir_tempo(nome, função):
-    # Seu código aqui Use time.time() antes e depois de chamar a função
-    # Seu código aqui Calcule a diferença em milissegundos (* 1000)
-    # Seu código aqui Imprima o nome e o tempo formatado com :.2f
+    # Use time.time() antes e depois de chamar a função
+    # Calcule a diferença em milissegundos (* 1000)
+    # Imprima o nome e o tempo formatado com :.2f
     pass
 
 # Teste 1: Loop vs List Comprehension
 n = 100000
 
 def com_loop():
-    # Seu código aqui Crie uma lista com for: números pares de 0 a n multiplicados por 2
+    # Crie uma lista com for: números pares de 0 a n multiplicados por 2
     # Dica: if i % 2 == 0, append(i * 2)
     pass
 
 def com_comprehension():
-    # Seu código aqui Faça o mesmo com list comprehension em uma linha
+    # Faça o mesmo com list comprehension em uma linha
     # Dica: [i * 2 for i in range(n) if ___]
     pass
 
@@ -11454,15 +11454,15 @@ medir_tempo("Loop tradicional", com_loop)
 medir_tempo("List comprehension", com_comprehension)
 
 # Teste 2: Busca em lista vs dicionário
-# Seu código aqui Crie dados_lista com 10000 dicionários {id, nome}
-# Seu código aqui Crie dados_dict com 10000 entradas {id: nome}
+# Crie dados_lista com 10000 dicionários {id, nome}
+# Crie dados_dict com 10000 entradas {id: nome}
 
 def busca_lista():
-    # Seu código aqui Busque o item com id 9999 percorrendo a lista
+    # Busque o item com id 9999 percorrendo a lista
     pass
 
 def busca_dict():
-    # Seu código aqui Busque o item com id 9999 usando .get()
+    # Busque o item com id 9999 usando .get()
     pass
 
 print("\n=== Lista vs Dicionario ===")
@@ -11485,35 +11485,35 @@ msg("OK", "Funcionou!")  #   [OK] Funcionou!
 
 # Crie a função que exibe o menu principal
 def exibir_menu():
-    # Seu código aqui Use "=" * 40 para bordas
-    # Seu código aqui Imprima o título centralizado
-    # Seu código aqui Liste as opções numeradas (1-5 e 0 para sair)
-    # Seu código aqui Use "-" * 40 para separador
+    # Use "=" * 40 para bordas
+    # Imprima o título centralizado
+    # Liste as opções numeradas (1-5 e 0 para sair)
+    # Use "-" * 40 para separador
     pass
 
 # Crie funções de mensagem padronizadas
 def mensagem_sucesso(texto):
-    # Seu código aqui Imprima com prefixo [OK]
+    # Imprima com prefixo [OK]
     pass
 
 def mensagem_erro(texto):
-    # Seu código aqui Imprima com prefixo [ERRO]
+    # Imprima com prefixo [ERRO]
     pass
 
 def mensagem_info(texto):
-    # Seu código aqui Imprima com prefixo [INFO]
+    # Imprima com prefixo [INFO]
     pass
 
 # Crie função de confirmação
 def confirmar_acao(texto):
-    # Seu código aqui Pergunte ao usuário (s/n) e retorne True/False
+    # Pergunte ao usuário (s/n) e retorne True/False
     # Dica: input() + .lower() + == "s"
     pass
 
 # Crie função para exibir tarefa formatada
 def exibir_tarefa_formatada(tarefa):
-    # Seu código aqui Mostre [X] ou [ ] dependendo de concluída
-    # Seu código aqui Mostre id e título, e descrição se existir
+    # Mostre [X] ou [ ] dependendo de concluída
+    # Mostre id e título, e descrição se existir
     pass
 
 # Teste a UX
@@ -11538,7 +11538,7 @@ print(somar(2, 3))  # 5
 # --- AGORA E SUA VEZ! ---
 # Crie a versão final do seu projeto integrando tudo
 
-# Seu código aqui Adicione o cabeçalho do projeto (nome, versão, autor)
+# Adicione o cabeçalho do projeto (nome, versão, autor)
 
 # Banco de dados em memória
 tarefas = []
@@ -11548,31 +11548,31 @@ proximo_id = 1
 def adicionar(título, categoria="geral"):
     """??? Documente a função."""
     global proximo_id
-    # Seu código aqui Crie o dicionário da tarefa e adicione à lista
-    # Seu código aqui Incremente proximo_id
+    # Crie o dicionário da tarefa e adicione à lista
+    # Incremente proximo_id
     pass
 
 def listar(filtro=None):
     """??? Documente a função."""
-    # Seu código aqui Implemente filtro: "pendentes", "concluídas" ou None (todas)
+    # Implemente filtro: "pendentes", "concluídas" ou None (todas)
     # Dica: use list comprehension
     pass
 
 def concluir(id_tarefa):
     """??? Documente a função."""
-    # Seu código aqui Encontre a tarefa pelo ID e mude concluída para True
+    # Encontre a tarefa pelo ID e mude concluída para True
     pass
 
 def remover(id_tarefa):
     """??? Documente a função."""
-    # Seu código aqui Use list comprehension para filtrar e reatribuir
+    # Use list comprehension para filtrar e reatribuir
     pass
 
 # === DEMONSTRAÇÃO DA VERSÃO FINAL ===
 print("=== GERENCIADOR DE TAREFAS v1.0 ===\n")
 
-# Seu código aqui Adicione tarefas, conclua uma, e imprima o resultado
-# Seu código aqui Mostre: total, pendentes e concluídas
+# Adicione tarefas, conclua uma, e imprima o resultado
+# Mostre: total, pendentes e concluídas
 # Dica: use len(listar()), len(listar('pendentes')), len(listar('concluídas'))
 </code></pre>`,
   starter: `# Versão final do projeto\n\n# Escreva aqui: adicione o cabeçalho do projeto (nome, versão, autor)\n\ntarefas = []\nproximo_id = 1\n\n# Escreva aqui: crie adicionar(titulo, categoria="geral") com docstring\n# que cria dicionário com id, titulo, categoria, concluída=False\n# adiciona na lista e incrementa proximo_id (use global)\n\n# Escreva aqui: crie listar(filtro=None) com docstring\n# que retorna todas as tarefas, ou filtra por "pendentes"/"concluídas"\n# Dica: use list comprehension\n\n# Escreva aqui: crie concluir(id_tarefa) com docstring\n# que encontra a tarefa pelo id e muda concluída para True\n\n# Escreva aqui: crie remover(id_tarefa) com docstring\n# que usa list comprehension para filtrar a tarefa fora da lista\n\n# Demonstração da versão final\nprint("=== GERENCIADOR DE TAREFAS v1.0 ===\n")\n# Escreva aqui: adicione tarefas, conclua uma e mostre totais`,
@@ -11614,12 +11614,12 @@ print("=== GERENCIADOR DE TAREFAS v1.0 ===\n")
   .sobre-texto { flex: 1; min-width: 250px; line-height: 1.8; }
 &lt;/style&gt;
 
-&lt;!-- Seu código aqui Crie a seção hero com seu nome e título --&gt;
+&lt;!-- Crie a seção hero com seu nome e título --&gt;
 &lt;div class="hero"&gt;
   &lt;!-- Seu código aqui h1 com seu nome e p com seu título --&gt;
 &lt;/div&gt;
 
-&lt;!-- Seu código aqui Crie a seção "Sobre Mim" com sua bio --&gt;
+&lt;!-- Crie a seção "Sobre Mim" com sua bio --&gt;
 &lt;section class="secao"&gt;
   &lt;!-- Seu código aqui h2 + div.sobre-grid com div.sobre-texto contendo parágrafo --&gt;
 &lt;/section&gt;
@@ -11667,13 +11667,13 @@ print("=== GERENCIADOR DE TAREFAS v1.0 ===\n")
 &lt;section style="max-width:900px;margin:0 auto;padding:20px"&gt;
   &lt;h2&gt;Meus Projetos&lt;/h2&gt;
   &lt;div class="projetos-grid"&gt;
-    &lt;!-- Seu código aqui Crie pelo menos 2 cards de projeto --&gt;
+    &lt;!-- Crie pelo menos 2 cards de projeto --&gt;
     &lt;!-- Cada card deve ter: h3 (nome), p (descrição), badges de tecnologia, links --&gt;
     &lt;div class="projeto-card"&gt;
-      &lt;!-- Seu código aqui Preencha com os dados do seu projeto principal --&gt;
+      &lt;!-- Preencha com os dados do seu projeto principal --&gt;
     &lt;/div&gt;
     &lt;div class="projeto-card"&gt;
-      &lt;!-- Seu código aqui Preencha com outro projeto do bootcamp --&gt;
+      &lt;!-- Preencha com outro projeto do bootcamp --&gt;
     &lt;/div&gt;
   &lt;/div&gt;
 &lt;/section&gt;
@@ -11725,14 +11725,14 @@ print("=== GERENCIADOR DE TAREFAS v1.0 ===\n")
   }
 &lt;/style&gt;
 
-&lt;!-- Seu código aqui Crie a navbar com logo e links de navegação --&gt;
+&lt;!-- Crie a navbar com logo e links de navegação --&gt;
 &lt;nav class="nav-portfólio"&gt;
-  &lt;!-- Seu código aqui Logo + links para as seções --&gt;
+  &lt;!-- Logo + links para as seções --&gt;
 &lt;/nav&gt;
 
-&lt;!-- Seu código aqui Crie o hero com nome, título e skill tags --&gt;
+&lt;!-- Crie o hero com nome, título e skill tags --&gt;
 &lt;div class="hero-portfólio"&gt;
-  &lt;!-- Seu código aqui Seu nome, título e tags de habilidades --&gt;
+  &lt;!-- Seu nome, título e tags de habilidades --&gt;
 &lt;/div&gt;
 </code></pre>`,
   starter: `<!-- Estilize o portfólio -->\n<style>\n  :root {\n    /* Escreva aqui: defina variáveis: --azul, --azul-escuro, --cinza-claro, --texto, --sombra */\n  }\n  * { margin: 0; padding: 0; box-sizing: border-box; }\n  body { font-family: "Inter", sans-serif; color: var(--texto); background: var(--cinza-claro); }\n\n  /* Escreva aqui: estilize .nav-portfolio com background branco, padding, */\n  /* display flex, justify-content space-between, position sticky, top 0, box-shadow */\n  .nav-portfolio {\n  }\n  /* Escreva aqui: estilize .nav-portfolio a sem sublinhado, com margem e transição */\n  /* Adicione hover mudando cor para var(--azul) */\n\n  /* Escreva aqui: estilize .hero-portfolio com gradiente usando variáveis */\n  /* cor branca, padding grande e text-align center */\n  .hero-portfolio {\n  }\n\n  /* Escreva aqui: estilize .skill-tag como inline-block com fundo branco, */\n  /* cor azul, padding, border-radius 25px e sombra */\n</style>\n\n<!-- Escreva aqui: crie nav.nav-portfolio com logo e links -->\n<nav class="nav-portfolio">\n</nav>\n\n<!-- Escreva aqui: crie div.hero-portfolio com nome, título e skill-tags -->\n<div class="hero-portfolio">\n</div>`,
@@ -11765,7 +11765,7 @@ print("=== GERENCIADOR DE TAREFAS v1.0 ===\n")
 &lt;div class="deploy-container"&gt;
   &lt;h1&gt;Guia de Deploy&lt;/h1&gt;
 
-  &lt;!-- Seu código aqui Crie 5 cards de passo para o deploy --&gt;
+  &lt;!-- Crie 5 cards de passo para o deploy --&gt;
   &lt;!-- Passo 1: Preparar os arquivos (index.html como principal) --&gt;
   &lt;!-- Passo 2: Criar repositório no GitHub --&gt;
   &lt;!-- Passo 3: Fazer upload (git push) --&gt;
@@ -11817,17 +11817,17 @@ print("=== GERENCIADOR DE TAREFAS v1.0 ===\n")
   .pg-badge { /* ??? inline-block, fundo claro, cor, padding, border-radius */ }
 &lt;/style&gt;
 
-&lt;!-- Seu código aqui Crie o hero com: nome, título e badges de skills --&gt;
+&lt;!-- Crie o hero com: nome, título e badges de skills --&gt;
 &lt;div class="pg-hero"&gt;
   &lt;!-- Seu código aqui --&gt;
 &lt;/div&gt;
 
-&lt;!-- Seu código aqui Crie a seção de projetos com grid de cards --&gt;
+&lt;!-- Crie a seção de projetos com grid de cards --&gt;
 &lt;section class="pg-secao"&gt;
   &lt;!-- Seu código aqui h2, div.pg-cards com pelo menos 2 pg-card --&gt;
 &lt;/section&gt;
 
-&lt;!-- Seu código aqui Crie a seção de contato com links --&gt;
+&lt;!-- Crie a seção de contato com links --&gt;
 &lt;div class="pg-contato"&gt;
   &lt;!-- Seu código aqui h2 e links para GitHub, LinkedIn, Email --&gt;
 &lt;/div&gt;
@@ -11856,22 +11856,22 @@ roteiro = {
         {
             "secao": "1. Introdução (2 min)",
             "topicos": [
-                # Seu código aqui Liste os tópicos da introdução
+                # Liste os tópicos da introdução
                 # O que é o projeto, por que escolheu, tecnologias
             ]
         },
         {
             "secao": "2. Demonstracao (5 min)",
             "topicos": [
-                # Seu código aqui Liste o que vai demonstrar ao vivo
+                # Liste o que vai demonstrar ao vivo
                 # Telas, funcionalidades principais, interações
             ]
         },
         {
-            # Seu código aqui Adicione a seção "Bastidores" (arquitetura, desafios, aprendizados)
+            # Adicione a seção "Bastidores" (arquitetura, desafios, aprendizados)
         },
         {
-            # Seu código aqui Adicione a seção "Conclusão" (resultado, melhorias futuras)
+            # Adicione a seção "Conclusão" (resultado, melhorias futuras)
         }
     ]
 }
@@ -11880,7 +11880,7 @@ roteiro = {
 # Dica: use "=" * 50 para bordas e percorra partes > tópicos
 print("=" * 50)
 print(f"  APRESENTACAO: {roteiro['título']}")
-# Seu código aqui Imprima autor e duração
+# Imprima autor e duração
 print("=" * 50)
 
 for ___ in roteiro["partes"]:
@@ -11909,29 +11909,29 @@ print(semana_ex["Semana 1"]["conceitos"])
 # Crie o resumo completo das 8 semanas do bootcamp
 bootcamp = {
     "Semana 1 - Lógica": {
-        "conceitos": [___],  # Seu código aqui Liste 5 conceitos da semana 1
+        "conceitos": [___],  # Liste 5 conceitos da semana 1
         "projeto": ___
     },
     "Semana 2 - Python": {
-        # Seu código aqui Preencha conceitos e projeto
+        # Preencha conceitos e projeto
     },
     "Semana 3 - Python Avancado": {
-        # Seu código aqui Preencha conceitos e projeto
+        # Preencha conceitos e projeto
     },
     "Semana 4 - Web": {
-        # Seu código aqui Preencha conceitos e projeto
+        # Preencha conceitos e projeto
     },
     "Semana 5 - SQL": {
-        # Seu código aqui Preencha conceitos e projeto
+        # Preencha conceitos e projeto
     },
     "Semana 6 - Java": {
-        # Seu código aqui Preencha conceitos e projeto
+        # Preencha conceitos e projeto
     },
     "Semana 7 - C++": {
-        # Seu código aqui Preencha conceitos e projeto
+        # Preencha conceitos e projeto
     },
     "Semana 8 - Projeto Final": {
-        # Seu código aqui Preencha conceitos e projeto
+        # Preencha conceitos e projeto
     }
 }
 
@@ -11959,18 +11959,18 @@ print(trilha_ex["Frontend"]["tecnologias"])
 # Crie o mapa de trilhas de carreira para depois do bootcamp
 trilhas = {
     "Frontend Developer": {
-        "tecnologias": [___],       # Seu código aqui Liste tecnologias de frontend moderno
-        "habilidades": [___],       # Seu código aqui Quais habilidades precisa desenvolver?
+        "tecnologias": [___],       # Liste tecnologias de frontend moderno
+        "habilidades": [___],       # Quais habilidades precisa desenvolver?
         "tempo_estimado": ___       # Quanto tempo até nível junior?
     },
     "Backend Developer": {
-        # Seu código aqui Preencha com tecnologias, habilidades e tempo
+        # Preencha com tecnologias, habilidades e tempo
     },
     "Full Stack Developer": {
-        # Seu código aqui Preencha (combine front + back)
+        # Preencha (combine front + back)
     },
     "Data Science": {
-        # Seu código aqui Preencha com tecnologias de dados
+        # Preencha com tecnologias de dados
     }
 }
 
@@ -11980,10 +11980,10 @@ print("=== PROXIMOS PASSOS ===\n")
 for ___, ___ in trilhas.___():
     print(f"--- {___} ---")
     print(f"  Tecnologias: {', '.join(___['tecnologias'])}")
-    # Seu código aqui Imprima habilidades e tempo estimado
+    # Imprima habilidades e tempo estimado
     print()
 
-# Seu código aqui Adicione uma dica final sobre foco
+# Adicione uma dica final sobre foco
 </code></pre>`,
   starter: `# Próximos passos na carreira\n\n# Escreva aqui: crie um dicionário "trilhas" com 4 chaves:\n# "Frontend Developer", "Backend Developer", "Full Stack Developer", "Data Science"\n# Cada trilha deve ter:\n# "tecnologias" (lista), "habilidades" (lista), "tempo_estimado" (string)\ntrilhas = {\n}\n\n# Escreva aqui: percorra trilhas com .items() e imprima:\n# - nome da trilha\n# - tecnologias e habilidades usando ', '.join()\n# - tempo estimado\nprint("=== PRÓXIMOS PASSOS ===\n")\n# Dica: for trilha, info in trilhas.items():`,
 },
@@ -11999,17 +11999,17 @@ print(recurso_ex[0]["nome"])  # Python Docs
 # Crie sua biblioteca de recursos para continuar estudando
 recursos = {
     "Documentacao Oficial": [
-        # Seu código aqui Adicione pelo menos 3 recursos com nome, url e tipo
+        # Adicione pelo menos 3 recursos com nome, url e tipo
         # Ex: {"nome": "___", "url": "___", "tipo": "___"}
     ],
     "Prática e Desafios": [
-        # Seu código aqui Adicione sites de prática (LeetCode, HackerRank, etc.)
+        # Adicione sites de prática (LeetCode, HackerRank, etc.)
     ],
     "Cursos Gratuitos": [
-        # Seu código aqui Adicione cursos online gratuitos
+        # Adicione cursos online gratuitos
     ],
     "Comunidades": [
-        # Seu código aqui Adicione comunidades de programação
+        # Adicione comunidades de programação
     ]
 }
 
@@ -12041,28 +12041,28 @@ def gerar_certificado(nome, data):
     linha = "=" * largura
     linha_fina = "-" * largura
 
-    # Seu código aqui Imprima a borda superior com linha
-    # Seu código aqui Imprima "CERTIFICADO DE CONCLUSAO" centralizado
-    # Seu código aqui Imprima a borda com linha
-    # Seu código aqui Imprima "Certificamos que" centralizado
-    # Seu código aqui Imprima o nome em MAIÚSCULAS centralizado (use .upper() e .center())
-    # Seu código aqui Imprima linha_fina centralizada
-    # Seu código aqui Imprima "concluiu com exito o" centralizado
-    # Seu código aqui Imprima "BOOTCAMP DE PROGRAMACAO" centralizado
+    # Imprima a borda superior com linha
+    # Imprima "CERTIFICADO DE CONCLUSAO" centralizado
+    # Imprima a borda com linha
+    # Imprima "Certificamos que" centralizado
+    # Imprima o nome em MAIÚSCULAS centralizado (use .upper() e .center())
+    # Imprima linha_fina centralizada
+    # Imprima "concluiu com exito o" centralizado
+    # Imprima "BOOTCAMP DE PROGRAMACAO" centralizado
 
     # Liste os módulos do bootcamp
     modulos = [
-        # Seu código aqui Liste todos os módulos que você completou
+        # Liste todos os módulos que você completou
         # Dica: Lógica, Python, Web, SQL, Java, C++, Projeto Final
     ]
 
-    # Seu código aqui Imprima cada módulo centralizado com "  * " antes
+    # Imprima cada módulo centralizado com "  * " antes
     # Dica: use f"  * {modulo}".center(largura) dentro de um for
 
-    # Seu código aqui Imprima a data e mensagem de parabéns centralizados
-    # Seu código aqui Imprima a borda inferior
+    # Imprima a data e mensagem de parabéns centralizados
+    # Imprima a borda inferior
 
-# Seu código aqui Chame a função com seu nome e a data atual
+# Chame a função com seu nome e a data atual
 gerar_certificado(___, ___)
 print("\nVocê e oficialmente um programador!")
 </code></pre>`,
