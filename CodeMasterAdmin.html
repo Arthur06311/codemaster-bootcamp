@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CodeMaster Admin</title>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{
+    --bg:#0d1117;--surface:#161b22;--border:#21262d;
+    --text:#e6edf3;--muted:#8b949e;
+    --green:#3fb950;--blue:#58a6ff;--purple:#bc8cff;
+    --orange:#f0883e;--red:#f85149;--yellow:#d29922;
+  }
+  body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;min-height:100vh;display:flex;align-items:center;justify-content:center;}
+
+  /* ===== LOGIN ===== */
+  #loginScreen{text-align:center;padding:2rem;max-width:380px;width:100%;}
+  .logo{font-size:2.5rem;font-weight:900;background:linear-gradient(135deg,#3b82f6,#8b5cf6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;color:transparent;margin-bottom:.5rem;}
+  .logo-sub{color:var(--muted);font-size:.9rem;margin-bottom:2rem;letter-spacing:2px;text-transform:uppercase;}
+  .login-box{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:2rem;}
+  .login-box h2{font-size:1.2rem;margin-bottom:1.5rem;color:var(--text);}
+  .login-box input{width:100%;padding:.75rem 1rem;background:var(--bg);border:1px solid var(--border);border-radius:10px;color:var(--text);font-size:1rem;outline:none;margin-bottom:.8rem;transition:border-color .2s;}
+  .login-box input:focus{border-color:var(--blue);}
+  .login-box button{width:100%;padding:.75rem;background:linear-gradient(135deg,#3b82f6,#8b5cf6);border:none;border-radius:10px;color:#fff;font-size:1rem;font-weight:600;cursor:pointer;transition:opacity .2s;}
+  .login-box button:hover{opacity:.85;}
+  #loginError{color:var(--red);font-size:.85rem;margin-top:.5rem;display:none;}
+
+  /* ===== DASHBOARD ===== */
+  #dashboard{display:none;width:100%;max-width:1100px;padding:2rem;margin:0 auto;}
+  .dash-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:2rem;flex-wrap:gap;}
+  .dash-title{font-size:1.5rem;font-weight:800;}
+  .dash-title span{font-size:.8rem;color:var(--muted);font-weight:400;margin-left:.5rem;}
+  .logout-btn{padding:.4rem 1rem;background:transparent;border:1px solid var(--border);border-radius:8px;color:var(--muted);cursor:pointer;font-size:.85rem;transition:all .2s;}
+  .logout-btn:hover{border-color:var(--red);color:var(--red);}
+
+  /* Stats grid */
+  .stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem;margin-bottom:2rem;}
+  .stat-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:1.2rem;text-align:center;transition:transform .2s;}
+  .stat-card:hover{transform:translateY(-2px);}
+  .stat-icon{font-size:1.8rem;margin-bottom:.4rem;}
+  .stat-value{font-size:2rem;font-weight:800;margin-bottom:.2rem;}
+  .stat-label{font-size:.8rem;color:var(--muted);text-transform:uppercase;letter-spacing:1px;}
+  .stat-green .stat-value{color:var(--green);}
+  .stat-blue .stat-value{color:var(--blue);}
+  .stat-purple .stat-value{color:var(--purple);}
+  .stat-orange .stat-value{color:var(--orange);}
+  .stat-yellow .stat-value{color:var(--yellow);}
+
+  /* Setup notice */
+  .setup-notice{background:#1a1f2e;border:1px solid #2d3561;border-radius:12px;padding:1.2rem;margin-bottom:1.5rem;font-size:.85rem;}
+  .setup-notice h3{color:var(--blue);margin-bottom:.6rem;font-size:.95rem;}
+  .setup-notice code{background:#0d1117;padding:.15rem .4rem;border-radius:5px;font-family:'Fira Code',monospace;font-size:.8rem;color:var(--green);}
+  .setup-notice pre{background:#0d1117;border:1px solid var(--border);border-radius:8px;padding:.8rem;margin:.5rem 0;overflow-x:auto;white-space:pre;font-size:.78rem;color:var(--green);}
+
+  /* Table */
+  .section{background:var(--surface);border:1px solid var(--border);border-radius:14px;margin-bottom:1.5rem;overflow:hidden;}
+  .section-header{padding:1rem 1.2rem;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
+  .section-header h3{font-size:.95rem;font-weight:700;}
+  .section-header .badge{background:var(--bg);border:1px solid var(--border);border-radius:20px;padding:.2rem .6rem;font-size:.75rem;color:var(--muted);}
+  table{width:100%;border-collapse:collapse;}
+  th,td{padding:.75rem 1.2rem;text-align:left;font-size:.85rem;border-bottom:1px solid var(--border);}
+  th{color:var(--muted);font-weight:600;font-size:.75rem;text-transform:uppercase;letter-spacing:.5px;}
+  tr:last-child td{border-bottom:none;}
+  tr:hover td{background:rgba(255,255,255,.02);}
+  .badge-premium{background:linear-gradient(135deg,rgba(139,92,246,.2),rgba(59,130,246,.15));border:1px solid rgba(139,92,246,.4);color:#a78bfa;border-radius:20px;padding:.15rem .5rem;font-size:.72rem;font-weight:600;}
+  .badge-free{background:rgba(139,148,158,.1);border:1px solid rgba(139,148,158,.2);color:var(--muted);border-radius:20px;padding:.15rem .5rem;font-size:.72rem;}
+  .empty-state{text-align:center;padding:2rem;color:var(--muted);}
+
+  /* Refresh */
+  .refresh-btn{padding:.4rem .8rem;background:transparent;border:1px solid var(--border);border-radius:8px;color:var(--muted);cursor:pointer;font-size:.8rem;transition:all .2s;}
+  .refresh-btn:hover{border-color:var(--green);color:var(--green);}
+  .loading{color:var(--muted);font-size:.85rem;text-align:center;padding:1.5rem;}
+  .error-msg{color:var(--red);font-size:.82rem;text-align:center;padding:1rem;}
+
+  /* Charts bar */
+  .bar-row{display:flex;align-items:center;gap:.8rem;margin-bottom:.6rem;}
+  .bar-label{min-width:90px;font-size:.8rem;color:var(--muted);text-align:right;}
+  .bar-track{flex:1;background:rgba(255,255,255,.05);border-radius:4px;height:10px;overflow:hidden;}
+  .bar-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,#3b82f6,#8b5cf6);transition:width .5s;}
+  .bar-count{min-width:30px;font-size:.8rem;color:var(--text);font-weight:600;}
+
+  @media(max-width:600px){
+    #dashboard{padding:1rem;}
+    .stats-grid{grid-template-columns:repeat(2,1fr);}
+    th,td{padding:.6rem .8rem;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== LOGIN SCREEN ===== -->
+<div id="loginScreen">
+  <div class="logo">CodeMaster</div>
+  <div class="logo-sub">Painel Administrativo</div>
+  <div class="login-box">
+    <h2>🔐 Acesso Restrito</h2>
+    <input type="password" id="pwInput" placeholder="Digite o código de acesso" onkeydown="if(event.key==='Enter')login()">
+    <button onclick="login()">Entrar no Painel</button>
+    <div id="loginError">Código incorreto. Tente novamente.</div>
+  </div>
+</div>
+
+<!-- ===== DASHBOARD ===== -->
+<div id="dashboard">
+  <div class="dash-header">
+    <div>
+      <div class="dash-title">CodeMaster Admin <span id="lastUpdated"></span></div>
+    </div>
+    <div style="display:flex;gap:.5rem;">
+      <button class="refresh-btn" onclick="loadAll()">↻ Atualizar</button>
+      <button class="logout-btn" onclick="logout()">Sair</button>
+    </div>
+  </div>
+
+  <!-- Stats -->
+  <div class="stats-grid">
+    <div class="stat-card stat-blue"><div class="stat-icon">👥</div><div class="stat-value" id="totalUsers">—</div><div class="stat-label">Usuários Cadastrados</div></div>
+    <div class="stat-card stat-purple"><div class="stat-icon">⭐</div><div class="stat-value" id="premiumUsers">—</div><div class="stat-label">Usuários Premium</div></div>
+    <div class="stat-card stat-green"><div class="stat-icon">🆓</div><div class="stat-value" id="freeUsers">—</div><div class="stat-label">Usuários Gratuitos</div></div>
+    <div class="stat-card stat-orange"><div class="stat-icon">📅</div><div class="stat-value" id="todayUsers">—</div><div class="stat-label">Novos Hoje</div></div>
+    <div class="stat-card stat-yellow"><div class="stat-icon">📊</div><div class="stat-value" id="totalVisits">—</div><div class="stat-label">Visitas Rastreadas</div></div>
+    <div class="stat-card stat-green"><div class="stat-icon">📈</div><div class="stat-value" id="todayVisits">—</div><div class="stat-label">Visitas Hoje</div></div>
+  </div>
+
+  <!-- Setup notice if page_views table not created -->
+  <div class="setup-notice" id="setupNotice" style="display:none;">
+    <h3>📋 Para ativar rastreamento de visitas, crie a tabela no Supabase:</h3>
+    <pre>CREATE TABLE page_views (
+  id bigserial PRIMARY KEY,
+  ts timestamptz DEFAULT now(),
+  ref text
+);
+ALTER TABLE page_views ENABLE ROW LEVEL SECURITY;
+CREATE POLICY "allow insert" ON page_views FOR INSERT WITH CHECK (true);
+CREATE POLICY "allow read" ON page_views FOR SELECT USING (true);</pre>
+    <p style="color:var(--muted);">Acesse <strong>supabase.com → SQL Editor</strong> e cole o código acima.</p>
+  </div>
+
+  <!-- Recent Users -->
+  <div class="section">
+    <div class="section-header">
+      <h3>👤 Usuários Recentes</h3>
+      <span class="badge" id="usersCountBadge">carregando...</span>
+    </div>
+    <div id="usersTable"><div class="loading">Carregando usuários...</div></div>
+  </div>
+
+  <!-- Recent Visits -->
+  <div class="section">
+    <div class="section-header">
+      <h3>📊 Visitas Recentes</h3>
+      <span class="badge" id="visitsCountBadge">carregando...</span>
+    </div>
+    <div id="visitsTable"><div class="loading">Carregando visitas...</div></div>
+  </div>
+
+</div>
+
+<script>
+const SUPABASE_URL = 'https://vlgcycmrpigjuhmxaeax.supabase.co';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZsZ2N5Y21ycGlnanVobXhhZWF4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ4NzA1MTAsImV4cCI6MjA5MDQ0NjUxMH0.9EmaMGP7qn3LciIhD2398tAe9WKBnQagwxGYcfVKvvU';
+const ADMIN_CODE = 'Arthur06';
+let db = null;
+
+function login() {
+    const pw = document.getElementById('pwInput').value.trim();
+    if (pw === ADMIN_CODE) {
+        document.getElementById('loginScreen').style.display = 'none';
+        document.getElementById('dashboard').style.display = 'block';
+        document.body.style.alignItems = 'flex-start';
+        sessionStorage.setItem('cm_admin', '1');
+        initDB();
+        loadAll();
+    } else {
+        const err = document.getElementById('loginError');
+        err.style.display = 'block';
+        document.getElementById('pwInput').value = '';
+        document.getElementById('pwInput').style.borderColor = '#f85149';
+        setTimeout(() => { err.style.display = 'none'; document.getElementById('pwInput').style.borderColor = ''; }, 3000);
+    }
+}
+
+function logout() {
+    sessionStorage.removeItem('cm_admin');
+    document.getElementById('loginScreen').style.display = 'flex';
+    document.getElementById('dashboard').style.display = 'none';
+    document.body.style.alignItems = 'center';
+    document.getElementById('pwInput').value = '';
+}
+
+function initDB() {
+    if (window.supabase && !db) {
+        db = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+    }
+}
+
+async function loadAll() {
+    if (!db) return;
+    document.getElementById('lastUpdated').textContent = '— atualizado ' + new Date().toLocaleTimeString('pt-BR');
+    await Promise.all([loadUsers(), loadVisits()]);
+}
+
+async function loadUsers() {
+    try {
+        const { data, error, count } = await db
+            .from('profiles')
+            .select('*', { count: 'exact' })
+            .order('created_at', { ascending: false })
+            .limit(50);
+
+        if (error) {
+            document.getElementById('usersTable').innerHTML = `<div class="error-msg">Erro ao carregar usuários: ${error.message}</div>`;
+            return;
+        }
+
+        const total = count || (data ? data.length : 0);
+        const premium = data ? data.filter(u => u.premium).length : 0;
+        const free = total - premium;
+        const today = data ? data.filter(u => {
+            if (!u.created_at) return false;
+            const d = new Date(u.created_at);
+            const n = new Date();
+            return d.getFullYear() === n.getFullYear() && d.getMonth() === n.getMonth() && d.getDate() === n.getDate();
+        }).length : 0;
+
+        document.getElementById('totalUsers').textContent = total;
+        document.getElementById('premiumUsers').textContent = premium;
+        document.getElementById('freeUsers').textContent = free;
+        document.getElementById('todayUsers').textContent = today;
+        document.getElementById('usersCountBadge').textContent = `${total} total`;
+
+        if (!data || data.length === 0) {
+            document.getElementById('usersTable').innerHTML = '<div class="empty-state">Nenhum usuário ainda.</div>';
+            return;
+        }
+
+        let html = `<table><thead><tr>
+            <th>Nome</th><th>Email</th><th>Status</th><th>Cadastro</th><th>Lição Atual</th>
+        </tr></thead><tbody>`;
+        data.forEach(u => {
+            const date = u.created_at ? new Date(u.created_at).toLocaleDateString('pt-BR') : '—';
+            const name = u.name || u.display_name || '(sem nome)';
+            const email = u.email || '—';
+            const idx = u.current_idx != null ? `#${u.current_idx}` : '—';
+            html += `<tr>
+                <td>${esc(name)}</td>
+                <td style="color:var(--muted)">${esc(email)}</td>
+                <td><span class="${u.premium ? 'badge-premium' : 'badge-free'}">${u.premium ? '⭐ Premium' : '🆓 Gratuito'}</span></td>
+                <td style="color:var(--muted);font-size:.8rem">${date}</td>
+                <td style="color:var(--muted)">${idx}</td>
+            </tr>`;
+        });
+        html += '</tbody></table>';
+        document.getElementById('usersTable').innerHTML = html;
+    } catch(e) {
+        document.getElementById('usersTable').innerHTML = `<div class="error-msg">Erro: ${e.message}</div>`;
+    }
+}
+
+async function loadVisits() {
+    try {
+        const { data, error, count } = await db
+            .from('page_views')
+            .select('*', { count: 'exact' })
+            .order('ts', { ascending: false })
+            .limit(100);
+
+        if (error) {
+            // Table probably doesn't exist yet
+            document.getElementById('setupNotice').style.display = 'block';
+            document.getElementById('totalVisits').textContent = '—';
+            document.getElementById('todayVisits').textContent = '—';
+            document.getElementById('visitsCountBadge').textContent = 'tabela não criada';
+            document.getElementById('visitsTable').innerHTML = '<div class="empty-state" style="color:var(--yellow)">⚠️ Tabela <code>page_views</code> não encontrada. Siga as instruções acima.</div>';
+            return;
+        }
+
+        document.getElementById('setupNotice').style.display = 'none';
+        const total = count || (data ? data.length : 0);
+        const today = data ? data.filter(v => {
+            if (!v.ts) return false;
+            const d = new Date(v.ts);
+            const n = new Date();
+            return d.getFullYear() === n.getFullYear() && d.getMonth() === n.getMonth() && d.getDate() === n.getDate();
+        }).length : 0;
+
+        document.getElementById('totalVisits').textContent = total;
+        document.getElementById('todayVisits').textContent = today;
+        document.getElementById('visitsCountBadge').textContent = `${total} total`;
+
+        if (!data || data.length === 0) {
+            document.getElementById('visitsTable').innerHTML = '<div class="empty-state">Nenhuma visita registrada ainda.</div>';
+            return;
+        }
+
+        let html = `<table><thead><tr>
+            <th>Data/Hora</th><th>Referência</th>
+        </tr></thead><tbody>`;
+        data.slice(0, 50).forEach(v => {
+            const ts = v.ts ? new Date(v.ts).toLocaleString('pt-BR') : '—';
+            const ref = v.ref || 'Acesso direto';
+            html += `<tr>
+                <td style="color:var(--muted);font-size:.8rem">${ts}</td>
+                <td style="font-size:.82rem">${esc(ref)}</td>
+            </tr>`;
+        });
+        html += '</tbody></table>';
+        document.getElementById('visitsTable').innerHTML = html;
+    } catch(e) {
+        document.getElementById('setupNotice').style.display = 'block';
+        document.getElementById('visitsTable').innerHTML = `<div class="error-msg">Tabela page_views não existe ainda.</div>`;
+    }
+}
+
+function esc(str) {
+    return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+// Auto-login if session active
+if (sessionStorage.getItem('cm_admin') === '1') {
+    document.getElementById('loginScreen').style.display = 'none';
+    document.getElementById('dashboard').style.display = 'block';
+    document.body.style.alignItems = 'flex-start';
+    initDB();
+    loadAll();
+}
+</script>
+</body>
+</html>

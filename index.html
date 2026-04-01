@@ -13681,6 +13681,18 @@ function checkMPRedirect() {
 }
 checkMPRedirect();
 
+// Track page visit (for admin dashboard)
+(function trackVisit() {
+    try {
+        if (sbClient) {
+            sbClient.from('page_views').insert({
+                ts: new Date().toISOString(),
+                ref: document.referrer ? document.referrer.substring(0, 200) : null
+            }).then(() => {}).catch(() => {});
+        }
+    } catch(e) {}
+})();
+
 // Check for MP redirect when user returns to tab
 document.addEventListener('visibilitychange', function() {
     if (document.visibilityState === 'visible' && !isPremium()) {
