@@ -6,8 +6,10 @@
     <title>CodeMaster Bootcamp — Aprenda Programação do Zero</title>
     <meta name="google-adsense-account" content="ca-pub-6737222615730122">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6737222615730122" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Fira+Code:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Fira+Code:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap');
 
         * { margin:0; padding:0; box-sizing:border-box; }
 
@@ -778,8 +780,6 @@
     </script>
 </head>
 <body>
-<div id="__dbg" style="position:fixed;top:0;left:0;right:0;z-index:99999;background:red;color:#fff;font-size:11px;padding:4px 8px;display:none;max-height:200px;overflow:auto;font-family:monospace;"></div>
-<script>window.onerror=function(m,s,l,c,e){var d=document.getElementById("__dbg");d.style.display="block";d.innerHTML+="L"+l+":"+c+" "+m+"<br>";return false;};</script>
 <!-- NAV -->
 <nav>
     <div class="logo" onclick="goHome()">Code<span>Master</span></div>
@@ -888,16 +888,7 @@ function redeemCode() {
                 <div style="background:linear-gradient(145deg,rgba(16,185,129,.08),rgba(6,182,212,.05));border:1px solid rgba(16,185,129,.2);border-radius:16px;padding:2rem 1.5rem;">
                     <p style="color:var(--muted);font-size:.85rem;margin-bottom:1rem;">Aguarde o contador para ganhar acesso a mais uma lição grátis.</p>
                     <div style="display:flex;justify-content:center;margin-bottom:1rem;">
-                        <script>
-                            atOptions = {
-                                'key' : '3f8b0d335f2b647fdc45e7f58ee74d8d',
-                                'format' : 'iframe',
-                                'height' : 250,
-                                'width' : 300,
-                                'params' : {}
-                            };
-                        </script>
-                        <script src="https://www.highperformanceformat.com/3f8b0d335f2b647fdc45e7f58ee74d8d/invoke.js"></script>
+                        <div id="adBannerSlot"></div>
                     </div>
                     <p style="color:var(--muted);font-size:.8rem;">Ou adquira o <strong style="color:var(--green);">Premium</strong> para acesso ilimitado sem anúncios!</p>
                     <a href="https://www.mercadopago.com.br/checkout/v1/payment/redirect/327a00f8-dfd4-4719-8c1f-9d657d52d455/review/?source=link&preference-id=114513236-8bd187a4-0399-4c0a-b619-051b507b3823&router-request-id=de085ee6-361a-4a43-9a88-ca7aa11efcf4&p=ecc76db6965ae98326a8fb71e4bda686" target="_blank" style="display:inline-block;background:linear-gradient(135deg,var(--green),var(--green-d));color:#fff;font-weight:700;font-size:.9rem;padding:.6rem 1.5rem;border-radius:12px;text-decoration:none;margin-top:.5rem;" onclick="localStorage.setItem('cm_payment_pending','true');localStorage.setItem('cm_payment_ts',Date.now())">Comprar Premium — R$60</a>
@@ -1102,6 +1093,18 @@ function redeemCode() {
 // ====================================================
 // BOOTCAMP DATA — ALL 3 PLANS, ALL 8 WEEKS, ALL DAYS
 // ====================================================
+
+
+// Lazy load Adsterra banner when ad modal opens
+function loadAdBanner() {
+    var slot = document.getElementById('adBannerSlot');
+    if (!slot || slot.dataset.loaded) return;
+    slot.dataset.loaded = '1';
+    window.atOptions = { key:'3f8b0d335f2b647fdc45e7f58ee74d8d', format:'iframe', height:250, width:300, params:{} };
+    var s = document.createElement('script');
+    s.src = 'https://www.highperformanceformat.com/3f8b0d335f2b647fdc45e7f58ee74d8d/invoke.js';
+    slot.appendChild(s);
+}
 
 function makeLessons(plan) {
     const d = 3; // all lessons always available
@@ -2125,14 +2128,14 @@ print("Obrigado por usar a calculadora!")</code></pre>
 <p><strong>Parabéns!</strong> Você completou seu primeiro projeto! Agora tente adicionar novas funcionalidades: potência (**), raiz quadrada, ou um histórico de cálculos!</p>`,
   starter: `# Projeto completo - Calculadora\n# Junte: cabeçalho + while True + entrada + if/elif + saída\n\n# Cabeçalho\nprint("=" * 35)\nprint("   CALCULADORA PYTHON")\nprint("=" * 35)\n\n# Crie o loop principal com while True:\n___\n    # Peca num1, num2 com float(input()) e operação com input()\n    ___\n    ___\n    ___\n    # Use if/elif/else para +, -, *, / (verifique divisão por zero!)\n    ___\n    # Exiba resultado com f-string: f"{num1} {op} {num2} = {resultado:.2f}"\n    ___\n    # Pergunte se quer continuar, se não for "s" use break\n    ___`,
 },
-// Day 7: Revisão Semana 1
+// Day 7: Desafio Semana 1
 { week:1, day:7, num:1, lang:'python', title:'Desafio: print/input',
   content: `<h1>Desafio: print/input</h1>
 <p>Hora de praticar! Teste seus conhecimentos sobre as duas funções mais básicas do Python: <strong>print()</strong> e <strong>input()</strong>. O print() exibe informações na tela — pode receber texto, números, variáveis e até expressões. Você pode separar itens com virgula, usar o parâmetro sep pra mudar o separador e end pra mudar o final da linha. Já o input() faz o oposto: recebe informações do usuario.</p>
 
 <p>O ponto mais importante de lembrar: o input() <strong>sempre retorna string</strong>! Então se você quer um número, precisa converter com int() ou float(). Essas duas funções juntas (print e input) formam a base de qualquer programa interativo. Sem elas, seu programa não consegue se comunicar com o usuario. Hora de praticar com exercícios rapidos!</p>
 
-<pre style="background:#1a1a2e;border:1px solid #334155;border-radius:8px;padding:1rem;margin:.8rem 0;"><code># Revisão: print com vários formatos
+<pre style="background:#1a1a2e;border:1px solid #334155;border-radius:8px;padding:1rem;margin:.8rem 0;"><code># Desafio: print com vários formatos
 print("Texto simples")
 print("Nome:", "Joao", "Idade:", 25)
 
@@ -2142,7 +2145,7 @@ print("Nome:", "Joao", "Idade:", 25)
 # Seu código aqui
 # Seu código aqui
 
-# Revisão: input + conversão
+# Desafio: input + conversão
 nome = input("Seu nome: ")
 # Peca idade (converter pra int) e altura (converter pra float)
 # Seu código aqui
@@ -2158,7 +2161,7 @@ nome = input("Seu nome: ")
 <p><strong>Exercicio rápido:</strong> Crie um programa que pede o nome e o ano de nascimento do usuario, calcula a idade e exibe uma mensagem formatada com todos os dados!</p>
 <div style="background:linear-gradient(135deg,#1a1a3e,#2a1a4e);border:1px solid #7c3aed;border-radius:12px;padding:1.2rem;margin:1.5rem 0;"><h3 style="color:#a78bfa;margin:0 0 .5rem 0;">Curiosidade do Dia</h3><p style="margin:0;color:#c4b5fd;">Digite <code>import this</code> no Python e aparece o "Zen do Python" — 19 princípios de design. O mais famoso: <em>"Bonito e melhor que feio. Simples e melhor que complexo."</em></p></div>
 `,
-  starter: `# Revisão print/input\n\n# Peca nome, idade (int) e altura (float)\nnome = input("Nome: ")\n# Peca idade e converta com int(input())\nidade = ___\n# Peca altura e converta com float(input())\naltura = ___\n\n# Exiba os dados usando f-string: f"Olá {nome}!"\n___\n\n# Calcule e exiba a idade daqui 10 anos usando f-string\nprint(f"Daqui 10 anos você terá {___} anos")`,
+  starter: `# Desafio: print/input\n\n# Peca nome, idade (int) e altura (float)\nnome = input("Nome: ")\n# Peca idade e converta com int(input())\nidade = ___\n# Peca altura e converta com float(input())\naltura = ___\n\n# Exiba os dados usando f-string: f"Olá {nome}!"\n___\n\n# Calcule e exiba a idade daqui 10 anos usando f-string\nprint(f"Daqui 10 anos você terá {___} anos")`,
 },
 { week:1, day:7, num:2, lang:'python', title:'Desafio: variáveis',
   content: `<h1>Desafio: variáveis</h1>
@@ -2166,7 +2169,7 @@ nome = input("Seu nome: ")
 
 <p>Pontos importantes pra lembrar: nomes de variáveis devem ser descritivos (idade ao inves de x), não podem começar com número, não podem ter espaços (use underscore: nome_completo) e Python e case-sensitive (Nome e nome são variáveis diferentes). A tipagem e dinâmica, ou seja, você pode mudar o tipo de uma variável a qualquer momento, mas isso não é recomendado pra manter o código claro.</p>
 
-<pre style="background:#1a1a2e;border:1px solid #334155;border-radius:8px;padding:1rem;margin:.8rem 0;"><code># Revisão de tipos - crie uma variável de cada tipo
+<pre style="background:#1a1a2e;border:1px solid #334155;border-radius:8px;padding:1rem;margin:.8rem 0;"><code># Desafio: tipos - crie uma variável de cada tipo
 inteiro = 42
 decimal = 3.14
 texto = "Python"
@@ -2194,7 +2197,7 @@ sobrenome = "Silva"
 # Seu código aqui</code></pre>
 
 <p><strong>Exercicio:</strong> Crie variáveis pra armazenar dados de um produto (nome, preco, quantidade em estoque, disponível) e exiba tudo formatado com o tipo de cada variável!</p>`,
-  starter: `# Revisão variáveis\n\n# Crie uma variável de cada tipo:\n# int: guarde sua idade\nidade = ___\n# float: guarde sua altura\naltura = ___\n# str: guarde seu nome\nnome = ___\n# bool: guarde se é estudante\nestudante = ___\n\n# Use print(type(variável)) para verificar cada tipo\n___\n\n# Converta o texto "100" para int e some com 50\nresultado = ___\nprint(resultado)\n\n# Junte duas strings com + (ex: nome + " " + sobrenome)\nnome_completo = ___\nprint(nome_completo)`,
+  starter: `# Desafio: variáveis\n\n# Crie uma variável de cada tipo:\n# int: guarde sua idade\nidade = ___\n# float: guarde sua altura\naltura = ___\n# str: guarde seu nome\nnome = ___\n# bool: guarde se é estudante\nestudante = ___\n\n# Use print(type(variável)) para verificar cada tipo\n___\n\n# Converta o texto "100" para int e some com 50\nresultado = ___\nprint(resultado)\n\n# Junte duas strings com + (ex: nome + " " + sobrenome)\nnome_completo = ___\nprint(nome_completo)`,
 },
 { week:1, day:7, num:3, lang:'python', title:'Desafio: if/else',
   content: `<h1>Desafio: if/else</h1>
@@ -2202,7 +2205,7 @@ sobrenome = "Silva"
 
 <p>Você também pode criar <strong>condições compostas</strong> usando and (ambas verdadeiras), or (pelo menos uma verdadeira) e not (inverte). Ifs podem ser <strong>aninhados</strong> (um dentro do outro), mas cuidado para não exagerar — muitos niveis de aninhamento deixam o código dificil de ler. Quando possível, prefira elif a ifs aninhados.</p>
 
-<pre style="background:#1a1a2e;border:1px solid #334155;border-radius:8px;padding:1rem;margin:.8rem 0;"><code># Revisão: sistema de aprovação completo
+<pre style="background:#1a1a2e;border:1px solid #334155;border-radius:8px;padding:1rem;margin:.8rem 0;"><code># Desafio: sistema de aprovação completo
 nota = float(input("Digite sua nota: "))
 frequência = int(input("Sua frequência (%): "))
 
@@ -2225,7 +2228,7 @@ frequência = int(input("Sua frequência (%): "))
 #     ???</code></pre>
 
 <p><strong>Exercicio:</strong> Crie um classificador de IMC que recebe peso e altura, calcula o IMC e classifica em: abaixo do peso, normal, sobrepeso ou obesidade!</p>`,
-  starter: `# Revisão if/else\n\n# Sistema de aprovação\nnota = float(input("Nota: "))\nfrequência = int(input("Frequência %: "))\n\n# Use if/elif/else para classificar:\n# if nota >= 7 and frequência >= 75: print("APROVADO")\n# elif nota >= 5 and frequência >= 75: print("RECUPERAÇÃO")\n# elif frequência < 75: print("REPROVADO POR FALTA")\n# else: print("REPROVADO POR NOTA")\n___`,
+  starter: `# Desafio: if/else\n\n# Sistema de aprovação\nnota = float(input("Nota: "))\nfrequência = int(input("Frequência %: "))\n\n# Use if/elif/else para classificar:\n# if nota >= 7 and frequência >= 75: print("APROVADO")\n# elif nota >= 5 and frequência >= 75: print("RECUPERAÇÃO")\n# elif frequência < 75: print("REPROVADO POR FALTA")\n# else: print("REPROVADO POR NOTA")\n___`,
 },
 { week:1, day:7, num:4, lang:'python', title:'Desafio: loops',
   content: `<h1>Desafio: loops</h1>
@@ -2233,13 +2236,13 @@ frequência = int(input("Sua frequência (%): "))
 
 <p>Você também aprendeu <strong>break</strong> (para o loop completamente) e <strong>continue</strong> (pula pra próxima volta). O padrão <code>while True</code> com <code>break</code> é muito usado para criar menus e programas que rodam até o usuario decidir parar. Lembre-se: sempre garanta que seus loops while tenham uma condição de saída pra evitar loops infinitos!</p>
 
-<pre style="background:#1a1a2e;border:1px solid #334155;border-radius:8px;padding:1rem;margin:.8rem 0;"><code># Revisão for: crie a tabuada do 7
+<pre style="background:#1a1a2e;border:1px solid #334155;border-radius:8px;padding:1rem;margin:.8rem 0;"><code># Desafio for: crie a tabuada do 7
 # Dica: for i in range(1, 11): print(f"7 x {i} = {7*i}")
 print("Tabuada do 7:")
 # Seu código aqui
 #     ???
 
-# Revisão while + break: Lista de Compras
+# Desafio while + break: Lista de Compras
 # Peca preços até o usuario digitar "fim"
 print()
 print("=== Lista de Compras ===")
@@ -2265,7 +2268,7 @@ print("Números de 1 a 10 (pulando multiplos de 3):")
 #     ???</code></pre>
 
 <p><strong>Exercicio:</strong> Crie um programa que exibe todos os números de 1 a 50 que são divisiveis por 3 mas não por 5!</p>`,
-  starter: `# Revisão loops\n\n# 1. Tabuada do 7: use for i in range(1, 11): print(f"7 x {i} = {7*i}")\nprint("Tabuada do 7:")\n___\n\n# 2. Lista de compras: while True, peca preco com input()\n# Se digitar "fim", use break. Senão, acumule no total\nitens = 0\ntotal = 0\n___\nprint(f"Total: {itens} itens, R$ {total:.2f}")\n\n# 3. Use for range(1, 11) e continue para pular múltiplos de 3\n# Dica: if i % 3 == 0: continue\n___`,
+  starter: `# Desafio: loops\n\n# 1. Tabuada do 7: use for i in range(1, 11): print(f"7 x {i} = {7*i}")\nprint("Tabuada do 7:")\n___\n\n# 2. Lista de compras: while True, peca preco com input()\n# Se digitar "fim", use break. Senão, acumule no total\nitens = 0\ntotal = 0\n___\nprint(f"Total: {itens} itens, R$ {total:.2f}")\n\n# 3. Use for range(1, 11) e continue para pular múltiplos de 3\n# Dica: if i % 3 == 0: continue\n___`,
 },
 { week:1, day:7, num:5, lang:'python', title:'Desafio final',
   content: `<h1>Desafio final</h1>
@@ -3472,7 +3475,7 @@ while True:
 <p>Parabéns! Você construiu um sistema completo do zero. Esse projeto demonstra que você já domina os conceitos fundamentais de Python. A partir daqui, você pode expandir adicionando salvamento em arquivo, válidacoes mais robustas e novas funcionalidades.</p>`,
   starter: `# Projeto Cadastro Completo\n# Escreva aqui: junte menu + funções CRUD + busca no loop principal\n\ncadastro = []\n\ndef menu():\n    print("\\n" + "=" * 35)\n    print("   SISTEMA DE CADASTRO")\n    print("=" * 35)\n    print("1. Cadastrar")\n    print("2. Listar")\n    print("3. Buscar")\n    print("0. Sair")\n    return input("Opção: ")\n\ndef cadastrar(lista):\n    nome = input("Nome: ").strip().title()\n    # Escreva aqui: peça idade, email, cidade e adicione o dicionário à lista\n    ___\n    lista.append({"nome": nome, ___})\n    print(f"'{nome}' cadastrado!")\n\ndef listar(lista):\n    # Escreva aqui: use enumerate para listar numerado, ou mostre "Lista vazia"\n    ___\n\ndef buscar(lista):\n    # Escreva aqui: peça um termo e filtre com list comprehension usando "in" e .lower()\n    ___\n\n# Escreva aqui: crie o loop principal chamando as funções corretas\nwhile True:\n    op = menu()\n    if op == "1":\n        ___(cadastro)\n    elif op == "2":\n        ___(cadastro)\n    elif op == "3":\n        ___(cadastro)\n    elif op == "0":\n        print("Até logo!")\n        ___`,
 },
-// Day 7: Revisão Semana 2
+// Day 7: Desafio Semana 2
 { week:2, day:7, num:1, lang:'python', title:'Desafio: funções',
   content: `<h1>Desafio: funções</h1>
 <p>Teste seus conhecimentos sobre funções, que foi o primeiro grande tema da Semana 2. Funções são blocos de código reutilizaveis definidos com <strong>def</strong>. Elas podem receber parâmetros, ter valores padrão, e retornar resultados com <strong>return</strong>. Funções são a base da organização de código — sem elas, teriamos programas enormes e impossiveis de manter.</p>
@@ -3512,7 +3515,7 @@ print(criar_email("  joao da silva  "))
 <p>Funções são como ferramentas em uma caixa. Quanto mais funções úteis você cria, mais rápido resolve problemas novos!</p>
 <div style="background:linear-gradient(135deg,#1a1a3e,#2a1a4e);border:1px solid #7c3aed;border-radius:12px;padding:1.2rem;margin:1.5rem 0;"><h3 style="color:#a78bfa;margin:0 0 .5rem 0;">Curiosidade do Dia</h3><p style="margin:0;color:#c4b5fd;">Python é a linguagem mais popular do mundo! Usada pela NASA, Google, Netflix e Spotify. Dominar Python abre portas em ciência de dados, IA, web e automação!</p></div>
 `,
-  starter: `# Revisão funções\n# Escreva aqui: crie funções com parâmetros, return e composição\n# Dica: uma função pode chamar outra função\n\ndef formatar_nome(nome):\n    # Escreva aqui: use .strip() para remover espaços e .title() para capitalizar\n    return nome.___().___()\n\ndef criar_email(nome, dominio="empresa.com"):\n    # Escreva aqui: use formatar_nome(), .lower(), .split() e ".".join() para gerar email\n    nome_limpo = formatar_nome(nome)\n    partes = nome_limpo.lower().split()\n    usuario = ".".join(partes)\n    return f"{usuario}@{dominio}"\n\n# Escreva aqui: teste com "  joao da silva  "\nprint(criar_email(___))  # Deve imprimir: joao.da.silva@empresa.com\n\n# Escreva aqui: crie uma função que retorna o menor, maior e média de uma lista\ndef analisar_números(números):\n    return min(números), max(números), sum(números) / len(números)\n\nmenor, maior, media = analisar_números([4, 8, 2, 9, 1])\nprint(f"Menor: {menor}, Maior: {maior}, Média: {media}")`,
+  starter: `# Desafio: funções\n# Escreva aqui: crie funções com parâmetros, return e composição\n# Dica: uma função pode chamar outra função\n\ndef formatar_nome(nome):\n    # Escreva aqui: use .strip() para remover espaços e .title() para capitalizar\n    return nome.___().___()\n\ndef criar_email(nome, dominio="empresa.com"):\n    # Escreva aqui: use formatar_nome(), .lower(), .split() e ".".join() para gerar email\n    nome_limpo = formatar_nome(nome)\n    partes = nome_limpo.lower().split()\n    usuario = ".".join(partes)\n    return f"{usuario}@{dominio}"\n\n# Escreva aqui: teste com "  joao da silva  "\nprint(criar_email(___))  # Deve imprimir: joao.da.silva@empresa.com\n\n# Escreva aqui: crie uma função que retorna o menor, maior e média de uma lista\ndef analisar_números(números):\n    return min(números), max(números), sum(números) / len(números)\n\nmenor, maior, media = analisar_números([4, 8, 2, 9, 1])\nprint(f"Menor: {menor}, Maior: {maior}, Média: {media}")`,
 },
 { week:2, day:7, num:2, lang:'python', title:'Desafio: listas',
   content: `<h1>Desafio: listas</h1>
@@ -3552,11 +3555,11 @@ precos = [5.99, 7.50, 3.99]
 catalogo = ___
 print(catalogo)</code></pre>
 <p>Se você consegue resolver esses exercícios sem dificuldade, parabéns! Você já domina listas em Python.</p>`,
-  starter: `# Revisão listas\n# Escreva aqui: pratique list comprehension, sort() e zip()\n\nvendas = [150, 200, 50, 300, 180, 90, 250]\ntotal = sum(vendas)\nmedia = total / len(vendas)\nprint(f"Total: R$ {total}, Média: R$ {media:.2f}")\n\n# Escreva aqui: filtre vendas acima da média com list comprehension\nacima_media = [v for v in vendas if ___]\nprint("Acima da média:", acima_media)\n\n# Escreva aqui: formate nomes removendo espaços e capitalizando\nnomes = ["  ana silva ", "CARLOS SANTOS", "bia lima  "]\n# Dica: [n.strip().title() for n in nomes]\nformatados = [___]\nprint(formatados)\n\n# Escreva aqui: combine duas listas em pares usando zip()\nprodutos = ["Arroz", "Feijao", "Macarrao"]\nprecos = [5.99, 7.50, 3.99]\ncatalogo = list(zip(___, ___))\nprint(catalogo)`,
+  starter: `# Desafio: listas\n# Escreva aqui: pratique list comprehension, sort() e zip()\n\nvendas = [150, 200, 50, 300, 180, 90, 250]\ntotal = sum(vendas)\nmedia = total / len(vendas)\nprint(f"Total: R$ {total}, Média: R$ {media:.2f}")\n\n# Escreva aqui: filtre vendas acima da média com list comprehension\nacima_media = [v for v in vendas if ___]\nprint("Acima da média:", acima_media)\n\n# Escreva aqui: formate nomes removendo espaços e capitalizando\nnomes = ["  ana silva ", "CARLOS SANTOS", "bia lima  "]\n# Dica: [n.strip().title() for n in nomes]\nformatados = [___]\nprint(formatados)\n\n# Escreva aqui: combine duas listas em pares usando zip()\nprodutos = ["Arroz", "Feijao", "Macarrao"]\nprecos = [5.99, 7.50, 3.99]\ncatalogo = list(zip(___, ___))\nprint(catalogo)`,
 },
 { week:2, day:7, num:3, lang:'python', title:'Desafio: dicionários',
   content: `<h1>Desafio: dicionários</h1>
-<p>Dicionarios armazenam dados em pares chave-valor e são uma das estruturas mais versateis do Python. Nesta revisão, vamos reforcar como criar dicionários, acessar valores com colchetes e get(), usar métodos como keys(), values() e items(), e iterar sobre os dados. Também vamos praticar dict comprehension para criar dicionários de forma concisa.</p>
+<p>Dicionarios armazenam dados em pares chave-valor e são uma das estruturas mais versateis do Python. Hora de praticar como criar dicionários, acessar valores com colchetes e get(), usar métodos como keys(), values() e items(), e iterar sobre os dados. Também vamos praticar dict comprehension para criar dicionários de forma concisa.</p>
 <p>Vamos trabalhar com um cenario pratico: um mini sistema de estoque de supermercado. Esse tipo de exercício é muito parecido com situações reais que você vai encontrar no mercado de trabalho. Veja como dicionários resolvem o problema de forma elegante:</p>
 <pre style="background:#1a1a2e;border:1px solid #334155;border-radius:8px;padding:1rem;margin:.8rem 0;"><code># Exemplo - dicionários aninhados:
 estoque = {
@@ -3594,11 +3597,11 @@ for info in estoque.values():
 for produto, info in estoque.items():
     print(f"  {produto}: R$ {___}")</code></pre>
 <p>Dicionarios aninhados (dicionários dentro de dicionários) são um padrão muito comum para representar dados complexos. Pratique até se sentir confortavel com essa estrutura!</p>`,
-  starter: `# Revisão dicionários\n# Escreva aqui: pratique dicionários aninhados e dict comprehension\n\nestoque = {\n    "arroz": {"preco": 5.99, "quantidade": 50},\n    "feijao": {"preco": 7.50, "quantidade": 30},\n    "macarrao": {"preco": 3.99, "quantidade": 80}\n}\n\n# Escreva aqui: calcule o valor total do estoque (preço x quantidade)\n# Dica: sum(info["preco"] * info["quantidade"] for info in estoque.values())\ntotal = ___\nprint(f"Valor total: R$ {total:.2f}")\n\n# Escreva aqui: filtre produtos com estoque < 40 usando dict comprehension\n# Dica: {p: i for p, i in estoque.items() if condição}\nbaixo_estoque = {___}\nprint("Estoque baixo:", baixo_estoque)\n\n# Escreva aqui: aplique aumento de 10% em todos os preços\nfor info in estoque.values():\n    info["preco"] = info["preco"] * ___`,
+  starter: `# Desafio: dicionários\n# Escreva aqui: pratique dicionários aninhados e dict comprehension\n\nestoque = {\n    "arroz": {"preco": 5.99, "quantidade": 50},\n    "feijao": {"preco": 7.50, "quantidade": 30},\n    "macarrao": {"preco": 3.99, "quantidade": 80}\n}\n\n# Escreva aqui: calcule o valor total do estoque (preço x quantidade)\n# Dica: sum(info["preco"] * info["quantidade"] for info in estoque.values())\ntotal = ___\nprint(f"Valor total: R$ {total:.2f}")\n\n# Escreva aqui: filtre produtos com estoque < 40 usando dict comprehension\n# Dica: {p: i for p, i in estoque.items() if condição}\nbaixo_estoque = {___}\nprint("Estoque baixo:", baixo_estoque)\n\n# Escreva aqui: aplique aumento de 10% em todos os preços\nfor info in estoque.values():\n    info["preco"] = info["preco"] * ___`,
 },
 { week:2, day:7, num:4, lang:'python', title:'Desafio: strings',
   content: `<h1>Desafio: strings</h1>
-<p>Strings são o tipo de dado mais presente no dia a dia da programação. Nesta revisão, vamos reforcar os conceitos essenciais: métodos de string (upper, lower, strip, replace, find), fatiamento (slicing), f-strings para formatação, e split/join para dividir e juntar textos. Dominar strings e fundamental para processar qualquer tipo de entrada de dados.</p>
+<p>Strings são o tipo de dado mais presente no dia a dia da programação. Hora de praticar os conceitos essenciais: métodos de string (upper, lower, strip, replace, find), fatiamento (slicing), f-strings para formatação, e split/join para dividir e juntar textos. Dominar strings e fundamental para processar qualquer tipo de entrada de dados.</p>
 <p>Vamos resolver exercícios práticos que combinam todas as técnicas de manipulação de strings. Esses exercícios representam tarefas comuns que todo programador precisa fazer, como válidar dados, formatar textos e extrair informações:</p>
 <pre style="background:#1a1a2e;border:1px solid #334155;border-radius:8px;padding:1rem;margin:.8rem 0;"><code># Exemplo:
 def formatar_cpf(cpf):
@@ -3638,7 +3641,7 @@ dados = [("Produto", "Preco"), ("Arroz", "R$ 5.99"), ("Feijao", "R$ 7.50")]
 for nome, preco in dados:
     print(f"{___}{___}")</code></pre>
 <p>Strings estao em todo lugar: URLs, emails, nomes, endereços, mensagens. Quanto mais fluente você for com strings, mais produtivo sera como programador!</p>`,
-  starter: `# Revisão strings\n# Escreva aqui: pratique fatiamento, f-strings, split/join e replace\n\ndef criar_slug(titulo):\n    # Escreva aqui: transforme "Meu Primeiro Post" em "meu-primeiro-post"\n    # Dica: use .strip(), .lower() e .replace(" ", "-")\n    return titulo.___().___().replace(___, ___)\n\nprint(criar_slug("Meu Primeiro Post no Blog"))\n\ndef analisar_texto(texto):\n    # Escreva aqui: conte caracteres, palavras e ache a maior palavra\n    # Dica: .split() para palavras, len() para contar, max(lista, key=len) para a maior\n    palavras = texto.split()\n    print(f"Caracteres: {len(texto)}")\n    print(f"Palavras: {len(palavras)}")\n    print(f"Maior palavra: {max(palavras, key=___)}")\n\nanalisar_texto("Python é uma linguagem de programação poderosa")`,
+  starter: `# Desafio: strings\n# Escreva aqui: pratique fatiamento, f-strings, split/join e replace\n\ndef criar_slug(titulo):\n    # Escreva aqui: transforme "Meu Primeiro Post" em "meu-primeiro-post"\n    # Dica: use .strip(), .lower() e .replace(" ", "-")\n    return titulo.___().___().replace(___, ___)\n\nprint(criar_slug("Meu Primeiro Post no Blog"))\n\ndef analisar_texto(texto):\n    # Escreva aqui: conte caracteres, palavras e ache a maior palavra\n    # Dica: .split() para palavras, len() para contar, max(lista, key=len) para a maior\n    palavras = texto.split()\n    print(f"Caracteres: {len(texto)}")\n    print(f"Palavras: {len(palavras)}")\n    print(f"Maior palavra: {max(palavras, key=___)}")\n\nanalisar_texto("Python é uma linguagem de programação poderosa")`,
 },
 { week:2, day:7, num:5, lang:'python', title:'Desafio final semana 2',
   content: `<h1>Desafio final semana 2</h1>
@@ -4759,12 +4762,12 @@ jogar()
 </code></pre>`,
   starter: `# Projeto Jogo Completo\n# Dica: integre escolher_classe(), criar_monstros() e combate()\n# Use for para iterar monstros, if para verificar vida\n# Cure o jogador entre combates\n\n# Escreva aqui: crie escolher_classe() que retorna Guerreiro ou Mago\ndef escolher_classe():\n    print("1 - Guerreiro")\n    print("2 - Mago")\n    while True:\n        escolha = input("Classe: ")\n        nome = input("Nome: ")\n        if escolha == "1":\n            return ___(nome)\n        elif escolha == "2":\n            return ___(nome)\n\n# Escreva aqui: crie jogar() que integra tudo\ndef jogar():\n    print("=== RPG por Turnos ===")\n    jogador = escolher_classe()\n    # Escreva aqui: crie lista de monstros com dificuldade crescente\n    monstros = [___]\n    # Escreva aqui: use for para enfrentar cada monstro\n    for monstro in monstros:\n        combate(jogador, monstro)\n        # Escreva aqui: verifique se o jogador morreu\n        if not jogador.___():\n            print("GAME OVER")\n            return\n    print("PARABÉNS! Você venceu!")\n\njogar()`,
 },
-// Day 7: Revisão Semana 3
+// Day 7: Desafio Semana 3
 { week:3, day:7, num:1, lang:'python', title:'Desafio: loops avançados',
   content: `<h1>Desafio: loops avançados</h1>
-<p>Vamos revisar os conceitos de <strong>loops avançados</strong> que aprendemos no Dia 1. O <strong>while</strong> e usado quando não sabemos quantas vezes o loop vai rodar - ele depende de uma condição. O <strong>while True</strong> com break e perfeito para menus e válidação de input. <strong>Nested loops</strong> (loops aninhados) são essenciais para trabalhar com matrizes e dados bidimensionais. E <strong>enumerate/zip</strong> tornam seus loops mais limpos e pythonico.</p>
-<p>A chave para dominar loops e saber quando usar cada tipo. Use for quando você sabe quantas iteracoes precisa ou quando esta percorrendo uma sequência. Use while quando a parada depende de uma condição que muda durante a execução. Use enumerate quando precisa do índice junto com o valor. Use zip quando precisa percorrer multiplas listas em paralelo. Vamos praticar com um exercício de revisão:</p>
-<pre style="background:#1a1a2e;border:1px solid #334155;border-radius:8px;padding:1rem;margin:.8rem 0;"><code># Revisão: combine todos os tipos de loop
+<p>Teste seus conhecimentos sobre <strong>loops avançados</strong> que aprendemos no Dia 1. O <strong>while</strong> e usado quando não sabemos quantas vezes o loop vai rodar - ele depende de uma condição. O <strong>while True</strong> com break e perfeito para menus e válidação de input. <strong>Nested loops</strong> (loops aninhados) são essenciais para trabalhar com matrizes e dados bidimensionais. E <strong>enumerate/zip</strong> tornam seus loops mais limpos e pythonico.</p>
+<p>A chave para dominar loops e saber quando usar cada tipo. Use for quando você sabe quantas iteracoes precisa ou quando esta percorrendo uma sequência. Use while quando a parada depende de uma condição que muda durante a execução. Use enumerate quando precisa do índice junto com o valor. Use zip quando precisa percorrer multiplas listas em paralelo. Vamos praticar com um exercício desafiador:</p>
+<pre style="background:#1a1a2e;border:1px solid #334155;border-radius:8px;padding:1rem;margin:.8rem 0;"><code># Desafio: combine todos os tipos de loop
 nomes = ["Ana", "Carlos", "Maria", "Pedro"]
 notas = [8.5, 9.0, 7.0, 6.5]
 
@@ -4788,13 +4791,13 @@ print("\\nMedia da turma:", ___)  # Calcule soma / len(notas)
 </code></pre>
 <div style="background:linear-gradient(135deg,#1a1a3e,#2a1a4e);border:1px solid #7c3aed;border-radius:12px;padding:1.2rem;margin:1.5rem 0;"><h3 style="color:#a78bfa;margin:0 0 .5rem 0;">Curiosidade do Dia</h3><p style="margin:0;color:#c4b5fd;">O YouTube foi originalmente escrito em Python! E o Instagram roda em Django e processa mais de 2 bilhoes de usuarios por mes.</p></div>
 `,
-  starter: `# Revisão loops\n# Dica: for = sequência conhecida, while = condição\n# enumerate = índice + valor, zip = listas paralelas\nnomes = ["Ana", "Carlos", "Maria", "Pedro"]\nnotas = [8.5, 9.0, 7.0, 6.5]\n\n# Escreva aqui: use for com zip(nomes, notas) e determine Aprovado (>= 7) ou Reprovado\nfor ___, ___ in zip(___, ___):\n    status = "Aprovado" if ___ >= 7 else "Reprovado"\n    print(___, "-", ___, "-", status)\n\n# Escreva aqui: use while para calcular a média das notas\nsoma = 0\ncount = 0\nwhile count < len(___):\n    soma += notas[count]\n    count += 1\nprint("Média:", soma / len(notas))`,
+  starter: `# Desafio: loops\n# Dica: for = sequência conhecida, while = condição\n# enumerate = índice + valor, zip = listas paralelas\nnomes = ["Ana", "Carlos", "Maria", "Pedro"]\nnotas = [8.5, 9.0, 7.0, 6.5]\n\n# Escreva aqui: use for com zip(nomes, notas) e determine Aprovado (>= 7) ou Reprovado\nfor ___, ___ in zip(___, ___):\n    status = "Aprovado" if ___ >= 7 else "Reprovado"\n    print(___, "-", ___, "-", status)\n\n# Escreva aqui: use while para calcular a média das notas\nsoma = 0\ncount = 0\nwhile count < len(___):\n    soma += notas[count]\n    count += 1\nprint("Média:", soma / len(notas))`,
 },
 { week:3, day:7, num:2, lang:'python', title:'Desafio: erros',
   content: `<h1>Desafio: erros</h1>
-<p>Vamos revisar o <strong>tratamento de erros</strong> que aprendemos no Dia 2. O bloco <strong>try/except</strong> protege seu programa contra crashes inesperados. Você coloca o código que pode falhar no try e trata cada tipo de erro no except. Os tipos mais comuns são ValueError (conversão inválida), TypeError (tipo errado), ZeroDivisionError (divisão por zero), IndexError (índice inválido), KeyError (chave inexistente) e FileNotFoundError (arquivo não encontrado).</p>
-<p>Lembre-se da estrutura completa: <strong>try</strong> (tenta executar), <strong>except</strong> (trata o erro), <strong>else</strong> (executa se não houver erro) e <strong>finally</strong> (executa sempre). A válidação de input combina while True com try/except para garantir que o usuario forneca dados válidos. Sempre trate erros específicos antes dos genéricos. Veja o exercício de revisão:</p>
-<pre style="background:#1a1a2e;border:1px solid #334155;border-radius:8px;padding:1rem;margin:.8rem 0;"><code># Revisão: crie uma calculadora segura com tratamento de erros
+<p>Teste seus conhecimentos sobre o <strong>tratamento de erros</strong> que aprendemos no Dia 2. O bloco <strong>try/except</strong> protege seu programa contra crashes inesperados. Você coloca o código que pode falhar no try e trata cada tipo de erro no except. Os tipos mais comuns são ValueError (conversão inválida), TypeError (tipo errado), ZeroDivisionError (divisão por zero), IndexError (índice inválido), KeyError (chave inexistente) e FileNotFoundError (arquivo não encontrado).</p>
+<p>Lembre-se da estrutura completa: <strong>try</strong> (tenta executar), <strong>except</strong> (trata o erro), <strong>else</strong> (executa se não houver erro) e <strong>finally</strong> (executa sempre). A válidação de input combina while True com try/except para garantir que o usuario forneca dados válidos. Sempre trate erros específicos antes dos genéricos. Veja o exercício:</p>
+<pre style="background:#1a1a2e;border:1px solid #334155;border-radius:8px;padding:1rem;margin:.8rem 0;"><code># Desafio: crie uma calculadora segura com tratamento de erros
 # Dica: combine while True + try/except/else/finally
 def calculadora_segura():
     while True:
@@ -4824,11 +4827,11 @@ def calculadora_segura():
 
 calculadora_segura()
 </code></pre>`,
-  starter: `# Revisão erros\n# Dica: try/except/else/finally\n# ValueError para conversão, ZeroDivisionError para divisão\n# else = sem erro, finally = sempre\ndef calculadora_segura():\n    while True:\n        try:\n            num1 = float(input("Primeiro número: "))\n            op = input("Operação (+,-,*,/): ")\n            num2 = float(input("Segundo número: "))\n            # Escreva aqui: use if/elif para cada operação e guarde em resultado\n            if op == "+":\n                resultado = num1 ___ num2\n            elif op == "/":\n                resultado = num1 ___ num2\n        # Escreva aqui: trate ValueError para entrada não numérica\n        except ___:\n            print("Digite um número válido!")\n            continue\n        # Escreva aqui: trate ZeroDivisionError\n        except ___:\n            print("Não divide por zero!")\n            continue\n        # Escreva aqui: adicione else para imprimir o resultado\n        ___:\n            print("Resultado:", resultado)\n        # Escreva aqui: adicione finally\n        ___:\n            print("---")\n        if input("Continuar? (s/n): ") != "s":\n            break\n\ncalculadora_segura()`,
+  starter: `# Desafio: erros\n# Dica: try/except/else/finally\n# ValueError para conversão, ZeroDivisionError para divisão\n# else = sem erro, finally = sempre\ndef calculadora_segura():\n    while True:\n        try:\n            num1 = float(input("Primeiro número: "))\n            op = input("Operação (+,-,*,/): ")\n            num2 = float(input("Segundo número: "))\n            # Escreva aqui: use if/elif para cada operação e guarde em resultado\n            if op == "+":\n                resultado = num1 ___ num2\n            elif op == "/":\n                resultado = num1 ___ num2\n        # Escreva aqui: trate ValueError para entrada não numérica\n        except ___:\n            print("Digite um número válido!")\n            continue\n        # Escreva aqui: trate ZeroDivisionError\n        except ___:\n            print("Não divide por zero!")\n            continue\n        # Escreva aqui: adicione else para imprimir o resultado\n        ___:\n            print("Resultado:", resultado)\n        # Escreva aqui: adicione finally\n        ___:\n            print("---")\n        if input("Continuar? (s/n): ") != "s":\n            break\n\ncalculadora_segura()`,
 },
 { week:3, day:7, num:3, lang:'python', title:'Desafio: arquivos',
   content: `<h1>Desafio: arquivos</h1>
-<p>Vamos revisar a <strong>manipulação de arquivos</strong> do Dia 3. Sempre use <strong>with open()</strong> para garantir que o arquivo sera fechado corretamente. Os modos principais são: <strong>"r"</strong> (leitura), <strong>"w"</strong> (escrita - apaga conteúdo existente) e <strong>"a"</strong> (append - adiciona ao final). Para ler, você pode usar read() (tudo de uma vez), readline() (uma linha) ou iterar com for (linha por linha). Para CSV, use o modulo csv com reader() e writer().</p>
+<p>Hora de praticar a <strong>manipulação de arquivos</strong> do Dia 3. Sempre use <strong>with open()</strong> para garantir que o arquivo sera fechado corretamente. Os modos principais são: <strong>"r"</strong> (leitura), <strong>"w"</strong> (escrita - apaga conteúdo existente) e <strong>"a"</strong> (append - adiciona ao final). Para ler, você pode usar read() (tudo de uma vez), readline() (uma linha) ou iterar com for (linha por linha). Para CSV, use o modulo csv com reader() e writer().</p>
 <p>Dica importante: sempre combine manipulação de arquivos com tratamento de erros usando try/except, especialmente para FileNotFoundError ao ler arquivos. Isso torna seu programa muito mais robusto. Vamos praticar com um exercício que combina leitura, escrita e tratamento de erros em um mini-sistema de cadastro:</p>
 <pre style="background:#1a1a2e;border:1px solid #334155;border-radius:8px;padding:1rem;margin:.8rem 0;"><code>import csv
 
@@ -4859,12 +4862,12 @@ adicionar_contato("Ana", "11999998888", "ana@email.com")
 adicionar_contato("Carlos", "21988887777", "carlos@email.com")
 listar_contatos()
 </code></pre>`,
-  starter: `# Revisão arquivos\n# Dica: "r" ler, "w" escrever, "a" append\n# csv.reader() e csv.writer() para CSV\n# Sempre use try/except com arquivos\nimport csv\n\n# Escreva aqui: crie adicionar_contato(nome, tel, email) que grava em CSV modo append\ndef adicionar_contato(nome, tel, email):\n    with open("contatos.csv", ___) as f:\n        escritor = csv.writer(f)\n        escritor.writerow([nome, tel, email])\n\n# Escreva aqui: crie listar_contatos() que lê o CSV e imprime com enumerate\ndef listar_contatos():\n    try:\n        with open("contatos.csv", ___) as f:\n            leitor = csv.___(f)\n            for i, contato in enumerate(leitor, 1):\n                print(str(i) + ".", contato[0], "-", contato[1])\n    except ___:\n        print("Nenhum contato ainda.")\n\nadicionar_contato("Ana", "11999998888", "ana@email.com")\nlistar_contatos()`,
+  starter: `# Desafio: arquivos\n# Dica: "r" ler, "w" escrever, "a" append\n# csv.reader() e csv.writer() para CSV\n# Sempre use try/except com arquivos\nimport csv\n\n# Escreva aqui: crie adicionar_contato(nome, tel, email) que grava em CSV modo append\ndef adicionar_contato(nome, tel, email):\n    with open("contatos.csv", ___) as f:\n        escritor = csv.writer(f)\n        escritor.writerow([nome, tel, email])\n\n# Escreva aqui: crie listar_contatos() que lê o CSV e imprime com enumerate\ndef listar_contatos():\n    try:\n        with open("contatos.csv", ___) as f:\n            leitor = csv.___(f)\n            for i, contato in enumerate(leitor, 1):\n                print(str(i) + ".", contato[0], "-", contato[1])\n    except ___:\n        print("Nenhum contato ainda.")\n\nadicionar_contato("Ana", "11999998888", "ana@email.com")\nlistar_contatos()`,
 },
 { week:3, day:7, num:4, lang:'python', title:'Desafio: OOP',
   content: `<h1>Desafio: OOP</h1>
-<p>Vamos revisar <strong>Orientacao a Objetos</strong> dos Dias 4 e 5. Uma <strong>classe</strong> e um modelo que define atributos (dados) e métodos (comportamentos). O <strong>__init__</strong> inicializa o objeto é o <strong>self</strong> referência o próprio objeto. <strong>Heranca</strong> permite criar classes filhas que reutilizam código da classe pai. <strong>super()</strong> chama métodos da classe pai. <strong>Polimorfismo</strong> permite que objetos diferentes respondam ao mesmo método de formas diferentes.</p>
-<p>Os conceitos de OOP se conectam de forma poderosa: você cria uma classe base com o comportamento comum, usa herança para especializar, e polimorfismo para tratar todos os objetos de forma generica. Classes abstratas garantem que as subclasses implementem os métodos necessários. Vamos revisar tudo com um exercício completo:</p>
+<p>Teste seus conhecimentos sobre <strong>Orientacao a Objetos</strong> dos Dias 4 e 5. Uma <strong>classe</strong> e um modelo que define atributos (dados) e métodos (comportamentos). O <strong>__init__</strong> inicializa o objeto é o <strong>self</strong> referência o próprio objeto. <strong>Heranca</strong> permite criar classes filhas que reutilizam código da classe pai. <strong>super()</strong> chama métodos da classe pai. <strong>Polimorfismo</strong> permite que objetos diferentes respondam ao mesmo método de formas diferentes.</p>
+<p>Os conceitos de OOP se conectam de forma poderosa: você cria uma classe base com o comportamento comum, usa herança para especializar, e polimorfismo para tratar todos os objetos de forma generica. Classes abstratas garantem que as subclasses implementem os métodos necessários. Pratique tudo com um exercício completo:</p>
 <pre style="background:#1a1a2e;border:1px solid #334155;border-radius:8px;padding:1rem;margin:.8rem 0;"><code># Exemplo: classe base Veiculo
 class Veiculo:
     def __init__(self, marca, modelo, ano):
@@ -4906,7 +4909,7 @@ for v in veiculos:
     v.info()
     v.acelerar(50)
 </code></pre>`,
-  starter: `# Revisão OOP\n# Dica: class, __init__, self, herança, super(), polimorfismo\n# Crie classe base e classes filhas especializadas\nclass Veiculo:\n    def __init__(self, marca, modelo, ano):\n        self.marca = marca\n        self.modelo = modelo\n        self.ano = ano\n        self.velocidade = 0\n    def acelerar(self, incremento):\n        self.velocidade += incremento\n    def info(self):\n        print(self.marca + " " + self.modelo + " (" + str(self.ano) + ")")\n\n# Escreva aqui: crie Carro(Veiculo) com atributo portas, use super().__init__\nclass Carro(___):\n    def __init__(self, marca, modelo, ano, portas):\n        ___.__init__(marca, modelo, ano)\n        self.___ = portas\n\n# Escreva aqui: crie Moto(Veiculo) com método empinar() (só se velocidade > 30)\nclass Moto(___):\n    def empinar(self):\n        if self.velocidade > ___:\n            print("Empinando!")\n        else:\n            print("Velocidade muito baixa!")\n\nveiculos = [Carro("Toyota", "Corolla", 2023, 4), Moto("Honda", "CB500", 2022)]\nfor v in veiculos:\n    v.info()`,
+  starter: `# Desafio: OOP\n# Dica: class, __init__, self, herança, super(), polimorfismo\n# Crie classe base e classes filhas especializadas\nclass Veiculo:\n    def __init__(self, marca, modelo, ano):\n        self.marca = marca\n        self.modelo = modelo\n        self.ano = ano\n        self.velocidade = 0\n    def acelerar(self, incremento):\n        self.velocidade += incremento\n    def info(self):\n        print(self.marca + " " + self.modelo + " (" + str(self.ano) + ")")\n\n# Escreva aqui: crie Carro(Veiculo) com atributo portas, use super().__init__\nclass Carro(___):\n    def __init__(self, marca, modelo, ano, portas):\n        ___.__init__(marca, modelo, ano)\n        self.___ = portas\n\n# Escreva aqui: crie Moto(Veiculo) com método empinar() (só se velocidade > 30)\nclass Moto(___):\n    def empinar(self):\n        if self.velocidade > ___:\n            print("Empinando!")\n        else:\n            print("Velocidade muito baixa!")\n\nveiculos = [Carro("Toyota", "Corolla", 2023, 4), Moto("Honda", "CB500", 2022)]\nfor v in veiculos:\n    v.info()`,
 },
 { week:3, day:7, num:5, lang:'python', title:'Desafio final semana 3',
   content: `<h1>Desafio final semana 3</h1>
@@ -6092,10 +6095,10 @@ var form = document.querySelector("form");
 &lt;!-- Adicione secao de servicos com cards e secao de contato com form --&gt;</code></pre>`,
   starter: `<!-- Projeto Landing Completo -->\n<!-- DICA: Junte TUDO: HTML semantico + CSS (flex/grid/responsive/animations) + JS (menu/scroll/form) -->\n<style>\n  * { margin: 0; padding: 0; box-sizing: border-box; }\n  body { font-family: Arial, sans-serif; }\n  /* Escreva aqui: estilize header com display flex, position fixed, background escuro */\n  /* Escreva aqui: estilize .hero com display flex centralizado, min-height 100vh, gradiente */\n  /* Escreva aqui: estilize .btn com padding, background destaque, border-radius e transition */\n  /* Escreva aqui: estilize .btn:hover com transform scale(1.05) */\n  /* Escreva aqui: estilize section com padding e text-align */\n  /* Escreva aqui: estilize .cards com display grid e auto-fit */\n  /* Escreva aqui: estilize .card com background, padding, border-radius e transition */\n</style>\n<!-- Escreva aqui: crie header com logo (span) e nav com links ancora -->\n<!-- Escreva aqui: crie section.hero com h1, p subtitulo e link.btn CTA -->\n<!-- Escreva aqui: crie section #servicos com h2 e div.cards contendo div.card (h3+p) -->\n<!-- Escreva aqui: crie section #contato com h2 e form (nome, email, botao) -->\n<!-- Escreva aqui: crie footer com copyright -->\n` + SC + `\n// Escreva aqui: adicione menu toggle com classList.toggle\n// Escreva aqui: adicione scroll suave nos links ancora com scrollIntoView\n// Escreva aqui: adicione válidacao do formulario com preventDefault e verificacao de campos\n` + EC + ``,
 },
-// Day 7: Revisão Web
+// Day 7: Desafio Web
 { week:4, day:7, num:1, lang:'html', title:'Desafio: HTML',
   content: `<h1>Desafio: HTML</h1>
-<p>Vamos revisar os conceitos fundamentais de HTML que aprendemos nesta semana! HTML (HyperText Markup Language) e a linguagem de marcacao que estrutura todo o conteúdo da web. Lembre-se dos pilares: a <strong>estrutura básica</strong> com DOCTYPE, html, head e body; as <strong>tags de texto</strong> (h1-h6, p, strong, em); as <strong>listas</strong> (ul, ol, li); os <strong>links</strong> (a com href); as <strong>imagens</strong> (img com src e alt); as <strong>tabelas</strong> (table, tr, th, td); os <strong>formularios</strong> (form, input, select, textarea, button); e as <strong>tags semânticas</strong> (header, nav, main, section, article, footer).</p>
+<p>Hora de praticar os conceitos fundamentais de HTML que aprendemos nesta semana! HTML (HyperText Markup Language) e a linguagem de marcacao que estrutura todo o conteúdo da web. Lembre-se dos pilares: a <strong>estrutura básica</strong> com DOCTYPE, html, head e body; as <strong>tags de texto</strong> (h1-h6, p, strong, em); as <strong>listas</strong> (ul, ol, li); os <strong>links</strong> (a com href); as <strong>imagens</strong> (img com src e alt); as <strong>tabelas</strong> (table, tr, th, td); os <strong>formularios</strong> (form, input, select, textarea, button); e as <strong>tags semânticas</strong> (header, nav, main, section, article, footer).</p>
 
 <p>As boas práticas de HTML incluem: sempre usar DOCTYPE e meta charset, escrever HTML semantico para acessibilidade e SEO, incluir atributos alt em todas as imagens, usar labels nós formularios, indentar o código corretamente, e separar a estrutura (HTML) da apresentação (CSS) e do comportamento (JS). Um HTML bem escrito e a base solida sobre a qual você constroi estilos bonitos e funcionalidades interativas. Pratique criando diferentes tipos de páginas para fixar bem esses conceitos!</p>
 
@@ -6105,7 +6108,7 @@ var form = document.querySelector("form");
 &lt;head&gt;
   &lt;meta charset="UTF-8"&gt;
   &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
-  &lt;title&gt;Revisão HTML&lt;/title&gt;
+  &lt;title&gt;Desafio: HTML&lt;/title&gt;
 &lt;/head&gt;
 
 &lt;!-- EXERCICIO: Crie o body com todos os elementos HTML aprendidos --&gt;
@@ -6133,11 +6136,11 @@ var form = document.querySelector("form");
 &lt;/html&gt;</code></pre>
 <div style="background:linear-gradient(135deg,#1a1a3e,#2a1a4e);border:1px solid #7c3aed;border-radius:12px;padding:1.2rem;margin:1.5rem 0;"><h3 style="color:#a78bfa;margin:0 0 .5rem 0;">Curiosidade do Dia</h3><p style="margin:0;color:#c4b5fd;">HTML, CSS e JS são mantidas por organizacoes diferentes! Mesmo assim funcionam juntas — a beleza dos padroes abertos da web.</p></div>
 `,
-  starter: `<!-- Revisão HTML -->\n<!-- DICA: Revise tudo: estrutura, texto, listas, links, imagens, tabelas, forms, semantico -->\n<!DOCTYPE html>\n<html lang="pt-BR">\n<head>\n  <!-- Escreva aqui: adicione meta charset, viewport e title -->\n</head>\n<body>\n  <header>\n    <!-- Escreva aqui: crie h1 com titulo do site e nav com ul contendo links -->\n  </header>\n  <main>\n    <section id="sobre">\n      <!-- Escreva aqui: crie h2, parágrafo com strong/em e uma imagem com alt -->\n    </section>\n    <section id="dados">\n      <!-- Escreva aqui: crie h2 e uma tabela com thead/tbody -->\n    </section>\n    <section id="contato">\n      <!-- Escreva aqui: crie h2 e um formulario com label, input (text, email), textarea e button -->\n    </section>\n  </main>\n  <!-- Escreva aqui: crie footer com parágrafo de copyright -->\n</body>\n</html>`,
+  starter: `<!-- Desafio: HTML -->\n<!-- DICA: Revise tudo: estrutura, texto, listas, links, imagens, tabelas, forms, semantico -->\n<!DOCTYPE html>\n<html lang="pt-BR">\n<head>\n  <!-- Escreva aqui: adicione meta charset, viewport e title -->\n</head>\n<body>\n  <header>\n    <!-- Escreva aqui: crie h1 com titulo do site e nav com ul contendo links -->\n  </header>\n  <main>\n    <section id="sobre">\n      <!-- Escreva aqui: crie h2, parágrafo com strong/em e uma imagem com alt -->\n    </section>\n    <section id="dados">\n      <!-- Escreva aqui: crie h2 e uma tabela com thead/tbody -->\n    </section>\n    <section id="contato">\n      <!-- Escreva aqui: crie h2 e um formulario com label, input (text, email), textarea e button -->\n    </section>\n  </main>\n  <!-- Escreva aqui: crie footer com parágrafo de copyright -->\n</body>\n</html>`,
 },
 { week:4, day:7, num:2, lang:'html', title:'Desafio: CSS',
   content: `<h1>Desafio: CSS</h1>
-<p>Vamos revisar os conceitos de CSS que aprendemos! CSS (Cascading Style Sheets) e responsável por toda a apresentação visual da página. Os conceitos fundamentais incluem: <strong>seletores</strong> (elemento, classe, ID, pseudo-classes), <strong>cores e fontes</strong> (hex, rgb, font-family, font-size), <strong>box model</strong> (margin, border, padding, content), <strong>display</strong> (block, inline, inline-block, none), <strong>position</strong> (static, relative, absolute, fixed, sticky), <strong>Flexbox</strong> (layout unidimensional), <strong>Grid</strong> (layout bidimensional), <strong>média queries</strong> (responsividade), e <strong>transições/animações</strong> (efeitos dinâmicos).</p>
+<p>Teste seus conhecimentos sobre os conceitos de CSS que aprendemos! CSS (Cascading Style Sheets) e responsável por toda a apresentação visual da página. Os conceitos fundamentais incluem: <strong>seletores</strong> (elemento, classe, ID, pseudo-classes), <strong>cores e fontes</strong> (hex, rgb, font-family, font-size), <strong>box model</strong> (margin, border, padding, content), <strong>display</strong> (block, inline, inline-block, none), <strong>position</strong> (static, relative, absolute, fixed, sticky), <strong>Flexbox</strong> (layout unidimensional), <strong>Grid</strong> (layout bidimensional), <strong>média queries</strong> (responsividade), e <strong>transições/animações</strong> (efeitos dinâmicos).</p>
 
 <p>As boas práticas de CSS incluem: usar box-sizing: border-box globalmente, adotar a abordagem mobile-first para responsividade, usar classes em vez de IDs para estilização (IDs para JS), evitar !important, manter uma paleta de cores consistente, e organizar o CSS em secoes lógicas. Lembre-se que Flexbox e ideal para layouts lineares (menus, cards em linha) enquanto Grid e perfeito para layouts bidimensionais (páginas inteiras, galerias). Combine as duas técnicas conforme a necessidade!</p>
 
@@ -6179,11 +6182,11 @@ var form = document.querySelector("form");
   &lt;div class="card"&gt;&lt;h3&gt;Card 2&lt;/h3&gt;&lt;p&gt;Conteudo&lt;/p&gt;&lt;/div&gt;
   &lt;div class="card"&gt;&lt;h3&gt;Card 3&lt;/h3&gt;&lt;p&gt;Conteudo&lt;/p&gt;&lt;/div&gt;
 &lt;/div&gt;</code></pre>`,
-  starter: `<!-- Revisão CSS -->\n<!-- DICA: Revise: seletores, cores, box model, flex, grid, media queries, transicoes -->\n<style>\n  * { margin: 0; padding: 0; box-sizing: border-box; }\n  body { font-family: Arial, sans-serif; line-height: 1.6; }\n  .nav {\n    /* Escreva aqui: use display flex, justify-content space-between, align-items center */\n    /* Escreva aqui: defina background escuro, padding e color branco */\n  }\n  .nav a {\n    /* Escreva aqui: defina cor branca e remova sublinhado */\n  }\n  .nav a:hover {\n    /* Escreva aqui: mude a cor ao passar o mouse */\n  }\n  .grid-cards {\n    /* Escreva aqui: use display grid com repeat(auto-fit, minmax(200px, 1fr)) e gap */\n    padding: 20px;\n  }\n  .card {\n    /* Escreva aqui: defina padding, border, border-radius, background e transition */\n  }\n  .card:hover {\n    /* Escreva aqui: adicione transform translateY(-5px) e box-shadow */\n  }\n  /* Escreva aqui: crie @media (max-width: 768px) que mude .nav para flex-direction column */\n</style>\n<nav class="nav">\n  <span>Logo</span>\n  <div><a href="#">Home</a> <a href="#">Sobre</a></div>\n</nav>\n<div class="grid-cards">\n  <div class="card"><h3>Card 1</h3><p>Conteudo</p></div>\n  <div class="card"><h3>Card 2</h3><p>Conteudo</p></div>\n  <div class="card"><h3>Card 3</h3><p>Conteudo</p></div>\n</div>`,
+  starter: `<!-- Desafio: CSS -->\n<!-- DICA: Revise: seletores, cores, box model, flex, grid, media queries, transicoes -->\n<style>\n  * { margin: 0; padding: 0; box-sizing: border-box; }\n  body { font-family: Arial, sans-serif; line-height: 1.6; }\n  .nav {\n    /* Escreva aqui: use display flex, justify-content space-between, align-items center */\n    /* Escreva aqui: defina background escuro, padding e color branco */\n  }\n  .nav a {\n    /* Escreva aqui: defina cor branca e remova sublinhado */\n  }\n  .nav a:hover {\n    /* Escreva aqui: mude a cor ao passar o mouse */\n  }\n  .grid-cards {\n    /* Escreva aqui: use display grid com repeat(auto-fit, minmax(200px, 1fr)) e gap */\n    padding: 20px;\n  }\n  .card {\n    /* Escreva aqui: defina padding, border, border-radius, background e transition */\n  }\n  .card:hover {\n    /* Escreva aqui: adicione transform translateY(-5px) e box-shadow */\n  }\n  /* Escreva aqui: crie @media (max-width: 768px) que mude .nav para flex-direction column */\n</style>\n<nav class="nav">\n  <span>Logo</span>\n  <div><a href="#">Home</a> <a href="#">Sobre</a></div>\n</nav>\n<div class="grid-cards">\n  <div class="card"><h3>Card 1</h3><p>Conteudo</p></div>\n  <div class="card"><h3>Card 2</h3><p>Conteudo</p></div>\n  <div class="card"><h3>Card 3</h3><p>Conteudo</p></div>\n</div>`,
 },
 { week:4, day:7, num:3, lang:'html', title:'Desafio: JS',
   content: `<h1>Desafio: JS</h1>
-<p>Vamos revisar os fundamentos de JavaScript! JS e a linguagem que adiciona comportamento e interatividade as páginas web. Os conceitos principais que aprendemos incluem: <strong>variáveis</strong> (let para valores mutaveis, const para constantes), <strong>tipos de dados</strong> (string, number, boolean, array, object), <strong>funções</strong> (blocos reutilizaveis de código que podem receber parâmetros e retornar valores), <strong>condicionais</strong> (if/else para tomar decisões), e <strong>operadores</strong> (aritméticos, de comparação, lógicos). Esses são os blocos de construção de qualquer programa JavaScript.</p>
+<p>Hora de praticar os fundamentos de JavaScript! JS e a linguagem que adiciona comportamento e interatividade as páginas web. Os conceitos principais que aprendemos incluem: <strong>variáveis</strong> (let para valores mutaveis, const para constantes), <strong>tipos de dados</strong> (string, number, boolean, array, object), <strong>funções</strong> (blocos reutilizaveis de código que podem receber parâmetros e retornar valores), <strong>condicionais</strong> (if/else para tomar decisões), e <strong>operadores</strong> (aritméticos, de comparação, lógicos). Esses são os blocos de construção de qualquer programa JavaScript.</p>
 
 <p>Lembre-se das boas práticas: use const por padrão e let apenas quando necessário, crie funções pequenas e focadas em uma única tarefa, use nomes descritivos para variáveis e funções (camelCase), e comente seu código quando a lógica não for obvia. JavaScript é uma linguagem extremamente versátil - além de páginas web, ela e usada em servidores (Node.js), aplicativos mobile (React Native) e até jogos. Dominar os fundamentos e o passo mais importante para se tornar um desenvolvedor web completo!</p>
 
@@ -6214,11 +6217,11 @@ function classificar(pontuacao) {
 // Exiba o resultado no elemento #título
 // DICA: document.getElementById("título").textContent = ...
 // Seu código aqui</code></pre>`,
-  starter: `<!-- Revisão JS -->\n<!-- DICA: Revise: const/let, tipos, arrays, funções, objetos, if/else -->\n<h1 id="título">Revisão JavaScript</h1>\n` + SC + `\n// Escreva aqui: crie um array "linguagens" com 3 linguagens de programação\n\n// Escreva aqui: use um loop for para percorrer o array e concatenar os itens em uma string\n\n// Escreva aqui: crie uma função classificar(pontuacao) que retorna:\n// >= 90: "Excelente!", >= 70: "Bom!", senao: "Continue praticando!"\n// DICA: use if / else if / else com return\n\n// Escreva aqui: crie um objeto "aluno" com propriedades nome, nota e aprovado\n\n// Escreva aqui: chame classificar() com a nota do aluno e exiba o resultado em #título\n` + EC + ``,
+  starter: `<!-- Desafio: JS -->\n<!-- DICA: Revise: const/let, tipos, arrays, funções, objetos, if/else -->\n<h1 id="título">Desafio: JavaScript</h1>\n` + SC + `\n// Escreva aqui: crie um array "linguagens" com 3 linguagens de programação\n\n// Escreva aqui: use um loop for para percorrer o array e concatenar os itens em uma string\n\n// Escreva aqui: crie uma função classificar(pontuacao) que retorna:\n// >= 90: "Excelente!", >= 70: "Bom!", senao: "Continue praticando!"\n// DICA: use if / else if / else com return\n\n// Escreva aqui: crie um objeto "aluno" com propriedades nome, nota e aprovado\n\n// Escreva aqui: chame classificar() com a nota do aluno e exiba o resultado em #título\n` + EC + ``,
 },
 { week:4, day:7, num:4, lang:'html', title:'Desafio: DOM',
   content: `<h1>Desafio: DOM</h1>
-<p>O DOM (Document Object Model) e a ponte entre HTML e JavaScript, permitindo que você manipule a página de forma dinâmica. Vamos revisar os conceitos principais: <strong>selecionar elementos</strong> (getElementById, querySelector, querySelectorAll), <strong>alterar conteúdo</strong> (textContent, innerHTML), <strong>alterar estilos</strong> (style.propriedade, classList.add/remove/toggle), <strong>alterar atributos</strong> (setAttribute, getAttribute), <strong>criar/remover elementos</strong> (createElement, appendChild, removeChild), e <strong>responder a eventos</strong> (addEventListener com click, input, submit, keydown, etc).</p>
+<p>O DOM (Document Object Model) e a ponte entre HTML e JavaScript, permitindo que você manipule a página de forma dinâmica. Teste seus conhecimentos sobre os conceitos principais: <strong>selecionar elementos</strong> (getElementById, querySelector, querySelectorAll), <strong>alterar conteúdo</strong> (textContent, innerHTML), <strong>alterar estilos</strong> (style.propriedade, classList.add/remove/toggle), <strong>alterar atributos</strong> (setAttribute, getAttribute), <strong>criar/remover elementos</strong> (createElement, appendChild, removeChild), e <strong>responder a eventos</strong> (addEventListener com click, input, submit, keydown, etc).</p>
 
 <p>Uma parte crucial do DOM são os <strong>eventos</strong>. Lembre-se que addEventListener e a forma recomendada de conectar eventos, pois permite adicionar multiplos handlers ao mesmo elemento. O objeto <strong>event</strong> traz informações valiosas: event.target (elemento que disparou o evento), event.preventDefault() (impedir ação padrão), event.key (qual tecla foi pressionada). Combine selecao de elementos, manipulação de conteúdo/estilos e eventos para criar interfaces dinâmicas e responsivas. O DOM e o que transforma uma página estática em uma aplicação web interativa!</p>
 
@@ -6248,7 +6251,7 @@ botaoAdd.addEventListener("click", function() {
 // 3. Evento de tecla: ao pressionar Enter, simule clique no botao
 // DICA: if (event.key === "Enter") { botaoAdd.click(); }
 // Seu código aqui</code></pre>`,
-  starter: `<!-- Revisão DOM -->\n<!-- DICA: getElementById, querySelector, addEventListener -->\n<!-- createElement + appendChild para criar elementos -->\n<input type="text" id="entrada" placeholder="Digite algo">\n<button class="btn-add">Adicionar</button>\n<p id="saída"></p>\n<ul class="lista"></ul>\n` + SC + `\n// Escreva aqui: selecione os elementos entrada, saída, botao e lista usando getElementById/querySelector\n\n// Escreva aqui: adicione evento "input" na entrada que mostra o texto digitado em #saída\n\n// Escreva aqui: adicione evento "click" no botao que:\n// 1. Pega o texto do input\n// 2. Se vazio, ignora (return)\n// 3. Cria um li com createElement e define o textContent\n// 4. Adiciona evento click no li para remover ao clicar (li.remove())\n// 5. Adiciona o li na lista com appendChild\n// 6. Limpa o input\n\n// Escreva aqui: adicione evento "keydown" na entrada para simular clique no botao ao pressionar Enter\n// DICA: if (event.key === "Enter") { botao.click(); }\n` + EC + ``,
+  starter: `<!-- Desafio: DOM -->\n<!-- DICA: getElementById, querySelector, addEventListener -->\n<!-- createElement + appendChild para criar elementos -->\n<input type="text" id="entrada" placeholder="Digite algo">\n<button class="btn-add">Adicionar</button>\n<p id="saída"></p>\n<ul class="lista"></ul>\n` + SC + `\n// Escreva aqui: selecione os elementos entrada, saída, botao e lista usando getElementById/querySelector\n\n// Escreva aqui: adicione evento "input" na entrada que mostra o texto digitado em #saída\n\n// Escreva aqui: adicione evento "click" no botao que:\n// 1. Pega o texto do input\n// 2. Se vazio, ignora (return)\n// 3. Cria um li com createElement e define o textContent\n// 4. Adiciona evento click no li para remover ao clicar (li.remove())\n// 5. Adiciona o li na lista com appendChild\n// 6. Limpa o input\n\n// Escreva aqui: adicione evento "keydown" na entrada para simular clique no botao ao pressionar Enter\n// DICA: if (event.key === "Enter") { botao.click(); }\n` + EC + ``,
 },
 { week:4, day:7, num:5, lang:'html', title:'Desafio final web',
   content: `<h1>Desafio final web</h1>
@@ -7175,11 +7178,11 @@ ___ JOIN pedidos p ON ___
 WHERE ___;</code></pre>`,
   starter: `-- Relatório Completo\n-- Dica: crie 4 secoes do relatorio de vendas\n\n-- Escreva aqui: Secao 1 - Resumo geral com COUNT(DISTINCT cliente_id), COUNT pedidos, SUM quantidade e SUM receita\n\n-- Escreva aqui: Secao 2 - Top 5 clientes que mais gastaram usando JOIN de 3 tabelas, GROUP BY e ORDER BY DESC LIMIT 5\n\n-- Escreva aqui: Secao 3 - Receita por categoria usando JOIN pedidos+produtos, SUM e GROUP BY\n\n-- Escreva aqui: Secao 4 - Clientes que nunca compraram usando LEFT JOIN e WHERE IS NULL`,
 },
-// Day 7: Revisão SQL
+// Day 7: Desafio SQL
 { week:5, day:7, num:1, lang:'sql', title:'Desafio: SELECT',
   content: `<h1>Desafio: SELECT</h1>
-<p>Vamos começar a revisão da semana pelo comando mais fundamental: o <strong>SELECT</strong>. Essa e a base de tudo em SQL — sem saber fazer boas consultas, você não consegue extrair informações do banco de dados. Nesta revisão, vamos relembrar como selecionar colunas específicas, usar alias com AS, eliminar duplicatas com DISTINCT e filtrar resultados com WHERE. Esses são os blocos fundamentais de qualquer consulta.</p>
-<p>Lembre-se da ordem lógica de uma consulta SQL: primeiro o FROM (de qual tabela), depois o WHERE (filtro), então o SELECT (quais colunas). Mesmo que você escreva SELECT primeiro, o banco processa FROM e WHERE antes. Vamos revisar cada conceito com exemplos práticos:</p>
+<p>Hora de praticar o comando mais fundamental: o <strong>SELECT</strong>. Essa e a base de tudo em SQL — sem saber fazer boas consultas, você não consegue extrair informações do banco de dados. Neste desafio, vamos relembrar como selecionar colunas específicas, usar alias com AS, eliminar duplicatas com DISTINCT e filtrar resultados com WHERE. Esses são os blocos fundamentais de qualquer consulta.</p>
+<p>Lembre-se da ordem lógica de uma consulta SQL: primeiro o FROM (de qual tabela), depois o WHERE (filtro), então o SELECT (quais colunas). Mesmo que você escreva SELECT primeiro, o banco processa FROM e WHERE antes. Pratique cada conceito com exemplos práticos:</p>
 <pre style="background:#1a1a2e;border:1px solid #334155;border-radius:8px;padding:1rem;margin:.8rem 0;"><code>-- Exemplo: selecionar colunas específicas
 SELECT nome, idade FROM alunos;
 
@@ -7203,12 +7206,12 @@ SELECT * FROM alunos WHERE cidade ___ (___);
 SELECT * FROM produtos WHERE preco ___ ___ AND ___;</code></pre>
 <div style="background:linear-gradient(135deg,#1a1a3e,#2a1a4e);border:1px solid #7c3aed;border-radius:12px;padding:1.2rem;margin:1.5rem 0;"><h3 style="color:#a78bfa;margin:0 0 .5rem 0;">Curiosidade do Dia</h3><p style="margin:0;color:#c4b5fd;">SQL e requisito em quase toda vaga de dados, backend e BI. Um analista junior com SQL pode ganhar R$3.000 a R$6.000/mes no Brasil!</p></div>
 `,
-  starter: `-- Revisão SELECT\n-- Dica: SELECT colunas FROM tabela WHERE condição\n\n-- Escreva aqui: SELECT nome com alias 'Nome Completo' e idade com alias 'Idade' da tabela alunos\n\n-- Escreva aqui: SELECT DISTINCT cidade da tabela alunos\n\n-- Escreva aqui: SELECT alunos maiores de 18 de SP com nota acima de 7 usando AND\n\n-- Escreva aqui: SELECT produtos com 'book' no nome usando LIKE\n\n-- Escreva aqui: SELECT alunos de SP, RJ ou MG usando IN\n\n-- Escreva aqui: SELECT produtos com preco BETWEEN 50 e 200`,
+  starter: `-- Desafio: SELECT\n-- Dica: SELECT colunas FROM tabela WHERE condição\n\n-- Escreva aqui: SELECT nome com alias 'Nome Completo' e idade com alias 'Idade' da tabela alunos\n\n-- Escreva aqui: SELECT DISTINCT cidade da tabela alunos\n\n-- Escreva aqui: SELECT alunos maiores de 18 de SP com nota acima de 7 usando AND\n\n-- Escreva aqui: SELECT produtos com 'book' no nome usando LIKE\n\n-- Escreva aqui: SELECT alunos de SP, RJ ou MG usando IN\n\n-- Escreva aqui: SELECT produtos com preco BETWEEN 50 e 200`,
 },
 { week:5, day:7, num:2, lang:'sql', title:'Desafio: WHERE',
   content: `<h1>Desafio: WHERE</h1>
-<p>A cláusula <strong>WHERE</strong> e o que torna suas consultas úteis, permitindo filtrar exatamente os dados que você precisa. Nesta revisão, vamos relembrar todos os operadores de comparação (=, !=, >, <, >=, <=), os operadores lógicos (AND, OR, NOT), e os operadores especiais (LIKE, IN, BETWEEN, IS NULL). Dominar esses filtros é essencial para trabalhar com bancos de dados.</p>
-<p>Uma dica importante para a revisão: sempre pense no WHERE como uma pergunta que cada registro precisa responder com "sim" para aparecer no resultado. "Esse aluno tem mais de 18 anos? Sim. Ele mora em SP? Sim. Então ele aparece." Também lembre-se de usar parenteses quando combinar AND e OR na mesma consulta. Vamos praticar:</p>
+<p>A cláusula <strong>WHERE</strong> e o que torna suas consultas úteis, permitindo filtrar exatamente os dados que você precisa. Neste desafio, teste seus conhecimentos sobre todos os operadores de comparação (=, !=, >, <, >=, <=), os operadores lógicos (AND, OR, NOT), e os operadores especiais (LIKE, IN, BETWEEN, IS NULL). Dominar esses filtros é essencial para trabalhar com bancos de dados.</p>
+<p>Uma dica importante: sempre pense no WHERE como uma pergunta que cada registro precisa responder com "sim" para aparecer no resultado. "Esse aluno tem mais de 18 anos? Sim. Ele mora em SP? Sim. Então ele aparece." Também lembre-se de usar parenteses quando combinar AND e OR na mesma consulta. Vamos praticar:</p>
 <pre style="background:#1a1a2e;border:1px solid #334155;border-radius:8px;padding:1rem;margin:.8rem 0;"><code>-- Exemplo: comparações básicas
 SELECT * FROM produtos WHERE preco > 100;
 
@@ -7234,12 +7237,12 @@ SELECT * FROM produtos
 WHERE (___  ___  ___)
 ___  ___
 ___  ___;</code></pre>`,
-  starter: `-- Revisão WHERE\n-- Dica: pratique todos os operadores: =, !=, >, <, BETWEEN, LIKE, IN, IS NULL\n\n-- Escreva aqui: SELECT alunos com idade diferente de 20 usando != ou <>\n\n-- Escreva aqui: SELECT produtos com preco BETWEEN 10 e 50\n\n-- Escreva aqui: SELECT alunos cujo nome contem 'Silva' usando LIKE\n\n-- Escreva aqui: SELECT alunos de SP ou RJ usando IN\n\n-- Escreva aqui: SELECT alunos que TEM email preenchido usando IS NOT NULL\n\n-- Escreva aqui: SELECT produtos eletronicos OU livros com preco < 500 e estoque > 0 (use parenteses no OR)`,
+  starter: `-- Desafio: WHERE\n-- Dica: pratique todos os operadores: =, !=, >, <, BETWEEN, LIKE, IN, IS NULL\n\n-- Escreva aqui: SELECT alunos com idade diferente de 20 usando != ou <>\n\n-- Escreva aqui: SELECT produtos com preco BETWEEN 10 e 50\n\n-- Escreva aqui: SELECT alunos cujo nome contem 'Silva' usando LIKE\n\n-- Escreva aqui: SELECT alunos de SP ou RJ usando IN\n\n-- Escreva aqui: SELECT alunos que TEM email preenchido usando IS NOT NULL\n\n-- Escreva aqui: SELECT produtos eletronicos OU livros com preco < 500 e estoque > 0 (use parenteses no OR)`,
 },
 { week:5, day:7, num:3, lang:'sql', title:'Desafio: funções SQL',
   content: `<h1>Desafio: funções SQL</h1>
-<p>Nesta revisão, vamos relembrar todas as <strong>funções de agregacao e string</strong> que aprendemos. As funções de agregacao (COUNT, SUM, AVG, MIN, MAX) são usadas para calcular valores a partir de conjuntos de dados. Elas são a base de qualquer relatorio. Já as funções de string (UPPER, LOWER, LENGTH, SUBSTR, TRIM) ajudam a manipular e formatar textos. Juntas, elas dao muito poder as suas consultas.</p>
-<p>Lembre-se de um ponto crucial: funções de agregacao trabalham com grupos de registros e retornam um único valor. Quando usadas com GROUP BY, retornam um valor por grupo. E as funções de string trabalham com cada valor individual. Você pode combinar ambas na mesma consulta! Vamos revisar:</p>
+<p>Neste desafio, teste seus conhecimentos sobre as <strong>funções de agregacao e string</strong> que aprendemos. As funções de agregacao (COUNT, SUM, AVG, MIN, MAX) são usadas para calcular valores a partir de conjuntos de dados. Elas são a base de qualquer relatorio. Já as funções de string (UPPER, LOWER, LENGTH, SUBSTR, TRIM) ajudam a manipular e formatar textos. Juntas, elas dao muito poder as suas consultas.</p>
+<p>Lembre-se de um ponto crucial: funções de agregacao trabalham com grupos de registros e retornam um único valor. Quando usadas com GROUP BY, retornam um valor por grupo. E as funções de string trabalham com cada valor individual. Você pode combinar ambas na mesma consulta! Hora de praticar:</p>
 <pre style="background:#1a1a2e;border:1px solid #334155;border-radius:8px;padding:1rem;margin:.8rem 0;"><code>-- Exemplo: funções de agregação básicas
 SELECT COUNT(*) AS total FROM alunos;
 
@@ -7266,12 +7269,12 @@ SELECT ___(categoria) AS cat,
   ___ AS qtd,
   ___ AS média
 FROM produtos GROUP BY categoria HAVING ___;</code></pre>`,
-  starter: `-- Revisão funções SQL\n-- Dica: agregacao = COUNT, SUM, AVG, MIN, MAX | String = UPPER, LOWER, LENGTH, SUBSTR, TRIM\n\n-- Escreva aqui: SELECT SUM(preco) dos produtos\n\n-- Escreva aqui: SELECT ROUND(AVG(nota), 2) dos alunos\n\n-- Escreva aqui: SELECT MIN(preco) e MAX(preco) dos produtos\n\n-- Escreva aqui: SELECT categoria com COUNT, AVG e SUM usando GROUP BY\n\n-- Escreva aqui: SELECT UPPER(nome) e LENGTH(nome) dos alunos\n\n-- Escreva aqui: SELECT SUBSTR(nome, 1, 3) dos alunos\n\n-- Escreva aqui: SELECT UPPER(categoria) com COUNT e AVG, agrupado por categoria, HAVING COUNT > 1`,
+  starter: `-- Desafio: funções SQL\n-- Dica: agregacao = COUNT, SUM, AVG, MIN, MAX | String = UPPER, LOWER, LENGTH, SUBSTR, TRIM\n\n-- Escreva aqui: SELECT SUM(preco) dos produtos\n\n-- Escreva aqui: SELECT ROUND(AVG(nota), 2) dos alunos\n\n-- Escreva aqui: SELECT MIN(preco) e MAX(preco) dos produtos\n\n-- Escreva aqui: SELECT categoria com COUNT, AVG e SUM usando GROUP BY\n\n-- Escreva aqui: SELECT UPPER(nome) e LENGTH(nome) dos alunos\n\n-- Escreva aqui: SELECT SUBSTR(nome, 1, 3) dos alunos\n\n-- Escreva aqui: SELECT UPPER(categoria) com COUNT e AVG, agrupado por categoria, HAVING COUNT > 1`,
 },
 { week:5, day:7, num:4, lang:'sql', title:'Desafio: joins',
   content: `<h1>Desafio: joins</h1>
-<p>Os <strong>JOINs</strong> são um dos conceitos mais importantes do SQL, porque permitem combinar dados de multiplas tabelas. Nesta revisão, vamos relembrar os três tipos principais: <strong>INNER JOIN</strong> (retorna só onde há correspondencia), <strong>LEFT JOIN</strong> (retorna tudo da tabela esquerda) e <strong>RIGHT JOIN</strong> (retorna tudo da tabela direita). Também vamos revisar subqueries, que são consultas dentro de consultas.</p>
-<p>A chave para entender JOINs e pensar em como as tabelas se relacionam. A cláusula ON define essa relação. Sempre use alias para as tabelas quando fizer JOINs — isso torna a consulta muito mais legível. E lembre-se: você pode encadear vários JOINs na mesma consulta para combinar 3 ou mais tabelas. Vamos revisar cada tipo:</p>
+<p>Os <strong>JOINs</strong> são um dos conceitos mais importantes do SQL, porque permitem combinar dados de multiplas tabelas. Neste desafio, pratique os três tipos principais: <strong>INNER JOIN</strong> (retorna só onde há correspondencia), <strong>LEFT JOIN</strong> (retorna tudo da tabela esquerda) e <strong>RIGHT JOIN</strong> (retorna tudo da tabela direita). Também pratique subqueries, que são consultas dentro de consultas.</p>
+<p>A chave para entender JOINs e pensar em como as tabelas se relacionam. A cláusula ON define essa relação. Sempre use alias para as tabelas quando fizer JOINs — isso torna a consulta muito mais legível. E lembre-se: você pode encadear vários JOINs na mesma consulta para combinar 3 ou mais tabelas. Pratique cada tipo:</p>
 <pre style="background:#1a1a2e;border:1px solid #334155;border-radius:8px;padding:1rem;margin:.8rem 0;"><code>-- Exemplo: INNER JOIN
 SELECT a.nome, c.titulo
 FROM alunos a
@@ -7297,7 +7300,7 @@ INNER JOIN ___ ON ___;
 -- Use subquery para encontrar alunos acima da média
 SELECT nome FROM alunos
 WHERE nota > (SELECT ___(___) FROM alunos);</code></pre>`,
-  starter: `-- Revisão joins\n-- Dica: INNER JOIN (so matches), LEFT JOIN (todos da esquerda)\n\n-- Escreva aqui: SELECT nome do cliente e COUNT(pedidos) usando LEFT JOIN e GROUP BY (0 se não tiver)\n\n-- Escreva aqui: SELECT clientes SEM pedidos usando LEFT JOIN e WHERE IS NULL\n\n-- Escreva aqui: SELECT cliente, produto e quantidade juntando 3 tabelas com INNER JOIN\n\n-- Escreva aqui: SELECT alunos com nota acima da media usando subquery no WHERE`,
+  starter: `-- Desafio: joins\n-- Dica: INNER JOIN (so matches), LEFT JOIN (todos da esquerda)\n\n-- Escreva aqui: SELECT nome do cliente e COUNT(pedidos) usando LEFT JOIN e GROUP BY (0 se não tiver)\n\n-- Escreva aqui: SELECT clientes SEM pedidos usando LEFT JOIN e WHERE IS NULL\n\n-- Escreva aqui: SELECT cliente, produto e quantidade juntando 3 tabelas com INNER JOIN\n\n-- Escreva aqui: SELECT alunos com nota acima da media usando subquery no WHERE`,
 },
 { week:5, day:7, num:5, lang:'sql', title:'Desafio final SQL',
   content: `<h1>Desafio final SQL</h1>
@@ -8627,10 +8630,10 @@ public class Main {
 <p>Você completou o projeto da Semana 6! Esse projeto demonstra que você já consegue criar aplicações Java completas com OOP. Continue praticando e adicionando novas funcionalidades!</p>`,
   starter: `// Projeto Java Completo\n// DICA: Junte tudo: classe + encapsulamento + ArrayList + CRUD\n// DICA: Atributos private + construtor + getters + toString()\n// DICA: Métodos: listar(), buscar(), remover()\nimport java.util.ArrayList;\npublic class Main {\n    // Escreva aqui: declare atributos private (nome, telefone, email)\n\n    // Escreva aqui: crie o construtor que recebe e inicializa os três atributos\n\n    // Escreva aqui: crie getter getNome()\n\n    // Escreva aqui: sobrescreva toString() retornando nome + " | " + telefone + " | " + email\n\n    // Escreva aqui: crie public static void listar(ArrayList<Main> agenda) que verifica isEmpty() e percorre imprimindo\n\n    public static void main(String[] args) {\n        ArrayList<Main> agenda = new ArrayList<>();\n        // Escreva aqui: adicione pelo menos 3 contatos com agenda.add(new Main(...))\n\n        // Escreva aqui: chame listar(agenda) para exibir todos\n\n        // Escreva aqui: busque um contato percorrendo a lista e usando getNome().contains()\n\n        // Escreva aqui: remova um contato usando agenda.removeIf() e liste novamente\n\n    }\n}`,
 },
-// Day 7: Revisão Java
+// Day 7: Desafio Java
 { week:6, day:7, num:1, lang:'java', title:'Desafio: sintaxe Java',
   content: `<h1>Desafio: sintaxe Java</h1>
-<p>Vamos revisar a <strong>sintaxe básica do Java</strong> que aprendemos ao longo da semana! Java é uma linguagem fortemente tipada onde toda variável precisa de um tipo declarado. Os tipos primitivos mais usados são int, double, boolean e char, e String e o tipo de referência mais comum. Lembre-se das regras básicas: ponto é virgula no final de cada instrução, chaves para delimitar blocos, e nomes de classes em PascalCase e variáveis em camelCase.</p>
+<p>Teste seus conhecimentos sobre a <strong>sintaxe básica do Java</strong> que aprendemos ao longo da semana! Java é uma linguagem fortemente tipada onde toda variável precisa de um tipo declarado. Os tipos primitivos mais usados são int, double, boolean e char, e String e o tipo de referência mais comum. Lembre-se das regras básicas: ponto é virgula no final de cada instrução, chaves para delimitar blocos, e nomes de classes em PascalCase e variáveis em camelCase.</p>
 <p>Revise também as estruturas de controle: <strong>if/else</strong> para decisões, <strong>switch</strong> para multiplas opções, <strong>for</strong> e <strong>for-each</strong> para repeticoes contaveis, e <strong>while/do-while</strong> para repeticoes condicionais. Um ponto que sempre causa confusao: use <strong>.equals()</strong> para comparar Strings, nunca ==. E lembre-se que Java e case-sensitive — "Main" e "main" são coisas diferentes!</p>
 <pre style="background:#1a1a2e;border:1px solid #334155;border-radius:8px;padding:1rem;margin:.8rem 0;"><code>// Exemplo: declaração de variáveis
 // int número = 42; double preco = 29.99; boolean ativo = true;
@@ -8671,11 +8674,11 @@ public class Main {
 <p>Se você domina esses fundamentos, já tem uma base solida em Java. Revise os pontos que ainda causam duvida antes de seguir em frente!</p>
 <div style="background:linear-gradient(135deg,#1a1a3e,#2a1a4e);border:1px solid #7c3aed;border-radius:12px;padding:1.2rem;margin:1.5rem 0;"><h3 style="color:#a78bfa;margin:0 0 .5rem 0;">Curiosidade do Dia</h3><p style="margin:0;color:#c4b5fd;">Dev Java pleno ganha R$8.000 a R$15.000/mes no Brasil. A demanda e forte em fintechs e grandes corporacoes!</p></div>
 `,
-  starter: `// Revisão sintaxe Java\n// DICA: Tipos: int, double, boolean, String, char\n// DICA: Constante: final int ANO = 2024;\n// DICA: Comparar Strings: .equals() ou .equalsIgnoreCase()\npublic class Main {\n    public static void main(String[] args) {\n        // Escreva aqui: declare uma variável de cada tipo: int, double, boolean, String\n\n        // Escreva aqui: declare uma constante com final\n\n        // Escreva aqui: use if/else para verificar se o número é positivo ou negativo\n\n        // Escreva aqui: crie um for que conta de 1 a 3 e imprime\n\n        // Escreva aqui: crie um array de Strings e percorra com for-each\n\n        // Escreva aqui: compare duas Strings com .equals() e .equalsIgnoreCase() e imprima os resultados\n\n    }\n}`,
+  starter: `// Desafio: sintaxe Java\n// DICA: Tipos: int, double, boolean, String, char\n// DICA: Constante: final int ANO = 2024;\n// DICA: Comparar Strings: .equals() ou .equalsIgnoreCase()\npublic class Main {\n    public static void main(String[] args) {\n        // Escreva aqui: declare uma variável de cada tipo: int, double, boolean, String\n\n        // Escreva aqui: declare uma constante com final\n\n        // Escreva aqui: use if/else para verificar se o número é positivo ou negativo\n\n        // Escreva aqui: crie um for que conta de 1 a 3 e imprime\n\n        // Escreva aqui: crie um array de Strings e percorra com for-each\n\n        // Escreva aqui: compare duas Strings com .equals() e .equalsIgnoreCase() e imprima os resultados\n\n    }\n}`,
 },
 { week:6, day:7, num:2, lang:'java', title:'Desafio: arrays Java',
   content: `<h1>Desafio: arrays Java</h1>
-<p>Vamos revisar <strong>arrays e ArrayList</strong>, duas estruturas fundamentais para trabalhar com coleções de dados em Java. Arrays tem <strong>tamanho fixo</strong> e são declarados com tipo[] nome = new tipo[tamanho] ou tipo[] nome = {valores}. Use .length (sem parenteses) para saber o tamanho. ArrayList e <strong>dinâmico</strong>, precisa de import java.util.ArrayList, e usa generics para definir o tipo: ArrayList&lt;Tipo&gt;.</p>
+<p>Hora de praticar <strong>arrays e ArrayList</strong>, duas estruturas fundamentais para trabalhar com coleções de dados em Java. Arrays tem <strong>tamanho fixo</strong> e são declarados com tipo[] nome = new tipo[tamanho] ou tipo[] nome = {valores}. Use .length (sem parenteses) para saber o tamanho. ArrayList e <strong>dinâmico</strong>, precisa de import java.util.ArrayList, e usa generics para definir o tipo: ArrayList&lt;Tipo&gt;.</p>
 <p>Os métodos do ArrayList que você mais vai usar são: <strong>add()</strong> para adicionar, <strong>get(i)</strong> para acessar, <strong>set(i, valor)</strong> para alterar, <strong>remove(i)</strong> para remover, <strong>size()</strong> para o tamanho, e <strong>contains()</strong> para verificar existência. Lembre-se que ArrayList só aceita tipos de referência (Integer, Double, String), não primitivos (int, double). Para percorrer, use for-each que funciona tanto com arrays quanto com ArrayList!</p>
 <pre style="background:#1a1a2e;border:1px solid #334155;border-radius:8px;padding:1rem;margin:.8rem 0;"><code>// Exemplo: calcular média de array
 // int soma = 0; for (int n : notas) soma += n;
@@ -8711,11 +8714,11 @@ public class Main {
     }
 }</code></pre>
 <p>Dica final: use arrays quando o tamanho e fixo e conhecido, e ArrayList quando precisa de flexibilidade para adicionar e remover elementos!</p>`,
-  starter: `// Revisão arrays\n// DICA: Array fixo: int[] nums = {1, 2, 3}; Tamanho: nums.length\n// DICA: ArrayList dinâmico: add(), get(i), remove(i), size(), contains()\n// DICA: Cast para média: (double) soma / length\nimport java.util.ArrayList;\npublic class Main {\n    public static void main(String[] args) {\n        // Escreva aqui: crie um array de notas inteiras com pelo menos 4 valores\n\n        // Escreva aqui: some todas as notas com for-each e calcule a média (use cast (double))\n\n        // Escreva aqui: crie um ArrayList de String chamado tarefas e adicione 3 itens\n\n        // Escreva aqui: percorra o ArrayList com for-each e imprima cada tarefa\n\n        // Escreva aqui: remova uma tarefa e adicione outra no início com add(0, "tarefa")\n\n        // Escreva aqui: verifique se o ArrayList contém uma tarefa específica com contains()\n\n    }\n}`,
+  starter: `// Desafio: arrays\n// DICA: Array fixo: int[] nums = {1, 2, 3}; Tamanho: nums.length\n// DICA: ArrayList dinâmico: add(), get(i), remove(i), size(), contains()\n// DICA: Cast para média: (double) soma / length\nimport java.util.ArrayList;\npublic class Main {\n    public static void main(String[] args) {\n        // Escreva aqui: crie um array de notas inteiras com pelo menos 4 valores\n\n        // Escreva aqui: some todas as notas com for-each e calcule a média (use cast (double))\n\n        // Escreva aqui: crie um ArrayList de String chamado tarefas e adicione 3 itens\n\n        // Escreva aqui: percorra o ArrayList com for-each e imprima cada tarefa\n\n        // Escreva aqui: remova uma tarefa e adicione outra no início com add(0, "tarefa")\n\n        // Escreva aqui: verifique se o ArrayList contém uma tarefa específica com contains()\n\n    }\n}`,
 },
 { week:6, day:7, num:3, lang:'java', title:'Desafio: métodos Java',
   content: `<h1>Desafio: métodos Java</h1>
-<p>Vamos revisar <strong>métodos em Java</strong>! Um método tem: modificador de acesso (public/private), static (opcional), tipo de retorno (ou void), nome, e parâmetros. Metodos <strong>static</strong> pertencem a classe e podem ser chamados sem criar objeto. Metodos de <strong>instância</strong> pertencem ao objeto e precisam de new. A <strong>sobrecarga</strong> permite criar métodos com o mesmo nome mas parâmetros diferentes — o Java escolhe a versão certa automáticamente.</p>
+<p>Teste seus conhecimentos sobre <strong>métodos em Java</strong>! Um método tem: modificador de acesso (public/private), static (opcional), tipo de retorno (ou void), nome, e parâmetros. Metodos <strong>static</strong> pertencem a classe e podem ser chamados sem criar objeto. Metodos de <strong>instância</strong> pertencem ao objeto e precisam de new. A <strong>sobrecarga</strong> permite criar métodos com o mesmo nome mas parâmetros diferentes — o Java escolhe a versão certa automáticamente.</p>
 <p>Boas práticas para métodos: cada método deve ter <strong>uma única responsabilidade</strong>, nomes devem ser verbos em camelCase que descrevem a ação (calcularTotal, verificarSenha), e sempre defina o tipo de retorno correto. Se o método responde sim/não, retorne boolean. Se calcula, retorne o tipo numérico. Se processa texto, retorne String. E lembre-se: a palavra-chave <strong>return</strong> encerra o método imediatamente e devolve o valor.</p>
 <pre style="background:#1a1a2e;border:1px solid #334155;border-radius:8px;padding:1rem;margin:.8rem 0;"><code>// Exemplo: método com retorno
 // public static double calcular(double a, double b) { return a + b; }
@@ -8750,11 +8753,11 @@ public class Main {
     }
 }</code></pre>
 <p>Metodos bem escritos tornam seu código organizado, reutilizável e fácil de testar. Sempre que um trecho de código se repete, transforme em método!</p>`,
-  starter: `// Revisão métodos\n// DICA: void = sem retorno, int/double/String/boolean = com retorno\n// DICA: Sobrecarga = mesmo nome, parâmetros diferentes\n// DICA: return encerra o método e devolve o valor\npublic class Main {\n    // Escreva aqui: crie public static void exibirSeparador() que imprime "----"\n\n    // Escreva aqui: crie public static double calcularIMC(double peso, double altura) que retorna peso / (altura * altura)\n\n    // Escreva aqui: crie public static String classificarIMC(double imc) que retorna a classificação\n    // < 18.5 "Abaixo do peso", < 25 "Normal", < 30 "Sobrepeso", senão "Obesidade"\n\n    // Escreva aqui: crie duas versões sobrecarregadas de formatar()\n    // formatar(String texto) retorna "[ texto ]" e formatar(String texto, String prefixo) retorna "prefixo texto"\n\n    public static void main(String[] args) {\n        // Escreva aqui: calcule o IMC, classifique e imprima. Teste as duas versões de formatar()\n\n    }\n}`,
+  starter: `// Desafio: métodos\n// DICA: void = sem retorno, int/double/String/boolean = com retorno\n// DICA: Sobrecarga = mesmo nome, parâmetros diferentes\n// DICA: return encerra o método e devolve o valor\npublic class Main {\n    // Escreva aqui: crie public static void exibirSeparador() que imprime "----"\n\n    // Escreva aqui: crie public static double calcularIMC(double peso, double altura) que retorna peso / (altura * altura)\n\n    // Escreva aqui: crie public static String classificarIMC(double imc) que retorna a classificação\n    // < 18.5 "Abaixo do peso", < 25 "Normal", < 30 "Sobrepeso", senão "Obesidade"\n\n    // Escreva aqui: crie duas versões sobrecarregadas de formatar()\n    // formatar(String texto) retorna "[ texto ]" e formatar(String texto, String prefixo) retorna "prefixo texto"\n\n    public static void main(String[] args) {\n        // Escreva aqui: calcule o IMC, classifique e imprima. Teste as duas versões de formatar()\n\n    }\n}`,
 },
 { week:6, day:7, num:4, lang:'java', title:'Desafio: OOP Java',
   content: `<h1>Desafio: OOP Java</h1>
-<p>Vamos revisar os pilares da <strong>Programação Orientada a Objetos</strong> em Java! Uma <strong>classe</strong> e um molde com atributos (dados) e métodos (comportamentos). Um <strong>objeto</strong> e uma instância criada com new. <strong>Construtores</strong> inicializam os atributos no momento da criação. <strong>Encapsulamento</strong> protege os dados com private e controla o acesso com getters/setters. <strong>Heranca</strong> permite criar classes que herdam de outras com extends.</p>
+<p>Teste seus conhecimentos sobre os pilares da <strong>Programação Orientada a Objetos</strong> em Java! Uma <strong>classe</strong> e um molde com atributos (dados) e métodos (comportamentos). Um <strong>objeto</strong> e uma instância criada com new. <strong>Construtores</strong> inicializam os atributos no momento da criação. <strong>Encapsulamento</strong> protege os dados com private e controla o acesso com getters/setters. <strong>Heranca</strong> permite criar classes que herdam de outras com extends.</p>
 <p>Para fixar, lembre dos conceitos-chave: use <strong>this</strong> para referênciar o objeto atual, <strong>super</strong> para acessar a superclasse, <strong>@Override</strong> para sobrescrever métodos herdados. O encapsulamento não é só "colocar private" — e pensar em como os dados devem ser acessados e válidados. Uma classe bem projetada esconde sua implementação interna e expoe apenas o necessário. Esse princípio se chama <strong>ocultacao de informação</strong> e e fundamental em projetos grandes.</p>
 <pre style="background:#1a1a2e;border:1px solid #334155;border-radius:8px;padding:1rem;margin:.8rem 0;"><code>// Exemplo: classe com encapsulamento
 // private String nome;
@@ -8794,7 +8797,7 @@ public class Main {
     }
 }</code></pre>
 <p>OOP e o paradigma central do Java. Dominar classes, construtores, encapsulamento e herança é essencial para qualquer desenvolvedor Java!</p>`,
-  starter: `// Revisão OOP\n// DICA: private atributos + construtor + getters + métodos\n// DICA: toString() é chamado automáticamente pelo println\n// DICA: Para boolean, getter usa "is" ao invés de "get": isLido()\npublic class Main {\n    // Escreva aqui: declare atributos private: String titulo, String autor, int paginas, boolean lido\n\n    // Escreva aqui: crie um construtor Main(String titulo, String autor, int paginas) onde lido começa como false\n\n    // Escreva aqui: crie getters para cada atributo (para lido use isLido())\n\n    // Escreva aqui: crie void marcarComoLido() que muda lido para true\n\n    // Escreva aqui: sobrescreva toString() retornando título, autor e status usando ternário: lido ? "[LIDO]" : "[PENDENTE]"\n\n    public static void main(String[] args) {\n        // Escreva aqui: crie 3 livros, marque 1 como lido e imprima todos com println (chama toString automáticamente)\n\n    }\n}`,
+  starter: `// Desafio: OOP\n// DICA: private atributos + construtor + getters + métodos\n// DICA: toString() é chamado automáticamente pelo println\n// DICA: Para boolean, getter usa "is" ao invés de "get": isLido()\npublic class Main {\n    // Escreva aqui: declare atributos private: String titulo, String autor, int paginas, boolean lido\n\n    // Escreva aqui: crie um construtor Main(String titulo, String autor, int paginas) onde lido começa como false\n\n    // Escreva aqui: crie getters para cada atributo (para lido use isLido())\n\n    // Escreva aqui: crie void marcarComoLido() que muda lido para true\n\n    // Escreva aqui: sobrescreva toString() retornando título, autor e status usando ternário: lido ? "[LIDO]" : "[PENDENTE]"\n\n    public static void main(String[] args) {\n        // Escreva aqui: crie 3 livros, marque 1 como lido e imprima todos com println (chama toString automáticamente)\n\n    }\n}`,
 },
 { week:6, day:7, num:5, lang:'java', title:'Desafio final Java',
   content: `<h1>Desafio final Java</h1>
@@ -10117,10 +10120,10 @@ int main() {
 <p>Parabéns! Você criou um projeto C++ completo usando OOP, vectors, funções e controle de fluxo. Esse tipo de projeto e excelente para o seu portfólio e demonstra que você domina os fundamentos do C++.</p>`,
   starter: `// Projeto C++ Completo\n// Dica: Junte as classes Livro e Biblioteca\n// Dica: Use do-while para o menu e switch para as opções\n#include <iostream>\n#include <vector>\nusing namespace std;\n// Escreva aqui: copie a classe Livro completa\n\n// Escreva aqui: copie a classe Biblioteca e adicione método menu()\n//   Escreva aqui: no menu(), use do-while para repetir ate o usuario digitar 0\n//   Escreva aqui: mostre as opções (1=Adicionar, 2=Listar, 0=Sair)\n//   Escreva aqui: use switch ou if/else para executar a opção escolhida\n\nint main() {\n    // Escreva aqui: crie uma Biblioteca, adicione alguns livros e chame menu()\n    return 0;\n}`,
 },
-// Day 7: Revisão C++
+// Day 7: Desafio C++
 { week:7, day:7, num:1, lang:'cpp', title:'Desafio: sintaxe C++',
   content: `<h1>Desafio: sintaxe C++</h1>
-<p>Vamos revisar a sintaxe básica do C++ que aprendemos nesta semana! O C++ é uma linguagem com tipagem estática, o que significa que toda variável precisa ter seu tipo declarado. Os tipos fundamentais são: <code>int</code>, <code>double</code>, <code>float</code>, <code>char</code>, <code>string</code> e <code>bool</code>. A entrada de dados usa <code>cin &gt;&gt;</code> e a saída usa <code>cout &lt;&lt;</code>. As estruturas de controle (if/else, switch, for, while) seguem uma sintaxe semelhante a outras linguagens da familia C.</p>
+<p>Hora de praticar a sintaxe básica do C++ que aprendemos nesta semana! O C++ é uma linguagem com tipagem estática, o que significa que toda variável precisa ter seu tipo declarado. Os tipos fundamentais são: <code>int</code>, <code>double</code>, <code>float</code>, <code>char</code>, <code>string</code> e <code>bool</code>. A entrada de dados usa <code>cin &gt;&gt;</code> e a saída usa <code>cout &lt;&lt;</code>. As estruturas de controle (if/else, switch, for, while) seguem uma sintaxe semelhante a outras linguagens da familia C.</p>
 <p>Lembre-se dos pontos importantes: todo programa precisa da função <code>main()</code>, as instruções terminam com ponto-e-virgula, os blocos de código ficam entre chaves <code>{}</code>, e os comentarios podem ser de linha (<code>//</code>) ou de bloco (<code>/* */</code>). A prática constante e o segredo para dominar a sintaxe — quanto mais você escreve, mais natural fica.</p>
 <pre style="background:#1a1a2e;border:1px solid #334155;border-radius:8px;padding:1rem;margin:.8rem 0;"><code>#include &lt;iostream&gt;
 using namespace std;
@@ -10148,11 +10151,11 @@ int main() {
 <p>Revise cada conceito até sentir confianca. A sintaxe do C++ pode parecer verbosa no início, mas ela da ao programador controle total sobre o programa e seus recursos.</p>
 <div style="background:linear-gradient(135deg,#1a1a3e,#2a1a4e);border:1px solid #7c3aed;border-radius:12px;padding:1.2rem;margin:1.5rem 0;"><h3 style="color:#a78bfa;margin:0 0 .5rem 0;">Curiosidade do Dia</h3><p style="margin:0;color:#c4b5fd;">C++ é a linguagem mais usada em olimpiadas de informatica (OBI, IOI). Sua velocidade é essencial quando há limite de tempo!</p></div>
 `,
-  starter: `// Revisão sintaxe C++\n// Dica: Revise: variáveis, cout, if/else, for, operador ternario\n#include <iostream>\nusing namespace std;\nint main() {\n    // Escreva aqui: declare variáveis nome (string), nivel (int), xp (double), pronto (bool)\n    // Escreva aqui: imprima os valores com cout\n    // Escreva aqui: use if para verificar se xp > 90 e imprima uma mensagem\n    // Escreva aqui: use um for para imprimir "Semana X concluída!" de 1 a 5\n    // Escreva aqui: use operador ternario para imprimir status baseado em pronto\n    return 0;\n}`,
+  starter: `// Desafio: sintaxe C++\n// Dica: Revise: variáveis, cout, if/else, for, operador ternario\n#include <iostream>\nusing namespace std;\nint main() {\n    // Escreva aqui: declare variáveis nome (string), nivel (int), xp (double), pronto (bool)\n    // Escreva aqui: imprima os valores com cout\n    // Escreva aqui: use if para verificar se xp > 90 e imprima uma mensagem\n    // Escreva aqui: use um for para imprimir "Semana X concluída!" de 1 a 5\n    // Escreva aqui: use operador ternario para imprimir status baseado em pronto\n    return 0;\n}`,
 },
 { week:7, day:7, num:2, lang:'cpp', title:'Desafio: arrays C++',
   content: `<h1>Desafio: arrays C++</h1>
-<p>Vamos revisar arrays e vectors em C++! Arrays estáticos tem tamanho fixo e são declarados como <code>tipo nome[tamanho]</code>. Já os <code>vector</code> são dinâmicos — crescem e diminuem conforme necessário. Para a maioria dos casos, vectors são a melhor escolha por serem mais seguros e flexiveis. Os métodos mais usados são: <code>push_back()</code> para adicionar, <code>size()</code> para tamanho, <code>at()</code> para acesso seguro, e <code>pop_back()</code> para remover o último.</p>
+<p>Teste seus conhecimentos sobre arrays e vectors em C++! Arrays estáticos tem tamanho fixo e são declarados como <code>tipo nome[tamanho]</code>. Já os <code>vector</code> são dinâmicos — crescem e diminuem conforme necessário. Para a maioria dos casos, vectors são a melhor escolha por serem mais seguros e flexiveis. Os métodos mais usados são: <code>push_back()</code> para adicionar, <code>size()</code> para tamanho, <code>at()</code> para acesso seguro, e <code>pop_back()</code> para remover o último.</p>
 <p>A iteração sobre coleções pode ser feita com for clássico (com índice), range-based for (<code>for (auto& x : vec)</code>), ou iteradores. O range-based for é o mais recomendado no C++ moderno por ser limpo e seguro. Strings em C++ também funcionam como coleções de caracteres e suportam métodos como <code>length()</code>, <code>substr()</code>, <code>find()</code> e concatenação com <code>+</code>.</p>
 <pre style="background:#1a1a2e;border:1px solid #334155;border-radius:8px;padding:1rem;margin:.8rem 0;"><code>#include &lt;iostream&gt;
 #include &lt;vector&gt;
@@ -10182,7 +10185,7 @@ int main() {
     return 0;
 }</code></pre>
 <p>Lembre-se: sempre prefira <code>vector</code> a arrays estáticos no C++ moderno. Eles gerenciam memória automáticamente e oferecem métodos úteis que facilitam muito o trabalho com coleções.</p>`,
-  starter: `// Revisão arrays C++\n// Dica: vector<tipo> para dinâmico, tipo nome[tam] para estatico\n// Dica: push_back(), size(), for range-based\n#include <iostream>\n#include <vector>\nusing namespace std;\nint main() {\n    // Escreva aqui: crie um vector<string> com linguagens de programação\n    // Escreva aqui: adicione mais linguagens com push_back()\n    // Escreva aqui: percorra e imprima cada linguagem com seu tamanho (length())\n    // Escreva aqui: filtre e imprima apenas as com mais de 3 letras\n    // Escreva aqui: crie um array estatico de 4 notas e calcule a media\n    return 0;\n}`,
+  starter: `// Desafio: arrays C++\n// Dica: vector<tipo> para dinâmico, tipo nome[tam] para estatico\n// Dica: push_back(), size(), for range-based\n#include <iostream>\n#include <vector>\nusing namespace std;\nint main() {\n    // Escreva aqui: crie um vector<string> com linguagens de programação\n    // Escreva aqui: adicione mais linguagens com push_back()\n    // Escreva aqui: percorra e imprima cada linguagem com seu tamanho (length())\n    // Escreva aqui: filtre e imprima apenas as com mais de 3 letras\n    // Escreva aqui: crie um array estatico de 4 notas e calcule a media\n    return 0;\n}`,
 },
 { week:7, day:7, num:3, lang:'cpp', title:'Desafio: funções C++',
   content: `<h1>Desafio: funções C++</h1>
@@ -10225,7 +10228,7 @@ int main() {
     return 0;
 }</code></pre>
 <p>Funções bem escritas são como blocos de LEGO — você pode combina-las de diferentes formas para construir programas complexos. Sempre pense: "posso reutilizar esse trecho de código?" Se sim, transforme em função!</p>`,
-  starter: `// Revisão funções C++\n// Dica: const ref para eficiência, recursao para fibonacci\n// Dica: Sobrecarga = mesmo nome, parâmetros diferentes\n#include <iostream>\n#include <vector>\nusing namespace std;\n// Escreva aqui: crie int somaVector(const vector<int>& v) que soma todos os elementos\n\n// Escreva aqui: crie int fibonacci(int n) recursivo (fib(0)=0, fib(1)=1, fib(n)=fib(n-1)+fib(n-2))\n\n// Escreva aqui: crie string repetir(string s, int vezes) que repete a string\n// Escreva aqui: crie string repetir(char c, int vezes) - sobrecarga para char\n\nint main() {\n    // Escreva aqui: teste somaVector com um vector de inteiros\n    // Escreva aqui: imprima fibonacci(10)\n    // Escreva aqui: teste as duas versoes de repetir\n    return 0;\n}`,
+  starter: `// Desafio: funções C++\n// Dica: const ref para eficiência, recursao para fibonacci\n// Dica: Sobrecarga = mesmo nome, parâmetros diferentes\n#include <iostream>\n#include <vector>\nusing namespace std;\n// Escreva aqui: crie int somaVector(const vector<int>& v) que soma todos os elementos\n\n// Escreva aqui: crie int fibonacci(int n) recursivo (fib(0)=0, fib(1)=1, fib(n)=fib(n-1)+fib(n-2))\n\n// Escreva aqui: crie string repetir(string s, int vezes) que repete a string\n// Escreva aqui: crie string repetir(char c, int vezes) - sobrecarga para char\n\nint main() {\n    // Escreva aqui: teste somaVector com um vector de inteiros\n    // Escreva aqui: imprima fibonacci(10)\n    // Escreva aqui: teste as duas versoes de repetir\n    return 0;\n}`,
 },
 { week:7, day:7, num:4, lang:'cpp', title:'Desafio: OOP C++',
   content: `<h1>Desafio: OOP C++</h1>
@@ -10275,7 +10278,7 @@ int main() {
     return 0;
 }</code></pre>
 <p>A OOP e um paradigma poderoso que organiza o código de forma intuitiva, refletindo entidades do mundo real. Domine esses conceitos e você estará preparado para projetos profissionais em C++!</p>`,
-  starter: `// Revisão OOP C++\n// Dica: Classe base com virtual, derivadas com override\n// Dica: Use vector<Base*> para polimorfismo\n#include <iostream>\n#include <vector>\nusing namespace std;\n// Escreva aqui: crie class Veiculo com protected: string marca, int ano\n// Escreva aqui: construtor, virtual void info() e virtual ~Veiculo() {}\n\n// Escreva aqui: crie class Carro : public Veiculo com int portas\n// Escreva aqui: override info() imprimindo marca, ano e portas\n\n// Escreva aqui: crie class Moto : public Veiculo com int cilindradas\n// Escreva aqui: override info() imprimindo marca, ano e cilindradas\n\nint main() {\n    // Escreva aqui: crie um vector<Veiculo*> e adicione new Carro e new Moto\n    // Escreva aqui: percorra e chame info() - polimorfismo\n    // Escreva aqui: libere memoria com delete\n    return 0;\n}`,
+  starter: `// Desafio: OOP C++\n// Dica: Classe base com virtual, derivadas com override\n// Dica: Use vector<Base*> para polimorfismo\n#include <iostream>\n#include <vector>\nusing namespace std;\n// Escreva aqui: crie class Veiculo com protected: string marca, int ano\n// Escreva aqui: construtor, virtual void info() e virtual ~Veiculo() {}\n\n// Escreva aqui: crie class Carro : public Veiculo com int portas\n// Escreva aqui: override info() imprimindo marca, ano e portas\n\n// Escreva aqui: crie class Moto : public Veiculo com int cilindradas\n// Escreva aqui: override info() imprimindo marca, ano e cilindradas\n\nint main() {\n    // Escreva aqui: crie um vector<Veiculo*> e adicione new Carro e new Moto\n    // Escreva aqui: percorra e chame info() - polimorfismo\n    // Escreva aqui: libere memoria com delete\n    return 0;\n}`,
 },
 { week:7, day:7, num:5, lang:'cpp', title:'Desafio final C++',
   content: `<h1>Desafio final C++</h1>
@@ -11896,7 +11899,7 @@ for ___ in roteiro["partes"]:
 },
 { week:8, day:7, num:2, lang:'python', title:'Desafio: geral',
   content: `<h1>Desafio: geral</h1>
-<p>Vamos fazer uma revisão de tudo que você aprendeu durante as 8 semanas do bootcamp! Na Semana 1, você aprendeu lógica de programação: variáveis, condicionais, loops e funções. Na Semana 2, mergulhou em Python com listas, dicionários, manipulação de strings e arquivos. Na Semana 3, avancou em Python com programação orientada a objetos, modulos e tratamento de exceções. Na Semana 4, entrou no mundo web com HTML, CSS e JavaScript. Cada semana construiu sobre a anterior!</p>
+<p>Hora de praticar tudo que você aprendeu durante as 8 semanas do bootcamp! Na Semana 1, você aprendeu lógica de programação: variáveis, condicionais, loops e funções. Na Semana 2, mergulhou em Python com listas, dicionários, manipulação de strings e arquivos. Na Semana 3, avancou em Python com programação orientada a objetos, modulos e tratamento de exceções. Na Semana 4, entrou no mundo web com HTML, CSS e JavaScript. Cada semana construiu sobre a anterior!</p>
 <p>Na Semana 5, você aprendeu banco de dados com SQL: criar tabelas, inserir dados, fazer consultas complexas e relacionar tabelas. Na Semana 6, conheceu Java e programação orientada a objetos em outra linguagem. Na Semana 7, explorou C++ e conceitos de programação de mais baixo nivel. E na Semana 8, juntou tudo num projeto final completo. Isso é uma jornada incrível! Você saiu do zero e agora e capaz de construir aplicações completas. Vamos relembrar os conceitos-chave de cada semana:</p>
 <pre style="background:#1a1a2e;border:1px solid #334155;border-radius:8px;padding:1rem;margin:.8rem 0;"><code># Exemplo: dicionário de revisão de uma semana
 semana_ex = {
@@ -11945,7 +11948,7 @@ for ___, ___ in bootcamp.___():
     print(f"  Conceitos: {', '.join(___['conceitos'])}")
     print(f"  Projeto: {___['projeto']}\n")
 </code></pre>`,
-  starter: `# Revisão geral do bootcamp\n\n# Escreva aqui: crie um dicionário "bootcamp" com 8 chaves\n# (uma para cada semana: "Semana 1 - Lógica", "Semana 2 - Python", etc.)\n# Cada semana deve ter "conceitos" (lista de 5 coisas que aprendeu)\n# e "projeto" (string com o nome do projeto da semana)\nbootcamp = {\n}\n\n# Escreva aqui: percorra bootcamp com .items() e imprima:\n# - o nome da semana\n# - os conceitos separados por vírgula usando ', '.join()\n# - o projeto\nprint("=== REVISÃO DO BOOTCAMP ===\n")\n# Dica: for semana, info in bootcamp.items():`,
+  starter: `# Desafio: geral do bootcamp\n\n# Escreva aqui: crie um dicionário "bootcamp" com 8 chaves\n# (uma para cada semana: "Semana 1 - Lógica", "Semana 2 - Python", etc.)\n# Cada semana deve ter "conceitos" (lista de 5 coisas que aprendeu)\n# e "projeto" (string com o nome do projeto da semana)\nbootcamp = {\n}\n\n# Escreva aqui: percorra bootcamp com .items() e imprima:\n# - o nome da semana\n# - os conceitos separados por vírgula usando ', '.join()\n# - o projeto\nprint("=== REVISÃO DO BOOTCAMP ===\n")\n# Dica: for semana, info in bootcamp.items():`,
 },
 { week:8, day:7, num:3, lang:'python', title:'Proximos passos',
   content: `<h1>Proximos passos</h1>
@@ -13410,7 +13413,7 @@ let adInterval = null;
 function startWatchAd() {
     // Close paywall, open ad
     document.getElementById('paywallOverlay').classList.remove('show');
-    document.getElementById('adOverlay').classList.add('show');
+    loadAdBanner(); document.getElementById('adOverlay').classList.add('show');
 
     // Removed: Adsterra Smart Link (inappropriate content)
 
