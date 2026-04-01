@@ -778,6 +778,8 @@
     </script>
 </head>
 <body>
+<div id="__dbg" style="position:fixed;top:0;left:0;right:0;z-index:99999;background:red;color:#fff;font-size:11px;padding:4px 8px;display:none;max-height:200px;overflow:auto;font-family:monospace;"></div>
+<script>window.onerror=function(m,s,l,c,e){var d=document.getElementById("__dbg");d.style.display="block";d.innerHTML+="L"+l+":"+c+" "+m+"<br>";return false;};</script>
 <!-- NAV -->
 <nav>
     <div class="logo" onclick="goHome()">Code<span>Master</span></div>
@@ -2126,9 +2128,9 @@ print("Obrigado por usar a calculadora!")</code></pre>
 // Day 7: Revisão Semana 1
 { week:1, day:7, num:1, lang:'python', title:'Desafio: print/input',
   content: `<h1>Desafio: print/input</h1>
-<p>Vamos começar a revisão da semana relembrando as duas funções mais básicas do Python: <strong>print()</strong> e <strong>input()</strong>. O print() exibe informações na tela — pode receber texto, números, variáveis e até expressões. Você pode separar itens com virgula, usar o parâmetro sep pra mudar o separador e end pra mudar o final da linha. Já o input() faz o oposto: recebe informações do usuario.</p>
+<p>Hora de praticar! Teste seus conhecimentos sobre as duas funções mais básicas do Python: <strong>print()</strong> e <strong>input()</strong>. O print() exibe informações na tela — pode receber texto, números, variáveis e até expressões. Você pode separar itens com virgula, usar o parâmetro sep pra mudar o separador e end pra mudar o final da linha. Já o input() faz o oposto: recebe informações do usuario.</p>
 
-<p>O ponto mais importante de lembrar: o input() <strong>sempre retorna string</strong>! Então se você quer um número, precisa converter com int() ou float(). Essas duas funções juntas (print e input) formam a base de qualquer programa interativo. Sem elas, seu programa não consegue se comunicar com o usuario. Vamos revisar com exercícios rapidos!</p>
+<p>O ponto mais importante de lembrar: o input() <strong>sempre retorna string</strong>! Então se você quer um número, precisa converter com int() ou float(). Essas duas funções juntas (print e input) formam a base de qualquer programa interativo. Sem elas, seu programa não consegue se comunicar com o usuario. Hora de praticar com exercícios rapidos!</p>
 
 <pre style="background:#1a1a2e;border:1px solid #334155;border-radius:8px;padding:1rem;margin:.8rem 0;"><code># Revisão: print com vários formatos
 print("Texto simples")
@@ -3473,8 +3475,8 @@ while True:
 // Day 7: Revisão Semana 2
 { week:2, day:7, num:1, lang:'python', title:'Desafio: funções',
   content: `<h1>Desafio: funções</h1>
-<p>Vamos revisar o conceito de funções, que foi o primeiro grande tema da Semana 2. Funções são blocos de código reutilizaveis definidos com <strong>def</strong>. Elas podem receber parâmetros, ter valores padrão, e retornar resultados com <strong>return</strong>. Funções são a base da organização de código — sem elas, teriamos programas enormes e impossiveis de manter.</p>
-<p>Nesta revisão, vamos criar funções que combinam vários conceitos: parâmetros obrigatórios e opcionais, retorno de valores, e composicao (uma função chamando outra). Esses padroes são o que separa código de iniciante de código bem estruturado. Pratique até se sentir confortavel:</p>
+<p>Teste seus conhecimentos sobre funções, que foi o primeiro grande tema da Semana 2. Funções são blocos de código reutilizaveis definidos com <strong>def</strong>. Elas podem receber parâmetros, ter valores padrão, e retornar resultados com <strong>return</strong>. Funções são a base da organização de código — sem elas, teriamos programas enormes e impossiveis de manter.</p>
+<p>Neste desafio, vamos criar funções que combinam vários conceitos: parâmetros obrigatórios e opcionais, retorno de valores, e composicao (uma função chamando outra). Esses padroes são o que separa código de iniciante de código bem estruturado. Pratique até se sentir confortavel:</p>
 <pre style="background:#1a1a2e;border:1px solid #334155;border-radius:8px;padding:1rem;margin:.8rem 0;"><code># Exemplo:
 def calcular_preco(valor, desconto=0, taxa=0):
     preco_desconto = valor * (1 - desconto / 100)
@@ -3514,7 +3516,7 @@ print(criar_email("  joao da silva  "))
 },
 { week:2, day:7, num:2, lang:'python', title:'Desafio: listas',
   content: `<h1>Desafio: listas</h1>
-<p>Listas são coleções ordenadas e mutaveis que você usa constantemente em Python. Nesta revisão, vamos reforcar os pontos principais: criar listas, acessar por índice, usar métodos como append, remove e sort, e criar listas de forma eficiente com list comprehension. Dominar listas é essencial para qualquer programador Python.</p>
+<p>Listas são coleções ordenadas e mutaveis que você usa constantemente em Python. Hora de praticar os pontos principais: criar listas, acessar por índice, usar métodos como append, remove e sort, e criar listas de forma eficiente com list comprehension. Dominar listas é essencial para qualquer programador Python.</p>
 <p>Vamos resolver exercícios que combinam todos os conceitos de listas. Esses exercícios simulam tarefas comuns como processar dados, filtrar informações e transformar coleções. Tente resolver mentalmente antes de ver a solução:</p>
 <pre style="background:#1a1a2e;border:1px solid #334155;border-radius:8px;padding:1rem;margin:.8rem 0;"><code># Exemplo:
 vendas = [150, 200, 50, 300, 180, 90, 250]
@@ -10226,7 +10228,7 @@ int main() {
   starter: `// Revisão funções C++\n// Dica: const ref para eficiência, recursao para fibonacci\n// Dica: Sobrecarga = mesmo nome, parâmetros diferentes\n#include <iostream>\n#include <vector>\nusing namespace std;\n// Escreva aqui: crie int somaVector(const vector<int>& v) que soma todos os elementos\n\n// Escreva aqui: crie int fibonacci(int n) recursivo (fib(0)=0, fib(1)=1, fib(n)=fib(n-1)+fib(n-2))\n\n// Escreva aqui: crie string repetir(string s, int vezes) que repete a string\n// Escreva aqui: crie string repetir(char c, int vezes) - sobrecarga para char\n\nint main() {\n    // Escreva aqui: teste somaVector com um vector de inteiros\n    // Escreva aqui: imprima fibonacci(10)\n    // Escreva aqui: teste as duas versoes de repetir\n    return 0;\n}`,
 },
 { week:7, day:7, num:4, lang:'cpp', title:'Desafio: OOP C++',
-  content: `<h1>Revisão OOP C++</h1>
+  content: `<h1>Desafio: OOP C++</h1>
 <p>A Programação Orientada a Objetos em C++ se baseia em quatro pilares: encapsulamento (dados privados com interface pública), herança (classes derivadas que herdam da base), polimorfismo (mesma interface, comportamentos diferentes) e abstração (esconder a complexidade). Classes definem o molde, objetos são as instâncias concretas. Construtores inicializam os atributos e destrutores liberam recursos.</p>
 <p>Pontos-chave para lembrar: use <code>private</code> para atributos e <code>public</code> para métodos (encapsulamento), <code>protected</code> para membros acessiveis nas classes filhas, <code>virtual</code> para métodos que serao sobrescritos (polimorfismo), e <code>override</code> para marcar explicitamente a sobrescrita. A lista de inicializacao no construtor e mais eficiente que atribuição no corpo. Sempre declare o destrutor como virtual em classes base que serao herdadas.</p>
 <pre style="background:#1a1a2e;border:1px solid #334155;border-radius:8px;padding:1rem;margin:.8rem 0;"><code>#include &lt;iostream&gt;
@@ -11893,7 +11895,7 @@ for ___ in roteiro["partes"]:
   starter: `# Roteiro de apresentação\n\n# Escreva aqui: crie um dicionário "roteiro" com as chaves:\n# "titulo" (nome do projeto), "autor" (seu nome),\n# "duracao" (ex: "10 minutos"),\n# "partes" (lista de dicionários, cada um com "secao" e "topicos")\n# Inclua 4 partes: Introdução, Demonstração, Bastidores e Conclusão\nroteiro = {\n}\n\n# Escreva aqui: imprima o roteiro formatado com:\n# - borda de "=" * 50\n# - título, autor e duração\n# - para cada parte, imprima o nome da seção e seus tópicos\n# Dica: for parte in roteiro["partes"]:`,
 },
 { week:8, day:7, num:2, lang:'python', title:'Desafio: geral',
-  content: `<h1>Revisão geral</h1>
+  content: `<h1>Desafio: geral</h1>
 <p>Vamos fazer uma revisão de tudo que você aprendeu durante as 8 semanas do bootcamp! Na Semana 1, você aprendeu lógica de programação: variáveis, condicionais, loops e funções. Na Semana 2, mergulhou em Python com listas, dicionários, manipulação de strings e arquivos. Na Semana 3, avancou em Python com programação orientada a objetos, modulos e tratamento de exceções. Na Semana 4, entrou no mundo web com HTML, CSS e JavaScript. Cada semana construiu sobre a anterior!</p>
 <p>Na Semana 5, você aprendeu banco de dados com SQL: criar tabelas, inserir dados, fazer consultas complexas e relacionar tabelas. Na Semana 6, conheceu Java e programação orientada a objetos em outra linguagem. Na Semana 7, explorou C++ e conceitos de programação de mais baixo nivel. E na Semana 8, juntou tudo num projeto final completo. Isso é uma jornada incrível! Você saiu do zero e agora e capaz de construir aplicações completas. Vamos relembrar os conceitos-chave de cada semana:</p>
 <pre style="background:#1a1a2e;border:1px solid #334155;border-radius:8px;padding:1rem;margin:.8rem 0;"><code># Exemplo: dicionário de revisão de uma semana
