@@ -1134,7 +1134,7 @@ print("Python é incrível!")</code></pre>
   content: `<h1>Primeiro programa</h1>
 <p>Agora que você já sabe o que e programar, vamos colocar a mao na massa e criar seu primeiro programa de verdade! Em Python, pra exibir algo na tela, usamos a função <strong>print()</strong>. Essa função pega o que você colocar dentro dos parenteses e mostra no terminal (a tela preta onde o programa roda). Tudo que estiver entre aspas sera tratado como texto.</p>
 
-<p>Quando você clica em "Executar", o Python le seu código linha por linha, de cima pra baixo, e executa cada instrução. Se você tiver três linhas com print(), ele vai exibir três mensagens, uma embaixo da outra. Isso é o fluxo sequêncial de execução — o conceito mais básico da programação. Todo programa segue essa lógica: instrução 1, depois instrução 2, depois instrução 3, é assim por diante.</p>
+<p>Quando você clica em "Executar", o Python lê seu código linha por linha, de cima pra baixo, e executa cada instrução. Se você tiver três linhas com print(), ele vai exibir três mensagens, uma embaixo da outra. Isso é o fluxo sequêncial de execução — o conceito mais básico da programação. Todo programa segue essa lógica: instrução 1, depois instrução 2, depois instrução 3, é assim por diante.</p>
 
 <p>Veja como criar um programa simples que se apresenta:</p>
 <pre style="background:#1a1a2e;border:1px solid #334155;border-radius:8px;padding:1rem;margin:.8rem 0;"><code># Crie um programa que se apresenta
@@ -1547,7 +1547,7 @@ x = 5
   content: `<h1>Prática operadores</h1>
 <p>Hora de praticar todos os operadores que aprendemos! Você já sabe usar operadores aritméticos (+, -, *, /, //, %, **), de comparação (==, !=, >, <, >=, <=) e lógicos (and, or, not). Agora vamos combinar tudo em exercícios práticos que simulam situações reais. Tente resolver cada um pensando em quais operadores usar.</p>
 
-<p>Nestes exercícios, você vai calcular coisas do dia a dia: troco de compras, conversão de temperatura, verificação de idade e mais. O objetivo é você se sentir confortavel usando operadores em qualquer situação. Lembre-se: programação e resolver problemas, e operadores são suas ferramentas básicas pra isso!</p>
+<p>Nestes exercícios, você vai calcular coisas do dia a dia: troco de compras, conversão de temperatura, verificação de idade e mais. O objetivo é você se sentir confortável usando operadores em qualquer situação. Lembre-se: programação e resolver problemas, e operadores são suas ferramentas básicas pra isso!</p>
 
 <pre style="background:#1a1a2e;border:1px solid #334155;border-radius:8px;padding:1rem;margin:.8rem 0;"><code># Exercicio 1: Calculadora de troco
 preco = 27.50
@@ -3479,7 +3479,7 @@ while True:
 { week:2, day:7, num:1, lang:'python', title:'Desafio: funções',
   content: `<h1>Desafio: funções</h1>
 <p>Teste seus conhecimentos sobre funções, que foi o primeiro grande tema da Semana 2. Funções são blocos de código reutilizaveis definidos com <strong>def</strong>. Elas podem receber parâmetros, ter valores padrão, e retornar resultados com <strong>return</strong>. Funções são a base da organização de código — sem elas, teriamos programas enormes e impossiveis de manter.</p>
-<p>Neste desafio, vamos criar funções que combinam vários conceitos: parâmetros obrigatórios e opcionais, retorno de valores, e composicao (uma função chamando outra). Esses padroes são o que separa código de iniciante de código bem estruturado. Pratique até se sentir confortavel:</p>
+<p>Neste desafio, vamos criar funções que combinam vários conceitos: parâmetros obrigatórios e opcionais, retorno de valores, e composicao (uma função chamando outra). Esses padroes são o que separa código de iniciante de código bem estruturado. Pratique até se sentir confortável:</p>
 <pre style="background:#1a1a2e;border:1px solid #334155;border-radius:8px;padding:1rem;margin:.8rem 0;"><code># Exemplo:
 def calcular_preco(valor, desconto=0, taxa=0):
     preco_desconto = valor * (1 - desconto / 100)
@@ -3596,7 +3596,7 @@ for info in estoque.values():
 # 4. Imprima os preços atualizados
 for produto, info in estoque.items():
     print(f"  {produto}: R$ {___}")</code></pre>
-<p>Dicionarios aninhados (dicionários dentro de dicionários) são um padrão muito comum para representar dados complexos. Pratique até se sentir confortavel com essa estrutura!</p>`,
+<p>Dicionarios aninhados (dicionários dentro de dicionários) são um padrão muito comum para representar dados complexos. Pratique até se sentir confortável com essa estrutura!</p>`,
   starter: `# Desafio: dicionários\n# Escreva aqui: pratique dicionários aninhados e dict comprehension\n\nestoque = {\n    "arroz": {"preco": 5.99, "quantidade": 50},\n    "feijao": {"preco": 7.50, "quantidade": 30},\n    "macarrao": {"preco": 3.99, "quantidade": 80}\n}\n\n# Escreva aqui: calcule o valor total do estoque (preço x quantidade)\n# Dica: sum(info["preco"] * info["quantidade"] for info in estoque.values())\ntotal = ___\nprint(f"Valor total: R$ {total:.2f}")\n\n# Escreva aqui: filtre produtos com estoque < 40 usando dict comprehension\n# Dica: {p: i for p, i in estoque.items() if condição}\nbaixo_estoque = {___}\nprint("Estoque baixo:", baixo_estoque)\n\n# Escreva aqui: aplique aumento de 10% em todos os preços\nfor info in estoque.values():\n    info["preco"] = info["preco"] * ___`,
 },
 { week:2, day:7, num:4, lang:'python', title:'Desafio: strings',
@@ -13254,6 +13254,7 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
 // ====================================================
 
 const FREE_LESSONS_PER_HOUR = 3;
+const FREEMIUM_LIMIT_MS = 3600000; // 1 hour
 let freemiumInterval = null;
 
 function isPremium() {
@@ -13733,7 +13734,7 @@ const aiKnowledge = {
     // Python
     'print': 'A função <code>print()</code> exibe texto na tela.\n<pre>print("Olá, mundo!")\nprint("Soma:", 2 + 3)  # Soma: 5</pre>\nVocê pode imprimir vários valores separados por virgula.',
     'variável': 'Variáveis guardam dados na memória:\n<pre>nome = "Ana"\nidade = 25\naltura = 1.65\nativo = True</pre>\nPython detecta o tipo automáticamente (tipagem dinâmica).',
-    'if': 'O <code>if</code> toma decisões no código:\n<pre>idade = 18\nif idade >= 18:\n    print("Maior de idade")\nelif idade >= 12:\n    print("Adolescente")\nelse:\n    print("Crianca")</pre>',
+    'if': 'O <code>if</code> toma decisões no código:\n<pre>idade = 18\nif idade >= 18:\n    print("Maior de idade")\nelif idade >= 12:\n    print("Adolescente")\nelse:\n    print("Criança")</pre>',
     'for': 'O <code>for</code> repete um bloco de código:\n<pre>for i in range(5):\n    print(i)  # 0, 1, 2, 3, 4\n\nfrutas = ["maca", "banana"]\nfor fruta in frutas:\n    print(fruta)</pre>',
     'while': 'O <code>while</code> repete enquanto a condição for verdadeira:\n<pre>contador = 0\nwhile contador < 5:\n    print(contador)\n    contador += 1</pre>\nCuidado com loops infinitos!',
     'lista': 'Listas guardam coleções de dados:\n<pre>nums = [1, 2, 3, 4, 5]\nnums.append(6)      # adiciona\nnums.remove(3)      # remove\nprint(len(nums))    # tamanho\nprint(nums[0])      # primeiro</pre>',
