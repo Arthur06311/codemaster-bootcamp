@@ -585,9 +585,9 @@
         .ai-chat-btn.show { display:flex; align-items:center; justify-content:center; }
         .ai-chat-panel {
             position:fixed; bottom:5.5rem; right:1.5rem; width:380px; max-height:520px;
-            background:rgba(10,15,30,0.95); border:1px solid rgba(139,92,246,.2);
-            border-radius:20px; z-index:150; display:none; flex-direction:column; overflow:hidden;
-            box-shadow:0 15px 50px rgba(0,0,0,.5), 0 0 30px rgba(139,92,246,.08);
+            background:rgba(10,15,30,0.97); border:1px solid rgba(139,92,246,.2);
+            border-radius:20px; z-index:200; display:none; flex-direction:column; overflow:hidden;
+            box-shadow:0 15px 50px rgba(0,0,0,.6), 0 0 30px rgba(139,92,246,.1);
             backdrop-filter:blur(40px);
         }
         .ai-chat-panel.show { display:flex; animation:fadeInScale .3s cubic-bezier(.16,1,.3,1); }
@@ -606,7 +606,39 @@
         .ai-chat-input input:focus { outline:none; border-color:rgba(139,92,246,.4); background:rgba(139,92,246,.05); }
         .ai-chat-input button { background:linear-gradient(135deg,#8b5cf6,#6366f1); border:none; color:#fff; padding:.55rem .9rem; border-radius:10px; cursor:pointer; font-weight:700; transition:all .3s; }
         .ai-chat-input button:hover { filter:brightness(1.15); }
-        @media(max-width:480px) { .ai-chat-panel { width:calc(100vw - 2rem); right:1rem; bottom:5rem; } }
+        /* Gemini loading dots */
+        @keyframes dotBounce { 0%,80%,100%{transform:translateY(0);opacity:.4} 40%{transform:translateY(-6px);opacity:1} }
+        .ai-loading { display:flex; gap:4px; align-items:center; padding:.6rem .9rem !important; }
+        .ai-dot { width:7px; height:7px; border-radius:50%; background:#a78bfa; animation:dotBounce 1.2s infinite; }
+        .ai-dot:nth-child(2) { animation-delay:.2s; }
+        .ai-dot:nth-child(3) { animation-delay:.4s; }
+
+        /* Mobile AI chat — full screen panel */
+        @media(max-width:600px) {
+            .ai-chat-btn { bottom:1rem; right:1rem; width:52px; height:52px; font-size:1.3rem; }
+            .ai-chat-panel {
+                position:fixed; inset:0; width:100%; max-height:100%;
+                bottom:0; right:0; border-radius:0;
+                z-index:300;
+            }
+            .ai-chat-messages { max-height:calc(100vh - 130px); }
+        }
+
+        /* Mobile paywall scroll fix */
+        @media(max-width:600px) {
+            .paywall-overlay { padding:.5rem; align-items:flex-end; }
+            .paywall-modal {
+                max-height:95vh; overflow-y:auto; border-radius:20px 20px 0 0;
+                padding:1.8rem 1.2rem;
+                /* smooth scroll on iOS */
+                -webkit-overflow-scrolling:touch;
+            }
+            .paywall-modal::-webkit-scrollbar { display:none; }
+            .paywall-price { font-size:2.2rem; }
+            .paywall-emoji { font-size:2.5rem; }
+            .paywall-modal h2 { font-size:1.3rem; }
+            .paywall-btn { font-size:.95rem; padding:.9rem; }
+        }
 
         /* ===== ADS ===== */
         .ad-sticky-bottom {
@@ -866,7 +898,7 @@ function redeemCode() {
             <li><span class="pf-check">&#10003;</span> Acesso vitalício</li>
         </ul>
 
-        <a href="https://www.mercadopago.com.br/checkout/v1/payment/redirect/327a00f8-dfd4-4719-8c1f-9d657d52d455/review/?source=link&preference-id=114513236-8bd187a4-0399-4c0a-b619-051b507b3823&router-request-id=de085ee6-361a-4a43-9a88-ca7aa11efcf4&p=ecc76db6965ae98326a8fb71e4bda686" target="_blank" class="paywall-btn" style="display:inline-block;text-decoration:none;text-align:center;" onclick="localStorage.setItem('cm_payment_pending','true');localStorage.setItem('cm_payment_ts',Date.now())">Pagar R$60,00 — Mercado Pago</a>
+        <button class="paywall-btn" onclick="openPayment()" style="text-align:center;">&#128274; Pagar R$60,00 — Mercado Pago</button>
         <div class="paywall-secure">&#128274; PIX, Cartão ou Boleto via Mercado Pago</div>
 
         <div id="activateSection" style="margin-top:1rem;">
@@ -899,7 +931,7 @@ function redeemCode() {
                         <div id="adBannerSlot"></div>
                     </div>
                     <p style="color:var(--muted);font-size:.8rem;">Ou adquira o <strong style="color:var(--green);">Premium</strong> para acesso ilimitado sem anúncios!</p>
-                    <a href="https://www.mercadopago.com.br/checkout/v1/payment/redirect/327a00f8-dfd4-4719-8c1f-9d657d52d455/review/?source=link&preference-id=114513236-8bd187a4-0399-4c0a-b619-051b507b3823&router-request-id=de085ee6-361a-4a43-9a88-ca7aa11efcf4&p=ecc76db6965ae98326a8fb71e4bda686" target="_blank" style="display:inline-block;background:linear-gradient(135deg,var(--green),var(--green-d));color:#fff;font-weight:700;font-size:.9rem;padding:.6rem 1.5rem;border-radius:12px;text-decoration:none;margin-top:.5rem;" onclick="localStorage.setItem('cm_payment_pending','true');localStorage.setItem('cm_payment_ts',Date.now())">Comprar Premium — R$60</a>
+                    <button onclick="openPayment()" style="display:inline-block;background:linear-gradient(135deg,var(--green),var(--green-d));color:#fff;font-weight:700;font-size:.9rem;padding:.6rem 1.5rem;border-radius:12px;border:none;cursor:pointer;margin-top:.5rem;">Comprar Premium — R$60</button>
                 </div>
             </div>
 
@@ -1076,24 +1108,30 @@ function redeemCode() {
             <div style="font-family:'Space Grotesk',sans-serif;font-size:2rem;font-weight:700;color:var(--green);"><small style="font-size:.9rem;">R$</small>60</div>
             <span style="font-size:.75rem;color:var(--muted);">Pagamento único — acesso vitalício</span>
         </div>
-        <a href="https://www.mercadopago.com.br/checkout/v1/payment/redirect/327a00f8-dfd4-4719-8c1f-9d657d52d455/review/?source=link&preference-id=114513236-8bd187a4-0399-4c0a-b619-051b507b3823&router-request-id=de085ee6-361a-4a43-9a88-ca7aa11efcf4&p=ecc76db6965ae98326a8fb71e4bda686" target="_blank" style="display:inline-block;background:linear-gradient(135deg,var(--green),var(--green-d));color:#fff;font-weight:700;font-size:1rem;padding:.8rem 2rem;border-radius:12px;text-decoration:none;margin-bottom:.8rem;box-shadow:0 4px 20px rgba(16,185,129,.25);" onclick="localStorage.setItem('cm_payment_pending','true');localStorage.setItem('cm_payment_ts',Date.now())">Desbloquear Tudo &#8594;</a>
+        <button onclick="openPayment()" style="display:inline-block;background:linear-gradient(135deg,var(--green),var(--green-d));color:#fff;font-weight:700;font-size:1rem;padding:.8rem 2rem;border-radius:12px;border:none;cursor:pointer;margin-bottom:.8rem;box-shadow:0 4px 20px rgba(16,185,129,.25);">Desbloquear Tudo &#8594;</button>
     </div>
     <button class="ad-interstitial-skip" id="interstitialSkip" disabled onclick="closeInterstitial()">Pular em <span id="interstitialCount">5</span>s</button>
 </div>
 
 <!-- AI Chat Button + Panel (Premium only) -->
-<button class="ai-chat-btn" id="aiChatBtn" onclick="toggleAiChat()">&#129302;</button>
+<button class="ai-chat-btn" id="aiChatBtn" onclick="toggleAiChat()" title="Assistente IA">&#129302;</button>
 <div class="ai-chat-panel" id="aiChatPanel">
     <div class="ai-chat-header">
-        <h3>&#129302; CodeMaster IA</h3>
-        <button class="ai-chat-close" onclick="toggleAiChat()">&#10005;</button>
+        <div style="display:flex;align-items:center;gap:.5rem;">
+            <span style="font-size:1.1rem;">&#129302;</span>
+            <div>
+                <div style="font-size:.88rem;font-weight:700;color:#fff;">CodeMaster IA</div>
+                <div style="font-size:.68rem;color:rgba(167,139,250,.7);">Powered by Gemini</div>
+            </div>
+        </div>
+        <button class="ai-chat-close" onclick="toggleAiChat()" style="font-size:1.3rem;padding:.3rem .6rem;">&#10005;</button>
     </div>
     <div class="ai-chat-messages" id="aiMessages">
-        <div class="ai-msg bot">Olá! Sou o assistente IA do CodeMaster. Pergunte qualquer coisa sobre programação — Python, HTML, CSS, JS, SQL, Java ou C++. Estou aqui para te ajudar a aprender!</div>
+        <div class="ai-msg bot">Olá! 👋 Sou o assistente IA do CodeMaster, powered by <strong>Gemini</strong>. Pergunte qualquer coisa sobre programação — Python, HTML, CSS, JS, SQL, Java ou C++!</div>
     </div>
     <div class="ai-chat-input">
-        <input type="text" id="aiInput" placeholder="Pergunte algo..." onkeydown="if(event.key==='Enter')sendAiMsg()">
-        <button onclick="sendAiMsg()">&#10148;</button>
+        <input type="text" id="aiInput" placeholder="Pergunte sobre programação..." onkeydown="if(event.key==='Enter'&&!event.shiftKey)sendAiMsg()" autocomplete="off" inputmode="text">
+        <button onclick="sendAiMsg()" style="min-width:40px;font-size:1.1rem;">&#10148;</button>
     </div>
 </div>
 
@@ -13565,9 +13603,24 @@ function injectInContentAd(contentEl) {
 
 const MP_LINK = 'https://www.mercadopago.com.br/checkout/v1/payment/redirect/327a00f8-dfd4-4719-8c1f-9d657d52d455/review/?source=link&preference-id=114513236-8bd187a4-0399-4c0a-b619-051b507b3823&router-request-id=de085ee6-361a-4a43-9a88-ca7aa11efcf4&p=ecc76db6965ae98326a8fb71e4bda686';
 
-function comprarBootcamp() {
-    window.open(MP_LINK, '_blank');
+// Mobile detection
+const IS_MOBILE = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent) || window.innerWidth < 768;
+
+// Unified payment opener — same tab on mobile so MP redirect returns with status=approved
+function openPayment() {
     localStorage.setItem('cm_payment_pending', 'true');
+    localStorage.setItem('cm_payment_ts', Date.now());
+    if (IS_MOBILE) {
+        // Same tab: when MP finishes, it redirects back here with ?status=approved
+        window.location.href = MP_LINK;
+    } else {
+        window.open(MP_LINK, '_blank');
+        showToast('&#128274; Abrindo Mercado Pago... Após pagar, clique em "Já Paguei"', 5000);
+    }
+}
+
+function comprarBootcamp() {
+    openPayment();
     showToast('&#128274; Abrindo Mercado Pago... Após pagar, clique em "Já Paguei"', 5000);
 }
 
@@ -13828,38 +13881,97 @@ function getAiResponse(msg) {
     return 'Hmm, não entendi bem. Tente perguntar sobre:\n- <strong>Python</strong>: print, variáveis, listas, funções...\n- <strong>Web</strong>: HTML, CSS, JavaScript, DOM...\n- <strong>SQL</strong>: SELECT, INSERT, JOIN...\n- <strong>Java</strong>: classes, métodos, arrays...\n- <strong>C++</strong>: ponteiros, vectors, cout...\n\nOu pergunte "dicas de programação"!';
 }
 
-function sendAiMsg() {
+// ============================================================
+// GEMINI AI — obtenha sua chave grátis em:
+// https://aistudio.google.com/app/apikey
+// ============================================================
+const GEMINI_API_KEY = 'AIzaSyDUf-4VdWKLQ4tP5nWaqGt5tBg5qNEeT6M';
+const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`;
+const GEMINI_SYSTEM = 'Você é o assistente de programação do CodeMaster Bootcamp. Responda APENAS sobre programação (Python, HTML, CSS, JavaScript, SQL, Java, C++). Seja direto, didático e amigável. Use blocos de código markdown quando pertinente. Responda em português do Brasil por padrão, mas responda no idioma do usuário se ele escrever em outro. Limite a 300 palavras.';
+let aiHistory = [];
+
+function esc(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+function formatAiMsg(text) {
+    text = text.replace(/```(\w*)\n?([\s\S]*?)```/g, (_,lang,code) =>
+        `<pre style="background:rgba(0,0,0,.35);border:1px solid rgba(139,92,246,.2);border-radius:8px;padding:.6rem;margin:.4rem 0;overflow-x:auto;font-size:.76rem;white-space:pre-wrap;"><code>${esc(code.trim())}</code></pre>`
+    );
+    text = text.replace(/`([^`\n]+)`/g, '<code style="background:rgba(0,0,0,.3);padding:.1rem .35rem;border-radius:4px;font-family:\'Fira Code\',monospace;font-size:.78rem;">$1</code>');
+    text = text.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+    text = text.replace(/\n/g, '<br>');
+    return text;
+}
+
+async function sendAiMsg() {
     const input = document.getElementById('aiInput');
     const msg = input.value.trim();
     if (!msg) return;
 
     const messages = document.getElementById('aiMessages');
+    const sendBtn = document.querySelector('.ai-chat-input button');
 
-    // Add user message
+    // User message bubble
     const userDiv = document.createElement('div');
     userDiv.className = 'ai-msg user';
     userDiv.textContent = msg;
     messages.appendChild(userDiv);
-
     input.value = '';
+    input.disabled = true;
+    if (sendBtn) { sendBtn.disabled = true; sendBtn.textContent = '…'; }
+    messages.scrollTop = messages.scrollHeight;
 
-    // Simulate typing delay
-    setTimeout(() => {
-        const botDiv = document.createElement('div');
-        botDiv.className = 'ai-msg bot';
-        botDiv.innerHTML = getAiResponse(msg);
-        messages.appendChild(botDiv);
-        messages.scrollTop = messages.scrollHeight;
-    }, 400 + Math.random() * 600);
+    // Typing indicator
+    const loadDiv = document.createElement('div');
+    loadDiv.className = 'ai-msg bot ai-loading';
+    loadDiv.innerHTML = '<span class="ai-dot"></span><span class="ai-dot"></span><span class="ai-dot"></span>';
+    messages.appendChild(loadDiv);
+    messages.scrollTop = messages.scrollHeight;
 
+    // Add to rolling history (last 5 exchanges = 10 messages)
+    aiHistory.push({ role: 'user', parts: [{ text: msg }] });
+    if (aiHistory.length > 10) aiHistory = aiHistory.slice(-10);
+
+    try {
+        const res = await fetch(GEMINI_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                system_instruction: { parts: [{ text: GEMINI_SYSTEM }] },
+                contents: aiHistory,
+                generationConfig: { maxOutputTokens: 600, temperature: 0.7 }
+            })
+        });
+        if (!res.ok) throw new Error('status:' + res.status);
+        const data = await res.json();
+        const reply = data.candidates?.[0]?.content?.parts?.[0]?.text || 'Sem resposta da API.';
+        aiHistory.push({ role: 'model', parts: [{ text: reply }] });
+        loadDiv.className = 'ai-msg bot';
+        loadDiv.innerHTML = formatAiMsg(reply);
+    } catch(e) {
+        loadDiv.className = 'ai-msg bot';
+        if (e.message.includes('401') || e.message.includes('403')) {
+            loadDiv.innerHTML = '🔑 Chave da API inválida. <a href="https://aistudio.google.com/app/apikey" target="_blank" style="color:#a78bfa;text-decoration:underline;">Obter chave grátis →</a>';
+        } else if (!navigator.onLine) {
+            loadDiv.innerHTML = '📡 Sem internet. Usando resposta local.<br><br>' + getAiResponse(msg);
+        } else {
+            // Fallback to local knowledge base
+            loadDiv.innerHTML = getAiResponse(msg);
+        }
+        aiHistory.pop();
+    }
+
+    input.disabled = false;
+    if (sendBtn) { sendBtn.disabled = false; sendBtn.innerHTML = '&#10148;'; }
+    input.focus();
     messages.scrollTop = messages.scrollHeight;
 }
 
 function toggleAiChat() {
     const panel = document.getElementById('aiChatPanel');
-    panel.classList.toggle('show');
-    if (panel.classList.contains('show')) {
+    const isOpen = panel.classList.toggle('show');
+    if (isOpen) {
         document.getElementById('aiInput').focus();
+        if (IS_MOBILE) setTimeout(() => panel.scrollIntoView({ behavior:'smooth', block:'end' }), 150);
     }
 }
 
