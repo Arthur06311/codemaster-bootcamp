@@ -871,6 +871,52 @@
             .quiz-result-title { font-size:1.3rem; }
             .quiz-brand { margin-bottom:1.2rem; }
         }
+
+        /* ── Plano Adaptativo ─────────────────────────────────────── */
+        .qplan-title { font-size:1.05rem; font-weight:700; color:#e2e8f0; margin:.4rem 0 .15rem; }
+        .qplan-summary { font-size:.78rem; color:#94a3b8; margin-bottom:1rem; }
+        .qplan-list { display:flex; flex-direction:column; gap:.45rem; width:100%; text-align:left; }
+        .qplan-item {
+          display:flex; align-items:center; gap:.75rem;
+          padding:.65rem .9rem; border-radius:11px;
+          transition:opacity .2s;
+        }
+        .qplan-known {
+          background:rgba(16,185,129,.05);
+          border:1px solid rgba(16,185,129,.15);
+          opacity:.6;
+        }
+        .qplan-needed {
+          background:rgba(167,139,250,.07);
+          border:1px solid rgba(167,139,250,.22);
+        }
+        .qplan-first {
+          background:rgba(96,165,250,.1);
+          border:1.5px solid rgba(96,165,250,.45);
+          opacity:1;
+        }
+        .qplan-icon { font-size:1.3rem; flex-shrink:0; }
+        .qplan-info { flex:1; min-width:0; }
+        .qplan-name {
+          font-size:.87rem; font-weight:600; color:#e2e8f0;
+          display:flex; align-items:center; gap:.45rem; flex-wrap:wrap;
+        }
+        .qplan-known .qplan-name { text-decoration:line-through; color:#64748b; }
+        .qplan-weeks {
+          font-size:.7rem; color:#a78bfa;
+          background:rgba(167,139,250,.14);
+          padding:.1rem .4rem; border-radius:20px; font-weight:500;
+        }
+        .qplan-sub { font-size:.73rem; color:#475569; margin-top:.12rem; line-height:1.35; }
+        .qplan-status { font-size:.72rem; font-weight:700; flex-shrink:0; white-space:nowrap; }
+        .qplan-ok    { color:#34d399; }
+        .qplan-start { color:#60a5fa; }
+        .qplan-inc   { color:#a78bfa; }
+        @media(max-width:480px) {
+          .qplan-item { padding:.55rem .75rem; gap:.6rem; }
+          .qplan-name { font-size:.82rem; }
+          .qplan-sub  { font-size:.7rem; }
+        }
     </style>
     <!-- Supabase SDK -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
@@ -15009,6 +15055,66 @@ doActivatePremium = function() {
 // QUIZ DE ONBOARDING — Diagnóstico de Nível
 // ====================================================
 
+
+// ── Blocos de tópico para trilha adaptativa ──────────────────
+const TOPIC_BLOCKS = [
+  {
+    id: 'py1',
+    name: 'Python Básico',
+    sub: 'print, variáveis, tipos, operadores, loops, if/else',
+    icon: '🐍',
+    weeks: 'Semanas 1–2',
+    startIdx: 0,
+    // Q[0] (experiência geral 0-10) + Q[1] (operador % 0-2)
+    getScore: (a) => (a[0]?.score || 0) + (a[1]?.score || 0),
+    threshold: 8   // max 12 — precisa: experiência>=6 E sabe operadores
+  },
+  {
+    id: 'py2',
+    name: 'Python Avançado',
+    sub: 'funções, listas, dicionários, OOP, arquivos, módulos',
+    icon: '⚙️',
+    weeks: 'Semana 3',
+    startIdx: 70,
+    // Q[2] (funções 0-3) + Q[3] (listas 0-2)
+    getScore: (a) => (a[2]?.score || 0) + (a[3]?.score || 0),
+    threshold: 4   // max 5 — precisa: sabe funções (2+) E listas (2)
+  },
+  {
+    id: 'web',
+    name: 'Web — HTML / CSS / JS',
+    sub: 'páginas, estilos, Flexbox, Grid, JavaScript, DOM',
+    icon: '🌐',
+    weeks: 'Semana 4',
+    startIdx: 105,
+    // Q[4] (HTML/CSS 0-3)
+    getScore: (a) => (a[4]?.score || 0),
+    threshold: 2   // max 3
+  },
+  {
+    id: 'sql',
+    name: 'SQL & Banco de Dados',
+    sub: 'SELECT, INSERT, UPDATE, DELETE, JOINs, modelagem',
+    icon: '🗄️',
+    weeks: 'Semana 5',
+    startIdx: 140,
+    // Q[5] (SQL 0-3)
+    getScore: (a) => (a[5]?.score || 0),
+    threshold: 2   // max 3
+  },
+  {
+    id: 'jav',
+    name: 'Java & C++',
+    sub: 'tipagem estática, OOP, Collections, STL, ponteiros',
+    icon: '☕',
+    weeks: 'Semanas 6–7',
+    startIdx: 175,
+    // Q[6] (Java/C++ 0-3)
+    getScore: (a) => (a[6]?.score || 0),
+    threshold: 2   // max 3
+  },
+];
+
 const QUIZ = {
   questions: [
     {
@@ -15217,65 +15323,85 @@ function _quizNext() {
   }
 }
 
-// ── Result Screen ────────────────────────────────────────────
+// ── Result Screen — Plano Adaptativo ────────────────────────
 function _showQuizResult() {
-  const res  = QUIZ.getResult(_quizScore);
-  const week = QUIZ.weeks[res.week - 1];
-  const maxScore = 26; // theoretical max
-  const pctScore = Math.round((_quizScore / maxScore) * 100);
+  // Calcular pontuação por tópico com base nas respostas do quiz
+  const plan = TOPIC_BLOCKS.map(b => {
+    const score = b.getScore(_quizAnswers);
+    return { ...b, score, known: score >= b.threshold };
+  });
 
-  _quizStartLesson = res.idx;
+  const needed = plan.filter(b => !b.known);
+  const known  = plan.filter(b =>  b.known);
 
-  const topicsHTML = week.topics.map(t => `<li>${t}</li>`).join('');
+  // Índice de início: primeiro bloco que precisa aprender
+  const startIdx = needed.length > 0 ? needed[0].startIdx : 0;
+  _quizStartLesson = startIdx;
 
-  const skipNotice = res.idx > 0
+  // Montar lista de itens do plano
+  const planHTML = plan.map(b => {
+    if (b.known) {
+      return `
+        <div class="qplan-item qplan-known">
+          <div class="qplan-icon">${b.icon}</div>
+          <div class="qplan-info">
+            <div class="qplan-name">${b.name}</div>
+            <div class="qplan-sub">${b.sub}</div>
+          </div>
+          <div class="qplan-status qplan-ok">✓ Já sei</div>
+        </div>`;
+    }
+    const isFirst = needed.length > 0 && needed[0].id === b.id;
+    return `
+      <div class="qplan-item qplan-needed${isFirst ? ' qplan-first' : ''}">
+        <div class="qplan-icon">${b.icon}</div>
+        <div class="qplan-info">
+          <div class="qplan-name">${b.name}<span class="qplan-weeks">${b.weeks}</span></div>
+          <div class="qplan-sub">${b.sub}</div>
+        </div>
+        <div class="qplan-status ${isFirst ? 'qplan-start' : 'qplan-inc'}">
+          ${isFirst ? '▶ começa aqui' : '📚 incluído'}
+        </div>
+      </div>`;
+  }).join('');
+
+  const skipMsg = known.length > 0
     ? `<div class="quiz-skip-notice">
-        💡 <strong>Pulamos as ${res.idx} primeiras lições</strong> que você provavelmente já domina.
-        Você pode voltar a qualquer momento pelo menu lateral!
+        💡 <strong>Pulando ${known.length} bloco${known.length > 1 ? 's' : ''} que você já domina.</strong>
+        Acesse qualquer semana pelo menu lateral quando quiser revisar.
       </div>`
-    : '';
+    : `<div class="quiz-skip-notice">
+        🌱 <strong>Nenhum bloco pulado</strong> — você vai aprender tudo do início. Perfeito!
+      </div>`;
 
-  const zeroLink = res.idx > 0
+  const totalMsg = needed.length > 0
+    ? `${needed.length} área${needed.length > 1 ? 's' : ''} selecionada${needed.length > 1 ? 's' : ''}`
+    : 'Você já domina tudo — escolha o que revisar!';
+
+  const zeroLink = startIdx > 0
     ? `<span class="quiz-zero-link" onclick="_quizLaunch(0)">Prefiro começar do zero mesmo assim</span>`
     : '';
+
+  const ctaLabel = startIdx > 0
+    ? `🚀 Começar onde preciso aprender`
+    : `🚀 Começar do início`;
 
   document.getElementById('quizCard').innerHTML = `
     <div class="quiz-content-anim quiz-result">
       <span class="quiz-result-badge">✓ Diagnóstico concluído</span>
-      <span class="quiz-result-level-icon">${res.icon}</span>
-      <div class="quiz-result-title">Seu nível</div>
-      <div class="quiz-result-level" style="color:${res.color}">${res.name}</div>
-      <div class="quiz-result-score-row">Pontuação: ${_quizScore} de ${maxScore} pontos</div>
-      <div class="quiz-result-score-bar">
-        <div class="quiz-result-score-fill" id="qScoreFill"
-          style="width:0%;background:linear-gradient(90deg,${res.color},var(--cyan))"></div>
+      <div class="qplan-title">📋 Seu Plano Personalizado</div>
+      <div class="qplan-summary">${totalMsg}</div>
+      <div class="qplan-list">${planHTML}</div>
+      ${skipMsg}
+      <div style="display:flex;flex-direction:column;align-items:center;gap:.6rem;margin-top:1.4rem;">
+        <button class="quiz-result-cta" onclick="_quizLaunch(${startIdx})">${ctaLabel}</button>
+        ${zeroLink}
       </div>
-
-      <div class="quiz-week-card">
-        <div class="quiz-week-eyebrow">Você vai começar na</div>
-        <div class="quiz-week-name">${week.icon} Semana ${week.n} — ${week.name}</div>
-        <ul class="quiz-week-topics">${topicsHTML}</ul>
-      </div>
-
-      ${skipNotice}
-
-      <button class="quiz-result-cta" onclick="_quizLaunch(${res.idx})">
-        Começar a Semana ${week.n} →
-      </button>
-      ${zeroLink}
     </div>`;
 
-  // Animate score bar
-  requestAnimationFrame(() => {
-    setTimeout(() => {
-      const fill = document.getElementById('qScoreFill');
-      if (fill) fill.style.width = pctScore + '%';
-    }, 80);
-  });
-
-  // Save to localStorage
+  // Salvar resultado
   localStorage.setItem('cm_quiz_done', '1');
-  localStorage.setItem('cm_quiz_start', res.idx);
+  localStorage.setItem('cm_quiz_start', startIdx);
 }
 
 // ── Launch bootcamp at the right lesson ──────────────────────
