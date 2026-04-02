@@ -1207,15 +1207,24 @@ function makeLessons(plan) {
 
 <p>Existem várias linguagens de programação, como Python, JavaScript, Java, C, entre outras. Neste curso, vamos usar <strong>Python</strong> porque ela é uma das linguagens mais fáceis de aprender e ao mesmo tempo super poderosa. Python é usada em ciência de dados, inteligência artificial, automação, desenvolvimento web e muito mais. A sintaxe do Python é limpa e parece quase inglês, o que facilita muito o aprendizado para quem está começando.</p>
 
-<p>Veja um exemplo simples de programa em Python:</p>
-<pre style="background:#1a1a2e;border:1px solid #334155;border-radius:8px;padding:1rem;margin:.8rem 0;"><code>print("Olá, mundo!")
+<p>Veja um exemplo completo e funcionando:</p>
+<pre style="background:#1a1a2e;border:1px solid #334155;border-radius:8px;padding:1rem;margin:.8rem 0;overflow-x:auto;"><code>print("Olá, mundo!")
 print("Eu estou aprendendo a programar!")
 print("Python é incrível!")</code></pre>
+<div style="background:rgba(167,139,250,.08);border:1px solid rgba(167,139,250,.25);border-radius:10px;padding:1rem 1.2rem;margin:1rem 0;">
+<div style="font-size:.7rem;font-weight:700;color:#a78bfa;text-transform:uppercase;letter-spacing:1px;margin-bottom:.7rem;">🔍 O que esse código faz</div>
+<table style="width:100%;border-collapse:collapse;font-size:.82rem;">
+<tr><td style="padding:.3rem .6rem;color:#7dd3fc;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">print()</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;">Função embutida do Python que exibe texto na tela (no terminal)</td></tr>
+<tr style="background:rgba(255,255,255,.03);"><td style="padding:.3rem .6rem;color:#7dd3fc;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">"Olá, mundo!"</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;">Texto entre aspas — chamamos de <strong>string</strong>. O print mostra exatamente esse texto.</td></tr>
+<tr><td style="padding:.3rem .6rem;color:#7dd3fc;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">3 linhas de print</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;">O Python lê o código de cima pra baixo — 3 prints = 3 linhas exibidas em ordem.</td></tr>
+<tr style="background:rgba(255,255,255,.03);"><td style="padding:.3rem .6rem;color:#86efac;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">→ Resultado</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;"><em style="color:#86efac;">Olá, mundo! &nbsp; Eu estou aprendendo a programar! &nbsp; Python é incrível!</em></td></tr>
+</table>
+</div>
 
 <p><strong>Dica:</strong> Não se preocupe em decorar tudo agora. Programar é uma habilidade que se desenvolve com prática. Quanto mais você escrever código, mais natural vai ficando!</p>
 <div style="background:linear-gradient(135deg,#1a1a3e,#2a1a4e);border:1px solid #7c3aed;border-radius:12px;padding:1.2rem;margin:1.5rem 0;"><h3 style="color:#a78bfa;margin:0 0 .5rem 0;">Curiosidade do Dia</h3><p style="margin:0;color:#c4b5fd;">Sabia que o nome Python vem do grupo de comédia britânico <strong>Monty Python</strong>? O criador Guido van Rossum era fã do programa e queria um nome curto e divertido!</p></div>
 `,
-  starter: `# O que é programar\n# Escreva 3 mensagens usando print()\n# Dica: cada print() exibe uma linha na tela\n\n# 1. Use print() para exibir uma saudação\n___\n\n# 2. Use print() para dizer o que você está aprendendo\n___\n\n# 3. Use print() para dizer por que escolheu programar\n___`,
+  starter: `# Exercício: escreva 3 mensagens usando print()\n# Veja o exemplo acima e escreva as suas próprias!\n\n# 1. Exiba uma saudação (ex: "Olá! Meu nome é ...")\nprint("...")\n\n# 2. Diga o que você está aprendendo\nprint("...")\n\n# 3. Diga por que escolheu aprender a programar\nprint("...")`,
 },
 { week:1, day:1, num:2, lang:'python', title:'Primeiro programa',
   content: `<h1>Primeiro programa</h1>
@@ -1227,25 +1236,28 @@ print("Python é incrível!")</code></pre>
 
 <p>Quando você clica em "Executar", o Python lê seu código linha por linha, de cima pra baixo, e executa cada instrução. Se você tiver três linhas com print(), ele vai exibir três mensagens, uma embaixo da outra. Isso é o fluxo sequencial de execução — o conceito mais básico da programação. Todo programa segue essa lógica: instrução 1, depois instrução 2, depois instrução 3, e assim por diante.</p>
 
-<p>Veja como criar um programa simples que se apresenta:</p>
-<pre style="background:#1a1a2e;border:1px solid #334155;border-radius:8px;padding:1rem;margin:.8rem 0;"><code># Crie um programa que se apresenta
-# Use print() para exibir cada linha
-# Dica: use caracteres como = para criar bordas
+<p>Veja um programa completo que se apresenta:</p>
+<pre style="background:#1a1a2e;border:1px solid #334155;border-radius:8px;padding:1rem;margin:.8rem 0;overflow-x:auto;"><code>print("===========================")
+print("     MEU PRIMEIRO PROGRAMA")
+print("===========================")
+print("Nome:", "Maria")
+print("Idade:", 17)
+print("Linguagem favorita:", "Python")</code></pre>
+<div style="background:rgba(167,139,250,.08);border:1px solid rgba(167,139,250,.25);border-radius:10px;padding:1rem 1.2rem;margin:1rem 0;">
+<div style="font-size:.7rem;font-weight:700;color:#a78bfa;text-transform:uppercase;letter-spacing:1px;margin-bottom:.7rem;">🔍 O que esse código faz</div>
+<table style="width:100%;border-collapse:collapse;font-size:.82rem;">
+<tr><td style="padding:.3rem .6rem;color:#7dd3fc;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">print("===")</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;">Exibe uma borda feita de "=" — cria um visual organizado no terminal</td></tr>
+<tr style="background:rgba(255,255,255,.03);"><td style="padding:.3rem .6rem;color:#7dd3fc;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">"     MEU PRIMEIRO PROGRAMA"</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;">Espaços antes do texto centralizam visualmente a frase</td></tr>
+<tr><td style="padding:.3rem .6rem;color:#7dd3fc;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">print("Nome:", "Maria")</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;">Passar dois itens separados por vírgula: o print coloca um espaço entre eles automaticamente</td></tr>
+<tr style="background:rgba(255,255,255,.03);"><td style="padding:.3rem .6rem;color:#7dd3fc;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">print("Idade:", 17)</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;">Você pode misturar texto e números no mesmo print() — o Python sabe lidar com os dois</td></tr>
+<tr><td style="padding:.3rem .6rem;color:#86efac;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">→ Resultado</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;"><em style="color:#86efac;">=========================== &nbsp; MEU PRIMEIRO PROGRAMA &nbsp; Nome: Maria &nbsp; Idade: 17</em></td></tr>
+</table>
+</div>
 
-print("===========================")  # Exemplo de borda
-# Agora exiba o título do programa
-# ← escreva aqui
-# Crie outra borda igual
-# ← escreva aqui
-
-# Exiba seu nome, idade e linguagem favorita
-# Dica: print("Texto:", "valor")
-# ← escreva aqui
-# ← escreva aqui
-# ← escreva aqui</code></pre>
-
-<p><strong>Dica:</strong> Tente modificar o programa acima com seus próprios dados. Mude o nome, a idade e adicione mais linhas. Experimentar é a melhor forma de aprender!</p>`,
-  starter: `# Primeiro programa\n# Crie um programa que exibe seus dados\n# Use print() para cada linha\n# Dica: use "=" repetido para bordas\n\nprint("===========================")  # Exemplo\n# Exiba o título do programa usando print()\n___\n# Crie outra borda igual à de cima\n___\n\n# Exiba seu nome usando print("Nome:", "seu nome")\n___\n# Exiba sua idade da mesma forma\n___\n# Exiba sua linguagem favorita\n___`,
+<p><strong>Dica:</strong> Tente modificar o programa com seus próprios dados. Mude o nome, a idade e adicione mais linhas. Experimentar é a melhor forma de aprender!</p>`,
+  starter: `# Exercício: crie seu próprio programa de apresentação\n# Copie a estrutura do exemplo e coloque seus dados\n\nprint("===========================")
+print("     SEU NOME AQUI")       # ← mude para seu nome\nprint("===========================")
+print("Nome:", "...")             # ← seu nome\nprint("Idade:", 0)                # ← sua idade\nprint("Linguagem favorita:", "...") # ← qual linguagem?`,
 },
 { week:1, day:1, num:3, lang:'python', title:'Função print()',
   content: `<h1>Função print()</h1>
@@ -1257,28 +1269,38 @@ print("===========================")  # Exemplo de borda
 
 <p>O print() também aceita alguns parâmetros especiais. O <strong>sep</strong> define o separador entre os itens (padrão e espaço) e o <strong>end</strong> define o que vai no final da linha (padrão é uma quebra de linha). Com esses parâmetros você consegue formatar a saída do jeito que quiser, sem precisar de nada complicado.</p>
 
-<pre style="background:#1a1a2e;border:1px solid #334155;border-radius:8px;padding:1rem;margin:.8rem 0;"><code># Imprimindo texto simples
+<p>Veja as diferentes formas de usar o print():</p>
+<pre style="background:#1a1a2e;border:1px solid #334155;border-radius:8px;padding:1rem;margin:.8rem 0;overflow-x:auto;"><code># Texto simples
 print("Olá, Python!")
 
-# Imprimindo números e cálculos
+# Número e cálculo
 print(42)
 print(10 + 5)
 
-# Agora é sua vez! Imprima vários itens separados por vírgula
-# Dica: print("texto", variável, "texto")
-# ← escreva aqui
+# Vários itens separados por vírgula
+print("Idade:", 20, "anos")
 
-# Use sep para mudar o separador entre os itens
-# Dica: print("a", "b", "c", sep="separador")
-# ← escreva aqui
+# sep= muda o separador entre os itens (padrão é espaço)
+print("segunda", "quarta", "sexta", sep=" | ")
 
-# Use end para NÃO pular linha entre dois prints
-# Dica: print("texto", end=" ")
-# ← escreva aqui
-# ← escreva aqui</code></pre>
+# end= muda o que vai no final (padrão é nova linha)
+print("Olá,", end=" ")
+print("mundo!")</code></pre>
+<div style="background:rgba(167,139,250,.08);border:1px solid rgba(167,139,250,.25);border-radius:10px;padding:1rem 1.2rem;margin:1rem 0;">
+<div style="font-size:.7rem;font-weight:700;color:#a78bfa;text-transform:uppercase;letter-spacing:1px;margin-bottom:.7rem;">🔍 O que esse código faz</div>
+<table style="width:100%;border-collapse:collapse;font-size:.82rem;">
+<tr><td style="padding:.3rem .6rem;color:#7dd3fc;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">print("Olá, Python!")</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;">Exibe o texto — o par de aspas delimitam onde o texto começa e termina</td></tr>
+<tr style="background:rgba(255,255,255,.03);"><td style="padding:.3rem .6rem;color:#7dd3fc;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">print(42)</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;">Números não precisam de aspas — o Python já sabe que é um número</td></tr>
+<tr><td style="padding:.3rem .6rem;color:#7dd3fc;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">print(10 + 5)</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;">O Python calcula a expressão <strong>antes</strong> de exibir — mostra 15, não "10 + 5"</td></tr>
+<tr style="background:rgba(255,255,255,.03);"><td style="padding:.3rem .6rem;color:#7dd3fc;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">print("Idade:", 20, "anos")</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;">Vários itens separados por vírgula — o print coloca um espaço entre eles automaticamente</td></tr>
+<tr><td style="padding:.3rem .6rem;color:#7dd3fc;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">sep=" | "</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;">Parâmetro que substitui o espaço padrão pelo separador que você escolher</td></tr>
+<tr style="background:rgba(255,255,255,.03);"><td style="padding:.3rem .6rem;color:#7dd3fc;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">end=" "</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;">Parâmetro que substitui a quebra de linha — o próximo print continua na mesma linha</td></tr>
+<tr><td style="padding:.3rem .6rem;color:#86efac;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">→ Resultado</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;"><em style="color:#86efac;">Olá, Python! &nbsp; 42 &nbsp; 15 &nbsp; Idade: 20 anos &nbsp; segunda | quarta | sexta &nbsp; Olá, mundo!</em></td></tr>
+</table>
+</div>
 
-<p><strong>Dica:</strong> Use print() sempre que quiser verificar o valor de algo no seu programa. Isso se chama "debug com print" e é uma técnica que até programadores experientes usam!</p>`,
-  starter: `# Função print()\n# Experimente print() de várias formas\n\n# 1. Imprima um texto simples\nprint("Aprendendo Python")\n\n# 2. Use print() para exibir o resultado de uma conta matemática\n___\n\n# 3. Use print() com vários itens separados por vírgula\n# Dica: print("texto", número, "texto")\n___\n\n# 4. Use o parâmetro sep= para separar itens com " | "\n# Dica: print("a", "b", "c", sep=" | ")\n___`,
+<p><strong>Dica:</strong> Use print() sempre que quiser verificar o valor de algo no seu programa. Isso se chama "debug com print" — uma técnica que até programadores experientes usam!</p>`,
+  starter: `# Exercício: experimente print() de várias formas\n\n# 1. Exiba um texto simples\nprint("Aprendendo Python")\n\n# 2. Exiba o resultado de uma conta matemática (ex: 7 * 8)\nprint(...)  # ← escreva a conta\n\n# 3. Exiba vários itens com vírgula: seu nome, idade e cidade\nprint("Nome:", "...", "Idade:", 0, "Cidade:", "...")\n\n# 4. Use sep=" | " para separar dias da semana\nprint("seg", "ter", "qua", sep="...")  # ← coloque o separador`,
 },
 { week:1, day:1, num:4, lang:'python', title:'Comentários',
   content: `<h1>Comentários</h1>
@@ -1290,27 +1312,35 @@ print(10 + 5)
 
 <p>Existem também comentários de várias linhas, que usamos com três aspas no início e no final. Eles são úteis pra documentar funções ou explicar trechos maiores de lógica. Uma boa prática é comentar o "por que" e não o "o que" — ou seja, não precisa escrever "soma dois números" em cima de <code>x + y</code>, mas pode explicar por que você está fazendo aquela soma naquele contexto.</p>
 
-<pre style="background:#1a1a2e;border:1px solid #334155;border-radius:8px;padding:1rem;margin:.8rem 0;"><code># Isso é um comentário de uma linha
-print("Olá!")  # Comentário no final da linha
+<p>Veja como comentários funcionam na prática:</p>
+<pre style="background:#1a1a2e;border:1px solid #334155;border-radius:8px;padding:1rem;margin:.8rem 0;overflow-x:auto;"><code># Isso é um comentário — o Python ignora essa linha
+print("Olá!")  # Comentário no final da linha também funciona
 
-# Agora pratique: crie duas variáveis para notas
-# Dica: variável = valor
-# ← escreva aqui
-# ← escreva aqui
+# Calculando a média de duas notas:
+nota1 = 8.5
+nota2 = 7.0
+media = (nota1 + nota2) / 2   # soma as notas e divide por 2
+print("Média:", media)
 
-# Calcule a média das duas notas
-# Dica: média = (nota1 + nota2) / 2
-# ← escreva aqui
+"""
+Comentário de várias linhas.
+Útil para explicar trechos maiores.
+O Python ignora tudo entre as três aspas.
+"""</code></pre>
+<div style="background:rgba(167,139,250,.08);border:1px solid rgba(167,139,250,.25);border-radius:10px;padding:1rem 1.2rem;margin:1rem 0;">
+<div style="font-size:.7rem;font-weight:700;color:#a78bfa;text-transform:uppercase;letter-spacing:1px;margin-bottom:.7rem;">🔍 O que esse código faz</div>
+<table style="width:100%;border-collapse:collapse;font-size:.82rem;">
+<tr><td style="padding:.3rem .6rem;color:#7dd3fc;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;"># comentário</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;">Tudo após # nessa linha é ignorado pelo Python — serve para você explicar o código</td></tr>
+<tr style="background:rgba(255,255,255,.03);"><td style="padding:.3rem .6rem;color:#7dd3fc;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">print("Olá!")  # ...</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;">Comentário inline — o Python executa o print, mas ignora tudo após o #</td></tr>
+<tr><td style="padding:.3rem .6rem;color:#7dd3fc;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">nota1 = 8.5</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;">Criamos uma variável "nota1" e guardamos o valor 8.5 nela</td></tr>
+<tr style="background:rgba(255,255,255,.03);"><td style="padding:.3rem .6rem;color:#7dd3fc;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">media = (nota1 + nota2) / 2</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;">Faz o cálculo e guarda o resultado em "media" — parênteses garantem que a soma vem antes da divisão</td></tr>
+<tr><td style="padding:.3rem .6rem;color:#7dd3fc;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">"""..."""</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;">Texto entre três aspas — Python trata como string mas ignora se não estiver atribuído a nada. Usado como comentário longo.</td></tr>
+<tr style="background:rgba(255,255,255,.03);"><td style="padding:.3rem .6rem;color:#86efac;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">→ Resultado</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;"><em style="color:#86efac;">Olá! &nbsp; Média: 7.75</em></td></tr>
+</table>
+</div>
 
-# Exiba o resultado com print()
-# ← escreva aqui
-
-# Crie um comentário de várias linhas usando aspas triplas
-# Dica: use """ no início e no final
-# ← escreva aqui</code></pre>
-
-<p><strong>Dica:</strong> Não exagere nos comentários. Código bem escrito muitas vezes se explica sozinho. Use comentários pra partes que realmente precisam de explicação.</p>`,
-  starter: `# Comentários em Python\n# Use # para comentar uma linha\nprint("Comentários são úteis")\n\n# Crie uma variável nota1 e atribua um valor numérico\n___\n# Crie uma variável nota2 e atribua outro valor\n___\n\n# Calcule a média: (nota1 + nota2) / 2 e guarde em uma variável\nmedia = None  # ← coloque o valor aqui\n# Exiba a média usando print()\n___`,
+<p><strong>Dica:</strong> Não exagere nos comentários. Código bem escrito muitas vezes se explica sozinho. Comente o <em>porquê</em>, não o <em>o quê</em>.</p>`,
+  starter: `# Exercício: comente e calcule\n\n# 1. Crie nota1 com um valor entre 0 e 10\nnota1 = 0   # ← troque pelo valor\n\n# 2. Crie nota2 com outro valor\nnota2 = 0   # ← troque pelo valor\n\n# 3. Calcule a média (soma dividida por 2)\nmedia = (nota1 + nota2) / 2\n\n# 4. Exiba o resultado com um comentário explicando o que é\nprint("Média:", media)  # adicione seu comentário aqui →`,
 },
 { week:1, day:1, num:5, lang:'python', title:'Prática print',
   content: `<h1>Prática print</h1>
@@ -1322,31 +1352,29 @@ print("Olá!")  # Comentário no final da linha
 
 <p>Vamos combinar o que aprendemos: print() com texto, com números, com cálculos, com separadores e com comentários. A ideia é você criar um "cartão de apresentação" no terminal, mostrando informações sobre você de forma organizada e bonita. Use criatividade e não tenha medo de errar — erros fazem parte do aprendizado!</p>
 
-<pre style="background:#1a1a2e;border:1px solid #334155;border-radius:8px;padding:1rem;margin:.8rem 0;"><code># Exercício: Crie um cartão de apresentação
-# Dica: "texto" * número repete o texto
+<p>Veja um cartão de apresentação completo feito só com print():</p>
+<pre style="background:#1a1a2e;border:1px solid #334155;border-radius:8px;padding:1rem;margin:.8rem 0;overflow-x:auto;"><code># Cartão de apresentação no terminal
+print("+" + "-" * 30 + "+")
+print("|    MEU CARTÃO DE APRESENTAÇÃO   |")
+print("+" + "-" * 30 + "+")
+print("Nome:", "Ana Silva")
+print("Idade:", 19, "| Dias vividos:", 19 * 365)
+print("Cidade:", "São Paulo")
+print("Linguagens:", "Python", "JavaScript", "HTML", sep=" | ")
+print("+" + "-" * 30 + "+")</code></pre>
+<div style="background:rgba(167,139,250,.08);border:1px solid rgba(167,139,250,.25);border-radius:10px;padding:1rem 1.2rem;margin:1rem 0;">
+<div style="font-size:.7rem;font-weight:700;color:#a78bfa;text-transform:uppercase;letter-spacing:1px;margin-bottom:.7rem;">🔍 O que esse código faz</div>
+<table style="width:100%;border-collapse:collapse;font-size:.82rem;">
+<tr><td style="padding:.3rem .6rem;color:#7dd3fc;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">"+" + "-" * 30 + "+"</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;"><strong>"texto" * número</strong> repete o texto N vezes — "-" * 30 cria 30 traços de uma vez</td></tr>
+<tr style="background:rgba(255,255,255,.03);"><td style="padding:.3rem .6rem;color:#7dd3fc;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">"|    MEU CARTÃO   |"</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;">Os | nas pontas criam as bordas laterais — é só texto, mas parece uma tabela!</td></tr>
+<tr><td style="padding:.3rem .6rem;color:#7dd3fc;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">print("Idade:", 19, "| Dias:", 19 * 365)</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;">Você pode misturar texto, números e cálculos no mesmo print — Python calcula 19*365 antes de exibir</td></tr>
+<tr style="background:rgba(255,255,255,.03);"><td style="padding:.3rem .6rem;color:#7dd3fc;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">sep=" | "</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;">Muda o separador padrão (espaço) para " | " — ótimo para listar itens com visual organizado</td></tr>
+<tr><td style="padding:.3rem .6rem;color:#86efac;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">→ Resultado</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;"><em style="color:#86efac;">+------------------------------+ &nbsp; | MEU CARTÃO | &nbsp; Nome: Ana Silva &nbsp; ...</em></td></tr>
+</table>
+</div>
 
-print("+" + "-" * 30 + "+")  # Exemplo de borda
-# Exiba o título do cartão
-# ← escreva aqui
-# Crie outra borda igual à primeira
-# ← escreva aqui
-
-# Exiba seus dados (nome, idade, cidade)
-# Dica: print("Campo:", "valor")
-# ← escreva aqui
-# ← escreva aqui
-# ← escreva aqui
-
-# Calcule e exiba quantos dias você já viveu
-# Dica: idade * 365
-# ← escreva aqui
-
-# Exiba linguagens separadas por " | "
-# Dica: use o parâmetro sep=
-# ← escreva aqui</code></pre>
-
-<p><strong>Desafio extra:</strong> Tente criar uma "arte" no terminal usando print() com vários caracteres especiais como *, -, = e |. Solte a criatividade!</p>`,
-  starter: `# Prática print - Cartão de Apresentação\n# Use print() para criar um cartão bonito\n\n# Crie uma borda usando "+" + "-" * 30 + "+"\n___\n\n# Exiba o título do cartão com print()\n___\n\n# Exiba seu nome usando print("Nome:", "...")\n___\n# Exiba sua idade da mesma forma\n___\n# Exiba sua cidade\n___\n\n# Calcule e exiba quantos dias você já viveu (idade * 365)\n___`,
+<p><strong>Desafio extra:</strong> Crie uma "arte ASCII" no terminal com print() usando *, -, = e |. Solte a criatividade!</p>`,
+  starter: `# Exercício: crie seu próprio cartão de apresentação\n# Use o exemplo acima como referência!\n\n# Borda superior\nprint("+" + "-" * 30 + "+")\n\n# Título do cartão\nprint("|", "...", "|")  # ← escreva o título\n\n# Borda do meio\nprint("+" + "-" * 30 + "+")\n\n# Seus dados\nprint("Nome:", "...")\nprint("Idade:", 0, "| Dias vividos:", 0 * 365)  # ← sua idade\nprint("Cidade:", "...")\n\n# Linguagens separadas por " | "\nprint("Python", "...", sep=" | ")  # ← adicione mais linguagens\n\n# Borda inferior\nprint("+" + "-" * 30 + "+")`,
 },
 // Day 2: Variáveis e Tipos
 { week:1, day:2, num:1, lang:'python', title:'O que são variáveis',
@@ -1359,31 +1387,39 @@ print("+" + "-" * 30 + "+")  # Exemplo de borda
 
 <p>Em Python, você não precisa declarar o tipo da variável antes — o Python descobre sozinho! Isso se chama <strong>tipagem dinâmica</strong>. Você pode mudar o valor de uma variável a qualquer momento, e pode até mudar o tipo dela (embora isso não seja muito recomendado). Os nomes de variáveis devem começar com letra ou underscore (_), não podem ter espaços e não podem ser palavras reservadas do Python como "if", "for", "while", etc.</p>
 
-<pre style="background:#1a1a2e;border:1px solid #334155;border-radius:8px;padding:1rem;margin:.8rem 0;"><code># Criando variáveis - Exemplo:
-nome = "Carlos"
-idade = 30
+<p>Veja um exemplo completo com variáveis de vários tipos:</p>
+<pre style="background:#1a1a2e;border:1px solid #334155;border-radius:8px;padding:1rem;margin:.8rem 0;overflow-x:auto;"><code># Criando variáveis
+nome = "Carlos"      # str: texto entre aspas
+idade = 30            # int: número inteiro
+altura = 1.80         # float: número decimal
+estudante = True      # bool: True ou False
 
-# Agora crie mais variáveis com seus dados
-# Crie uma variável para altura (número decimal)
-# ← escreva aqui
-# Crie uma variável booleana (True/False) para estudante
-# ← escreva aqui
+# Exibindo as variáveis
+print("Nome:", nome)
+print("Idade:", idade)
+print("Altura:", altura)
+print("Estudante:", estudante)
 
-# Exiba todas as variáveis usando print()
-# Dica: print("Campo:", variável)
-print("Nome:", nome)  # Exemplo
-# ← escreva aqui
-# ← escreva aqui
-# ← escreva aqui
+# Mudando o valor da variável
+idade = 31            # a variável agora vale 31
+print("Aniversário! Agora tem", idade, "anos")</code></pre>
+<div style="background:rgba(167,139,250,.08);border:1px solid rgba(167,139,250,.25);border-radius:10px;padding:1rem 1.2rem;margin:1rem 0;">
+<div style="font-size:.7rem;font-weight:700;color:#a78bfa;text-transform:uppercase;letter-spacing:1px;margin-bottom:.7rem;">🔍 O que esse código faz</div>
+<table style="width:100%;border-collapse:collapse;font-size:.82rem;">
+<tr><td style="padding:.3rem .6rem;color:#7dd3fc;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">nome = "Carlos"</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;">Cria uma variável chamada "nome" e guarda o texto "Carlos" nela — o = significa "recebe"</td></tr>
+<tr style="background:rgba(255,255,255,.03);"><td style="padding:.3rem .6rem;color:#7dd3fc;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">idade = 30</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;">Número inteiro sem aspas — o Python sabe que é int automaticamente (tipagem dinâmica)</td></tr>
+<tr><td style="padding:.3rem .6rem;color:#7dd3fc;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">altura = 1.80</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;">Número decimal (float) — use ponto, não vírgula, para separar casas decimais</td></tr>
+<tr style="background:rgba(255,255,255,.03);"><td style="padding:.3rem .6rem;color:#7dd3fc;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">estudante = True</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;">bool: só pode ser True (verdadeiro) ou False (falso) — começa com maiúscula</td></tr>
+<tr><td style="padding:.3rem .6rem;color:#7dd3fc;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">print("Nome:", nome)</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;">Exibe o texto "Nome:" e depois o valor da variável — o print coloca um espaço entre eles</td></tr>
+<tr style="background:rgba(255,255,255,.03);"><td style="padding:.3rem .6rem;color:#7dd3fc;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">idade = 31</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;">Reatribuição: a variável agora aponta para o novo valor 31 — o antigo (30) é descartado</td></tr>
+<tr><td style="padding:.3rem .6rem;color:#86efac;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">→ Resultado</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;"><em style="color:#86efac;">Nome: Carlos &nbsp; Idade: 30 &nbsp; Altura: 1.8 &nbsp; Estudante: True &nbsp; Aniversário! Agora tem 31 anos</em></td></tr>
+</table>
+</div>
 
-# Mude o valor da idade e exiba novamente
-# ← escreva aqui
-# ← escreva aqui</code></pre>
-
-<p><strong>Dica:</strong> Dê nomes descritivos pras suas variáveis. Use <code>idade_usuário</code> ao invés de <code>x</code>. Seu eu do futuro vai agradecer!</p>
+<p><strong>Dica:</strong> Dê nomes descritivos às variáveis. Use <code>idade_usuario</code> ao invés de <code>x</code>. Seu eu do futuro vai agradecer!</p>
 <div style="background:linear-gradient(135deg,#1a1a3e,#2a1a4e);border:1px solid #7c3aed;border-radius:12px;padding:1.2rem;margin:1.5rem 0;"><h3 style="color:#a78bfa;margin:0 0 .5rem 0;">Curiosidade do Dia</h3><p style="margin:0;color:#c4b5fd;">Em Python, tudo é um objeto — até números! Quando você escreve <code>x = 5</code>, o Python cria um objeto inteiro na memória. Isso se chama <strong>tipagem dinâmica</strong>.</p></div>
 `,
-  starter: `# O que são variáveis\n# Crie variáveis para guardar seus dados\n\n# Crie uma variável texto (str)\nnome = "seu nome"\n\n# Crie uma variável inteira para sua idade\nidade = None  # ← coloque o valor aqui\n\n# Crie uma variável decimal para sua altura (ex: 1.75)\naltura = None  # ← coloque o valor aqui\n\n# Crie uma variável booleana (True ou False) para estudante\nestudante = None  # ← coloque o valor aqui\n\n# Exiba todas usando print("Campo:", variável)\n___`,
+  starter: `# Exercício: crie variáveis com seus próprios dados\n\n# Substitua os valores pelos seus dados reais\nnome = "seu nome"         # ← mude para seu nome\nidade = 0                 # ← mude para sua idade\naltura = 0.0              # ← mude para sua altura (ex: 1.72)\nestudante = True          # ← True se você estuda, False se não\n\n# Exiba todas com print()\nprint("Nome:", nome)\nprint("Idade:", idade)\nprint("Altura:", altura)\nprint("Estudante:", estudante)`,
 },
 { week:1, day:2, num:2, lang:'python', title:'Tipos de dados',
   content: `<h1>Tipos de dados</h1>
@@ -1395,31 +1431,40 @@ print("Nome:", nome)  # Exemplo
 
 <p>Você pode verificar o tipo de qualquer valor ou variável usando a função <strong>type()</strong>. Isso é super útil pra debugar seu código quando algo não funciona como esperado. Por exemplo, se você tenta somar um número com um texto, vai dar erro — e saber os tipos ajuda a entender por que. Cada tipo tem suas próprias operações: números podem ser somados, textos podem ser concatenados (juntados), e booleanos são usados em condições.</p>
 
-<pre style="background:#1a1a2e;border:1px solid #334155;border-radius:8px;padding:1rem;margin:.8rem 0;"><code># Tipos básicos do Python - Exemplo:
-inteiro = 42
-decimal = 3.14
-texto = "Python é demais"
-lógico = True
+<p>Veja os 4 tipos básicos do Python em ação:</p>
+<pre style="background:#1a1a2e;border:1px solid #334155;border-radius:8px;padding:1rem;margin:.8rem 0;overflow-x:auto;"><code># Os 4 tipos básicos
+inteiro = 42              # int
+decimal = 3.14            # float
+texto = "Python é demais" # str
+logico = True             # bool
 
-# Verifique o tipo de cada variável usando type()
-# Dica: print(type(variável))
-print(type(inteiro))   # Exemplo: int
-# ← escreva aqui
-# ← escreva aqui
-# ← escreva aqui
+# Verificando os tipos com type()
+print(type(inteiro))   # <class 'int'>
+print(type(decimal))   # <class 'float'>
+print(type(texto))     # <class 'str'>
+print(type(logico))    # <class 'bool'>
 
-# Faça operações com cada tipo
-# Some o inteiro com outro número
-# ← escreva aqui
-# Multiplique o decimal por 2
-# ← escreva aqui
-# Concatene o texto com "!!!" usando +
-# ← escreva aqui
-# Inverta o valor lógico usando not
-# ← escreva aqui</code></pre>
+# Operações com cada tipo
+print(inteiro + 8)         # 50 — números somam
+print(decimal * 2)         # 6.28
+print(texto + "!!!")       # concatena strings
+print(not logico)          # False — inverte bool</code></pre>
+<div style="background:rgba(167,139,250,.08);border:1px solid rgba(167,139,250,.25);border-radius:10px;padding:1rem 1.2rem;margin:1rem 0;">
+<div style="font-size:.7rem;font-weight:700;color:#a78bfa;text-transform:uppercase;letter-spacing:1px;margin-bottom:.7rem;">🔍 O que esse código faz</div>
+<table style="width:100%;border-collapse:collapse;font-size:.82rem;">
+<tr><td style="padding:.3rem .6rem;color:#7dd3fc;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">int (inteiro)</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;">Números inteiros: 1, -5, 42. Não têm casas decimais. Operações: + - * // % **</td></tr>
+<tr style="background:rgba(255,255,255,.03);"><td style="padding:.3rem .6rem;color:#7dd3fc;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">float (decimal)</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;">Números com ponto decimal: 3.14, -0.5, 2.0. Use ponto, nunca vírgula</td></tr>
+<tr><td style="padding:.3rem .6rem;color:#7dd3fc;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">str (string)</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;">Texto entre aspas simples ou duplas. Pode ser concatenado com + ou repetido com *</td></tr>
+<tr style="background:rgba(255,255,255,.03);"><td style="padding:.3rem .6rem;color:#7dd3fc;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">bool (booleano)</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;">Só dois valores possíveis: True ou False (com maiúscula). Resultado de comparações</td></tr>
+<tr><td style="padding:.3rem .6rem;color:#7dd3fc;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">type(variável)</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;">Retorna o tipo da variável — útil para debugar quando algo não funciona como esperado</td></tr>
+<tr style="background:rgba(255,255,255,.03);"><td style="padding:.3rem .6rem;color:#7dd3fc;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">texto + "!!!"</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;">O + com strings junta (concatena) os textos — diferente do + com números que soma</td></tr>
+<tr><td style="padding:.3rem .6rem;color:#7dd3fc;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">not logico</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;">"not" inverte o booleano: True vira False, False vira True</td></tr>
+<tr style="background:rgba(255,255,255,.03);"><td style="padding:.3rem .6rem;color:#86efac;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">→ Resultado</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;"><em style="color:#86efac;">&lt;class 'int'&gt; &nbsp; 50 &nbsp; 6.28 &nbsp; Python é demais!!! &nbsp; False</em></td></tr>
+</table>
+</div>
 
-<p><strong>Dica:</strong> Cuidado ao misturar tipos! <code>"5" + 3</code> dá erro, mas <code>5 + 3</code> dá 8 e <code>"5" + "3"</code> da "53". Fique atento!</p>`,
-  starter: `# Tipos de dados\n# Crie uma variável de cada tipo\n\n# int (inteiro)\nnúmero = 10\n\n# Crie uma variável float (número com casas decimais)\ndecimal = None  # ← coloque o valor aqui\n\n# Crie uma variável str (texto entre aspas)\ntexto = None  # ← coloque o valor aqui\n\n# Crie uma variável bool (True ou False)\nlógico = None  # ← coloque o valor aqui\n\n# Use print(type(variável)) para verificar o tipo de cada uma\n___`,
+<p><strong>Dica:</strong> Cuidado ao misturar tipos! <code>"5" + 3</code> dá erro. Para converter: <code>int("5") + 3 = 8</code> ou <code>"5" + str(3) = "53"</code>.</p>`,
+  starter: `# Exercício: explore os 4 tipos de dados\n\n# Crie uma variável int com um número inteiro qualquer\nnumero = 0   # ← troque por um número\n\n# Crie uma float com um número decimal\ndecimal = 0.0  # ← ex: 3.14, 9.8, 1.75\n\n# Crie uma str com um texto entre aspas\ntexto = "..."  # ← escreva alguma coisa\n\n# Crie uma bool (True ou False)\nlogico = True  # ← mude para False se quiser\n\n# Verifique os tipos com print(type(variável))\nprint(type(numero))\nprint(type(decimal))\nprint(type(texto))\nprint(type(logico))`,
 },
 { week:1, day:2, num:3, lang:'python', title:'Função input()',
   content: `<h1>Função input()</h1>
@@ -1427,26 +1472,32 @@ print(type(inteiro))   # Exemplo: int
 
 <p>Um detalhe muito importante: o input() <strong>sempre</strong> retorna uma string, mesmo que o usuário digite um número. Se o usuário digitar "25", o Python vai tratar como o texto "25" e não como o número 25. Pra fazer cálculos, você vai precisar converter o valor — mas isso a gente vê na próxima lição. Por enquanto, foca em entender como o input() funciona e como usar ele pra tornar seus programas interativos.</p>
 
-<pre style="background:#1a1a2e;border:1px solid #334155;border-radius:8px;padding:1rem;margin:.8rem 0;"><code># Exemplo: pedindo o nome do usuário
+<p>Veja como input() torna o programa interativo:</p>
+<pre style="background:#1a1a2e;border:1px solid #334155;border-radius:8px;padding:1rem;margin:.8rem 0;overflow-x:auto;"><code># input() pausa o programa e espera o usuário digitar
 nome = input("Qual é o seu nome? ")
 print("Olá,", nome, "! Bem-vindo(a)!")
 
-# Agora peça a cidade do usuário
-# Dica: variável = input("mensagem")
-# ← escreva aqui
-# Exiba uma mensagem usando a cidade
-# ← escreva aqui
+# Pedindo mais informações
+cidade = input("De qual cidade você é? ")
+print("Que legal!", cidade, "é uma cidade incrível!")
 
-# Peça a idade (lembre: input retorna string!)
-# ← escreva aqui
-# Exiba a idade
-# ← escreva aqui
-# Verifique o tipo da variável idade com type()
-# O que aparece? str! Porque input sempre retorna texto
-# ← escreva aqui</code></pre>
+# input() SEMPRE retorna string — mesmo que o usuário digite número!
+idade = input("Qual sua idade? ")
+print("Você digitou:", idade)
+print("Tipo retornado:", type(idade))  # → <class 'str'></code></pre>
+<div style="background:rgba(167,139,250,.08);border:1px solid rgba(167,139,250,.25);border-radius:10px;padding:1rem 1.2rem;margin:1rem 0;">
+<div style="font-size:.7rem;font-weight:700;color:#a78bfa;text-transform:uppercase;letter-spacing:1px;margin-bottom:.7rem;">🔍 O que esse código faz</div>
+<table style="width:100%;border-collapse:collapse;font-size:.82rem;">
+<tr><td style="padding:.3rem .6rem;color:#7dd3fc;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">input("mensagem")</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;">Exibe a mensagem, pausa o programa e espera o usuário digitar. Retorna o que foi digitado.</td></tr>
+<tr style="background:rgba(255,255,255,.03);"><td style="padding:.3rem .6rem;color:#7dd3fc;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">nome = input(...)</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;">Guarda o que o usuário digitou na variável "nome" — você pode usar o nome do jeito que quiser</td></tr>
+<tr><td style="padding:.3rem .6rem;color:#7dd3fc;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">print("Olá,", nome)</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;">Usa a variável "nome" para personalizar a mensagem — o programa sabe quem é o usuário</td></tr>
+<tr style="background:rgba(255,255,255,.03);"><td style="padding:.3rem .6rem;color:#7dd3fc;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">type(idade)</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;"><strong>Sempre retorna str!</strong> Mesmo se o usuário digitar "25", o Python guarda como texto "25", não número</td></tr>
+<tr><td style="padding:.3rem .6rem;color:#86efac;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">→ Resultado</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;"><em style="color:#86efac;">Qual é o seu nome? [usuário digita] → Olá, [nome]! Bem-vindo(a)!</em></td></tr>
+</table>
+</div>
 
-<p><strong>Dica:</strong> Sempre coloque uma mensagem clara dentro do input() pra o usuário saber o que digitar. Um espaço no final da mensagem deixa mais bonito: <code>input("Nome: ")</code></p>`,
-  starter: `# Função input()\n# Crie um programa interativo\n\n# Peça o nome do usuário\nnome = input("Qual seu nome? ")\n\n# Use input() para perguntar a cidade do usuário\ncidade = None  # ← coloque o valor aqui\n\n# Use input() para perguntar a idade\nidade = None  # ← coloque o valor aqui\n\n# Exiba os dados usando print("Campo:", variável)\n# Dica: print("texto", variável)\n___`,
+<p><strong>Dica:</strong> Coloque um espaço no final da mensagem do input(): <code>input("Nome: ")</code> — fica mais bonito e legível para o usuário.</p>`,
+  starter: `# Exercício: crie um programa interativo\n\n# Peça o nome do usuário\nnome = input("Qual é o seu nome? ")\n\n# Peça a cidade do usuário\ncidade = input("De que cidade você é? ")\n\n# Peça a linguagem favorita\nlinguagem = input("Qual sua linguagem favorita? ")\n\n# Exiba tudo junto com print()\nprint("Olá,", nome, "!")\nprint("Cidade:", cidade)\nprint("Linguagem favorita:", linguagem)\nprint("Tipo da variável linguagem:", type(linguagem))`,
 },
 { week:1, day:2, num:4, lang:'python', title:'Conversão de tipos',
   content: `<h1>Conversão de tipos</h1>
@@ -1458,28 +1509,36 @@ print("Olá,", nome, "! Bem-vindo(a)!")
 
 <p>A conversão de tipos é essencial pra construir programas interativos. Sem ela, você não consegue fazer cálculos com dados que vem do usuário. Mas cuidado: se você tentar converter algo que não faz sentido (como <code>int("abc")</code>), o Python vai dar um erro. Então sempre tenha certeza de que o valor pode ser convertido pro tipo desejado. Em programas mais avançados, você vai aprender a tratar esses erros, mas por enquanto basta ter cuidado.</p>
 
-<pre style="background:#1a1a2e;border:1px solid #334155;border-radius:8px;padding:1rem;margin:.8rem 0;"><code># Exemplo: convertendo input pra número inteiro
+<p>Veja como converter tipos para fazer cálculos com dados do usuário:</p>
+<pre style="background:#1a1a2e;border:1px solid #334155;border-radius:8px;padding:1rem;margin:.8rem 0;overflow-x:auto;"><code># int() converte para número inteiro
 idade = int(input("Sua idade: "))
 ano_nascimento = 2026 - idade
 print("Você nasceu por volta de", ano_nascimento)
 
-# Agora peça peso e altura usando float()
-# Dica: variável = float(input("mensagem"))
-# ← escreva aqui
-# ← escreva aqui
+# float() converte para número decimal
+peso = float(input("Seu peso (kg): "))
+altura = float(input("Sua altura (m): "))
+imc = peso / (altura * altura)
+print("Seu IMC é:", imc)
 
-# Calcule o IMC: peso / (altura * altura)
-# ← escreva aqui
-# Exiba o resultado
-# ← escreva aqui
+# str() converte número para texto (para concatenar)
+pontos = 1500
+mensagem = "Você tem " + str(pontos) + " pontos!"
+print(mensagem)</code></pre>
+<div style="background:rgba(167,139,250,.08);border:1px solid rgba(167,139,250,.25);border-radius:10px;padding:1rem 1.2rem;margin:1rem 0;">
+<div style="font-size:.7rem;font-weight:700;color:#a78bfa;text-transform:uppercase;letter-spacing:1px;margin-bottom:.7rem;">🔍 O que esse código faz</div>
+<table style="width:100%;border-collapse:collapse;font-size:.82rem;">
+<tr><td style="padding:.3rem .6rem;color:#7dd3fc;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">int(input(...))</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;">Faz duas coisas de uma vez: input() pega o que o usuário digitou e int() transforma em número inteiro</td></tr>
+<tr style="background:rgba(255,255,255,.03);"><td style="padding:.3rem .6rem;color:#7dd3fc;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">2026 - idade</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;">Agora que "idade" é int, podemos fazer contas — antes de converter, isso daria erro</td></tr>
+<tr><td style="padding:.3rem .6rem;color:#7dd3fc;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">float(input(...))</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;">Converte para número decimal — ideal para peso, altura, preços e outras medidas</td></tr>
+<tr style="background:rgba(255,255,255,.03);"><td style="padding:.3rem .6rem;color:#7dd3fc;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">peso / (altura * altura)</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;">Cálculo do IMC — os parênteses garantem que altura*altura é calculado antes da divisão</td></tr>
+<tr><td style="padding:.3rem .6rem;color:#7dd3fc;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">"Você tem " + str(pontos)</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;">str() converte número em texto — necessário para juntar com string usando +. Sem str() daria erro.</td></tr>
+<tr style="background:rgba(255,255,255,.03);"><td style="padding:.3rem .6rem;color:#86efac;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">→ Resultado</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;"><em style="color:#86efac;">Você nasceu por volta de 2007 &nbsp; Seu IMC é: 22.5 &nbsp; Você tem 1500 pontos!</em></td></tr>
+</table>
+</div>
 
-# Converta um número pra string e concatene com texto
-# Dica: str(número) transforma número em texto
-# ← escreva aqui
-# ← escreva aqui</code></pre>
-
-<p><strong>Dica:</strong> Uma forma rápida de converter o input e fazer tudo em uma linha: <code>idade = int(input("Idade: "))</code>. Isso é muito comum em Python!</p>`,
-  starter: `# Conversão de tipos\n# Pratique converter entre tipos\n\n# Peça a idade e converta para inteiro com int(input())\nidade = None  # ← coloque o valor aqui\n\n# Calcule o ano de nascimento: 2026 - idade\nano_nascimento = None  # ← coloque o valor aqui\n\n# Peça um peso e converta para decimal com float(input())\npeso = None  # ← coloque o valor aqui\n\n# Converta um número para texto usando str() e junte com outro texto\n___`,
+<p><strong>Dica:</strong> Padrão mais comum: <code>valor = int(input("mensagem"))</code> — tudo em uma linha, já converte na hora que pega o input!</p>`,
+  starter: `# Exercício: calculadora de dados pessoais\n\n# Peça a idade e converta com int()\nidade = int(input("Sua idade: "))\n\n# Calcule o ano de nascimento (2026 - idade)\nano_nascimento = 2026 - idade\nprint("Você nasceu por volta de", ano_nascimento)\n\n# Peça peso (kg) e altura (m) e converta com float()\npeso = float(input("Seu peso em kg: "))\naltura = float(input("Sua altura em metros: "))\n\n# Calcule o IMC: peso / (altura * altura)\nimc = peso / (altura * altura)\nprint("Seu IMC é:", imc)`,
 },
 { week:1, day:2, num:5, lang:'python', title:'Prática variáveis',
   content: `<h1>Prática variáveis</h1>
@@ -1487,37 +1546,41 @@ print("Você nasceu por volta de", ano_nascimento)
 
 <p>Lembre-se dos pontos principais: variáveis guardam valores, cada valor tem um tipo (int, float, str, bool), o input() sempre retorna string e você precisa converter quando quiser fazer contas. Tente fazer os exercícios sozinho primeiro e só depois olhe o exemplo. Errar faz parte do processo — cada erro é uma oportunidade de aprender algo novo!</p>
 
-<pre style="background:#1a1a2e;border:1px solid #334155;border-radius:8px;padding:1rem;margin:.8rem 0;"><code># Programa: Ficha do Aluno
+<p>Veja o programa completo da ficha do aluno:</p>
+<pre style="background:#1a1a2e;border:1px solid #334155;border-radius:8px;padding:1rem;margin:.8rem 0;overflow-x:auto;"><code># Programa: Ficha do Aluno
 print("=== Ficha do Aluno ===")
 
-# Peça o nome (string - não precisa converter)
+# Coletando dados
 nome = input("Nome completo: ")
+idade = int(input("Idade: "))
+nota1 = float(input("Nota 1 (0-10): "))
+nota2 = float(input("Nota 2 (0-10): "))
 
-# Peça a idade (converter pra int)
-# ← escreva aqui
+# Calculando resultados
+media = (nota1 + nota2) / 2
+idade_daqui_5_anos = idade + 5
 
-# Peça duas notas (converter pra float)
-# ← escreva aqui
-# ← escreva aqui
-
-# Calcule a média das duas notas
-# Dica: (nota1 + nota2) / 2
-# ← escreva aqui
-
-# Calcule a idade daqui a 5 anos
-# ← escreva aqui
-
-# Exiba os resultados formatados
+# Exibindo resultado formatado
 print("")
 print("--- Resultado ---")
-# Exiba: nome, idade atual, idade futura, média
-# ← escreva aqui
-# ← escreva aqui
-# ← escreva aqui
-# ← escreva aqui</code></pre>
+print("Aluno:", nome)
+print("Idade atual:", idade, "| Em 5 anos:", idade_daqui_5_anos)
+print("Média final:", media)</code></pre>
+<div style="background:rgba(167,139,250,.08);border:1px solid rgba(167,139,250,.25);border-radius:10px;padding:1rem 1.2rem;margin:1rem 0;">
+<div style="font-size:.7rem;font-weight:700;color:#a78bfa;text-transform:uppercase;letter-spacing:1px;margin-bottom:.7rem;">🔍 O que esse código faz</div>
+<table style="width:100%;border-collapse:collapse;font-size:.82rem;">
+<tr><td style="padding:.3rem .6rem;color:#7dd3fc;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">nome = input(...)</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;">String — não precisa converter. Nomes são sempre texto.</td></tr>
+<tr style="background:rgba(255,255,255,.03);"><td style="padding:.3rem .6rem;color:#7dd3fc;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">int(input(...))</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;">Idade é número inteiro — convertemos para poder fazer contas</td></tr>
+<tr><td style="padding:.3rem .6rem;color:#7dd3fc;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">float(input(...))</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;">Notas podem ter decimal (ex: 7.5) — float é o tipo certo</td></tr>
+<tr style="background:rgba(255,255,255,.03);"><td style="padding:.3rem .6rem;color:#7dd3fc;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">media = (nota1 + nota2) / 2</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;">Parênteses somam as duas notas primeiro, depois divide por 2 — ordem importa!</td></tr>
+<tr><td style="padding:.3rem .6rem;color:#7dd3fc;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">idade + 5</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;">Soma simples — funciona porque idade já foi convertida para int</td></tr>
+<tr style="background:rgba(255,255,255,.03);"><td style="padding:.3rem .6rem;color:#7dd3fc;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">print("Média final:", media)</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;">Exibe label + valor da variável — o Python formata automaticamente</td></tr>
+<tr><td style="padding:.3rem .6rem;color:#86efac;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">→ Resultado</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;"><em style="color:#86efac;">=== Ficha do Aluno === → [coleta dados] → Aluno: Ana &nbsp; Idade: 17 | Em 5 anos: 22 &nbsp; Média: 8.0</em></td></tr>
+</table>
+</div>
 
-<p><strong>Desafio:</strong> Crie um programa que pede o preço de um produto e a porcentagem de desconto, calcula o valor do desconto e o preço final, e exibe tudo formatado!</p>`,
-  starter: `# Prática variáveis - Ficha do Aluno\nprint("=== Ficha do Aluno ===")\n\n# Peça nome, idade e duas notas\nnome = input("Nome: ")\n# Peça a idade e converta com int(input())\nidade = None  # ← coloque o valor aqui\n# Peça a nota1 e converta com float(input())\nnota1 = None  # ← coloque o valor aqui\n# Peça a nota2 da mesma forma\nnota2 = None  # ← coloque o valor aqui\n\n# Calcule a média: (nota1 + nota2) / 2\nmedia = None  # ← coloque o valor aqui\n# Exiba todos os resultados com print()\n___`,
+<p><strong>Desafio:</strong> Adapte o programa para calcular também a situação do aluno: se média ≥ 7.0, "Aprovado"; senão, "Recuperação". (Você verá condicionais amanhã!)</p>`,
+  starter: `# Exercício: Ficha do Aluno\nprint("=== Ficha do Aluno ===")\n\n# Colete os dados do usuário\nnome = input("Nome completo: ")\nidade = int(input("Idade: "))\nnota1 = float(input("Nota 1 (0-10): "))\nnota2 = float(input("Nota 2 (0-10): "))\n\n# Calcule a média (nota1 + nota2) / 2\nmedia = (nota1 + nota2) / 2\n\n# Calcule a idade daqui a 5 anos\nidade_futura = idade + 5\n\n# Exiba os resultados\nprint("\n--- Resultado ---")\nprint("Aluno:", nome)\nprint("Idade:", idade, "| Em 5 anos:", idade_futura)\nprint("Média final:", media)`,
 },
 // Day 3: Operadores
 { week:1, day:3, num:1, lang:'python', title:'Operadores aritméticos',
@@ -1530,32 +1593,39 @@ print("--- Resultado ---")
 
 <p>Esses operadores funcionam com int e float, e você pode combinar vários deles em uma mesma expressão. O operador <strong>%</strong> (módulo) é especialmente útil pra verificar se um número e par ou impar: se <code>número % 2 == 0</code>, o número e par! Já o <strong>//</strong> é ótimo quando você quer uma divisão que resulte em número inteiro, como dividir itens em grupos iguais.</p>
 
-<pre style="background:#1a1a2e;border:1px solid #334155;border-radius:8px;padding:1rem;margin:.8rem 0;"><code># Operadores básicos - Exemplos:
-print("Soma:", 10 + 3)          # 13
-print("Subtração:", 10 - 3)     # 7
-print("Multiplicação:", 10 * 3) # 30
-print("Divisão:", 10 / 3)       # 3.333...
+<p>Veja todos os operadores aritméticos do Python em ação:</p>
+<pre style="background:#1a1a2e;border:1px solid #334155;border-radius:8px;padding:1rem;margin:.8rem 0;overflow-x:auto;"><code># Operadores básicos
+print("Soma:", 10 + 3)           # 13
+print("Subtração:", 10 - 3)      # 7
+print("Multiplicação:", 10 * 3)  # 30
+print("Divisão:", 10 / 3)        # 3.3333...
 
-# Agora teste os operadores especiais
-# Divisão inteira: use // (descarta decimais)
-# ← escreva aqui
-# Resto da divisão (módulo): use %
-# ← escreva aqui
-# Potência: use ** (ex: 2 ** 10 = 1024)
-# ← escreva aqui
+# Operadores especiais
+print("Divisão inteira:", 10 // 3)  # 3 (descarta decimal)
+print("Resto (módulo):", 10 % 3)    # 1
+print("Potência:", 2 ** 10)         # 1024
 
-# Descubra se um número e par ou impar
-# Dica: se número % 2 == 0, e par
-número = 7
-# Calcule o resto da divisão por 2
-# ← escreva aqui
-# Exiba o resultado
-# ← escreva aqui</code></pre>
+# Verificando par ou ímpar com %
+numero = 7
+resto = numero % 2
+print(numero, "tem resto", resto, "na divisão por 2")
+# resto == 0 → par | resto == 1 → ímpar</code></pre>
+<div style="background:rgba(167,139,250,.08);border:1px solid rgba(167,139,250,.25);border-radius:10px;padding:1rem 1.2rem;margin:1rem 0;">
+<div style="font-size:.7rem;font-weight:700;color:#a78bfa;text-transform:uppercase;letter-spacing:1px;margin-bottom:.7rem;">🔍 O que esse código faz</div>
+<table style="width:100%;border-collapse:collapse;font-size:.82rem;">
+<tr><td style="padding:.3rem .6rem;color:#7dd3fc;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">+  -  *  /</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;">Soma, subtração, multiplicação, divisão — iguais à matemática. Divisão / sempre retorna float</td></tr>
+<tr style="background:rgba(255,255,255,.03);"><td style="padding:.3rem .6rem;color:#7dd3fc;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">10 // 3</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;">Divisão inteira — joga fora a parte decimal. 10 ÷ 3 = 3.33, mas // retorna só o 3</td></tr>
+<tr><td style="padding:.3rem .6rem;color:#7dd3fc;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">10 % 3</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;">Módulo (resto) — retorna o que sobrou depois da divisão. 10 = 3×3 + <strong>1</strong>, então resultado é 1</td></tr>
+<tr style="background:rgba(255,255,255,.03);"><td style="padding:.3rem .6rem;color:#7dd3fc;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">2 ** 10</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;">Potência — 2 elevado a 10 = 1024. Equivalente a multiplicar 2 por ele mesmo 10 vezes</td></tr>
+<tr><td style="padding:.3rem .6rem;color:#7dd3fc;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">numero % 2</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;">O truque do par/ímpar: qualquer número % 2 dá 0 (par) ou 1 (ímpar)</td></tr>
+<tr style="background:rgba(255,255,255,.03);"><td style="padding:.3rem .6rem;color:#86efac;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">→ Resultado</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;"><em style="color:#86efac;">13 &nbsp; 7 &nbsp; 30 &nbsp; 3.333 &nbsp; 3 &nbsp; 1 &nbsp; 1024 &nbsp; 7 tem resto 1</em></td></tr>
+</table>
+</div>
 
-<p><strong>Dica:</strong> A divisão com <strong>/</strong> sempre retorna float, mesmo que o resultado seja inteiro. <code>10 / 2</code> retorna <code>5.0</code>, não <code>5</code>. Use <strong>//</strong> se quiser inteiro.</p>
+<p><strong>Dica:</strong> A divisão <code>/</code> sempre retorna float: <code>10 / 2 = 5.0</code>. Use <code>//</code> se quiser inteiro: <code>10 // 2 = 5</code>.</p>
 <div style="background:linear-gradient(135deg,#1a1a3e,#2a1a4e);border:1px solid #7c3aed;border-radius:12px;padding:1.2rem;margin:1.5rem 0;"><h3 style="color:#a78bfa;margin:0 0 .5rem 0;">Curiosidade do Dia</h3><p style="margin:0;color:#c4b5fd;">O operador <code>//</code> existe porque em Python 3, <code>/</code> sempre retorna float. Em Python 2, <code>5/2</code> dava <code>2</code>! Essa mudança causou muitos bugs na migração.</p></div>
 `,
-  starter: `# Operadores aritméticos\n# Teste todos os operadores: + - * / // % **\n\n# Soma e subtração\nprint("Soma:", 10 + 5)\n\n# Use print() para exibir uma multiplicação e uma divisão\n___\n\n# Use // para divisão inteira e % para resto da divisão\n___\n\n# Use ** para calcular uma potência (ex: 2 ** 10)\n___\n\n# Calcule 15 % 2 e exiba se o resto é 0 (par) ou 1 (ímpar)\n___`,
+  starter: `# Exercício: teste todos os operadores aritméticos\n\nprint("Soma:", 10 + 5)         # = 15\nprint("Subtração:", 10 - 5)    # = 5\nprint("Multiplicação:", 10 * 5) # = 50\nprint("Divisão:", 10 / 3)      # = 3.333...\n\n# Use // para divisão inteira (sem decimal)\nprint("Divisão inteira:", 10 // 3)  # ← deve ser 3\n\n# Use % para obter o resto da divisão\nprint("Resto:", 10 % 3)  # ← deve ser 1\n\n# Use ** para potência (2 elevado a 8)\nprint("Potência:", 2 ** 8)  # ← deve ser 256\n\n# Verifique se 15 é par ou ímpar (15 % 2 == 0 → par)\nprint("15 % 2 =", 15 % 2)  # 1 = ímpar`,
 },
 { week:1, day:3, num:2, lang:'python', title:'Operadores de comparação',
   content: `<h1>Operadores de comparação</h1>
@@ -1567,34 +1637,40 @@ número = 7
 
 <p>Um erro muito comum de iniciante é confundir <strong>=</strong> com <strong>==</strong>. O <strong>=</strong> (um só) é o operador de <strong>atribuição</strong> — ele coloca um valor numa variável. Já o <strong>==</strong> (dois) é o operador de <strong>comparação</strong> — ele verifica se dois valores são iguais. Então <code>x = 5</code> significa "x recebe 5", enquanto <code>x == 5</code> significa "x é igual a 5?" e retorna True ou False.</p>
 
-<pre style="background:#1a1a2e;border:1px solid #334155;border-radius:8px;padding:1rem;margin:.8rem 0;"><code># Comparações básicas - Exemplos:
-print(10 == 10)   # True - são iguais
-print(10 != 5)    # True - são diferentes
-print(10 > 5)     # True - 10 e maior
+<p>Veja como operadores de comparação retornam True ou False:</p>
+<pre style="background:#1a1a2e;border:1px solid #334155;border-radius:8px;padding:1rem;margin:.8rem 0;overflow-x:auto;"><code># Todos os operadores de comparação
+print(10 == 10)   # True  — igual a
+print(10 != 5)    # True  — diferente de
+print(10 > 5)     # True  — maior que
+print(10 < 5)     # False — menor que
+print(10 >= 10)   # True  — maior ou igual a
+print(10 <= 5)    # False — menor ou igual a
 
-# Agora teste os outros operadores
-# Teste se 10 e menor que 5
-# ← escreva aqui
-# Teste se 10 e maior ou igual a 10
-# ← escreva aqui
-# Teste se 10 e menor ou igual a 5
-# ← escreva aqui
+# Comparação com variáveis
+idade = 17
+print("Maior de idade?", idade >= 18)   # False
 
-# Crie uma variável idade e verifique se e maior de idade
-# Dica: idade >= 18
-idade = ___
-# ← escreva aqui
+nota = 8.5
+print("Aprovado?", nota >= 7)            # True
 
-# Crie uma variável nota e verifique se foi aprovado (>= 7)
-nota = ___
-# ← escreva aqui
+# Strings também são comparáveis!
+print("Python" == "python")  # False — maiúscula importa
+print("Ana" < "Pedro")       # True  — ordem alfabética</code></pre>
+<div style="background:rgba(167,139,250,.08);border:1px solid rgba(167,139,250,.25);border-radius:10px;padding:1rem 1.2rem;margin:1rem 0;">
+<div style="font-size:.7rem;font-weight:700;color:#a78bfa;text-transform:uppercase;letter-spacing:1px;margin-bottom:.7rem;">🔍 O que esse código faz</div>
+<table style="width:100%;border-collapse:collapse;font-size:.82rem;">
+<tr><td style="padding:.3rem .6rem;color:#7dd3fc;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">== (dois iguais)</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;">Compara se os dois lados são iguais. Atenção: <strong>um = atribui</strong>, <strong>dois == compara</strong>!</td></tr>
+<tr style="background:rgba(255,255,255,.03);"><td style="padding:.3rem .6rem;color:#7dd3fc;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">!= (exclamação + igual)</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;">Diferente de — True se os valores são diferentes</td></tr>
+<tr><td style="padding:.3rem .6rem;color:#7dd3fc;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">>  <  >=  <=</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;">Maior, menor, maior ou igual, menor ou igual — sempre retornam True ou False</td></tr>
+<tr style="background:rgba(255,255,255,.03);"><td style="padding:.3rem .6rem;color:#7dd3fc;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">idade >= 18</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;">Uma comparação é uma expressão — você pode guardar o resultado em variável ou usar direto no print</td></tr>
+<tr><td style="padding:.3rem .6rem;color:#7dd3fc;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">"Python" == "python"</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;">Strings são case-sensitive: letra maiúscula e minúscula são tratadas como caracteres diferentes</td></tr>
+<tr style="background:rgba(255,255,255,.03);"><td style="padding:.3rem .6rem;color:#7dd3fc;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">"Ana" &lt; "Pedro"</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;">Strings são comparadas em ordem alfabética (lexicográfica) — "A" vem antes de "P" no alfabeto</td></tr>
+<tr><td style="padding:.3rem .6rem;color:#86efac;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">→ Resultado</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;"><em style="color:#86efac;">True &nbsp; True &nbsp; True &nbsp; False &nbsp; True &nbsp; False &nbsp; Maior de idade? False &nbsp; Aprovado? True</em></td></tr>
+</table>
+</div>
 
-# Compare duas strings - teste se são iguais
-# Lembre: maiúsculas e minúsculas são diferentes!
-# ← escreva aqui</code></pre>
-
-<p><strong>Dica:</strong> Em Python, comparação de strings diferencia maiúsculas de minúsculas. "Python" é diferente de "python"!</p>`,
-  starter: `# Operadores de comparação\n# Operadores: == != > < >= <=\n\n# Teste igualdade e diferença\nprint(10 == 10)\n# Use print() com != para testar se 10 é diferente de 5\n___\n\n# Compare variáveis\nidade = 18\n# Use print() para exibir o resultado de idade >= 18\n___\n\nnota = 6.5\n# Use print() para exibir o resultado de nota >= 7\n___`,
+<p><strong>Dica:</strong> Nunca confunda <code>=</code> (atribuição: "x recebe 5") com <code>==</code> (comparação: "x é igual a 5?")!</p>`,
+  starter: `# Exercício: operadores de comparação\n\n# Teste todos os 6 operadores\nprint(10 == 10)    # True\nprint(10 != 10)    # False\nprint(10 > 5)      # True\nprint(10 < 5)      # False\nprint(10 >= 10)    # True\nprint(10 <= 5)     # False\n\n# Crie variáveis e compare\nidade = 17\nprint("Maior de idade?", idade >= 18)\n\nnota = 6.5\nprint("Aprovado?", nota >= 7)\n\n# Compare duas strings\nprint("Python" == "Python")  # True\nprint("Python" == "python")  # False`,
 },
 { week:1, day:3, num:3, lang:'python', title:'Operadores lógicos',
   content: `<h1>Operadores lógicos</h1>
@@ -1606,35 +1682,43 @@ nota = ___
 
 <p>Esses operadores são super importantes quando você precisa verificar várias coisas ao mesmo tempo. Por exemplo: "o aluno foi aprovado se a nota for >= 7 E a frequência for >= 75%". Nesse caso você precisa do <strong>and</strong>, porque as duas condições precisam ser verdadeiras. Ou então: "o cliente ganha desconto se for aniversariante OU se comprar mais de 3 itens" — aí usa <strong>or</strong>, porque basta uma das condições ser verdadeira.</p>
 
-<pre style="background:#1a1a2e;border:1px solid #334155;border-radius:8px;padding:1rem;margin:.8rem 0;"><code># Operador and - ambas precisam ser True
+<p>Veja como combinar condições com and, or e not:</p>
+<pre style="background:#1a1a2e;border:1px solid #334155;border-radius:8px;padding:1rem;margin:.8rem 0;overflow-x:auto;"><code># and — ambas as condições precisam ser True
 nota = 8
-frequência = 80
-aprovado = nota >= 7 and frequência >= 75
-print("Aprovado?", aprovado)  # True
+frequencia = 80
+aprovado = nota >= 7 and frequencia >= 75
+print("Aprovado?", aprovado)       # True
 
-# Agora use or - pelo menos uma precisa ser True
-# Crie variáveis tem_cupom e eh_aniversario
-# ← escreva aqui
-# ← escreva aqui
-# Verifique se tem desconto (uma OU outra)
-# ← escreva aqui
-# ← escreva aqui
+# or — basta UMA condição ser True
+tem_cupom = False
+eh_aniversario = True
+tem_desconto = tem_cupom or eh_aniversario
+print("Tem desconto?", tem_desconto)  # True
 
-# Use not para inverter um valor
-# Dica: not False vira True
+# not — inverte o valor
 chovendo = False
-# Verifique se pode sair (not chovendo)
-# ← escreva aqui
+pode_sair = not chovendo
+print("Pode sair?", pode_sair)        # True
 
-# Combine: verifique se pode dirigir
-# Precisa ter >= 18 anos E ter carteira
+# Combinando tudo
 idade = 20
 tem_carteira = True
-# ← escreva aqui
-# ← escreva aqui</code></pre>
+pode_dirigir = idade >= 18 and tem_carteira
+print("Pode dirigir?", pode_dirigir)   # True</code></pre>
+<div style="background:rgba(167,139,250,.08);border:1px solid rgba(167,139,250,.25);border-radius:10px;padding:1rem 1.2rem;margin:1rem 0;">
+<div style="font-size:.7rem;font-weight:700;color:#a78bfa;text-transform:uppercase;letter-spacing:1px;margin-bottom:.7rem;">🔍 O que esse código faz</div>
+<table style="width:100%;border-collapse:collapse;font-size:.82rem;">
+<tr><td style="padding:.3rem .6rem;color:#7dd3fc;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">A and B</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;"><strong>AND:</strong> só é True se A <em>e</em> B forem True. Se qualquer um for False, o resultado é False</td></tr>
+<tr style="background:rgba(255,255,255,.03);"><td style="padding:.3rem .6rem;color:#7dd3fc;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">nota >= 7 and frequencia >= 75</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;">Duas comparações combinadas — o aluno precisa atender as DUAS condições para ser aprovado</td></tr>
+<tr><td style="padding:.3rem .6rem;color:#7dd3fc;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">A or B</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;"><strong>OR:</strong> é True se A <em>ou</em> B (ou ambos) forem True. Só é False se os DOIS forem False</td></tr>
+<tr style="background:rgba(255,255,255,.03);"><td style="padding:.3rem .6rem;color:#7dd3fc;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">not chovendo</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;"><strong>NOT:</strong> inverte o bool. not False = True, not True = False</td></tr>
+<tr><td style="padding:.3rem .6rem;color:#7dd3fc;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">idade >= 18 and tem_carteira</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;">Combinação real: precisar ter 18 anos E ter carteira — ambas as condições</td></tr>
+<tr style="background:rgba(255,255,255,.03);"><td style="padding:.3rem .6rem;color:#86efac;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">→ Resultado</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;"><em style="color:#86efac;">Aprovado? True &nbsp; Tem desconto? True &nbsp; Pode sair? True &nbsp; Pode dirigir? True</em></td></tr>
+</table>
+</div>
 
-<p><strong>Dica:</strong> Quando a expressão fica longa demais, quebre em variáveis menores pra ficar mais legível. Código legível e código bom!</p>`,
-  starter: `# Operadores lógicos: and, or, not\n\n# and: ambas precisam ser True\nnota = 8\nfrequência = 80\n# Crie variável aprovado usando and: nota >= 7 and frequência >= 75\naprovado = None  # ← coloque o valor aqui\nprint("Aprovado?", aprovado)\n\n# or: crie duas variáveis bool e use or para verificar desconto\ntem_cupom = None  # ← coloque o valor aqui\neh_aniversario = None  # ← coloque o valor aqui\ntem_desconto = None  # ← coloque o valor aqui\nprint("Tem desconto?", tem_desconto)\n\n# not: inverta um valor bool com not\nchovendo = False\npode_sair = None  # ← coloque o valor aqui\nprint("Pode sair?", pode_sair)`,
+<p><strong>Dica:</strong> Quando a expressão fica longa, salve partes em variáveis com nomes descritivos. Código legível é código bom!</p>`,
+  starter: `# Exercício: operadores lógicos and, or, not\n\n# and — as DUAS precisam ser True\nnota = 8\nfrequencia = 80\naprovado = nota >= 7 and frequencia >= 75\nprint("Aprovado?", aprovado)\n\n# or — basta UMA ser True\ntem_cupom = False\neh_aniversario = True\ntem_desconto = tem_cupom or eh_aniversario\nprint("Tem desconto?", tem_desconto)\n\n# not — inverte o bool\nchovendo = True\npode_sair = not chovendo\nprint("Pode sair?", pode_sair)\n\n# Agora invente sua própria condição com and, or ou not\n# Exemplo: pode_entrar = idade >= 18 and tem_ingresso\n# ← escreva aqui`,
 },
 { week:1, day:3, num:4, lang:'python', title:'Precedência de operadores',
   content: `<h1>Precedência de operadores</h1>
@@ -1642,33 +1726,36 @@ tem_carteira = True
 
 <p>Se você não tiver certeza da ordem, use <strong>parênteses</strong>! Parênteses tem a maior prioridade de todas e deixam seu código muito mais claro. Não tem vergonha nenhuma em usar parênteses extras — e melhor ter parênteses "desnecessários" e um código fácil de ler do que economizar parênteses e ter um bug difícil de encontrar. Muitos programadores experientes usam parênteses mesmo quando tecnicamente não precisam, só pra deixar a intenção clara.</p>
 
-<pre style="background:#1a1a2e;border:1px solid #334155;border-radius:8px;padding:1rem;margin:.8rem 0;"><code># Sem parênteses - segue a precedência
-resultado = 2 + 3 * 4      # 14 (não 20!)
-print("2 + 3 * 4 =", resultado)
+<p>Veja como a ordem de avaliação funciona e por que parênteses importam:</p>
+<pre style="background:#1a1a2e;border:1px solid #334155;border-radius:8px;padding:1rem;margin:.8rem 0;overflow-x:auto;"><code># Sem parênteses — segue a precedência (como na matemática)
+r1 = 2 + 3 * 4      # 14, não 20! Multiplicação primeiro
+r2 = 10 - 2 * 3     # 4,  não 24! Multiplicação primeiro
+print("2 + 3 * 4 =", r1)   # 14
+print("10 - 2 * 3 =", r2)  # 4
 
-# Com parênteses - muda a ordem
-resultado2 = (2 + 3) * 4   # 20
-print("(2 + 3) * 4 =", resultado2)
+# Com parênteses — forçamos a ordem
+r3 = (2 + 3) * 4    # 20 — soma primeiro
+r4 = (10 - 2) * 3   # 24 — subtração primeiro
+print("(2 + 3) * 4 =", r3)  # 20
+print("(10 - 2) * 3 =", r4) # 24
 
-# Agora tente prever o resultado ANTES de rodar!
-# Qual o resultado de 10 - 2 * 3 ?
-# ← escreva aqui
-# E de (10 - 2) * 3 ?
-# ← escreva aqui
-
-# Potência: 2 ** 3 ** 2 - quanto da?
-# Dica: potência e avaliada da direita prà esquerda
-# ← escreva aqui
-# E (2 ** 3) ** 2 ?
-# ← escreva aqui
-
-# Use and com comparações
-# Verifique se x esta entre 3 e 10
+# Verificar se x está ENTRE dois valores
 x = 5
-# ← escreva aqui</code></pre>
+entre_3_e_10 = x >= 3 and x <= 10  # True
+print("5 está entre 3 e 10?", entre_3_e_10)</code></pre>
+<div style="background:rgba(167,139,250,.08);border:1px solid rgba(167,139,250,.25);border-radius:10px;padding:1rem 1.2rem;margin:1rem 0;">
+<div style="font-size:.7rem;font-weight:700;color:#a78bfa;text-transform:uppercase;letter-spacing:1px;margin-bottom:.7rem;">🔍 O que esse código faz</div>
+<table style="width:100%;border-collapse:collapse;font-size:.82rem;">
+<tr><td style="padding:.3rem .6rem;color:#7dd3fc;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">2 + 3 * 4 = 14</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;">Python segue a mesma precedência da matemática: potência → × ÷ → + −. Multiplicação vem antes da soma</td></tr>
+<tr style="background:rgba(255,255,255,.03);"><td style="padding:.3rem .6rem;color:#7dd3fc;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">(2 + 3) * 4 = 20</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;">Parênteses têm MAIOR prioridade que tudo — o que está dentro deles é calculado primeiro</td></tr>
+<tr><td style="padding:.3rem .6rem;color:#7dd3fc;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">x >= 3 and x <= 10</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;">Comparações são avaliadas antes do "and" — primeiro calcula os dois lados, depois combina</td></tr>
+<tr style="background:rgba(255,255,255,.03);"><td style="padding:.3rem .6rem;color:#86efac;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">→ Ordem geral</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;"><em>** → ×÷//% → +− → comparações (== != &gt; &lt;) → not → and → or</em></td></tr>
+<tr><td style="padding:.3rem .6rem;color:#86efac;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">→ Resultado</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;"><em style="color:#86efac;">2 + 3 * 4 = 14 &nbsp; 10 - 2 * 3 = 4 &nbsp; (2 + 3) * 4 = 20 &nbsp; 5 entre 3 e 10? True</em></td></tr>
+</table>
+</div>
 
-<p><strong>Dica:</strong> Na dúvida, use parênteses! Eles tornam o código mais legível e evitam bugs sutis de precedência.</p>`,
-  starter: `# Precedência de operadores\n# Tente prever os resultados!\n\n# Quanto da 2 + 3 * 4 ? (multiplicação primeiro!)\nresultado = 2 + 3 * 4\nprint(resultado)\n\n# Agora use parênteses para somar antes: (2 + 3) * 4\nresultado2 = None  # ← coloque o valor aqui\nprint(resultado2)\n\n# Calcule 10 - 2 * 3 e exiba o resultado\nresultado3 = None  # ← coloque o valor aqui\nprint(resultado3)`,
+<p><strong>Dica:</strong> Na dúvida, use parênteses! Eles tornam o código mais legível e evitam bugs — melhor código claro do que código "esperto".</p>`,
+  starter: `# Exercício: precedência de operadores\n# Tente adivinhar o resultado ANTES de executar!\n\n# Qual é o resultado? Escreva sua previsão no comentário\nprint(2 + 3 * 4)     # previsão: ?\nprint((2 + 3) * 4)   # previsão: ?\nprint(10 - 2 * 3)    # previsão: ?\nprint((10 - 2) * 3)  # previsão: ?\nprint(2 ** 3 + 1)    # previsão: ?\nprint(2 ** (3 + 1))  # previsão: ?\n\n# Verifique se 7 está entre 5 e 10\nx = 7\nprint("7 entre 5 e 10?", x >= 5 and x <= 10)`,
 },
 { week:1, day:3, num:5, lang:'python', title:'Prática operadores',
   content: `<h1>Prática operadores</h1>
@@ -1676,40 +1763,43 @@ x = 5
 
 <p>Nestes exercícios, você vai calcular coisas do dia a dia: troco de compras, conversão de temperatura, verificação de idade e mais. O objetivo é você se sentir confortável usando operadores em qualquer situação. Lembre-se: programação e resolver problemas, e operadores são suas ferramentas básicas pra isso!</p>
 
-<pre style="background:#1a1a2e;border:1px solid #334155;border-radius:8px;padding:1rem;margin:.8rem 0;"><code># Exercício 1: Calculadora de troco
-preço = 27.50
+<p>Veja os 4 exercícios práticos resolvidos com operadores:</p>
+<pre style="background:#1a1a2e;border:1px solid #334155;border-radius:8px;padding:1rem;margin:.8rem 0;overflow-x:auto;"><code># 1. Calculadora de troco
+preco = 27.50
 pagamento = 50.00
-# Calcule o troco (pagamento - preço)
-# ← escreva aqui
-# Exiba o resultado
-# ← escreva aqui
+troco = pagamento - preco
+print("Troco: R$", troco)              # R$ 22.5
 
-# Exercício 2: Conversão Celsius -> Fahrenheit
-# Fórmula: celsius * 9 / 5 + 32
+# 2. Conversão Celsius → Fahrenheit
 celsius = 30
-# Calcule fahrenheit
-# ← escreva aqui
-# Exiba: "30 C = ??? F"
-# ← escreva aqui
+fahrenheit = celsius * 9 / 5 + 32
+print(celsius, "°C =", fahrenheit, "°F")  # 30 °C = 86.0 °F
 
-# Exercício 3: Verificar se pode votar
-# Pode votar: idade >= 16
-# Voto obrigatório: idade >= 18
+# 3. Verificar situação eleitoral
 idade = 17
-# ← escreva aqui
-# ← escreva aqui
-# ← escreva aqui
-# ← escreva aqui
+pode_votar = idade >= 16
+voto_obrigatorio = idade >= 18
+print("Pode votar?", pode_votar)          # True
+print("Voto obrigatório?", voto_obrigatorio)  # False
 
-# Exercício 4: Dividir conta do restaurante
+# 4. Dividir conta do restaurante
 total = 180.00
 pessoas = 4
-# Calcule quanto cada um paga
-# ← escreva aqui
-# ← escreva aqui</code></pre>
+cada_um = total / pessoas
+print("Cada um paga: R$", cada_um)        # R$ 45.0</code></pre>
+<div style="background:rgba(167,139,250,.08);border:1px solid rgba(167,139,250,.25);border-radius:10px;padding:1rem 1.2rem;margin:1rem 0;">
+<div style="font-size:.7rem;font-weight:700;color:#a78bfa;text-transform:uppercase;letter-spacing:1px;margin-bottom:.7rem;">🔍 O que esse código faz</div>
+<table style="width:100%;border-collapse:collapse;font-size:.82rem;">
+<tr><td style="padding:.3rem .6rem;color:#7dd3fc;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">pagamento - preco</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;">Subtração simples — o operador - faz exatamente o que você espera com floats</td></tr>
+<tr style="background:rgba(255,255,255,.03);"><td style="padding:.3rem .6rem;color:#7dd3fc;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">celsius * 9 / 5 + 32</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;">Precedência: × e ÷ vêm antes do + — calcula (celsius*9/5) primeiro, depois soma 32</td></tr>
+<tr><td style="padding:.3rem .6rem;color:#7dd3fc;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">idade >= 16</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;">Retorna True ou False — pode guardar numa variável e usar depois</td></tr>
+<tr style="background:rgba(255,255,255,.03);"><td style="padding:.3rem .6rem;color:#7dd3fc;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">total / pessoas</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;">Divisão com / — retorna float mesmo que dê divisão exata: 180/4 = 45.0</td></tr>
+<tr><td style="padding:.3rem .6rem;color:#86efac;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">→ Resultado</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;"><em style="color:#86efac;">Troco: R$ 22.5 &nbsp; 30 °C = 86.0 °F &nbsp; Pode votar? True &nbsp; Cada um paga: R$ 45.0</em></td></tr>
+</table>
+</div>
 
-<p><strong>Desafio:</strong> Crie um programa que recebe as 3 notas de um aluno, calcula a média, e verifica se a média e >= 7 (aprovado) usando operadores aritméticos e de comparação juntos!</p>`,
-  starter: `# Prática operadores\n\n# 1. Calcule o troco: pagamento - preço\npreço = 27.50\npagamento = 50.00\ntroco = None  # ← coloque o valor aqui\nprint("Troco:", troco)\n\n# 2. Converta 30°C pra Fahrenheit: celsius * 9 / 5 + 32\ncelsius = 30\nfahrenheit = None  # ← coloque o valor aqui\nprint("Fahrenheit:", fahrenheit)\n\n# 3. Verifique se idade 17 pode votar: idade >= 16\nidade = 17\npode_votar = None  # ← coloque o valor aqui\nprint("Pode votar?", pode_votar)\n\n# 4. Divida R$180 entre 4 pessoas: total / pessoas\ntotal = 180.00\npessoas = 4\ncada_um = None  # ← coloque o valor aqui\nprint("Cada um paga:", cada_um)`,
+<p><strong>Desafio:</strong> Crie um programa que recebe as 3 notas de um aluno, calcula a média e exibe se está aprovado (média >= 7) usando operadores aritméticos e de comparação!</p>`,
+  starter: `# Exercício: calculadora completa com operadores\n\n# 1. Troco: pagamento - preço\npreco = 27.50\npagamento = 50.00\ntroco = pagamento - preco\nprint("Troco: R$", troco)\n\n# 2. Conversão: Celsius para Fahrenheit (celsius * 9 / 5 + 32)\ncelsius = 25\nfahrenheit = celsius * 9 / 5 + 32\nprint(celsius, "°C =", fahrenheit, "°F")\n\n# 3. Situação eleitoral\nidade = 17\nprint("Pode votar?", idade >= 16)\nprint("Voto obrigatório?", idade >= 18)\n\n# 4. Dividir conta\ntotal = 150.00\npessoas = 3\nprint("Cada um paga: R$", total / pessoas)`,
 },
 // Day 4: Decisoes
 { week:1, day:4, num:1, lang:'python', title:'if simples',
@@ -1718,31 +1808,43 @@ pessoas = 4
 
 <p>A sintaxe do if em Python é simples: você escreve <code>if</code>, depois a condição, depois dois pontos <code>:</code>, e na linha de baixo, com um <strong>recuo</strong> (4 espaços ou 1 tab), você coloca o código que deve ser executado. Esse recuo (chamado de <strong>indentação</strong>) é obrigatório em Python — e ele que define o bloco de código que pertence ao if. Tudo que estiver indentado abaixo do if faz parte do bloco condicional.</p>
 
-<pre style="background:#1a1a2e;border:1px solid #334155;border-radius:8px;padding:1rem;margin:.8rem 0;"><code># if simples - Exemplo:
+<p>Veja o if em ação — o código só roda quando a condição é verdadeira:</p>
+<pre style="background:#1a1a2e;border:1px solid #334155;border-radius:8px;padding:1rem;margin:.8rem 0;overflow-x:auto;"><code># if simples — executa o bloco só se a condição for True
 idade = 18
 
 if idade >= 18:
-    print("Você e maior de idade!")
-    print("Pode entrar na festa.")
+    print("Você é maior de idade!")   # executa (18 >= 18 é True)
+    print("Pode entrar na festa.")     # executa
 
-print("Fim do programa")  # Essa linha roda sempre
+print("Fim do programa")  # executa SEMPRE (não está no bloco do if)
 
-# Agora crie: se temperatura > 30, avise que está quente
+# Outro exemplo: temperatura
 temperatura = 35
-# Dica: if condição:  (não esqueca os dois pontos!)
-#           código indentado (4 espaços)
-# ← escreva aqui
-# ← escreva aqui
 
-# Crie: se nota >= 9, dê parabéns
+if temperatura > 30:
+    print("Está quente! Beba água.")  # executa (35 > 30 é True)
+
+# Exemplo com nota
 nota = 9.5
-# ← escreva aqui
-# ← escreva aqui</code></pre>
 
-<p><strong>Dica:</strong> A indentação em Python não é só estética — ela é parte da sintaxe! Se você esquecer de indentar ou indentar errado, vai dar erro. Use sempre 4 espaços.</p>
+if nota >= 9:
+    print("Parabéns! Nota excelente!")  # executa</code></pre>
+<div style="background:rgba(167,139,250,.08);border:1px solid rgba(167,139,250,.25);border-radius:10px;padding:1rem 1.2rem;margin:1rem 0;">
+<div style="font-size:.7rem;font-weight:700;color:#a78bfa;text-transform:uppercase;letter-spacing:1px;margin-bottom:.7rem;">🔍 O que esse código faz</div>
+<table style="width:100%;border-collapse:collapse;font-size:.82rem;">
+<tr><td style="padding:.3rem .6rem;color:#7dd3fc;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">if condição:</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;">A condição é avaliada — se for True, executa o bloco indentado; se False, pula tudo</td></tr>
+<tr style="background:rgba(255,255,255,.03);"><td style="padding:.3rem .6rem;color:#7dd3fc;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">    print(...)</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;">Os 4 espaços de indentação são OBRIGATÓRIOS em Python — é assim que o Python sabe o que pertence ao if</td></tr>
+<tr><td style="padding:.3rem .6rem;color:#7dd3fc;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">print("Fim...")  # fora</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;">Esta linha NÃO está indentada — executa independente da condição do if</td></tr>
+<tr style="background:rgba(255,255,255,.03);"><td style="padding:.3rem .6rem;color:#7dd3fc;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">if temperatura > 30:</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;">A condição pode ser qualquer expressão que resulte em True ou False</td></tr>
+<tr><td style="padding:.3rem .6rem;color:#7dd3fc;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">if nota >= 9:</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;">Você pode ter quantos ifs independentes quiser — cada um é avaliado separadamente</td></tr>
+<tr style="background:rgba(255,255,255,.03);"><td style="padding:.3rem .6rem;color:#86efac;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">→ Resultado</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;"><em style="color:#86efac;">Você é maior de idade! &nbsp; Pode entrar na festa. &nbsp; Fim do programa &nbsp; Está quente! &nbsp; Parabéns!</em></td></tr>
+</table>
+</div>
+
+<p><strong>Dica:</strong> A indentação em Python é parte da sintaxe, não estética! Esqueceu os espaços = erro. Use sempre 4 espaços (ou 1 tab configurado como 4).</p>
 <div style="background:linear-gradient(135deg,#1a1a3e,#2a1a4e);border:1px solid #7c3aed;border-radius:12px;padding:1.2rem;margin:1.5rem 0;"><h3 style="color:#a78bfa;margin:0 0 .5rem 0;">Curiosidade do Dia</h3><p style="margin:0;color:#c4b5fd;">Python é uma das poucas linguagens que usa <strong>indentação</strong> como parte da sintaxe. Guido van Rossum fez isso de propósito para forçar código legível!</p></div>
 `,
-  starter: `# if simples\nidade = 18\n\n# Escreva um if que testa se idade >= 18\n# Se verdadeiro, use print() para exibir "Maior de idade"\n# Dica: if condição:\n#           print("mensagem")\n___\n\n# Agora teste se temperatura > 30 e exiba "Está quente!"\ntemperatura = 35\n___`,
+  starter: `# Exercício: if simples\nidade = 18\n\n# 1. if que verifica se idade >= 18\nif idade >= 18:\n    print("Maior de idade!")  # ← este print só roda se a condição for True\n\n# 2. Verifique se temperatura > 30\ntemperatura = 35\nif temperatura > 30:\n    print("...")  # ← o que exibir?\n\n# 3. Verifique se nota >= 9 e dê parabéns\nnota = 8.5\nif nota >= 9:\n    print("...")  # ← parabéns!`,
 },
 { week:1, day:4, num:2, lang:'python', title:'if/else',
   content: `<h1>if/else</h1>
@@ -1750,35 +1852,45 @@ nota = 9.5
 
 <p>A estrutura é: primeiro o if com a condição, depois o bloco indentado do if, depois o else com dois pontos (sem condição, porque e "todo o resto"), e o bloco indentado do else. Isso garante que, não importa o que aconteça, algum código vai ser executado. E como uma bifurcação numa estrada: você sempre vai por um dos dois lados.</p>
 
-<pre style="background:#1a1a2e;border:1px solid #334155;border-radius:8px;padding:1rem;margin:.8rem 0;"><code># Exemplo: Verificando aprovação
+<p>Veja como if/else cria dois caminhos obrigatórios — um sempre será executado:</p>
+<pre style="background:#1a1a2e;border:1px solid #334155;border-radius:8px;padding:1rem;margin:.8rem 0;overflow-x:auto;"><code># if/else — dois caminhos, um sempre executa
 nota = 6.5
 
 if nota >= 7:
-    print("Aprovado!")
+    print("Aprovado!")                     # executa se nota >= 7
     print("Parabéns pelo resultado!")
 else:
-    print("Reprovado.")
+    print("Reprovado.")                    # executa se nota < 7
     print("Estude mais para a próxima.")
 
-# Agora crie: verificar se número e par ou impar
-# Dica: número % 2 == 0 significa par
-número = 15
+# Par ou ímpar
+numero = 15
 
-# ← escreva aqui
-#     ???
-# ← escreva aqui
-#     ???
+if numero % 2 == 0:
+    print(numero, "é par")
+else:
+    print(numero, "é ímpar")              # executa (15 % 2 = 1, não é 0)
 
-# Crie: verificar se valor e positivo ou negativo
+# Positivo ou negativo
 valor = -10
-# Dica: if valor >= 0: ... else: ...
-# ← escreva aqui
-#     ???
-# ← escreva aqui
-#     ???</code></pre>
 
-<p><strong>Dica:</strong> O else nunca tem condição! Ele é automaticamente "tudo que não caiu no if". Se você precisa de mais condições, use elif (próxima lição).</p>`,
-  starter: `# if/else - dois caminhos\nnota = 7\n\n# Escreva if nota >= 7: print("Aprovado!")\n# E else: print("Reprovado")\n___\n\n# Verifique se número é par ou ímpar\nnúmero = 15\n# Use if número % 2 == 0: para par, else: para ímpar\n___`,
+if valor >= 0:
+    print("Valor positivo")
+else:
+    print("Valor negativo")               # executa (-10 < 0)</code></pre>
+<div style="background:rgba(167,139,250,.08);border:1px solid rgba(167,139,250,.25);border-radius:10px;padding:1rem 1.2rem;margin:1rem 0;">
+<div style="font-size:.7rem;font-weight:700;color:#a78bfa;text-transform:uppercase;letter-spacing:1px;margin-bottom:.7rem;">🔍 O que esse código faz</div>
+<table style="width:100%;border-collapse:collapse;font-size:.82rem;">
+<tr><td style="padding:.3rem .6rem;color:#7dd3fc;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">if nota >= 7:</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;">Avalia a condição — True executa o bloco do if, False pula para o else</td></tr>
+<tr style="background:rgba(255,255,255,.03);"><td style="padding:.3rem .6rem;color:#7dd3fc;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">else:</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;">Não tem condição! É executado automaticamente quando o if é falso — "senão, faça isso"</td></tr>
+<tr><td style="padding:.3rem .6rem;color:#7dd3fc;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">numero % 2 == 0</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;">O truque clássico: resto da divisão por 2 igual a 0 = par. Qualquer outro resultado = ímpar</td></tr>
+<tr style="background:rgba(255,255,255,.03);"><td style="padding:.3rem .6rem;color:#7dd3fc;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">if valor >= 0 / else</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;">Com if/else, SEMPRE um dos dois caminhos executa — não há como "não fazer nada"</td></tr>
+<tr><td style="padding:.3rem .6rem;color:#86efac;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">→ Resultado</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;"><em style="color:#86efac;">Reprovado. &nbsp; Estude mais... &nbsp; 15 é ímpar &nbsp; Valor negativo</em></td></tr>
+</table>
+</div>
+
+<p><strong>Dica:</strong> O else não tem condição — ele é automaticamente "tudo que não caiu no if". Precisa de mais caminhos? Use elif na próxima lição!</p>`,
+  starter: `# Exercício: if/else — dois caminhos\n\n# 1. Aprovado ou reprovado\nnota = 6.5\nif nota >= 7:\n    print("Aprovado!")\nelse:\n    print("Reprovado.")\n\n# 2. Par ou ímpar\nnumero = 15\nif numero % 2 == 0:\n    print(numero, "é par")\nelse:\n    print(numero, "é ímpar")\n\n# 3. Crie um if/else com sua própria condição\n# Exemplos: temperatura > 30, idade >= 18, preco < 50\n# ← escreva aqui`,
 },
 { week:1, day:4, num:3, lang:'python', title:'if/elif/else',
   content: `<h1>if/elif/else</h1>
@@ -1786,36 +1898,46 @@ valor = -10
 
 <p>A estrutura é: if (primeira condição), elif (segunda condição), elif (terceira condição), e assim por diante, terminando com else (quando nenhuma condição anterior for verdadeira). O else no final é opcional, mas é uma boa prática incluir pra tratar casos inesperados. Importante: apenas <strong>um</strong> bloco será executado, mesmo que várias condições sejam verdadeiras — o Python para na primeira que for True.</p>
 
-<pre style="background:#1a1a2e;border:1px solid #334155;border-radius:8px;padding:1rem;margin:.8rem 0;"><code># Exemplo: Classificação de nota
+<p>Veja como if/elif/else cria múltiplos caminhos — só um executa:</p>
+<pre style="background:#1a1a2e;border:1px solid #334155;border-radius:8px;padding:1rem;margin:.8rem 0;overflow-x:auto;"><code># if/elif/else — múltiplos caminhos
 nota = 8.5
 
 if nota >= 9:
-    print("Conceito: A - Excelente!")
+    print("Conceito: A - Excelente!")   # pula (8.5 < 9)
 elif nota >= 7:
-    print("Conceito: B - Bom!")
+    print("Conceito: B - Bom!")          # EXECUTA (8.5 >= 7)
 elif nota >= 5:
-    print("Conceito: C - Regular")
+    print("Conceito: C - Regular")       # pula (já executou o B)
 elif nota >= 3:
-    print("Conceito: D - Insuficiente")
+    print("Conceito: D - Insuficiente")  # pula
 else:
-    print("Conceito: F - Reprovado")
+    print("Conceito: F - Reprovado")     # pula
 
-# Agora crie: classificador de faixa etária
-# < 12: Criança | < 18: Adolescente | < 60: Adulto | else: Idoso
+# Classificador de faixa etária
 idade = 25
 
-# Use if/elif/elif/else
-# ← escreva aqui
-#     ???
-# ← escreva aqui
-#     ???
-# ← escreva aqui
-#     ???
-# ← escreva aqui
-#     ???</code></pre>
+if idade < 12:
+    print("Criança")
+elif idade < 18:
+    print("Adolescente")
+elif idade < 60:
+    print("Adulto")                       # EXECUTA (25 < 60)
+else:
+    print("Idoso")</code></pre>
+<div style="background:rgba(167,139,250,.08);border:1px solid rgba(167,139,250,.25);border-radius:10px;padding:1rem 1.2rem;margin:1rem 0;">
+<div style="font-size:.7rem;font-weight:700;color:#a78bfa;text-transform:uppercase;letter-spacing:1px;margin-bottom:.7rem;">🔍 O que esse código faz</div>
+<table style="width:100%;border-collapse:collapse;font-size:.82rem;">
+<tr><td style="padding:.3rem .6rem;color:#7dd3fc;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">elif nota >= 7:</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;"><strong>elif</strong> = "senão, se..." — só é verificado se todos os if/elif anteriores foram False</td></tr>
+<tr style="background:rgba(255,255,255,.03);"><td style="padding:.3rem .6rem;color:#7dd3fc;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;"># EXECUTA (8.5 >= 7)</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;">Python para na PRIMEIRA condição True e executa só aquele bloco — ignora os elif/else restantes</td></tr>
+<tr><td style="padding:.3rem .6rem;color:#7dd3fc;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;"># pula (já executou o B)</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;">Mesmo que 8.5 >= 5 seja True, o elif do C nunca roda — o Python já saiu com o B</td></tr>
+<tr style="background:rgba(255,255,255,.03);"><td style="padding:.3rem .6rem;color:#7dd3fc;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">Ordem das condições</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;">Mais restritiva primeiro! >= 9 antes de >= 7. Inverter causaria bugs — nota 10 cairia no B</td></tr>
+<tr><td style="padding:.3rem .6rem;color:#7dd3fc;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">else (final)</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;">O else é o "resto do mundo" — executa se NENHUMA condição anterior foi True</td></tr>
+<tr style="background:rgba(255,255,255,.03);"><td style="padding:.3rem .6rem;color:#86efac;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">→ Resultado</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;"><em style="color:#86efac;">Conceito: B - Bom! &nbsp; Adulto</em></td></tr>
+</table>
+</div>
 
-<p><strong>Dica:</strong> A ordem das condições importa muito! Coloque as condições mais restritivas primeiro. Se você colocar <code>nota >= 5</code> antes de <code>nota >= 9</code>, uma nota 10 cairia no bloco do 5!</p>`,
-  starter: `# if/elif/else - múltiplas condições\nnota = 8\n\n# Use if/elif/else para classificar a nota:\n# if nota >= 9: "A" | elif nota >= 7: "B" | elif nota >= 5: "C" | elif nota >= 3: "D" | else: "F"\n___\n\n# Classifique faixa etária com if/elif/else\nidade = 25\n# if idade < 12: "Criança" | elif < 18: "Adolescente" | elif < 60: "Adulto" | else: "Idoso"\n___`,
+<p><strong>Dica:</strong> A ordem importa! Coloque condições mais restritivas primeiro. Se inverter, uma nota 10 pode cair no bloco errado!</p>`,
+  starter: `# Exercício: if/elif/else — múltiplos caminhos\n\n# 1. Classifique a nota\nnota = 8\nif nota >= 9:\n    print("A - Excelente")\nelif nota >= 7:\n    print("B - Bom")\nelif nota >= 5:\n    print("C - Regular")\nelif nota >= 3:\n    print("D - Insuficiente")\nelse:\n    print("F - Reprovado")\n\n# 2. Faixa etária\nidade = 25\nif idade < 12:\n    print("Criança")\nelif idade < 18:\n    print("Adolescente")\nelif idade < 60:\n    print("Adulto")\nelse:\n    print("Idoso")`,
 },
 { week:1, day:4, num:4, lang:'python', title:'Condições compostas',
   content: `<h1>Condições compostas</h1>
@@ -1823,40 +1945,48 @@ idade = 25
 
 <p>Por exemplo: "pode entrar no brinquedo se tiver mais de 10 anos E mais de 1.40m de altura". Ou: "ganha desconto se for estudante OU se for idoso". Essas são condições compostas. Você também pode usar parênteses pra agrupar condições e deixar claro o que está sendo combinado. E o Python ainda permite escrever condições encadeadas de forma elegante, como <code>18 <= idade <= 65</code>.</p>
 
-<pre style="background:#1a1a2e;border:1px solid #334155;border-radius:8px;padding:1rem;margin:.8rem 0;"><code># Exemplo: Condição com and
+<p>Veja condições compostas — combinando and, or e not em ifs:</p>
+<pre style="background:#1a1a2e;border:1px solid #334155;border-radius:8px;padding:1rem;margin:.8rem 0;overflow-x:auto;"><code># and: AMBAS precisam ser True
 idade = 20
 tem_carteira = True
 
 if idade >= 18 and tem_carteira:
-    print("Pode dirigir!")
+    print("Pode dirigir!")          # executa (20>=18 AND True)
 else:
     print("Não pode dirigir.")
 
-# Agora use or: verificar se e final de semana
+# or: PELO MENOS UMA precisa ser True
 dia = "sábado"
-# Se dia == "sábado" OR dia == "domingo": final de semana
-# ← escreva aqui
-#     ???
-# ← escreva aqui
-#     ???
 
-# Combine and e or com parênteses
-# Aprovado se nota >= 7 OU (nota >= 5 E fez trabalho extra)
+if dia == "sábado" or dia == "domingo":
+    print("Final de semana!")       # executa
+else:
+    print("Dia útil")
+
+# Combinando com parênteses
 nota = 6
-frequência = 80
 trabalho_extra = True
-# ← escreva aqui
-#     ???
-# ← escreva aqui
-#     ???
 
-# Condição encadeada do Python: 18 <= idade <= 65
+if nota >= 7 or (nota >= 5 and trabalho_extra):
+    print("Aprovado!")              # executa (6>=5 AND True)
+
+# Intervalo encadeado (Python permite!)
 idade = 25
-# Verifique se está em idade de trabalhar
-# ← escreva aqui</code></pre>
+if 18 <= idade <= 65:
+    print("Em idade de trabalhar") # executa</code></pre>
+<div style="background:rgba(167,139,250,.08);border:1px solid rgba(167,139,250,.25);border-radius:10px;padding:1rem 1.2rem;margin:1rem 0;">
+<div style="font-size:.7rem;font-weight:700;color:#a78bfa;text-transform:uppercase;letter-spacing:1px;margin-bottom:.7rem;">🔍 O que esse código faz</div>
+<table style="width:100%;border-collapse:collapse;font-size:.82rem;">
+<tr><td style="padding:.3rem .6rem;color:#7dd3fc;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">if A and B:</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;">Ambas condições precisam ser True. Se A for False, Python nem avalia B (curto-circuito)</td></tr>
+<tr style="background:rgba(255,255,255,.03);"><td style="padding:.3rem .6rem;color:#7dd3fc;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">if dia == "sábado" or dia == "domingo"</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;">or é True se pelo menos uma condição for True — perfeito para "uma coisa ou outra"</td></tr>
+<tr><td style="padding:.3rem .6rem;color:#7dd3fc;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">if nota >= 7 or (nota >= 5 and trabalho_extra)</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;">Parênteses mudam a precedência: o and é avaliado primeiro, depois o or com o resultado</td></tr>
+<tr style="background:rgba(255,255,255,.03);"><td style="padding:.3rem .6rem;color:#7dd3fc;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">18 &lt;= idade &lt;= 65</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;">Python permite intervalo encadeado! Equivale a idade >= 18 and idade <= 65 — mais legível</td></tr>
+<tr><td style="padding:.3rem .6rem;color:#86efac;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">→ Resultado</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;"><em style="color:#86efac;">Pode dirigir! &nbsp; Final de semana! &nbsp; Aprovado! &nbsp; Em idade de trabalhar</em></td></tr>
+</table>
+</div>
 
-<p><strong>Dica:</strong> Use parênteses quando misturar and e or na mesma condição. Isso evita confusão e bugs!</p>`,
-  starter: `# Condições compostas\nidade = 20\ntem_carteira = True\n\n# Use if com and: se idade >= 18 e tem_carteira, print "Pode dirigir!"\nif idade >= 18 and tem_carteira:\n    ___\n\n# Use if com or: se dia é "sábado" ou "domingo", print "Final de semana!"\ndia = "sábado"\n___\n\n# Combine: aprovado se nota >= 7 ou (nota >= 5 e fez trabalho_extra)\nnota = 6\ntrabalho_extra = True\n___`,
+<p><strong>Dica:</strong> Sempre use parênteses quando misturar and e or! <code>a or b and c</code> é diferente de <code>(a or b) and c</code>.</p>`,
+  starter: `# Exercício: condições compostas\n\n# 1. and: pode dirigir se idade >= 18 E tem carteira\nidade = 20\ntem_carteira = True\nif idade >= 18 and tem_carteira:\n    print("Pode dirigir!")\nelse:\n    print("Não pode dirigir.")\n\n# 2. or: final de semana se dia é sábado OU domingo\ndia = "sábado"\nif dia == "sábado" or dia == "domingo":\n    print("Final de semana!")\nelse:\n    print("Dia útil")\n\n# 3. Intervalo encadeado: nota entre 5 e 7 (média recuperação)\nnota = 6.0\nif 5 <= nota < 7:\n    print("Recuperação")\nelif nota >= 7:\n    print("Aprovado")\nelse:\n    print("Reprovado")`,
 },
 { week:1, day:4, num:5, lang:'python', title:'Prática decisões',
   content: `<h1>Prática decisões</h1>
@@ -1864,36 +1994,46 @@ idade = 25
 
 <p>Quando for resolver um problema com decisões, siga esse passo a passo: primeiro, identifique quais são as condições. Depois, pense na ordem (lembre que elif para na primeira condição verdadeira). Por fim, teste mentalmente com diferentes valores pra ter certeza que funciona. Vamos la!</p>
 
-<pre style="background:#1a1a2e;border:1px solid #334155;border-radius:8px;padding:1rem;margin:.8rem 0;"><code># Programa 1: Classificador de temperatura
-temp = float(input("Temperatura em Celsius: "))
+<p>Veja dois programas completos com decisões encadeadas:</p>
+<pre style="background:#1a1a2e;border:1px solid #334155;border-radius:8px;padding:1rem;margin:.8rem 0;overflow-x:auto;"><code># Programa 1: Classificador de temperatura
+temp = 28.0  # simula input do usuário
 
-# Classifique: < 0 Congelante | < 15 Frio | < 25 Agradável
-#              < 35 Quente | else Muito quente
-# Use if/elif/elif/elif/else
-# ← escreva aqui
-#     ???
-# ← escreva aqui
-#     ???
-# ← escreva aqui
-#     ???
-# ← escreva aqui
-#     ???
-# ← escreva aqui
-#     ???
+if temp < 0:
+    print("Congelante! Use casaco pesado.")
+elif temp < 15:
+    print("Frio. Use agasalho.")
+elif temp < 25:
+    print("Agradável. Dia perfeito!")
+elif temp < 35:
+    print("Quente. Beba água!")          # executa (28 < 35)
+else:
+    print("Muito quente! Cuidado.")
 
 # Programa 2: Verificador de triângulo
-a = int(input("Lado a: "))
-b = int(input("Lado b: "))
-c = int(input("Lado c: "))
+a, b, c = 5, 5, 5  # simula input
 
-# Primeiro: verificar se forma triângulo
-# Regra: a+b > c AND a+c > b AND b+c > a
-# Se sim, classificar: equilátero (todos iguais),
-# isósceles (dois iguais) ou escaleno (todos diferentes)
-# ← escreva aqui</code></pre>
+if a + b > c and a + c > b and b + c > a:
+    if a == b == c:
+        print("Triângulo equilátero")    # todos iguais
+    elif a == b or b == c or a == c:
+        print("Triângulo isósceles")     # dois iguais
+    else:
+        print("Triângulo escaleno")      # todos diferentes
+else:
+    print("Não forma triângulo")</code></pre>
+<div style="background:rgba(167,139,250,.08);border:1px solid rgba(167,139,250,.25);border-radius:10px;padding:1rem 1.2rem;margin:1rem 0;">
+<div style="font-size:.7rem;font-weight:700;color:#a78bfa;text-transform:uppercase;letter-spacing:1px;margin-bottom:.7rem;">🔍 O que esse código faz</div>
+<table style="width:100%;border-collapse:collapse;font-size:.82rem;">
+<tr><td style="padding:.3rem .6rem;color:#7dd3fc;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">if/elif encadeados</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;">Cada elif só é verificado se TODOS os anteriores foram False — o Python percorre de cima para baixo</td></tr>
+<tr style="background:rgba(255,255,255,.03);"><td style="padding:.3rem .6rem;color:#7dd3fc;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">a + b > c and a + c > b and b + c > a</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;">A regra do triângulo: qualquer lado deve ser menor que a soma dos outros dois — se falhar em qualquer um, não é triângulo</td></tr>
+<tr><td style="padding:.3rem .6rem;color:#7dd3fc;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">if dentro de if</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;">if aninhado (nested if) — só é avaliado se o if externo for True. Indentação extra marca o bloco interno</td></tr>
+<tr style="background:rgba(255,255,255,.03);"><td style="padding:.3rem .6rem;color:#7dd3fc;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">a == b == c</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;">Python permite comparação encadeada! Verifica se a == b E b == c de uma vez</td></tr>
+<tr><td style="padding:.3rem .6rem;color:#86efac;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">→ Resultado</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;"><em style="color:#86efac;">temp=28: Quente. Beba água! &nbsp; lados 5,5,5: Triângulo equilátero</em></td></tr>
+</table>
+</div>
 
-<p><strong>Desafio:</strong> Crie um programa que pede a idade e o sexo da pessoa e calcula se ela já pode se aposentar (homem: 65 anos, mulher: 62 anos)!</p>`,
-  starter: `# Prática decisões\n\n# 1. Classificador de temperatura\ntemp = float(input("Temperatura: "))\n# Use if/elif/else para classificar:\n# < 0: "Congelante" | < 15: "Frio" | < 25: "Agradável" | < 35: "Quente" | else: "Muito quente"\n___\n\n# 2. Verificador de triângulo\n# Peça 3 lados com int(input())\na = int(input("Lado a: "))\nb = int(input("Lado b: "))\nc = int(input("Lado c: "))\n# Use if com and para verificar: a+b > c and a+c > b and b+c > a\n___`,
+<p><strong>Desafio:</strong> Crie um programa que pede a idade e o sexo e verifica se pode se aposentar (homem: 65 anos, mulher: 62 anos)!</p>`,
+  starter: `# Exercício: classificador de temperatura\ntemp = float(input("Temperatura em Celsius: "))\n\n# Use if/elif/else (5 caminhos)\nif temp < 0:\n    print("Congelante!")\nelif temp < 15:\n    print("Frio")\nelif temp < 25:\n    print("Agradável")\nelif temp < 35:\n    print("Quente")\nelse:\n    print("Muito quente!")\n\n# Bônus: verificador de triângulo\na = int(input("Lado a: "))\nb = int(input("Lado b: "))\nc = int(input("Lado c: "))\nif a + b > c and a + c > b and b + c > a:\n    print("Forma triângulo!")\nelse:\n    print("Não forma triângulo")`,
 },
 // Day 5: Repetições
 { week:1, day:5, num:1, lang:'python', title:'for básico',
@@ -1902,35 +2042,43 @@ c = int(input("Lado c: "))
 
 <p>Em Python, o for funciona percorrendo uma <strong>sequência</strong> de itens. Pode ser uma sequência de números (criada com range()), uma lista, uma string, entre outros. A cada volta do loop, a variável do for recebe o próximo item da sequência. Quando os itens acabam, o loop termina e o programa continua. A sintaxe é: <code>for variável in sequência:</code> seguido do bloco indentado que será repetido.</p>
 
-<pre style="background:#1a1a2e;border:1px solid #334155;border-radius:8px;padding:1rem;margin:.8rem 0;"><code># Exemplo: Loop básico com range
+<p>Veja o for em ação — repetindo código sem copiar e colar:</p>
+<pre style="background:#1a1a2e;border:1px solid #334155;border-radius:8px;padding:1rem;margin:.8rem 0;overflow-x:auto;"><code># Loop básico com range()
 for i in range(5):
-    print("Volta número:", i)
-# Imprime: 0, 1, 2, 3, 4
+    print("Volta número:", i)    # executa 5 vezes: 0,1,2,3,4
 
-# Percorra uma string letra por letra
-# Dica: for variável in "texto":
+# Percorrendo uma string letra por letra
 nome = "Python"
-# ← escreva aqui
-#     ???
+for letra in nome:
+    print(letra, end=" ")        # P y t h o n
+print()  # quebra de linha
 
-# Some todos os números de 1 a 10
-# Dica: comece com soma = 0 e vá somando
+# Somando números de 1 a 10
 soma = 0
-# Use for com range(1, 11)
-# ← escreva aqui
-#     ???
-print("Soma de 1 a 10:", soma)
+for i in range(1, 11):           # 1, 2, 3, ..., 10
+    soma = soma + i              # acumula: 0+1=1, 1+2=3, ...
+print("Soma de 1 a 10:", soma)   # 55
 
-# Crie a tabuada do 5 (5x1 até 5x10)
-# Dica: for i in range(1, 11): e depois print("5 x", i, "=", 5*i)
+# Tabuada do 5
 print("Tabuada do 5:")
-# ← escreva aqui
-#     ???</code></pre>
+for i in range(1, 11):
+    print("5 x", i, "=", 5 * i) # 5x1=5, 5x2=10, ..., 5x10=50</code></pre>
+<div style="background:rgba(167,139,250,.08);border:1px solid rgba(167,139,250,.25);border-radius:10px;padding:1rem 1.2rem;margin:1rem 0;">
+<div style="font-size:.7rem;font-weight:700;color:#a78bfa;text-transform:uppercase;letter-spacing:1px;margin-bottom:.7rem;">🔍 O que esse código faz</div>
+<table style="width:100%;border-collapse:collapse;font-size:.82rem;">
+<tr><td style="padding:.3rem .6rem;color:#7dd3fc;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">for i in range(5):</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;">Cria um loop que executa 5 vezes. A variável "i" assume os valores 0, 1, 2, 3, 4 em cada volta</td></tr>
+<tr style="background:rgba(255,255,255,.03);"><td style="padding:.3rem .6rem;color:#7dd3fc;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">    print(...)</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;">O bloco indentado executa a cada volta — mesmas regras de indentação do if</td></tr>
+<tr><td style="padding:.3rem .6rem;color:#7dd3fc;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">for letra in nome:</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;">O for pode percorrer qualquer sequência — aqui percorre cada caractere da string "Python"</td></tr>
+<tr style="background:rgba(255,255,255,.03);"><td style="padding:.3rem .6rem;color:#7dd3fc;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">soma = soma + i</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;">Acumulador: a variável "soma" cresce a cada volta. Começa em 0 e vai somando cada número</td></tr>
+<tr><td style="padding:.3rem .6rem;color:#7dd3fc;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">print("5 x", i, "=", 5 * i)</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;">Na 1ª volta i=1 → "5 x 1 = 5", na 2ª i=2 → "5 x 2 = 10", e assim por diante</td></tr>
+<tr style="background:rgba(255,255,255,.03);"><td style="padding:.3rem .6rem;color:#86efac;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">→ Resultado</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;"><em style="color:#86efac;">0 1 2 3 4 &nbsp;|&nbsp; P y t h o n &nbsp;|&nbsp; Soma: 55 &nbsp;|&nbsp; 5x1=5 ... 5x10=50</em></td></tr>
+</table>
+</div>
 
-<p><strong>Dica:</strong> O range(5) gera números de 0 a 4, ou seja, 5 números. Se você quer de 1 a 5, use range(1, 6). O último número nunca é incluído!</p>
+<p><strong>Dica:</strong> range(5) gera 0 a 4 (5 números). Para 1 a 5, use range(1, 6). O número final nunca é incluído!</p>
 <div style="background:linear-gradient(135deg,#1a1a3e,#2a1a4e);border:1px solid #7c3aed;border-radius:12px;padding:1.2rem;margin:1.5rem 0;"><h3 style="color:#a78bfa;margin:0 0 .5rem 0;">Curiosidade do Dia</h3><p style="margin:0;color:#c4b5fd;">O loop <code>for</code> do Python itera sobre qualquer coisa — listas, strings, arquivos. Isso se chama <strong>iteração</strong> e e uma das coisas mais poderosas do Python!</p></div>
 `,
-  starter: `# for básico\n# Exemplo de loop:\nfor i in range(5):\n    print(i)\n\n# Use for letra in "Python": para percorrer cada letra\n___\n\n# Some os números de 1 a 10\nsoma = 0\n# Use for i in range(1, 11): e dentro do loop some: soma = soma + i\n___\nprint("Soma:", soma)\n\n# Crie a tabuada do 5: for i in range(1, 11): print 5 * i\n___`,
+  starter: `# Exercício: for básico\n\n# 1. Loop básico: exiba 0 a 4\nfor i in range(5):\n    print(i)\n\n# 2. Percorra cada letra de "Python"\nfor letra in "Python":\n    print(letra, end=" ")\nprint()  # quebra de linha\n\n# 3. Some números de 1 a 10\nsoma = 0\nfor i in range(1, 11):\n    soma = soma + i\nprint("Soma:", soma)\n\n# 4. Tabuada do 7\nfor i in range(1, 11):\n    print("7 x", i, "=", 7 * i)`,
 },
 { week:1, day:5, num:2, lang:'python', title:'Função range()',
   content: `<h1>Função range()</h1>
@@ -1938,38 +2086,45 @@ print("Tabuada do 5:")
 
 <p>O terceiro parâmetro (passo) é muito versátil. Você pode usar passo positivo pra contar pra frente ou passo <strong>negativo</strong> pra contar de tras pra frente! Por exemplo, <code>range(10, 0, -1)</code> gera a contagem regressiva de 10 a 1. Dominar o range() é essencial porque você vaí usar ele o tempo todo quando precisar de loops com números.</p>
 
-<pre style="background:#1a1a2e;border:1px solid #334155;border-radius:8px;padding:1rem;margin:.8rem 0;"><code># Exemplo: range com 1 parâmetro
-for i in range(5):       # 0, 1, 2, 3, 4
+<p>Veja as 3 formas de usar range() — com 1, 2 ou 3 parâmetros:</p>
+<pre style="background:#1a1a2e;border:1px solid #334155;border-radius:8px;padding:1rem;margin:.8rem 0;overflow-x:auto;"><code># range(fim) — de 0 até fim-1
+for i in range(5):          # 0, 1, 2, 3, 4
     print(i, end=" ")
 print()
 
-# range com 2 parâmetros: range(início, fim)
-# Imprima números de 1 a 5
-# Dica: range(1, 6) - o fim não é incluído!
-# ← escreva aqui
-#     ???
-# ← escreva aqui
+# range(início, fim) — de início até fim-1
+for i in range(1, 6):       # 1, 2, 3, 4, 5
+    print(i, end=" ")
+print()
 
-# range com 3 parâmetros: range(início, fim, passo)
-# Imprima números pares de 0 a 18
-# Dica: range(0, 20, 2)
-# ← escreva aqui
-#     ???
-# ← escreva aqui
+# range(início, fim, passo) — pula de N em N
+for i in range(0, 20, 2):   # 0, 2, 4, 6, ..., 18
+    print(i, end=" ")
+print()
 
-# Contagem regressiva de 10 a 1 (passo negativo)
-# Dica: range(10, 0, -1)
+# Passo negativo — contagem regressiva!
 print("Lançamento em:")
-# ← escreva aqui
-#     ???
+for i in range(10, 0, -1):  # 10, 9, 8, ..., 1
+    print(i, end=" ")
 print("Fogo!")
 
-# Múltiplos de 5 de 0 a 50
-# Dica: range(0, 51, 5)
-# ← escreva aqui</code></pre>
+# Múltiplos de 5
+for i in range(0, 51, 5):   # 0, 5, 10, ..., 50
+    print(i, end=" ")</code></pre>
+<div style="background:rgba(167,139,250,.08);border:1px solid rgba(167,139,250,.25);border-radius:10px;padding:1rem 1.2rem;margin:1rem 0;">
+<div style="font-size:.7rem;font-weight:700;color:#a78bfa;text-transform:uppercase;letter-spacing:1px;margin-bottom:.7rem;">🔍 O que esse código faz</div>
+<table style="width:100%;border-collapse:collapse;font-size:.82rem;">
+<tr><td style="padding:.3rem .6rem;color:#7dd3fc;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">range(5)</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;">1 parâmetro = fim. Gera de 0 até 4 (fim-1). O 5 nunca aparece.</td></tr>
+<tr style="background:rgba(255,255,255,.03);"><td style="padding:.3rem .6rem;color:#7dd3fc;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">range(1, 6)</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;">2 parâmetros = início, fim. Gera 1, 2, 3, 4, 5. O 6 nunca aparece.</td></tr>
+<tr><td style="padding:.3rem .6rem;color:#7dd3fc;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">range(0, 20, 2)</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;">3 parâmetros = início, fim, passo. Pula de 2 em 2: 0, 2, 4, ..., 18</td></tr>
+<tr style="background:rgba(255,255,255,.03);"><td style="padding:.3rem .6rem;color:#7dd3fc;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">range(10, 0, -1)</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;">Passo negativo = conta de trás pra frente. Começa em 10, para antes de 0 → 10, 9, ..., 1</td></tr>
+<tr><td style="padding:.3rem .6rem;color:#7dd3fc;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">range(0, 51, 5)</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;">Múltiplos de 5: passo=5. Para incluir 50, o fim precisa ser 51</td></tr>
+<tr style="background:rgba(255,255,255,.03);"><td style="padding:.3rem .6rem;color:#86efac;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">→ Resultado</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;"><em style="color:#86efac;">0 1 2 3 4 &nbsp;|&nbsp; 1 2 3 4 5 &nbsp;|&nbsp; 0 2 4...18 &nbsp;|&nbsp; 10 9...1 Fogo! &nbsp;|&nbsp; 0 5 10...50</em></td></tr>
+</table>
+</div>
 
-<p><strong>Dica:</strong> Lembre que o valor final nunca é incluído. Se quer ir até 10, use range(1, 11). Pense no fim como "pare antes de chegar aqui".</p>`,
-  starter: `# Função range()\n\n# range(fim) - imprima 0 a 4\nfor i in range(5):\n    print(i)\n\n# Use range(1, 11) para imprimir números de 1 a 10\n___\n\n# Use range(0, 21, 2) para imprimir pares de 0 a 20\n___\n\n# Use range(10, 0, -1) para contagem regressiva de 10 a 1\n___\nprint("Fogo!")`,
+<p><strong>Dica:</strong> O número final nunca é incluído. Para ir até 10, use range(1, 11). Pense em "pare ANTES de chegar aqui".</p>`,
+  starter: `# Exercício: dominando range()\n\n# 1. range(fim): 0 a 9\nfor i in range(10):\n    print(i, end=" ")\nprint()\n\n# 2. range(inicio, fim): 1 a 10\nfor i in range(1, 11):\n    print(i, end=" ")\nprint()\n\n# 3. range(inicio, fim, passo): pares de 0 a 18\nfor i in range(0, 20, 2):\n    print(i, end=" ")\nprint()\n\n# 4. Passo negativo: contagem regressiva 5 a 1\nfor i in range(5, 0, -1):\n    print(i, end=" ")\nprint("Fogo!")`,
 },
 { week:1, day:5, num:3, lang:'python', title:'while',
   content: `<h1>while</h1>
@@ -1981,33 +2136,43 @@ print("Fogo!")
 
 <p>A sintaxe é: <code>while condição:</code> seguido do bloco indentado. A cada volta, o Python verifica a condição. Se for True, executa o bloco. Se for False, sai do loop. <strong>Cuidado com loops infinitos!</strong> Se a condição nunca ficar False, o programa vai rodar pra sempre. Sempre certifique-se de que algo dentro do loop muda a condição pra que ela eventualmente seja False.</p>
 
-<pre style="background:#1a1a2e;border:1px solid #334155;border-radius:8px;padding:1rem;margin:.8rem 0;"><code># Exemplo: Contagem com while
+<p>Veja como while repete enquanto a condição for verdadeira:</p>
+<pre style="background:#1a1a2e;border:1px solid #334155;border-radius:8px;padding:1rem;margin:.8rem 0;overflow-x:auto;"><code># while — repete enquanto a condição for True
 contador = 1
 while contador <= 5:
     print("Contagem:", contador)
-    contador = contador + 1  # Não esqueca de atualizar!
+    contador = contador + 1  # atualiza — sem isso, loop infinito!
 
-# Some números até a soma passar de 100
-# Dica: use while soma <= 100
+# Acumulando até passar de 100
 soma = 0
-número = 1
-# ← escreva aqui
-#     ???
-#     ???
-print("Soma:", soma)
-print("Parou no número:", número - 1)
+numero = 1
+while soma <= 100:
+    soma = soma + numero     # soma 1, depois 2, depois 3...
+    numero = numero + 1      # avança para o próximo número
+print("Soma:", soma)         # 105 (passou de 100 com o 14)
+print("Parou em:", numero - 1)
 
-# Validação de senha (pede até acertar)
-# Dica: while senha != senha_correta
+# Validação de senha
 senha_correta = "1234"
 senha = input("Digite a senha: ")
-# ← escreva aqui
-#     ???
-#     ???
+while senha != senha_correta:
+    print("Senha errada. Tente de novo.")
+    senha = input("Digite a senha: ")
 print("Acesso liberado!")</code></pre>
+<div style="background:rgba(167,139,250,.08);border:1px solid rgba(167,139,250,.25);border-radius:10px;padding:1rem 1.2rem;margin:1rem 0;">
+<div style="font-size:.7rem;font-weight:700;color:#a78bfa;text-transform:uppercase;letter-spacing:1px;margin-bottom:.7rem;">🔍 O que esse código faz</div>
+<table style="width:100%;border-collapse:collapse;font-size:.82rem;">
+<tr><td style="padding:.3rem .6rem;color:#7dd3fc;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">while condição:</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;">A condição é verificada ANTES de cada volta. Se True → executa. Se False → sai do loop.</td></tr>
+<tr style="background:rgba(255,255,255,.03);"><td style="padding:.3rem .6rem;color:#7dd3fc;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">contador = contador + 1</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;">ESSENCIAL: atualizar o que a condição verifica. Sem isso, contador nunca muda e o loop é infinito!</td></tr>
+<tr><td style="padding:.3rem .6rem;color:#7dd3fc;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">while soma <= 100:</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;">O loop continua enquanto soma não ultrapassar 100 — não sabemos de antemão quantas voltas vai dar</td></tr>
+<tr style="background:rgba(255,255,255,.03);"><td style="padding:.3rem .6rem;color:#7dd3fc;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">while senha != senha_correta:</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;">Loop de validação: repete até o usuário digitar a senha certa — clássico padrão de autenticação</td></tr>
+<tr><td style="padding:.3rem .6rem;color:#86efac;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">→ for vs while</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;">Use <strong>for</strong> quando sabe quantas vezes repetir. Use <strong>while</strong> quando repete até uma condição mudar.</td></tr>
+<tr style="background:rgba(255,255,255,.03);"><td style="padding:.3rem .6rem;color:#86efac;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">→ Resultado</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;"><em style="color:#86efac;">Contagem: 1 ... 5 &nbsp;|&nbsp; Soma: 105 &nbsp;|&nbsp; [pede senha até acertar] → Acesso liberado!</em></td></tr>
+</table>
+</div>
 
-<p><strong>Dica:</strong> Sempre se pergunte: "o que faz esse loop parar?" Se você não tiver resposta clara, provavelmente tem um loop infinito!</p>`,
-  starter: `# while\n# Exemplo de contagem:\ncontador = 1\nwhile contador <= 5:\n    print(contador)\n    contador = contador + 1\n\n# Some números enquanto soma <= 100\nsoma = 0\nnúmero = 1\n# Use while soma <= 100: some número à soma e incremente número\n___\nprint("Soma:", soma)\n\n# Peça senha até acertar: while senha != "1234"\nsenha = input("Senha: ")\n# Use while para repetir até a senha ser "1234"\n___\nprint("Acesso liberado!")`,
+<p><strong>Dica:</strong> Sempre pergunte: "o que faz o loop parar?" Se não tiver resposta clara, provavelmente é um loop infinito!</p>`,
+  starter: `# Exercício: while\n\n# 1. Contagem de 1 a 5\ncontador = 1\nwhile contador <= 5:\n    print("Contagem:", contador)\n    contador = contador + 1\n\n# 2. Some números de 1 em 1 até a soma passar de 50\nsoma = 0\nnumero = 1\nwhile soma <= 50:\n    soma = soma + numero\n    numero = numero + 1\nprint("Soma:", soma)\n\n# 3. Validação: peça um número positivo até o usuário digitar um\nnum = int(input("Digite um número positivo: "))\nwhile num <= 0:\n    print("Inválido! Precisa ser positivo.")\n    num = int(input("Tente de novo: "))\nprint("Número válido:", num)`,
 },
 { week:1, day:5, num:4, lang:'python', title:'break e continue',
   content: `<h1>break e continue</h1>
@@ -2019,34 +2184,43 @@ print("Acesso liberado!")</code></pre>
 
 <p>O break é muito útil em loops de busca: você percorre uma sequência procurando algo e, quando encontra, não precisa continuar olhando o resto. Já o continue é útil quando você quer pular certos valores sem sair do loop completamente. Por exemplo, processar todos os números exceto os negativos, ou pular linhas em branco de um arquivo.</p>
 
-<pre style="background:#1a1a2e;border:1px solid #334155;border-radius:8px;padding:1rem;margin:.8rem 0;"><code># Exemplo: break - para o loop quando encontra o 5
+<p>Veja como break interrompe o loop e continue pula para a próxima volta:</p>
+<pre style="background:#1a1a2e;border:1px solid #334155;border-radius:8px;padding:1rem;margin:.8rem 0;overflow-x:auto;"><code># break — para o loop imediatamente
 for i in range(10):
     if i == 5:
-        print("Encontrei o 5! Parando.")
-        break
-    print(i)
-# Imprime: 0, 1, 2, 3, 4, e para
+        print("Encontrei 5! Parando.")
+        break          # sai do loop, ignora 5,6,7,8,9
+    print(i, end=" ")  # imprime: 0 1 2 3 4
+print()
 
-# Use continue para pular números pares
-# Dica: if i % 2 == 0: continue
+# continue — pula a volta atual, vai para a próxima
 for i in range(10):
-    # Se i for par, pule para o próximo
-    # ← escreva aqui
-    #     ???
-    print(i)
-# Deve imprimir: 1, 3, 5, 7, 9
+    if i % 2 == 0:     # se for par...
+        continue       # ...pula (ignora o print abaixo)
+    print(i, end=" ")  # imprime só ímpares: 1 3 5 7 9
+print()
 
-# Crie um menu que roda até o usuário digitar "sair"
-# Dica: while True: com break quando comando == "sair"
-# ← escreva aqui
-#     ???
-#     ???
-#         ???
-#         ???
-#     ???</code></pre>
+# while True com break — padrão de menu
+while True:
+    comando = input("Comando (ou sair): ")
+    if comando == "sair":
+        print("Até logo!")
+        break          # sai do while True
+    print("Você digitou:", comando)  # processa o comando</code></pre>
+<div style="background:rgba(167,139,250,.08);border:1px solid rgba(167,139,250,.25);border-radius:10px;padding:1rem 1.2rem;margin:1rem 0;">
+<div style="font-size:.7rem;font-weight:700;color:#a78bfa;text-transform:uppercase;letter-spacing:1px;margin-bottom:.7rem;">🔍 O que esse código faz</div>
+<table style="width:100%;border-collapse:collapse;font-size:.82rem;">
+<tr><td style="padding:.3rem .6rem;color:#7dd3fc;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">break</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;">Para o loop imediatamente — o Python sai do for/while na hora, sem completar a volta</td></tr>
+<tr style="background:rgba(255,255,255,.03);"><td style="padding:.3rem .6rem;color:#7dd3fc;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">continue</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;">Pula o RESTO da volta atual e vai direto para a próxima verificação do loop</td></tr>
+<tr><td style="padding:.3rem .6rem;color:#7dd3fc;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">if i % 2 == 0: continue</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;">Ao encontrar par, o continue pula o print — resultado: só os ímpares são exibidos</td></tr>
+<tr style="background:rgba(255,255,255,.03);"><td style="padding:.3rem .6rem;color:#7dd3fc;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">while True:</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;">Loop infinito intencional — sem condição de parada natural, depende de break para sair</td></tr>
+<tr><td style="padding:.3rem .6rem;color:#7dd3fc;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">break dentro de while True</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;">Padrão clássico de menu: roda eternamente até o usuário escolher sair — muito usado em programas reais</td></tr>
+<tr style="background:rgba(255,255,255,.03);"><td style="padding:.3rem .6rem;color:#86efac;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">→ Resultado</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;"><em style="color:#86efac;">break: 0 1 2 3 4 &nbsp;|&nbsp; continue: 1 3 5 7 9 &nbsp;|&nbsp; [menu repete até "sair"]</em></td></tr>
+</table>
+</div>
 
-<p><strong>Dica:</strong> O padrão <code>while True</code> com <code>break</code> é muito comum para criar menus e loops que rodam até o usuário decidir parar. E uma técnica super útil!</p>`,
-  starter: `# break e continue\n\n# Exemplo: break para no 5\nfor i in range(10):\n    if i == 5:\n        break\n    print(i)\n\n# Use continue para pular números pares\nfor i in range(10):\n    # Se i % 2 == 0, use continue para pular\n    ___\n    print(i)\n\n# Crie um menu: while True, peça comando com input()\n# Se comando == "sair", use break\n# Senão, exiba o comando digitado\n___`,
+<p><strong>Dica:</strong> O padrão <code>while True</code> com <code>break</code> é muito comum para criar menus — o loop roda eternamente até o usuário decidir sair!</p>`,
+  starter: `# Exercício: break e continue\n\n# 1. break: pare quando encontrar o número 3\nfor i in range(10):\n    if i == 3:\n        print("Parei no 3!")\n        break\n    print(i)\n\n# 2. continue: exiba apenas números ímpares de 1 a 9\nfor i in range(10):\n    if i % 2 == 0:\n        continue    # pula pares\n    print(i, end=" ")\nprint()\n\n# 3. Menu com while True e break\nwhile True:\n    cmd = input("Comando (sair para encerrar): ")\n    if cmd == "sair":\n        print("Até logo!")\n        break\n    print("Executando:", cmd)`,
 },
 { week:1, day:5, num:5, lang:'python', title:'Prática loops',
   content: `<h1>Prática loops</h1>
@@ -2054,37 +2228,54 @@ for i in range(10):
 
 <p>Nos exercícios abaixo, você vai ver problemas clássicos de programação que envolvem loops. Tente resolver cada um pensando em: qual tipo de loop usar (for ou while), qual a condição de parada, é o que acontece dentro de cada volta. Com prática, isso vai se tornar natural!</p>
 
-<pre style="background:#1a1a2e;border:1px solid #334155;border-radius:8px;padding:1rem;margin:.8rem 0;"><code># Exercício 1: Some todos os números de 1 a 100
-# Dica: use for com range(1, 101) e acumule numa variável
+<p>Veja os 4 exercícios clássicos com loops resolvidos:</p>
+<pre style="background:#1a1a2e;border:1px solid #334155;border-radius:8px;padding:1rem;margin:.8rem 0;overflow-x:auto;"><code># 1. Soma de 1 a 100 (resposta: 5050)
 soma = 0
-# ← escreva aqui
-#     ???
-print("Soma de 1 a 100:", soma)  # Deve dar 5050
+for i in range(1, 101):
+    soma = soma + i
+print("Soma de 1 a 100:", soma)    # 5050
 
-# Exercício 2: Calcule o fatorial de 5 (5! = 5*4*3*2*1)
-# Dica: comece com fatorial = 1 e multiplique
+# 2. Fatorial de 5 (5! = 5*4*3*2*1 = 120)
 n = 5
 fatorial = 1
-# ← escreva aqui
-#     ???
-print("Fatorial de", n, "=", fatorial)  # Deve dar 120
+for i in range(1, n + 1):          # 1, 2, 3, 4, 5
+    fatorial = fatorial * i        # 1*1=1, 1*2=2, 2*3=6, 6*4=24, 24*5=120
+print("Fatorial de", n, "=", fatorial)  # 120
 
-# Exercício 3: Exiba os números pares de 1 a 20
-# Dica: use if com % 2 == 0 dentro do loop
+# 3. Pares de 1 a 20
 print("Pares de 1 a 20:")
-# ← escreva aqui
-#     ???
-#         ???
+for i in range(1, 21):
+    if i % 2 == 0:
+        print(i, end=" ")          # 2 4 6 8 10 12 14 16 18 20
+print()
 
-# Exercício 4: Jogo de adivinhação
-# Peça chutes até acertar, dando dicas "Maior!" ou "Menor!"
-número_secreto = 7
+# 4. Jogo de adivinhação
+numero_secreto = 7
 tentativas = 0
-# Use while True com break quando acertar
-# ← escreva aqui</code></pre>
+while True:
+    palpite = int(input("Chute um número: "))
+    tentativas = tentativas + 1
+    if palpite == numero_secreto:
+        print("Acertou em", tentativas, "tentativas!")
+        break
+    elif palpite < numero_secreto:
+        print("Maior! Tente de novo.")
+    else:
+        print("Menor! Tente de novo.")</code></pre>
+<div style="background:rgba(167,139,250,.08);border:1px solid rgba(167,139,250,.25);border-radius:10px;padding:1rem 1.2rem;margin:1rem 0;">
+<div style="font-size:.7rem;font-weight:700;color:#a78bfa;text-transform:uppercase;letter-spacing:1px;margin-bottom:.7rem;">🔍 O que esse código faz</div>
+<table style="width:100%;border-collapse:collapse;font-size:.82rem;">
+<tr><td style="padding:.3rem .6rem;color:#7dd3fc;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">soma = soma + i</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;">Acumulador: começa em 0 e vai somando cada i. Ao final do loop, soma contém 1+2+3+...+100 = 5050</td></tr>
+<tr style="background:rgba(255,255,255,.03);"><td style="padding:.3rem .6rem;color:#7dd3fc;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">fatorial = fatorial * i</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;">Multiplicador acumulado: começa em 1 e vai multiplicando. range(1, n+1) inclui o próprio n</td></tr>
+<tr><td style="padding:.3rem .6rem;color:#7dd3fc;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">if i % 2 == 0</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;">Filtragem dentro do loop: o for percorre 1-20, mas só exibe quando o resto por 2 é zero (par)</td></tr>
+<tr style="background:rgba(255,255,255,.03);"><td style="padding:.3rem .6rem;color:#7dd3fc;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">while True + break</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;">Loop infinito com saída controlada — o jogo continua até o usuário acertar</td></tr>
+<tr><td style="padding:.3rem .6rem;color:#7dd3fc;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">tentativas = tentativas + 1</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;">Contador: incrementa a cada volta para saber quantas tentativas foram feitas</td></tr>
+<tr style="background:rgba(255,255,255,.03);"><td style="padding:.3rem .6rem;color:#86efac;font-family:'Fira Code',monospace;white-space:nowrap;vertical-align:top;">→ Resultado</td><td style="padding:.3rem .6rem;color:#94a3b8;vertical-align:top;">→</td><td style="padding:.3rem .6rem;color:#e2e8f0;"><em style="color:#86efac;">Soma: 5050 &nbsp;|&nbsp; Fatorial: 120 &nbsp;|&nbsp; 2 4 6...20 &nbsp;|&nbsp; [jogo até acertar]</em></td></tr>
+</table>
+</div>
 
-<p><strong>Desafio:</strong> Crie um programa que recebe números do usuário até ele digitar 0, e no final mostra a soma, a quantidade de números e a média!</p>`,
-  starter: `# Prática loops\n\n# 1. Some números de 1 a 100\nsoma = 0\n# Use for i in range(1, 101): e acumule soma = soma + i\n___\nprint("Soma:", soma)\n\n# 2. Calcule fatorial de 5: multiplique 1*2*3*4*5\nfatorial = 1\n# Use for i in range(1, 6): fatorial = fatorial * i\n___\nprint("Fatorial:", fatorial)\n\n# 3. Use for com if para exibir apenas pares de 1 a 20\n___\n\n# 4. Jogo: use while True, peça palpite com int(input())\n# Se acertar 7, print parabéns e break\n# Senão, dê dica "Maior!" ou "Menor!"\nnúmero_secreto = 7\n___`,
+<p><strong>Desafio:</strong> Crie um programa que recebe números até o usuário digitar 0, então mostra a soma, a quantidade e a média!</p>`,
+  starter: `# Exercício: prática loops\n\n# 1. Some 1 a 100\nsoma = 0\nfor i in range(1, 101):\n    soma = soma + i\nprint("Soma:", soma)\n\n# 2. Fatorial de 6 (6! = 720)\nfatorial = 1\nfor i in range(1, 7):\n    fatorial = fatorial * i\nprint("Fatorial de 6:", fatorial)\n\n# 3. Pares de 1 a 20\nfor i in range(1, 21):\n    if i % 2 == 0:\n        print(i, end=" ")\nprint()\n\n# 4. Jogo de adivinhação (número secreto = 42)\nnumero_secreto = 42\nwhile True:\n    palpite = int(input("Chute: "))\n    if palpite == numero_secreto:\n        print("Acertou!")\n        break\n    elif palpite < numero_secreto:\n        print("Maior!")\n    else:\n        print("Menor!")`,
 },
 // Day 6: Mini Projeto 1
 { week:1, day:6, num:1, lang:'python', title:'Planejamento',
