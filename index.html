@@ -268,7 +268,7 @@
         .sb-hidden { display:none !important; }
 
         /* main content */
-        .learn-main { padding:3rem; max-width:880px; overflow-y:auto; }
+        .learn-main { padding:3rem; max-width:880px; overflow-y:auto; overflow-x:hidden; }
         .lesson-badge {
             display:inline-flex; align-items:center; gap:.4rem;
             padding:.35rem 1rem; border-radius:8px; font-size:.72rem; font-weight:700;
@@ -549,6 +549,27 @@
             nav { padding:.6rem 1rem; }
             .learn-main h1 { font-size:1.4rem; }
             .editor-actions { flex-wrap:wrap; }
+            /* hero padding reduzido no mobile pequeno */
+            .hero { padding:4.5rem 1.2rem 3.5rem; }
+            #home-page .hero { padding:4.5rem 1.2rem 3.5rem; }
+            .hero p { font-size:1rem; margin-bottom:2rem; }
+            .stats { gap:.7rem; margin-top:2.5rem; }
+            .stats > div { padding:.6rem .9rem; }
+            .stat-n { font-size:1.5rem; }
+            /* editor mobile */
+            .code-input { font-size:.88rem; min-height:140px; }
+            /* code blocks no conteúdo */
+            .learn-main pre { overflow-x:auto; max-width:100%; -webkit-overflow-scrolling:touch; }
+            .learn-main pre code { font-size:.78rem; }
+            /* botão executar maior para toque */
+            .btn-run { padding:.75rem 1.2rem; font-size:.88rem; }
+            .lnav-btn { padding:.7rem 1rem; font-size:.83rem; }
+        }
+        @media(max-width:768px) {
+            .hero { padding:5rem 1.5rem 4rem; }
+            #home-page .hero { padding:5rem 1.5rem 4rem; }
+            /* code blocks */
+            .learn-main pre { overflow-x:auto; -webkit-overflow-scrolling:touch; }
         }
         .mob-toggle { display:none; background:rgba(255,255,255,.05); border:1px solid var(--border); color:#fff; padding:.45rem .9rem; border-radius:8px; cursor:pointer; font-size:.85rem; transition:all .2s; }
         .mob-toggle:hover { background:rgba(255,255,255,.1); }
@@ -947,7 +968,7 @@ function redeemCode() {
         <h2 id="chTitle">Desafio Rápido!</h2>
         <p class="ch-desc" id="chDesc">Resolva este desafio para ganhar 15 minutos extras no seu período gratuito!</p>
         <div class="ch-task" id="chTask"></div>
-        <textarea class="challenge-editor" id="chEditor" placeholder="Escreva seu código aqui..." spellcheck="false"></textarea>
+        <textarea class="challenge-editor" id="chEditor" placeholder="Escreva seu código aqui..." spellcheck="false" autocorrect="off" autocapitalize="off" autocomplete="off" data-gramm="false"></textarea>
         <div class="challenge-output" id="chOutput">Saída aparece aqui...</div>
         <div class="ch-btns">
             <button class="ch-btn-run" onclick="runChallenge()">&#9654; Testar Resposta</button>
@@ -1167,7 +1188,7 @@ function redeemCode() {
         <div class="ai-msg bot">Olá! 👋 Sou o assistente IA do CodeMaster, powered by <strong>Gemini</strong>. Pergunte qualquer coisa sobre programação — Python, HTML, CSS, JS, SQL, Java ou C++!</div>
     </div>
     <div class="ai-chat-input">
-        <input type="text" id="aiInput" placeholder="Pergunte sobre programação..." onkeydown="if(event.key==='Enter'&&!event.shiftKey)sendAiMsg()" autocomplete="off" inputmode="text">
+        <input type="text" id="aiInput" placeholder="Pergunte sobre programação..." onkeydown="if(event.key==='Enter'&&!event.shiftKey)sendAiMsg()" autocomplete="off" autocorrect="off" autocapitalize="sentences" inputmode="text">
         <button onclick="sendAiMsg()" style="min-width:40px;font-size:1.1rem;">&#10148;</button>
     </div>
 </div>
@@ -13302,7 +13323,7 @@ function loadLesson(idx) {
             </div>
             <div class="editor-area">
                 <div class="line-numbers" id="lineNums">1</div>
-                <textarea class="code-input" id="codeInput" placeholder="Escreva seu código aqui..." spellcheck="false">${escapeHtml(savedVal)}</textarea>
+                <textarea class="code-input" id="codeInput" placeholder="Escreva seu código aqui..." spellcheck="false" autocorrect="off" autocapitalize="off" autocomplete="off" data-gramm="false">${escapeHtml(savedVal)}</textarea>
             </div>
             <div class="output-area" id="outputArea">
                 <div class="output-label">Saída <span class="exec-time" id="execTime"></span></div>
