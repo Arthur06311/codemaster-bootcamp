@@ -596,6 +596,19 @@
         .ch-timer-badge { display:inline-block; background:rgba(245,158,11,.1); color:#f59e0b; padding:.35rem .9rem; border-radius:20px; font-size:.75rem; font-weight:600; margin-bottom:1rem; border:1px solid rgba(245,158,11,.15); }
 
         /* AI Chat */
+
+        /* ── AI Mode Buttons ─────────────────────────────────────────── */
+        #aiModeBar { display:none; }
+        #aiModeBar.show { display:flex !important; }
+        .ai-mode-btn {
+            background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.1);
+            color:#94a3b8; border-radius:8px; padding:.3rem .65rem;
+            font-size:.72rem; font-weight:600; cursor:pointer; transition:all .2s;
+            white-space:nowrap;
+        }
+        .ai-mode-btn:hover { background:rgba(167,139,250,.15); color:#c4b5fd; }
+        .ai-mode-btn.active { background:rgba(167,139,250,.2); border-color:rgba(167,139,250,.5); color:#a78bfa; }
+
         .ai-chat-btn {
             position:fixed; bottom:1.5rem; right:1.5rem; width:56px; height:56px; border-radius:50%;
             background:linear-gradient(135deg,#8b5cf6,#6366f1); border:none; color:#fff; font-size:1.5rem;
@@ -1441,14 +1454,25 @@ function redeemCode() {
         <div style="display:flex;align-items:center;gap:.5rem;">
             <span style="font-size:1.1rem;">&#129302;</span>
             <div>
-                <div style="font-size:.88rem;font-weight:700;color:#fff;">CodeMaster IA</div>
-                <div style="font-size:.68rem;color:rgba(167,139,250,.7);">Powered by Gemini</div>
+                <div style="font-size:.88rem;font-weight:700;color:#fff;">CodeMaster IA <span id="aiBadge" style="font-size:.62rem;padding:.1rem .45rem;border-radius:20px;font-weight:600;background:rgba(148,163,184,.15);color:#94a3b8;vertical-align:middle;">Free</span></div>
+                <div style="font-size:.68rem;color:rgba(167,139,250,.7);" id="aiModelLabel">Gemini Flash Lite · 1/min</div>
             </div>
         </div>
         <button class="ai-chat-close" onclick="toggleAiChat()" style="font-size:1.3rem;padding:.3rem .6rem;">&#10005;</button>
     </div>
+    <!-- Modo seletor — só para premium -->
+    <div id="aiModeBar" style="display:none;gap:.4rem;padding:.5rem .8rem;border-bottom:1px solid rgba(255,255,255,.06);flex-wrap:wrap;">
+        <button class="ai-mode-btn active" data-mode="explain"  onclick="_setAiMode(this,'explain')">🔍 Explicar</button>
+        <button class="ai-mode-btn"        data-mode="debug"    onclick="_setAiMode(this,'debug')">🐛 Debug</button>
+        <button class="ai-mode-btn"        data-mode="generate" onclick="_setAiMode(this,'generate')">✍️ Gerar</button>
+        <button class="ai-mode-btn"        data-mode="hint"     onclick="_setAiMode(this,'hint')">💡 Dica</button>
+    </div>
+    <!-- Rate limit aviso — só para free -->
+    <div id="aiRateNotice" style="display:none;padding:.4rem .9rem;font-size:.72rem;color:#f59e0b;background:rgba(245,158,11,.07);border-bottom:1px solid rgba(245,158,11,.15);text-align:center;">
+        ⏱ Aguarde <span id="aiRateSecs">60</span>s para a próxima pergunta · <span style="color:#a78bfa;cursor:pointer;" onclick="showPaywall()">Premium: sem limites</span>
+    </div>
     <div class="ai-chat-messages" id="aiMessages">
-        <div class="ai-msg bot">Olá! 👋 Sou o assistente IA do CodeMaster, powered by <strong>Gemini</strong>. Pergunte qualquer coisa sobre programação — Python, HTML, CSS, JS, SQL, Java ou C++!</div>
+        <div class="ai-msg bot">Olá! 👋 Sou o assistente IA do CodeMaster. Pergunte qualquer coisa sobre programação — Python, HTML, CSS, JS, SQL, Java ou C++!</div>
     </div>
     <div class="ai-chat-input">
         <input type="text" id="aiInput" placeholder="Pergunte sobre programação..." onkeydown="if(event.key==='Enter'&&!event.shiftKey)sendAiMsg()" autocomplete="off" autocorrect="off" autocapitalize="sentences" inputmode="text">
@@ -14570,13 +14594,73 @@ function getAiResponse(msg) {
 }
 
 // ============================================================
-// GEMINI AI — obtenha sua chave grátis em:
-// https://aistudio.google.com/app/apikey
+// IA — Free: gemini-1.5-flash-8b (1 req/min) | Premium: gemini-1.5-flash + modos
 // ============================================================
-const GEMINI_API_KEY = 'AIzaSyDUf-4VdWKLQ4tP5nWaqGt5tBg5qNEeT6M';
-const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`;
-const GEMINI_SYSTEM = 'Você é o assistente de programação do CodeMaster Bootcamp. Responda APENAS sobre programação (Python, HTML, CSS, JavaScript, SQL, Java, C++). Seja direto, didático e amigável. Use blocos de código markdown quando pertinente. Responda em português do Brasil por padrão, mas responda no idioma do usuário se ele escrever em outro. Limite a 300 palavras.';
-let aiHistory = [];
+const _GEMINI_KEY = 'AIzaSyDUf-4VdWKLQ4tP5nWaqGt5tBg5qNEeT6M';
+const _AI_URL_FREE = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-8b:generateContent?key=${_GEMINI_KEY}`;
+const _AI_URL_PRO  = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${_GEMINI_KEY}`;
+const AI_RATE_MS   = 60 * 1000; // 1 minuto entre requests no free
+
+const AI_SYSTEMS = {
+  explain:  'Você é um tutor de programação do CodeMaster. Explique conceitos de forma clara e didática com exemplos de código simples. Responda em português. Máximo 250 palavras.',
+  debug:    'Você é um debugger especialista. Analise o erro ou código fornecido, identifique o problema exato e mostre o código corrigido com comentários. Responda em português. Máximo 300 palavras.',
+  generate: 'Você é um assistente de geração de código. Gere código limpo, funcional e comentado para o que foi pedido. Use Python/HTML/JS/SQL conforme o contexto. Responda em português. Máximo 400 palavras.',
+  hint:     'Você é um tutor socrático. Dê APENAS dicas e perguntas orientadoras — NUNCA dê a resposta completa. Guie o aluno a descobrir a solução por conta própria. Responda em português. Máximo 120 palavras.',
+};
+
+let aiHistory  = [];
+let _aiMode    = 'explain'; // modo atual (premium only)
+let _aiLastReq = 0;         // timestamp do último request (rate limit free)
+let _aiRateTimer = null;
+
+function _setAiMode(btn, mode) {
+  _aiMode = mode;
+  document.querySelectorAll('.ai-mode-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  aiHistory = []; // nova conversa ao trocar de modo
+  const labels = { explain:'🔍 Explicar — tira dúvidas e explica conceitos', debug:'🐛 Debug — encontra e corrige erros no seu código', generate:'✍️ Gerar — cria código para o que você pedir', hint:'💡 Dica — guia sem dar a resposta' };
+  const messages = document.getElementById('aiMessages');
+  const tip = document.createElement('div');
+  tip.className = 'ai-msg bot';
+  tip.innerHTML = `Modo trocado: <strong>${labels[mode]}</strong>`;
+  messages.appendChild(tip);
+  messages.scrollTop = messages.scrollHeight;
+}
+
+function _aiUpdateUI() {
+  const premium = isPremium();
+  const modeBar = document.getElementById('aiModeBar');
+  const badge   = document.getElementById('aiBadge');
+  const label   = document.getElementById('aiModelLabel');
+  if (modeBar) modeBar.classList.toggle('show', premium);
+  if (badge) { badge.textContent = premium ? 'Pro' : 'Free'; badge.style.background = premium ? 'rgba(167,139,250,.2)' : 'rgba(148,163,184,.15)'; badge.style.color = premium ? '#a78bfa' : '#94a3b8'; }
+  if (label) label.textContent = premium ? 'Gemini Flash · Sem limites' : 'Gemini Flash Lite · 1/min';
+}
+
+function _startRateCountdown(remaining) {
+  const notice = document.getElementById('aiRateNotice');
+  const secsEl = document.getElementById('aiRateSecs');
+  const input  = document.getElementById('aiInput');
+  const sendBtn = document.querySelector('.ai-chat-input button');
+  if (!notice || !secsEl) return;
+  notice.style.display = 'block';
+  if (input) input.disabled = true;
+  if (sendBtn) sendBtn.disabled = true;
+  if (_aiRateTimer) clearInterval(_aiRateTimer);
+  let secs = Math.ceil(remaining / 1000);
+  secsEl.textContent = secs;
+  _aiRateTimer = setInterval(() => {
+    secs--;
+    if (secsEl) secsEl.textContent = secs;
+    if (secs <= 0) {
+      clearInterval(_aiRateTimer);
+      notice.style.display = 'none';
+      if (input) input.disabled = false;
+      if (sendBtn) { sendBtn.disabled = false; sendBtn.innerHTML = '&#10148;'; }
+      if (input) input.focus();
+    }
+  }, 1000);
+}
 
 function esc(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
 
@@ -14591,12 +14675,22 @@ function formatAiMsg(text) {
 }
 
 async function sendAiMsg() {
-    const input = document.getElementById('aiInput');
-    const msg = input.value.trim();
+    const input    = document.getElementById('aiInput');
+    const msg      = input.value.trim();
     if (!msg) return;
 
+    const premium  = isPremium();
     const messages = document.getElementById('aiMessages');
-    const sendBtn = document.querySelector('.ai-chat-input button');
+    const sendBtn  = document.querySelector('.ai-chat-input button');
+
+    // Rate limit para free: 1 por minuto
+    if (!premium) {
+        const elapsed = Date.now() - _aiLastReq;
+        if (_aiLastReq > 0 && elapsed < AI_RATE_MS) {
+            _startRateCountdown(AI_RATE_MS - elapsed);
+            return;
+        }
+    }
 
     // User message bubble
     const userDiv = document.createElement('div');
@@ -14615,18 +14709,26 @@ async function sendAiMsg() {
     messages.appendChild(loadDiv);
     messages.scrollTop = messages.scrollHeight;
 
-    // Add to rolling history (last 5 exchanges = 10 messages)
+    // Escolher modelo e system prompt
+    const apiUrl    = premium ? _AI_URL_PRO : _AI_URL_FREE;
+    const mode      = premium ? _aiMode : 'explain';
+    const sysPrompt = AI_SYSTEMS[mode];
+    const maxTokens = premium ? (mode === 'generate' ? 800 : 500) : 300;
+
+    // Rolling history (máx 6 trocas = 12 msgs)
     aiHistory.push({ role: 'user', parts: [{ text: msg }] });
-    if (aiHistory.length > 10) aiHistory = aiHistory.slice(-10);
+    if (aiHistory.length > 12) aiHistory = aiHistory.slice(-12);
+
+    if (!premium) _aiLastReq = Date.now();
 
     try {
-        const res = await fetch(GEMINI_URL, {
+        const res = await fetch(apiUrl, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-                system_instruction: { parts: [{ text: GEMINI_SYSTEM }] },
+                system_instruction: { parts: [{ text: sysPrompt }] },
                 contents: aiHistory,
-                generationConfig: { maxOutputTokens: 600, temperature: 0.7 }
+                generationConfig: { maxOutputTokens: maxTokens, temperature: premium ? 0.7 : 0.5 }
             })
         });
         if (!res.ok) throw new Error('status:' + res.status);
@@ -14635,17 +14737,21 @@ async function sendAiMsg() {
         aiHistory.push({ role: 'model', parts: [{ text: reply }] });
         loadDiv.className = 'ai-msg bot';
         loadDiv.innerHTML = formatAiMsg(reply);
+
+        // Iniciar countdown após request free
+        if (!premium) _startRateCountdown(AI_RATE_MS);
+
     } catch(e) {
         loadDiv.className = 'ai-msg bot';
         if (e.message.includes('401') || e.message.includes('403')) {
-            loadDiv.innerHTML = '🔑 Chave da API inválida. <a href="https://aistudio.google.com/app/apikey" target="_blank" style="color:#a78bfa;text-decoration:underline;">Obter chave grátis →</a>';
+            loadDiv.innerHTML = '🔑 Erro de autenticação na API.';
         } else if (!navigator.onLine) {
-            loadDiv.innerHTML = '📡 Sem internet. Usando resposta local.<br><br>' + getAiResponse(msg);
+            loadDiv.innerHTML = '📡 Sem internet.<br><br>' + getAiResponse(msg);
         } else {
-            // Fallback to local knowledge base
             loadDiv.innerHTML = getAiResponse(msg);
         }
         aiHistory.pop();
+        if (!premium) _aiLastReq = 0; // permite tentar novamente em caso de erro
     }
 
     input.disabled = false;
@@ -14658,6 +14764,7 @@ function toggleAiChat() {
     const panel = document.getElementById('aiChatPanel');
     const isOpen = panel.classList.toggle('show');
     if (isOpen) {
+        _aiUpdateUI();
         document.getElementById('aiInput').focus();
         if (IS_MOBILE) setTimeout(() => panel.scrollIntoView({ behavior:'smooth', block:'end' }), 150);
     }
