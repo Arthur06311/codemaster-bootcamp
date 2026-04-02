@@ -13593,10 +13593,10 @@ function loadLesson(idx) {
             <span style="font-size:.72rem;color:var(--muted);background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:6px;padding:.2rem .6rem;">${dayLabel}</span>
         </div>
         ${lesson.content}
-        <div style="background:rgba(16,185,129,.05);border:1px solid rgba(16,185,129,.15);border-radius:12px;padding:1rem 1.2rem;margin:1.5rem 0;">
+        ${idx < 5 ? `<div style="background:rgba(16,185,129,.05);border:1px solid rgba(16,185,129,.15);border-radius:12px;padding:1rem 1.2rem;margin:1.5rem 0;">
             <div style="font-size:.72rem;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:1px;margin-bottom:.4rem;">🎯 Seu exercício</div>
-            <div style="font-size:.85rem;color:#e2e8f0;line-height:1.6;">Complete o código no editor abaixo. Cada linha com <code style="background:rgba(0,0,0,.3);padding:.05rem .3rem;border-radius:4px;font-size:.78rem;">← escreva aqui</code> é onde você deve digitar. Clique em <strong>▶ Executar</strong> para ver o resultado.</div>
-        </div>
+            <div style="font-size:.85rem;color:#e2e8f0;line-height:1.6;">Complete o código no editor abaixo. Substitua os <code style="background:rgba(0,0,0,.3);padding:.05rem .3rem;border-radius:4px;font-size:.78rem;">...</code> com seu próprio código. Clique em <strong>▶ Executar</strong> para ver o resultado.</div>
+        </div>` : ''}
         ${buildTaskBox(lesson)}
         <h2 style="font-size:.9rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:.8rem;">✏️ Editor de Código — ${langNames[lesson.lang]}</h2>
         <div class="editor-wrap">
@@ -13613,9 +13613,9 @@ function loadLesson(idx) {
                 <div class="line-numbers" id="lineNums">1</div>
                 <textarea class="code-input" id="codeInput" placeholder="Escreva seu código aqui..." spellcheck="false" autocorrect="off" autocapitalize="off" autocomplete="off" data-gramm="false">${escapeHtml(savedVal)}</textarea>
             </div>
-            <div class="output-area" id="outputArea">
+            <div class="output-area show" id="outputArea">
                 <div class="output-label">Saída <span class="exec-time" id="execTime"></span></div>
-                <div class="output-text" id="outputText"></div>
+                <div class="output-text" id="outputText" style="color:#475569;font-style:italic;font-size:.8rem;">▶ Clique em Executar para ver a saída aqui</div>
             </div>
             ${lesson.lang === 'html' ? '<div class="preview-frame" id="previewFrame"><iframe id="htmlPreview"></iframe></div>' : ''}
         </div>
@@ -13861,6 +13861,7 @@ function runCode() {
         const outputArea = document.getElementById('outputArea');
         const outputText = document.getElementById('outputText');
         outputArea.classList.add('show');
+        outputText.style.cssText = '';
         outputText.innerHTML = result;
         const isErr = typeof result === 'string' && result.startsWith('Erro');
         outputText.className = 'output-text' + (isErr ? ' error' : (!isErr && result ? ' success' : ''));
@@ -13876,7 +13877,14 @@ function runCode() {
 
 function clearOutput() {
     const outputArea = document.getElementById('outputArea');
-    outputArea.classList.remove('show');
+    const outputText = document.getElementById('outputText');
+    if (outputText) {
+        outputText.textContent = '';
+        outputText.style.cssText = 'color:#475569;font-style:italic;font-size:.8rem;';
+        outputText.textContent = '▶ Clique em Executar para ver a saída aqui';
+    }
+    outputArea.classList.add('show');
+    document.getElementById('execTime').textContent = '';
     const preview = document.getElementById('previewFrame');
     if (preview) preview.classList.remove('show');
 }
