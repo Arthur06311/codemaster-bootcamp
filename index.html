@@ -981,9 +981,13 @@
                     if (data.completed) localStorage.setItem('cm_completed', JSON.stringify(data.completed));
                     if (data.saved_code) localStorage.setItem('cm_code', JSON.stringify(data.saved_code));
                     if (data.current_idx !== null) localStorage.setItem('cm_idx', String(data.current_idx));
+                    // Always sync premium from server — clears any manual localStorage manipulation
                     if (data.premium) {
                         localStorage.setItem('cm_premium', 'true');
                         if (data.premium_date) localStorage.setItem('cm_premium_date', data.premium_date);
+                    } else {
+                        localStorage.removeItem('cm_premium');
+                        localStorage.removeItem('cm_premium_date');
                     }
                 }
             },
@@ -995,12 +999,11 @@
                 clearTimeout(this._saveTimer);
                 const doSave = () => {
                     if (!sbClient) return;
+                    // Never write premium status from localStorage — only doActivatePremium() does that
                     sbClient.from('profiles').update({
                         completed: JSON.parse(localStorage.getItem('cm_completed') || '[]'),
                         saved_code: JSON.parse(localStorage.getItem('cm_code') || '{}'),
-                        current_idx: parseInt(localStorage.getItem('cm_idx') || '0'),
-                        premium: localStorage.getItem('cm_premium') === 'true',
-                        premium_date: localStorage.getItem('cm_premium_date') || null
+                        current_idx: parseInt(localStorage.getItem('cm_idx') || '0')
                     }).eq('id', user.uid).then(()=>{}).catch(e => console.warn('Supabase save failed', e));
                 };
                 if (immediate) { doSave(); } else { this._saveTimer = setTimeout(doSave, 3000); }
@@ -1096,17 +1099,39 @@
 
 <script>
 function redeemCode() {
-    var code = document.getElementById('cgaInput').value.trim();
+    var code = document.getElementById('cgaInput').value.trim().toLowerCase();
     var err = document.getElementById('cgaError');
-    if (code === 'PlayTester-Obrigado-use-bem') {
-        err.style.display = 'none';
-        document.getElementById('cgaModal').classList.remove('show');
-        document.getElementById('cgaTab').style.display = 'none';
-        doActivatePremium();
-        showToast('&#127881; Código resgatado! Premium ativado!', 4000);
-    } else {
-        err.textContent = 'Código inválido. Tente novamente.';
+    // Codes are validated server-side via Supabase — no plaintext codes in source
+    if (!code || code.length < 6) {
+        err.textContent = 'Insira um código válido.';
         err.style.display = 'block';
+        return;
+    }
+    err.style.display = 'none';
+    err.textContent = 'Verificando...';
+    err.style.display = 'block';
+    err.style.color = 'var(--cyan)';
+    // Validate via Supabase function (codes table)
+    if (window.sbClient) {
+        window.sbClient.from('promo_codes').select('*').eq('code', code).eq('used', false).single()
+            .then(({ data }) => {
+                if (data) {
+                    window.sbClient.from('promo_codes').update({ used: true }).eq('code', code).then(() => {});
+                    document.getElementById('cgaModal').classList.remove('show');
+                    document.getElementById('cgaTab').style.display = 'none';
+                    doActivatePremium();
+                    showToast('&#127881; Código resgatado! Premium ativado!', 4000);
+                } else {
+                    err.style.color = 'var(--red)';
+                    err.textContent = 'Código inválido ou já utilizado.';
+                }
+            }).catch(() => {
+                err.style.color = 'var(--red)';
+                err.textContent = 'Erro ao verificar. Tente novamente.';
+            });
+    } else {
+        err.style.color = 'var(--red)';
+        err.textContent = 'Sem conexão. Tente novamente.';
     }
 }
 </script>
@@ -13617,7 +13642,7 @@ function loadLesson(idx) {
                 <div class="output-label">Saída <span class="exec-time" id="execTime"></span></div>
                 <div class="output-text" id="outputText" style="color:#475569;font-style:italic;font-size:.8rem;">▶ Clique em Executar para ver a saída aqui</div>
             </div>
-            ${lesson.lang === 'html' ? '<div class="preview-frame" id="previewFrame"><iframe id="htmlPreview"></iframe></div>' : ''}
+            ${lesson.lang === 'html' ? '<div class="preview-frame" id="previewFrame"><iframe id="htmlPreview" sandbox="allow-scripts"></iframe></div>' : ''}
         </div>
         <div class="lesson-nav">
             <button class="lnav-btn" onclick="loadLesson(${idx-1})" ${idx===0?'disabled':''}>&#8592; Anterior</button>
@@ -14428,10 +14453,18 @@ function doActivatePremium() {
     showConfetti();
     showToast('&#127881; Premium ativado! Acesso completo + IA desbloqueados!', 5000);
 
-    localStorage.setItem('cm_premium_date', new Date().toISOString());
+    const premiumDate = new Date().toISOString();
+    localStorage.setItem('cm_premium_date', premiumDate);
 
-    // Save premium to Supabase immediately
-    auth.saveProfile(true);
+    // Save premium directly to Supabase (separate from saveProfile to prevent spoofing)
+    try {
+        if (window.sbClient && auth._currentUser) {
+            window.sbClient.from('profiles').update({
+                premium: true,
+                premium_date: premiumDate
+            }).eq('id', auth._currentUser.uid).catch(() => {});
+        }
+    } catch(e) {}
 
     // Update home page if visible
     updatePremiumUI();
