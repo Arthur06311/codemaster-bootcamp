@@ -1244,14 +1244,14 @@ function redeemCode() {
 <section class="hero">
     <div class="hero-content">
         <div class="badge">Bootcamp Interativo 2026</div>
-        <h1>Aprenda a programar <em>do zero ao avançado</em> em 8 semanas</h1>
-        <p>5+ linguagens, 280+ lições com editor integrado e desafios práticos. Escolha seu ritmo e comece a programar agora.</p>
-        <a href="#" class="hero-cta" onclick="event.preventDefault();requireAuthThenStart()">Começar Agora &#8594;</a>
+        <h1>Em 8 semanas, você vai sair do zero e ter um <em>portfólio real de programação</em> — mesmo que nunca tenha escrito uma linha de código.</h1>
+        <p>Aprenda fazendo: cada lição tem explicação, exemplo e um desafio que você resolve agora mesmo — sem instalar nada, sem pré-requisitos.</p>
+        <a href="#" class="hero-cta" onclick="event.preventDefault();requireAuthThenStart()">Ver a primeira lição grátis &#8594;</a>
         <div class="stats">
-            <div><div class="stat-n">8</div><div class="stat-l">Semanas</div></div>
-            <div><div class="stat-n">5+</div><div class="stat-l">Linguagens</div></div>
-            <div><div class="stat-n">280+</div><div class="stat-l">Lições</div></div>
-            <div><div class="stat-n">56</div><div class="stat-l">Desafios</div></div>
+            <div><div class="stat-n">8</div><div class="stat-l">Semanas até o portfólio</div></div>
+            <div><div class="stat-n">5</div><div class="stat-l">Linguagens do mercado</div></div>
+            <div><div class="stat-n">280+</div><div class="stat-l">Lições em microdoses</div></div>
+            <div><div class="stat-n">56</div><div class="stat-l">Desafios com feedback</div></div>
         </div>
     </div>
 </section>
@@ -1310,48 +1310,21 @@ function redeemCode() {
     <button class="pcard-btn" onclick="requireAuthThenStart()" style="display:inline-block;width:auto;padding:1rem 3rem;font-size:1.1rem;background:linear-gradient(135deg,var(--green),var(--green-d));border-radius:14px;box-shadow:0 4px 25px rgba(16,185,129,.25);border:none;color:#fff;font-weight:700;cursor:pointer;">Começar Agora &#8594;</button>
 </section>
 
-<section id="comprar" style="padding:4rem 1.5rem;text-align:center;">
-    <div style="max-width:500px;margin:0 auto;background:rgba(15,23,42,0.6);border:1px solid rgba(16,185,129,.15);border-radius:28px;padding:3rem 2.5rem;position:relative;overflow:hidden;backdrop-filter:blur(20px);box-shadow:0 20px 60px rgba(0,0,0,.3), 0 0 40px rgba(16,185,129,.05);">
-        <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--green),#34d399,#06b6d4,var(--green));background-size:300% 100%;animation:gradientShift 4s ease infinite;"></div>
-        <div style="position:absolute;inset:0;border-radius:28px;background:radial-gradient(circle at 50% 0%,rgba(16,185,129,.06),transparent 60%);pointer-events:none;"></div>
-        <div style="font-size:2.5rem;margin-bottom:.5rem;position:relative;z-index:1;">&#128640;</div>
-        <h2 style="font-family:'Space Grotesk',sans-serif;font-size:1.5rem;font-weight:700;margin-bottom:.5rem;color:#fff;position:relative;z-index:1;">Acesso Completo</h2>
-        <p style="color:var(--muted);margin-bottom:1.4rem;line-height:1.7;position:relative;z-index:1;font-size:.95rem;">280+ lições, 5 linguagens, desafios, editor integrado e certificado. Pagamento único, sem mensalidade.</p>
-        <div style="margin-bottom:1.4rem;position:relative;z-index:1;">
-            <span style="color:var(--muted);font-size:.9rem;text-decoration:line-through;">De R$149,90</span>
-            <div style="font-family:'Space Grotesk',sans-serif;font-size:2.8rem;font-weight:700;background:linear-gradient(135deg,#fff,var(--green));-webkit-background-clip:text;-webkit-text-fill-color:transparent;"><small style="font-size:1.2rem;font-weight:700;">R$</small>60<small style="font-size:1.2rem;font-weight:700;">,00</small></div>
-            <span style="color:var(--muted);font-size:.8rem;">Pagamento único — acesso vitalício</span>
-        </div>
-        <button onclick="openPayment()" style="display:inline-block;background:linear-gradient(135deg,var(--green),#059669);color:#fff;font-weight:700;font-size:1.05rem;padding:.95rem 2.5rem;border-radius:14px;border:none;cursor:pointer;transition:all .4s cubic-bezier(.16,1,.3,1);box-shadow:0 4px 25px rgba(16,185,129,.25);position:relative;z-index:1;" onmouseover="this.style.transform='translateY(-3px) scale(1.02)';this.style.boxShadow='0 8px 35px rgba(16,185,129,.35)'" onmouseout="this.style.transform='';this.style.boxShadow='0 4px 25px rgba(16,185,129,.25)'">&#128274; Pagar Agora — Mercado Pago &#8594;</button>
-        <div style="display:flex;align-items:center;justify-content:center;gap:.4rem;margin-top:1rem;font-size:.78rem;color:rgba(148,163,184,.4);position:relative;z-index:1;">&#128274; PIX, Cartão ou Boleto via Mercado Pago</div>
-    </div>
-</section>
-
-<!-- Promo Banner — Home Page (hidden for premium) -->
-<div class="ad-banner-home" id="adBannerHome" style="text-align:center;padding:1.5rem 2rem;max-width:800px;margin:0 auto;">
-    <div style="background:linear-gradient(135deg,rgba(16,185,129,.06),rgba(139,92,246,.04));border:1px solid rgba(16,185,129,.12);border-radius:16px;padding:1.2rem 2rem;display:flex;align-items:center;justify-content:center;gap:1.5rem;flex-wrap:wrap;">
-        <div style="text-align:left;">
-            <p style="color:#fff;font-weight:600;font-size:.95rem;margin-bottom:.2rem;">&#11088; Acesso ilimitado por apenas R$60</p>
-            <p style="color:var(--muted);font-size:.8rem;">280+ lições + IA + sem limites. Pagamento único.</p>
-        </div>
-        <button onclick="openPayment()" style="background:linear-gradient(135deg,var(--green),var(--green-d));color:#fff;font-weight:700;font-size:.85rem;padding:.6rem 1.5rem;border-radius:10px;border:none;cursor:pointer;white-space:nowrap;flex-shrink:0;">Comprar Premium</button>
-    </div>
-</div>
 
 <section id="diff">
     <h2 class="sec-title">Diferenciais</h2>
     <p class="sec-sub">O bootcamp feito para quem quer aprender programação de verdade</p>
     <div class="fgrid">
-        <div class="feat"><div class="feat-i">&#128187;</div><h3>Editor Integrado</h3><p>Escreva código direto no navegador na linguagem da semana.</p></div>
-        <div class="feat"><div class="feat-i">&#127919;</div><h3>Progressão Inteligente</h3><p>Fácil → médio → avançado sem pular etapas.</p></div>
-        <div class="feat"><div class="feat-i">&#128640;</div><h3>Multi-Linguagem</h3><p>Python, HTML/CSS/JS, SQL, Java, C++.</p></div>
-        <div class="feat"><div class="feat-i">&#129504;</div><h3>Didática Simples</h3><p>Explicações claras e diretas, sem complicação.</p></div>
-        <div class="feat"><div class="feat-i">&#9888;&#65039;</div><h3>Erros Comuns</h3><p>Mostramos os erros comuns e como corrigi-los.</p></div>
-        <div class="feat"><div class="feat-i">&#128200;</div><h3>Resultado Real</h3><p>Em 8 semanas, portfólio completo.</p></div>
+        <div class="feat"><div class="feat-i">&#128187;</div><h3>Sem instalar nada.</h3><p>Escreva e execute código direto no navegador — começa em segundos, sem configuração.</p></div>
+        <div class="feat"><div class="feat-i">&#127919;</div><h3>Você aprende na ordem certa.</h3><p>Cada conceito prepara o próximo — sem saltos, sem lacunas, sem se perder.</p></div>
+        <div class="feat"><div class="feat-i">&#128640;</div><h3>5 linguagens que o mercado usa.</h3><p>Python, HTML/CSS/JS, SQL, Java e C++ — tudo no mesmo lugar.</p></div>
+        <div class="feat"><div class="feat-i">&#129504;</div><h3>IA que explica, não entrega.</h3><p>Pergunte quando travar — ela te guia para pensar a solução, não te dá a resposta pronta.</p></div>
+        <div class="feat"><div class="feat-i">&#9888;&#65039;</div><h3>Erra e aprende de verdade.</h3><p>Erros comuns explicados no contexto certo — você entende por que errou, não só o que corrigir.</p></div>
+        <div class="feat"><div class="feat-i">&#128200;</div><h3>Portfólio real em 8 semanas.</h3><p>Projeto final com deploy e documentação — algo concreto para mostrar no LinkedIn ou numa vaga.</p></div>
     </div>
 </section>
 
-<footer><div class="logo" style="display:inline-flex;margin-bottom:.5rem;">Code<span>Master</span></div><p style="font-size:.85rem;">© 2026 FlowCode Academy — Aprenda a programar do zero</p></footer>
+<footer><div class="logo" style="display:inline-flex;margin-bottom:.5rem;">Flow<span>Code</span></div><p style="font-size:.85rem;">© 2026 FlowCode Academy — Aprenda a programar do zero</p></footer>
 </div>
 
 <!-- ============ LEARN PAGE ============ -->
