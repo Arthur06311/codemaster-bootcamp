@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CodeMaster Bootcamp — Aprenda Programação do Zero</title>
+    <title>FlowCode Academy — Aprenda Programação do Zero</title>
     <meta name="google-adsense-account" content="ca-pub-6737222615730122">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6737222615730122" crossorigin="anonymous"></script>
     <link rel="preçonnect" href="https://fonts.googleapis.com">
@@ -1351,7 +1351,7 @@ function redeemCode() {
     </div>
 </section>
 
-<footer><div class="logo" style="display:inline-flex;margin-bottom:.5rem;">Code<span>Master</span></div><p style="font-size:.85rem;">© 2026 CodeMaster Bootcamp — Aprenda a programar do zero</p></footer>
+<footer><div class="logo" style="display:inline-flex;margin-bottom:.5rem;">Code<span>Master</span></div><p style="font-size:.85rem;">© 2026 FlowCode Academy — Aprenda a programar do zero</p></footer>
 </div>
 
 <!-- ============ LEARN PAGE ============ -->
@@ -1412,7 +1412,7 @@ function redeemCode() {
 <div id="quizOverlay" class="quiz-overlay">
     <div class="quiz-wrap">
         <div class="quiz-brand">
-            <div class="quiz-brand-logo">&#128187; CodeMaster Bootcamp</div>
+            <div class="quiz-brand-logo">&#128187; FlowCode Academy</div>
             <div class="quiz-brand-sub">Diagnóstico de Nível Personalizado</div>
         </div>
         <div class="quiz-card" id="quizCard">
@@ -1454,7 +1454,7 @@ function redeemCode() {
         <div style="display:flex;align-items:center;gap:.5rem;">
             <span style="font-size:1.1rem;">&#129302;</span>
             <div>
-                <div style="font-size:.88rem;font-weight:700;color:#fff;">CodeMaster IA <span id="aiBadge" style="font-size:.62rem;padding:.1rem .45rem;border-radius:20px;font-weight:600;background:rgba(148,163,184,.15);color:#94a3b8;vertical-align:middle;">Free</span></div>
+                <div style="font-size:.88rem;font-weight:700;color:#fff;">FlowCode Academy IA <span id="aiBadge" style="font-size:.62rem;padding:.1rem .45rem;border-radius:20px;font-weight:600;background:rgba(148,163,184,.15);color:#94a3b8;vertical-align:middle;">Free</span></div>
                 <div style="font-size:.68rem;color:rgba(167,139,250,.7);" id="aiModelLabel">Gemini Flash Lite · 1/min</div>
             </div>
         </div>
@@ -1472,7 +1472,7 @@ function redeemCode() {
         ⏱ Aguarde <span id="aiRateSecs">60</span>s para a próxima pergunta · <span style="color:#a78bfa;cursor:pointer;" onclick="showPaywall()">Premium: sem limites</span>
     </div>
     <div class="ai-chat-messages" id="aiMessages">
-        <div class="ai-msg bot">Olá! 👋 Sou o assistente IA do CodeMaster. Pergunte qualquer coisa sobre programação — Python, HTML, CSS, JS, SQL, Java ou C++!</div>
+        <div class="ai-msg bot">Olá! 👋 Sou o assistente IA do FlowCode Academy. Pergunte qualquer coisa sobre programação — Python, HTML, CSS, JS, SQL, Java ou C++!</div>
     </div>
     <div class="ai-chat-input">
         <input type="text" id="aiInput" placeholder="Pergunte sobre programação..." onkeydown="if(event.key==='Enter'&&!event.shiftKey)sendAiMsg()" autocomplete="off" autocorrect="off" autocapitalize="sentences" inputmode="text">
@@ -13468,7 +13468,7 @@ function startBootcamp(plan) {
     document.getElementById('learnNav').style.display = 'flex';
     document.getElementById('backBtn').style.display = 'block';
     document.getElementById('navProgress').style.display = 'flex';
-    document.getElementById('navPlanName').textContent = 'CodeMaster Bootcamp';
+    document.getElementById('navPlanName').textContent = 'FlowCode Academy';
     buildSidebar();
     loadLesson(0);
     updateProgress();
@@ -13483,7 +13483,7 @@ function resumeBootcamp() {
     document.getElementById('learnNav').style.display = 'flex';
     document.getElementById('backBtn').style.display = 'block';
     document.getElementById('navProgress').style.display = 'flex';
-    document.getElementById('navPlanName').textContent = 'CodeMaster Bootcamp';
+    document.getElementById('navPlanName').textContent = 'FlowCode Academy';
     buildSidebar();
     loadLesson(currentLessonIdx);
     updateProgress();
@@ -13950,7 +13950,7 @@ function resetCode() {
 }
 
 function downloadPlan() {
-    let text = `CODEMASTER BOOTCAMP\n${'='.repeat(50)}\n\n`;
+    let text = `FLOWCODE ACADEMY BOOTCAMP\n${'='.repeat(50)}\n\n`;
     let curWeek = 0;
 
     for (let l of currentLessons) {
@@ -13966,7 +13966,7 @@ function downloadPlan() {
     const blob = new Blob([text], {type:'text/plain;charset=utf-8'});
     const a = document.createElement('a');
     a.href = URL.createObjectURL(blob);
-    a.download = 'codemaster-bootcamp.txt';
+    a.download = 'flowcode-academy.txt';
     a.click();
     URL.revokeObjectURL(a.href);
     showToast('&#11015; Download iniciado!');
@@ -14372,7 +14372,7 @@ function confirmPayment() {
     if (activateAttempts >= MAX_ACTIVATE_ATTEMPTS) {
         if (errorEl) {
             errorEl.style.display = 'block';
-            errorEl.textContent = 'Muitas tentativas. Envie seu comprovante para suporte: codemaster.bootcamp@email.com';
+            errorEl.textContent = 'Muitas tentativas. Envie seu comprovante para suporte: flowcode-academy.bootcamp@email.com';
         }
         return;
     }
@@ -14602,7 +14602,7 @@ const _AI_URL_PRO  = `https://generativelanguage.googleapis.com/v1beta/models/ge
 const AI_RATE_MS   = 60 * 1000; // 1 minuto entre requests no free
 
 const AI_SYSTEMS = {
-  explain:  'Você é um tutor de programação do CodeMaster. Explique conceitos de forma clara e didática com exemplos de código simples. Responda em português. Máximo 250 palavras.',
+  explain:  'Você é um tutor de programação do FlowCode Academy. Explique conceitos de forma clara e didática com exemplos de código simples. Responda em português. Máximo 250 palavras.',
   debug:    'Você é um debugger especialista. Analise o erro ou código fornecido, identifique o problema exato e mostre o código corrigido com comentários. Responda em português. Máximo 300 palavras.',
   generate: 'Você é um assistente de geração de código. Gere código limpo, funcional e comentado para o que foi pedido. Use Python/HTML/JS/SQL conforme o contexto. Responda em português. Máximo 400 palavras.',
   hint:     'Você é um tutor socrático. Dê APENAS dicas e perguntas orientadoras — NUNCA dê a resposta completa. Guie o aluno a descobrir a solução por conta própria. Responda em português. Máximo 120 palavras.',
@@ -15565,7 +15565,7 @@ function _quizLaunch(startIdx) {
   document.getElementById('learnNav').style.display   = 'flex';
   document.getElementById('backBtn').style.display    = 'block';
   document.getElementById('navProgress').style.display = 'flex';
-  document.getElementById('navPlanName').textContent   = 'CodeMaster Bootcamp';
+  document.getElementById('navPlanName').textContent   = 'FlowCode Academy';
 
   buildSidebar();
   loadLesson(startIdx);
