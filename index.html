@@ -1459,7 +1459,23 @@ function redeemCode() {
     </div>
 </section>
 
-<footer><div class="logo" style="display:inline-flex;margin-bottom:.5rem;">Flow<span>Code</span></div><p style="font-size:.85rem;">© 2026 FlowCode Academy — Aprenda a programar do zero</p></footer>
+<footer>
+    <div class="logo" style="display:inline-flex;margin-bottom:.6rem;">Flow<span>Code</span></div>
+    <p style="font-size:.85rem;margin-bottom:1rem;">© 2026 FlowCode Academy — Aprenda a programar do zero</p>
+    <div style="display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap;">
+        <button onclick="openLegalModal('sobre')" style="background:none;border:none;color:var(--muted);font-size:.82rem;cursor:pointer;text-decoration:underline;text-underline-offset:3px;transition:color .2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color=''">Sobre a plataforma</button>
+        <button onclick="openLegalModal('termos')" style="background:none;border:none;color:var(--muted);font-size:.82rem;cursor:pointer;text-decoration:underline;text-underline-offset:3px;transition:color .2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color=''">Termos de Uso</button>
+        <button onclick="openLegalModal('privacidade')" style="background:none;border:none;color:var(--muted);font-size:.82rem;cursor:pointer;text-decoration:underline;text-underline-offset:3px;transition:color .2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color=''">Política de Privacidade</button>
+    </div>
+</footer>
+
+<!-- ============ MODAIS LEGAIS ============ -->
+<div id="legalOverlay" style="display:none;position:fixed;inset:0;z-index:600;background:rgba(5,8,16,.95);backdrop-filter:blur(20px);overflow-y:auto;padding:2rem 1rem;" onclick="if(event.target===this)closeLegalModal()">
+  <div id="legalModal" style="max-width:700px;margin:2rem auto;background:linear-gradient(145deg,rgba(15,23,42,.98),rgba(10,15,30,1));border:1px solid rgba(148,163,184,.1);border-radius:24px;padding:2.5rem 2rem;position:relative;animation:fadeInScale .35s cubic-bezier(.16,1,.3,1);">
+    <button onclick="closeLegalModal()" style="position:absolute;top:1rem;right:1rem;background:rgba(255,255,255,.05);border:none;color:var(--muted);font-size:1.1rem;cursor:pointer;padding:.4rem .65rem;border-radius:8px;transition:all .2s;" onmouseover="this.style.background='rgba(255,255,255,.1)';this.style.color='#fff'" onmouseout="this.style.background='rgba(255,255,255,.05)';this.style.color=''">✕</button>
+    <div id="legalContent"></div>
+  </div>
+</div>
 </div>
 
 <!-- ============ LEARN PAGE ============ -->
@@ -15707,6 +15723,171 @@ function _startFlowAfterAuth() {
     startFreemiumTimer();
   }
 }
+
+// ─────────────────────────────────────────────────────────────
+//  MODAIS LEGAIS — Sobre / Termos / Privacidade
+// ─────────────────────────────────────────────────────────────
+const _LEGAL_CONTENT = {
+
+sobre: `
+<div style="text-align:center;margin-bottom:2rem;">
+  <div style="font-size:2.2rem;margin-bottom:.5rem;">🚀</div>
+  <h2 style="font-family:'Space Grotesk',sans-serif;font-size:1.6rem;font-weight:700;color:#fff;margin-bottom:.4rem;">Sobre a FlowCode Academy</h2>
+  <p style="color:var(--muted);font-size:.9rem;">A plataforma de programação que funciona no seu ritmo</p>
+</div>
+
+<h3 style="font-family:'Space Grotesk',sans-serif;color:#fff;font-size:1.05rem;margin:1.8rem 0 .5rem;">O que é a FlowCode Academy?</h3>
+<p style="color:var(--muted);line-height:1.8;font-size:.9rem;">A FlowCode Academy é uma plataforma de ensino de programação totalmente interativa — você aprende lendo, e já na mesma tela escreve e executa código de verdade. Nada para instalar, nenhum pré-requisito, nenhuma configuração.</p>
+
+<h3 style="font-family:'Space Grotesk',sans-serif;color:#fff;font-size:1.05rem;margin:1.8rem 0 .5rem;">Por que ela existe?</h3>
+<p style="color:var(--muted);line-height:1.8;font-size:.9rem;">A maioria dos cursos de programação te ensina teoria antes de deixar você escrever uma linha de código. Aqui é o oposto: cada conceito vem acompanhado de um exemplo que você executa na hora — o aprendizado ativo faz a informação fixar muito mais rápido.</p>
+
+<h3 style="font-family:'Space Grotesk',sans-serif;color:#fff;font-size:1.05rem;margin:1.8rem 0 .5rem;">Como a plataforma te ajuda?</h3>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:.8rem;margin:.5rem 0 1rem;">
+  <div style="background:rgba(16,185,129,.05);border:1px solid rgba(16,185,129,.12);border-radius:12px;padding:1rem;">
+    <div style="font-size:1.3rem;margin-bottom:.4rem;">📍</div>
+    <div style="font-weight:600;color:#fff;font-size:.88rem;margin-bottom:.3rem;">Começa onde você está</div>
+    <div style="color:var(--muted);font-size:.8rem;line-height:1.5;">O quiz de diagnóstico identifica seu nível e pula o que você já sabe.</div>
+  </div>
+  <div style="background:rgba(59,130,246,.05);border:1px solid rgba(59,130,246,.12);border-radius:12px;padding:1rem;">
+    <div style="font-size:1.3rem;margin-bottom:.4rem;">🧠</div>
+    <div style="font-weight:600;color:#fff;font-size:.88rem;margin-bottom:.3rem;">Aprende fazendo</div>
+    <div style="color:var(--muted);font-size:.8rem;line-height:1.5;">Cada lição tem explicação + exemplo + desafio. Você executa o código e vê o resultado na hora.</div>
+  </div>
+  <div style="background:rgba(139,92,246,.05);border:1px solid rgba(139,92,246,.12);border-radius:12px;padding:1rem;">
+    <div style="font-size:1.3rem;margin-bottom:.4rem;">🤖</div>
+    <div style="font-weight:600;color:#fff;font-size:.88rem;margin-bottom:.3rem;">IA que orienta</div>
+    <div style="color:var(--muted);font-size:.8rem;line-height:1.5;">Travou? Pergunte para a IA — ela te guia para pensar a solução, não entrega a resposta pronta.</div>
+  </div>
+  <div style="background:rgba(245,158,11,.05);border:1px solid rgba(245,158,11,.12);border-radius:12px;padding:1rem;">
+    <div style="font-size:1.3rem;margin-bottom:.4rem;">🗺️</div>
+    <div style="font-weight:600;color:#fff;font-size:.88rem;margin-bottom:.3rem;">Trilha clara</div>
+    <div style="color:var(--muted);font-size:.8rem;line-height:1.5;">280+ lições organizadas em 8 semanas — Python, Web, SQL, Java e C++.</div>
+  </div>
+</div>
+
+<h3 style="font-family:'Space Grotesk',sans-serif;color:#fff;font-size:1.05rem;margin:1.8rem 0 .5rem;">O que o plano gratuito inclui?</h3>
+<p style="color:var(--muted);line-height:1.8;font-size:.9rem;">As primeiras 3 lições de cada semana são gratuitas — suficiente para você entender a didática e decidir se quer continuar. O acesso premium desbloqueia todo o conteúdo, os desafios avançados e a IA sem limite de mensagens.</p>
+
+<h3 style="font-family:'Space Grotesk',sans-serif;color:#fff;font-size:1.05rem;margin:1.8rem 0 .5rem;">Quem faz a FlowCode?</h3>
+<p style="color:var(--muted);line-height:1.8;font-size:.9rem;">A plataforma foi criada por um desenvolvedor apaixonado por educação, com o objetivo de tornar o aprendizado de programação mais acessível e direto ao ponto — sem burocracia, sem teoria em excesso, sem precisar de computador caro ou internet rápida.</p>
+`,
+
+termos: `
+<div style="text-align:center;margin-bottom:2rem;">
+  <div style="font-size:2rem;margin-bottom:.5rem;">📋</div>
+  <h2 style="font-family:'Space Grotesk',sans-serif;font-size:1.6rem;font-weight:700;color:#fff;margin-bottom:.4rem;">Termos de Uso</h2>
+  <p style="color:var(--muted);font-size:.8rem;">Última atualização: abril de 2026</p>
+</div>
+
+<p style="color:var(--muted);line-height:1.8;font-size:.9rem;">Ao usar a FlowCode Academy você concorda com os termos abaixo. Leia com atenção — são diretos ao ponto.</p>
+
+<h3 style="font-family:'Space Grotesk',sans-serif;color:var(--green-l);font-size:.95rem;margin:1.6rem 0 .4rem;">1. O que você pode fazer</h3>
+<ul style="list-style:none;padding:0;display:flex;flex-direction:column;gap:.4rem;">
+  <li style="color:var(--muted);font-size:.88rem;line-height:1.7;padding-left:1.4rem;position:relative;"><span style="position:absolute;left:0;color:var(--green);">✓</span> Acessar o conteúdo gratuito sem cadastro.</li>
+  <li style="color:var(--muted);font-size:.88rem;line-height:1.7;padding-left:1.4rem;position:relative;"><span style="position:absolute;left:0;color:var(--green);">✓</span> Criar uma conta e salvar seu progresso.</li>
+  <li style="color:var(--muted);font-size:.88rem;line-height:1.7;padding-left:1.4rem;position:relative;"><span style="position:absolute;left:0;color:var(--green);">✓</span> Usar a plataforma para aprendizado pessoal e profissional.</li>
+  <li style="color:var(--muted);font-size:.88rem;line-height:1.7;padding-left:1.4rem;position:relative;"><span style="position:absolute;left:0;color:var(--green);">✓</span> Compartilhar o link da plataforma com outras pessoas.</li>
+</ul>
+
+<h3 style="font-family:'Space Grotesk',sans-serif;color:var(--red);font-size:.95rem;margin:1.6rem 0 .4rem;">2. O que você não pode fazer</h3>
+<ul style="list-style:none;padding:0;display:flex;flex-direction:column;gap:.4rem;">
+  <li style="color:var(--muted);font-size:.88rem;line-height:1.7;padding-left:1.4rem;position:relative;"><span style="position:absolute;left:0;color:var(--red);">✗</span> Copiar, revender ou redistribuir o conteúdo das lições.</li>
+  <li style="color:var(--muted);font-size:.88rem;line-height:1.7;padding-left:1.4rem;position:relative;"><span style="position:absolute;left:0;color:var(--red);">✗</span> Usar ferramentas automáticas para extrair conteúdo (scraping).</li>
+  <li style="color:var(--muted);font-size:.88rem;line-height:1.7;padding-left:1.4rem;position:relative;"><span style="position:absolute;left:0;color:var(--red);">✗</span> Tentar contornar o sistema de acesso premium de forma indevida.</li>
+  <li style="color:var(--muted);font-size:.88rem;line-height:1.7;padding-left:1.4rem;position:relative;"><span style="position:absolute;left:0;color:var(--red);">✗</span> Compartilhar sua conta com outras pessoas.</li>
+</ul>
+
+<h3 style="font-family:'Space Grotesk',sans-serif;color:#fff;font-size:.95rem;margin:1.6rem 0 .4rem;">3. Acesso Premium</h3>
+<p style="color:var(--muted);line-height:1.8;font-size:.88rem;">O acesso premium é pessoal e intransferível. O pagamento é único e dá direito ao conteúdo disponível no momento da compra. Melhorias e novas lições adicionadas depois da compra também ficam disponíveis sem custo adicional.</p>
+
+<h3 style="font-family:'Space Grotesk',sans-serif;color:#fff;font-size:.95rem;margin:1.6rem 0 .4rem;">4. Disponibilidade</h3>
+<p style="color:var(--muted);line-height:1.8;font-size:.88rem;">A plataforma é oferecida "como está". Podemos fazer manutenções, corrigir conteúdo ou atualizar funcionalidades a qualquer momento. Não garantimos disponibilidade 100% do tempo, mas fazemos o máximo para mantê-la no ar.</p>
+
+<h3 style="font-family:'Space Grotesk',sans-serif;color:#fff;font-size:.95rem;margin:1.6rem 0 .4rem;">5. Responsabilidade</h3>
+<p style="color:var(--muted);line-height:1.8;font-size:.88rem;">O conteúdo da plataforma é educacional. O resultado do aprendizado depende do esforço e dedicação de cada pessoa. A FlowCode Academy não garante emprego ou resultado específico após a conclusão do bootcamp.</p>
+
+<h3 style="font-family:'Space Grotesk',sans-serif;color:#fff;font-size:.95rem;margin:1.6rem 0 .4rem;">6. Contato</h3>
+<p style="color:var(--muted);line-height:1.8;font-size:.88rem;">Dúvidas sobre os termos? Entre em contato pelo Instagram da plataforma ou pelo e-mail de suporte indicado no perfil.</p>
+`,
+
+privacidade: `
+<div style="text-align:center;margin-bottom:2rem;">
+  <div style="font-size:2rem;margin-bottom:.5rem;">🔒</div>
+  <h2 style="font-family:'Space Grotesk',sans-serif;font-size:1.6rem;font-weight:700;color:#fff;margin-bottom:.4rem;">Política de Privacidade</h2>
+  <p style="color:var(--muted);font-size:.8rem;">Última atualização: abril de 2026</p>
+</div>
+
+<p style="color:var(--muted);line-height:1.8;font-size:.9rem;">A sua privacidade é importante. Aqui explicamos exatamente quais dados coletamos, por quê e como usamos.</p>
+
+<h3 style="font-family:'Space Grotesk',sans-serif;color:#fff;font-size:.95rem;margin:1.6rem 0 .4rem;">1. Quais dados coletamos</h3>
+<div style="background:rgba(255,255,255,.02);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin:.5rem 0;">
+  <div style="display:grid;grid-template-columns:1fr 2fr;border-bottom:1px solid var(--border);">
+    <div style="padding:.7rem 1rem;background:rgba(255,255,255,.02);font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px;">Dado</div>
+    <div style="padding:.7rem 1rem;background:rgba(255,255,255,.02);font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px;">Por que coletamos</div>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 2fr;border-bottom:1px solid var(--border);">
+    <div style="padding:.65rem 1rem;font-size:.85rem;color:#e2e8f0;border-right:1px solid var(--border);">E-mail</div>
+    <div style="padding:.65rem 1rem;font-size:.85rem;color:var(--muted);">Criar conta, fazer login e recuperar acesso.</div>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 2fr;border-bottom:1px solid var(--border);">
+    <div style="padding:.65rem 1rem;font-size:.85rem;color:#e2e8f0;border-right:1px solid var(--border);">Progresso</div>
+    <div style="padding:.65rem 1rem;font-size:.85rem;color:var(--muted);">Salvar as lições que você completou para continuar de onde parou.</div>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 2fr;border-bottom:1px solid var(--border);">
+    <div style="padding:.65rem 1rem;font-size:.85rem;color:#e2e8f0;border-right:1px solid var(--border);">Status premium</div>
+    <div style="padding:.65rem 1rem;font-size:.85rem;color:var(--muted);">Verificar se sua conta tem acesso ao conteúdo completo.</div>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 2fr;">
+    <div style="padding:.65rem 1rem;font-size:.85rem;color:#e2e8f0;border-right:1px solid var(--border);">Tipo de dispositivo</div>
+    <div style="padding:.65rem 1rem;font-size:.85rem;color:var(--muted);">Adaptar o layout para computador ou celular. Não é armazenado.</div>
+  </div>
+</div>
+
+<h3 style="font-family:'Space Grotesk',sans-serif;color:#fff;font-size:.95rem;margin:1.6rem 0 .4rem;">2. O que não coletamos</h3>
+<ul style="list-style:none;padding:0;display:flex;flex-direction:column;gap:.4rem;">
+  <li style="color:var(--muted);font-size:.88rem;line-height:1.7;padding-left:1.4rem;position:relative;"><span style="position:absolute;left:0;color:var(--green);">✓</span> Não coletamos nome completo, CPF ou dados bancários diretamente.</li>
+  <li style="color:var(--muted);font-size:.88rem;line-height:1.7;padding-left:1.4rem;position:relative;"><span style="position:absolute;left:0;color:var(--green);">✓</span> Não vendemos dados para terceiros.</li>
+  <li style="color:var(--muted);font-size:.88rem;line-height:1.7;padding-left:1.4rem;position:relative;"><span style="position:absolute;left:0;color:var(--green);">✓</span> Não usamos rastreadores de publicidade dentro da plataforma.</li>
+  <li style="color:var(--muted);font-size:.88rem;line-height:1.7;padding-left:1.4rem;position:relative;"><span style="position:absolute;left:0;color:var(--green);">✓</span> Não armazenamos o código que você escreve nos exercícios.</li>
+</ul>
+
+<h3 style="font-family:'Space Grotesk',sans-serif;color:#fff;font-size:.95rem;margin:1.6rem 0 .4rem;">3. Onde os dados ficam armazenados</h3>
+<p style="color:var(--muted);line-height:1.8;font-size:.88rem;">Usamos o <strong style="color:#fff;">Supabase</strong> para autenticação e armazenamento do progresso — uma plataforma de banco de dados segura com criptografia em trânsito e em repouso. Seus dados nunca saem dos servidores do Supabase para sistemas externos.</p>
+
+<h3 style="font-family:'Space Grotesk',sans-serif;color:#fff;font-size:.95rem;margin:1.6rem 0 .4rem;">4. Pagamentos</h3>
+<p style="color:var(--muted);line-height:1.8;font-size:.88rem;">Os pagamentos são processados pelo <strong style="color:#fff;">Mercado Pago</strong>. A FlowCode Academy nunca vê ou armazena os dados do seu cartão. Ao clicar em "Pagar", você é redirecionado diretamente para o ambiente seguro do Mercado Pago.</p>
+
+<h3 style="font-family:'Space Grotesk',sans-serif;color:#fff;font-size:.95rem;margin:1.6rem 0 .4rem;">5. IA (Assistente)</h3>
+<p style="color:var(--muted);line-height:1.8;font-size:.88rem;">As mensagens que você envia para o assistente de IA são enviadas para a API do <strong style="color:#fff;">Google Gemini</strong> para gerar a resposta. Não armazenamos o histórico de conversa após fechar a janela. Consulte a <a href="https://policies.google.com/privacy" target="_blank" style="color:var(--green-l);">política do Google</a> para saber como eles tratam os dados da API.</p>
+
+<h3 style="font-family:'Space Grotesk',sans-serif;color:#fff;font-size:.95rem;margin:1.6rem 0 .4rem;">6. Seus direitos (LGPD)</h3>
+<p style="color:var(--muted);line-height:1.8;font-size:.88rem;">De acordo com a Lei Geral de Proteção de Dados (LGPD), você tem direito a: acessar seus dados, corrigir informações incorretas e solicitar a exclusão da sua conta. Para exercer esses direitos, entre em contato pelo Instagram ou e-mail da plataforma.</p>
+
+<h3 style="font-family:'Space Grotesk',sans-serif;color:#fff;font-size:.95rem;margin:1.6rem 0 .4rem;">7. Cookies</h3>
+<p style="color:var(--muted);line-height:1.8;font-size:.88rem;">Usamos o <code style="background:rgba(16,185,129,.08);color:var(--green-l);padding:.1rem .4rem;border-radius:5px;font-family:'Fira Code',monospace;font-size:.82em;">localStorage</code> do navegador para guardar seu progresso e preferências localmente. Nenhum cookie de rastreamento é instalado.</p>
+`
+};
+
+function openLegalModal(type) {
+  var overlay = document.getElementById('legalOverlay');
+  var content = document.getElementById('legalContent');
+  if (!overlay || !content || !_LEGAL_CONTENT[type]) return;
+  content.innerHTML = _LEGAL_CONTENT[type];
+  overlay.style.display = 'block';
+  document.body.style.overflow = 'hidden';
+}
+
+function closeLegalModal() {
+  var overlay = document.getElementById('legalOverlay');
+  if (overlay) overlay.style.display = 'none';
+  document.body.style.overflow = '';
+}
+
+// Fechar com Escape
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeLegalModal();
+});
 
 </script>
 
