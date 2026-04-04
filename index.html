@@ -6,8 +6,8 @@
     <title>FlowCode Academy — Aprenda Programação do Zero</title>
     <meta name="google-adsense-account" content="ca-pub-6737222615730122">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6737222615730122" crossorigin="anonymous"></script>
-    <link rel="preçonnect" href="https://fonts.googleapis.com">
-    <link rel="preçonnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Fira+Code:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap">
     <style>
 
@@ -261,6 +261,7 @@
         .stat-l { color:var(--muted); font-size:.75rem; text-transform:uppercase; letter-spacing:1.5px; margin-top:.1rem; }
 
         /* ===== PLANS GRID ===== */
+        #home-page { position:relative; overflow-x:hidden; }
         #home-page section { padding:6rem 2rem; max-width:1200px; margin:0 auto; position:relative; z-index:1; }
         #home-page .hero { max-width:none; padding:7rem 2rem 5rem; }
         .sec-title { font-family:'Space Grotesk',sans-serif; text-align:center; font-size:2.3rem; font-weight:700; margin-bottom:.8rem; background:linear-gradient(135deg,#fff,#cbd5e1); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; color:transparent; }
@@ -13792,6 +13793,7 @@ function startBootcamp(plan) {
     currentLessonIdx = 0;
     document.getElementById('home-page').style.display = 'none';
     document.getElementById('learn-page').style.display = 'block';
+    if (window._matrixStop) window._matrixStop();
     document.getElementById('homeNav').style.display = 'none';
     document.getElementById('learnNav').style.display = 'flex';
     document.getElementById('backBtn').style.display = 'block';
@@ -13807,6 +13809,7 @@ function startBootcamp(plan) {
 function resumeBootcamp() {
     document.getElementById('home-page').style.display = 'none';
     document.getElementById('learn-page').style.display = 'block';
+    if (window._matrixStop) window._matrixStop();
     document.getElementById('homeNav').style.display = 'none';
     document.getElementById('learnNav').style.display = 'flex';
     document.getElementById('backBtn').style.display = 'block';
@@ -13821,6 +13824,7 @@ function resumeBootcamp() {
 function goHome() {
     document.getElementById('home-page').style.display = 'block';
     document.getElementById('learn-page').style.display = 'none';
+    if (window._matrixStart) window._matrixStart();
     document.getElementById('homeNav').style.display = 'flex';
     document.getElementById('learnNav').style.display = 'none';
     document.getElementById('backBtn').style.display = 'none';
@@ -16052,14 +16056,13 @@ function _startFlowAfterAuth() {
   function startMatrix() { if (!_matrixTimer) _matrixTimer = setInterval(draw, 50); }
   function stopMatrix()  { clearInterval(_matrixTimer); _matrixTimer = null; }
   startMatrix();
-  // Pause when on learn page (performance)
-  var _origShowLearn = window.showLearnPage;
-  if (typeof showBootcamp === 'function') {
-    var _origSB = showBootcamp;
-  }
+  // Pause when tab hidden
   document.addEventListener('visibilitychange', function() {
     document.hidden ? stopMatrix() : startMatrix();
   });
+  // Expose controls so startBootcamp/goHome can toggle
+  window._matrixStop  = stopMatrix;
+  window._matrixStart = startMatrix;
 })();
 
 // ─────────────────────────────────────────────────────────────
